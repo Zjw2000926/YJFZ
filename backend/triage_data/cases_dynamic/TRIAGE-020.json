@@ -1,0 +1,1370 @@
+{
+  "external_id": "TRIAGE-020",
+  "stage": "REAL",
+  "title": "多次呕吐腹泻伴脱水表现",
+  "display_name": "多次呕吐腹泻伴脱水表现",
+  "difficulty": 2,
+  "category": "消化/腹痛",
+  "source_case_id": "VP-T020",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "少尿"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "38岁",
+    "gender": "男",
+    "arrival_mode": "家属陪同，自行步入后坐轮椅",
+    "appearance": "疲惫，口唇干，坐位，能完整回答。 •",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“吐了好几次，拉肚子，人很虚，站起来头晕。”",
+    "opening_line": "“吐了好几次，拉肚子，人很虚，站起来头晕",
+    "scene_description": "患者由妻子陪同来到分诊台，诉反复呕吐腹泻，口干乏力，站立时头晕。",
+    "family_information": "妻子称患者昨晚吃夜宵后开始呕吐腹泻，今天尿明显少。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅲ级",
+    "minimum_safe_level": "Ⅲ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "初始进入黄区",
+      "初始不需立即通知医生",
+      "第一次复评出现血压下降趋势或呕吐持续时应通知医生",
+      "不启动绿色通道",
+      "优先评估生命体征、脱水程度、尿量、血便、腹痛红旗和感染暴露",
+      "候诊期间15–30分钟内复评BP、HR、意识、尿量、呕吐腹泻频率和头晕",
+      "第一次恶化应重新分诊为Ⅱ级",
+      "第二次出现低血压、嗜睡、皮肤湿冷应升级Ⅰ级，转红区",
+      "如疑似感染性腹泻或聚集性发病，执行接触防护、手卫生和分区候诊"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "呕吐次数、腹泻次数和持续时间",
+      "keywords": [
+        "呕吐次数",
+        "腹泻次数",
+        "和持续时"
+      ],
+      "answer": "“吐了好几次，拉肚子，人很虚，站起来头晕。”"
+    },
+    {
+      "id": "q_002",
+      "label": "血便、黑便、剧烈腹痛",
+      "keywords": [
+        "血便",
+        "黑便",
+        "剧烈腹痛"
+      ],
+      "answer": "“吐了好几次，拉肚子，人很虚，站起来头晕。”"
+    },
+    {
+      "id": "q_003",
+      "label": "发热、寒战、意识改变",
+      "keywords": [
+        "发热",
+        "寒战",
+        "意识改变"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_004",
+      "label": "尿量减少、口干、站立头晕",
+      "keywords": [
+        "尿量减少",
+        "口干",
+        "站立头晕"
+      ],
+      "answer": "“吐了好几次，拉肚子，人很虚，站起来头晕。”"
+    },
+    {
+      "id": "q_005",
+      "label": "进食可疑食物、同餐者是否发病",
+      "keywords": [
+        "进食可疑",
+        "食物",
+        "同餐者是",
+        "否发病"
+      ],
+      "answer": "“吐了好几次，拉肚子，人很虚，站起来头晕。”"
+    },
+    {
+      "id": "q_006",
+      "label": "有糖尿病、肾病、免疫低下或老年/孕产等特殊风险",
+      "keywords": [
+        "有糖尿病",
+        "肾病",
+        "免疫低下",
+        "或老年",
+        "孕产等特"
+      ],
+      "answer": "“吐了好几次，拉肚子，人很虚，站起来头晕。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“吐了好几次，拉肚子，人很虚，站起来头晕。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“吐了好几次，拉肚子，人很虚，站起来头晕。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“吐了好几次，拉肚子，人很虚，站起来头晕。”，疲惫，口唇干，坐位，能完整回答。 •。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，疲惫、口干、能完整回答但不愿久站。 如果护士问无关问题，患者。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "好像没有药物过敏，没注意过。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "抽烟，一天一包吧。偶尔喝酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "妻子称患者昨晚吃夜宵后开始呕吐腹泻，今天尿明显少。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "108/68 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "37.5",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "108",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "20",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "4.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒，乏力",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.7",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "口唇干，皮肤弹性稍差，轻度出汗，无发绀，末梢灌注尚可",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "呕吐和腹泻次数",
+        "血便",
+        "黑便",
+        "尿量",
+        "进水情况",
+        "食物暴露",
+        "同餐者症状",
+        "基 础病",
+        "腹部紧张/拒按",
+        "脱水程度和跌倒风险"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "少尿",
+      "evidence": [
+        "少尿"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "站立头晕",
+      "evidence": [
+        "站立头晕"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "心率增快",
+      "evidence": [
+        "心率增快"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "血压下降趋势",
+      "evidence": [
+        "血压下降趋势"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "持续呕吐不能进水",
+      "evidence": [
+        "持续呕吐不能进水"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_006",
+      "label": "血便、剧烈腹痛或意识改变",
+      "evidence": [
+        "血便、剧烈腹痛或意识改变"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测BP和HR",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估脱水和尿量",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问血便或剧烈腹痛",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "候诊中BP下降未复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "第一 次动态恶化未升级Ⅱ级或未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "呕吐次数、腹泻次数和持续时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "血便、黑便、剧烈腹痛",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "发热、寒战、意识改变",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "尿量减少、口干、站立头晕",
+        "canonical_intents": [
+          "ask_accompanying"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "进食可疑食物、同餐者是否发病",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "有糖尿病、肾病、免疫低下或老年/孕产等特殊风险",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“吐了好几次，拉肚子，人很虚，站起来头晕。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“吐了好几次，拉肚子，人很虚，站起来头晕。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“吐了好几次，拉肚子，人很虚，站起来头晕。”，疲惫，口唇干，坐位，能完整回答。 •。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，疲惫、口干、能完整回答但不愿久站。 如果护士问无关问题，患者。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "好像没有药物过敏，没注意过。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "抽烟，一天一包吧。偶尔喝酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "妻子称患者昨晚吃夜宵后开始呕吐腹泻，今天尿明显少。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“吐了好几次，拉肚子，人很虚，站起来头晕",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“吐了好几次，拉肚子，人很虚，站起来头晕 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "疲惫、口干、能完整回答但不愿久站。 如果护士问无关问题，患者应回应：“我现在就是吐、拉，还头晕。” 如果护士重复询问，患者应回应：“吐了好几次，拉了很多次，尿也少。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“我更晕 了”“又吐了”“尿更少了”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“脱水”“Ⅲ级”“胃肠炎”“需要升级”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "妻子补充患者尿明显少",
+      "昨晚吃夜宵后发作"
+    ]
+  },
+  "patient_tone": "疲惫、口干、能完整回答但不愿久站。 如果护士问无关问题，患者应回应：“我现在就是吐、拉，还头晕。” 如果护士重复询问，患者应回应：“吐了好几次，拉了很多次，尿也少。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“我更晕 了”“又吐了”“尿更少了”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别疲惫",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "口干和脱水外观",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "问呕吐次数和持续时间",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "性状",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "血便",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "口干",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "站立头晕",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "寒战",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识改变",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "免疫低下和特殊人群风险",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "测血压",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "皮肤弹性",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "灌注",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "识别少尿和口干",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "血便",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "剧烈腹痛或意识改变",
+            "score": 5,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确判定初始Ⅲ级",
+            "score": 8,
+            "critical_fail": true
+          },
+          {
+            "criterion": "第一次血压下降未升级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "第二次低血压嗜睡未转红区",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "任一项本项不得超过",
+            "score": 6,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "初始安排黄区",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "按时复测BP",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "HR",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "呕吐腹泻和灌注",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "告知脱水和跌倒风险",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "尿量",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "生命体征和复评",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "若能初始识别脱水风险并分Ⅲ级，同时在第一次血压下降时升级Ⅱ级，说明具备动态 复评意识。",
+    "risk_if_missed": "漏问尿量、血便和站立头晕，可能把脱水或高危腹泻误判为低 危。",
+    "key_red_flag": "少尿、站立头晕、HR增快、BP下降趋势和意识变化。",
+    "reason_for_triage_level": "初始尚无休克但已有脱水表现，需Ⅲ级观察复评；第一次血压下降需Ⅱ级 优先；第二次低血压和嗜睡后为Ⅰ级。",
+    "correct_triage_logic": "呕吐腹泻不能只看次数，要看尿量、灌注、HR、BP和动态变化。",
+    "recommended_remediation": [
+      "脱水评估",
+      "腹泻红旗",
+      "感染性腹泻防护",
+      "三阶段候诊复评和升级",
+      "• VP-T011—VP-T020 定稿后分诊等级汇总 病例编 号病例名称定稿初始 分诊等级标准区域 感染防控路径是否 动态 VP- T011既往偏头痛样头痛无神经 缺损Ⅳ级 绿区 标准防护 否 VP- T012严重呼吸困难伴发绀",
+      "SpO₂显著降低Ⅰ级 红区呼吸道症状加强防 护",
+      "不延误抢救否 VP- T013哮喘发作只能说短句 Ⅱ级黄区优先/靠近抢 救资源区标准防护 是 VP- T014慢阻肺患者气促加重伴低 氧Ⅱ级黄区优先/靠近抢 救资源区呼吸道症状加强防 护是 VP- T015咳嗽发热伴轻度气促 Ⅲ级 黄区观察队列 呼吸道隔离路径 是 VP- T016普通上呼吸道症状无气促 Ⅳ级 绿区 呼吸道隔离路径 是 VP- T017呕血黑便伴面色苍白",
+      "脉 搏细速Ⅰ级 红区血液/呕吐物标准防 护否 VP- T018突发剧烈腹痛伴腹部紧 张",
+      "拒按和保护性体位Ⅱ级黄区优先/靠近抢 救资源区标准防护 是 VP- T019右下腹痛伴近晕厥",
+      "月经 延迟待确认Ⅱ级黄区优先/妇产急 症优先评估区标准防护",
+      "隐私保 护是 VP- T020多次呕吐腹泻伴脱水表现 Ⅲ级 黄区 必要时接触防护 是"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "少尿",
+    "站立头晕",
+    "心率增快",
+    "血压下降趋势",
+    "持续呕吐不能进水",
+    "血便、剧烈腹痛或意识改变"
+  ],
+  "common_errors": [
+    "只按普通腹泻分Ⅳ级，忽略脱水",
+    "未询问尿量和站立头晕",
+    "第一次复评出现血压下降仍不升级",
+    "Ⅳ级普通胃肠炎候诊",
+    "动态恶化后仍维持Ⅲ级"
+  ],
+  "critical_errors": [
+    "未测BP和HR",
+    "未评估脱水和尿量",
+    "未询问血便或剧烈腹痛",
+    "候诊中BP下降未复评",
+    "第一 次动态恶化未升级Ⅱ级或未通知医生"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "多次呕吐和腹泻",
+      "口干、少尿、站立头晕",
+      "HR 108次/分，BP 108/68 mmHg，轻度脱水表现"
+    ],
+    "key_negative_information": [
+      "当前无低血压休克",
+      "当前无意识障碍、无持续高热",
+      "当前无明显腹部紧张、拒按或剧烈腹痛"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅲ级",
+    "esi_ctas_mapping": "ESI 3/CTAS 3",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "15–30分钟内复评；若头晕加重、少尿、低血压、意识改变，立即复评",
+    "isolation_or_ppe": "如有疑似感染性腹泻或聚集性发病，需接触防护、手卫生和分区候诊",
+    "violence_self_harm_risk": "否；存在脱水头晕和跌倒风险",
+    "triage_basis": "初始应分为Ⅲ级。患者有多次呕吐腹泻、口干、少尿、站立头晕、HR 108次/分和BP 108/68 mmHg，提示脱水 风险，需要急诊评估和候诊复评。当前意识清楚，血压尚可，无休克、无持续高热、无明显腹部紧张或拒按， 因此不是Ⅰ级或Ⅱ级。由于存在脱水表现和心率增快，也不能简单归为Ⅳ级。 动态第一次恶化时，出现再次呕吐、头晕加重、HR 118次/分、BP 98/62 mmHg，应升级为Ⅱ级并通知医生优 先评估。第二次恶化出现嗜睡、皮肤湿冷、BP 88/54 mmHg、HR 128次/分，应升级Ⅰ级并转红区。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "初始进入黄区",
+      "初始不需立即通知医生",
+      "第一次复评出现血压下降趋势或呕吐持续时应通知医生",
+      "不启动绿色通道",
+      "优先评估生命体征、脱水程度、尿量、血便、腹痛红旗和感染暴露",
+      "候诊期间15–30分钟内复评BP、HR、意识、尿量、呕吐腹泻频率和头晕",
+      "第一次恶化应重新分诊为Ⅱ级",
+      "第二次出现低血压、嗜睡、皮肤湿冷应升级Ⅰ级，转红区",
+      "如疑似感染性腹泻或聚集性发病，执行接触防护、手卫生和分区候诊"
+    ],
+    "communication_points": [
+      "告知患者目前有脱水风险，需要观察",
+      "候诊期间不要自行站立行走，如头晕加重、继续呕 吐、尿更少或出现血便立即告知"
+    ],
+    "documentation_points": [
+      "呕吐腹泻次数",
+      "尿量",
+      "进水情况",
+      "头晕",
+      "血便阴性或阳性",
+      "BP",
+      "HR",
+      "脱水表现",
+      "分诊 等级",
+      "复评时间和动态升级"
+    ],
+    "sbar_handoff": "S：38岁男性，多次呕吐腹泻，口干、少尿、站立头晕。 B：昨晚进食夜宵后发作，同餐者情况待问。 A：初始Ⅲ级，HR 108次/分，BP 108/68 mmHg，清醒，有轻度脱水表现；动态如BP下降需升级。 R：黄区候诊，15–30分钟复评BP、HR、尿量、意识和腹痛红旗；血压下降或嗜睡时升级。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "呕吐次数、腹泻次数和持续时间",
+      "血便、黑便、剧烈腹痛",
+      "发热、寒战、意识改变",
+      "尿量减少、口干、站立头晕",
+      "进食可疑食物、同餐者是否发病",
+      "有糖尿病、肾病、免疫低下或老年/孕产等特殊风险"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "体温",
+      "呼吸频率",
+      "SpO₂",
+      "血糖"
+    ],
+    "must_observe_items": [
+      "口唇和舌黏膜干燥",
+      "皮肤弹性和末梢灌注",
+      "坐起或站立头晕",
+      "不要求诱发站立试验",
+      "腹痛程度和腹部紧张/拒按",
+      "呕吐频率",
+      "意识状态和疲乏程度"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅲ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "多次呕吐腹泻伴脱水表现加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "再次呕吐2次，站立头晕加重，HR 118次/分，BP 98/62 mmHg。 第一次",
+        "vital_changes": {
+          "blood_pressure_systolic": 98,
+          "blood_pressure_diastolic": 62,
+          "heart_rate": 118
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "再次呕吐2次，站立头晕加重，HR 118次/分，BP 98/62 mmHg。 第一次",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 20,
+        "event_description": "再次呕吐2次，站立头晕加重，HR 118次/分，BP 98/62 mmHg。 第一次",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "嗜睡、皮肤湿冷，BP 88/54 mmHg，HR 128次/分。 第二次",
+        "vital_changes": {
+          "blood_pressure_systolic": 88,
+          "blood_pressure_diastolic": 54,
+          "heart_rate": 128
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "嗜睡、皮肤湿冷，BP 88/54 mmHg，HR 128次/分。 第二次",
+        "standard_level_after_event": "Ⅱ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 35,
+        "event_description": "嗜睡、皮肤湿冷，BP 88/54 mmHg，HR 128次/分。 第二次",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化",
+        "severe_error_code": "NO_REASSESS_AFTER_WORSENING"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "疲惫，口唇干，坐位，能完整回答。 •",
+      "time_minute": 0,
+      "appearance": "疲惫，口唇干，坐位，能完整回答。 •",
+      "chief_complaint": "“吐了好几次，拉肚子，人很虚，站起来头晕。”",
+      "symptom_description": "患者由妻子陪同来到分诊台，诉反复呕吐腹泻，口干乏力，站立时头晕。",
+      "mental_status": "清醒",
+      "pain_score": 4,
+      "risk_signals": [
+        "少尿",
+        "站立头晕",
+        "心率增快"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 37.5,
+        "heart_rate": 108,
+        "respiratory_rate": 20,
+        "spo2": 99,
+        "pain_score": 4,
+        "consciousness": "清醒，乏力",
+        "gcs_score": 15,
+        "blood_glucose": 5.7,
+        "skin_perfusion": "口唇干，皮肤弹性稍差，轻度出汗，无发绀，末梢灌注尚可",
+        "other_assessments": [
+          "呕吐和腹泻次数",
+          "血便",
+          "黑便",
+          "尿量",
+          "进水情况",
+          "食物暴露",
+          "同餐者症状",
+          "基 础病",
+          "腹部紧张/拒按",
+          "脱水程度和跌倒风险"
+        ],
+        "blood_pressure_systolic": 108,
+        "blood_pressure_diastolic": 68
+      },
+      "recommended_actions": [
+        "初始分诊Ⅲ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T20_event_1",
+      "state_name": "再次呕吐2次，站立头晕加重，HR 118次/分，BP 98/62 mmHg。 第",
+      "time_minute": 20,
+      "appearance": "疲惫，口唇干，坐位，能完整回答。 •",
+      "chief_complaint": "再次呕吐2次，站立头晕加重，HR 118次/分，BP 98/62 mmHg。 第",
+      "symptom_description": "再次呕吐2次，站立头晕加重，HR 118次/分，BP 98/62 mmHg。 第一次",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 98,
+        "blood_pressure_diastolic": 62,
+        "heart_rate": 118
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T35_event_2",
+      "state_name": "嗜睡、皮肤湿冷，BP 88/54 mmHg，HR 128次/分。 第二次",
+      "time_minute": 35,
+      "appearance": "疲惫，口唇干，坐位，能完整回答。 •",
+      "chief_complaint": "嗜睡、皮肤湿冷，BP 88/54 mmHg，HR 128次/分。 第二次",
+      "symptom_description": "嗜睡、皮肤湿冷，BP 88/54 mmHg，HR 128次/分。 第二次",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 88,
+        "blood_pressure_diastolic": 54,
+        "heart_rate": 128
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "红区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅲ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "红区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

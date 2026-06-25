@@ -1,0 +1,1102 @@
+{
+  "external_id": "TRIAGE-017",
+  "stage": "REAL",
+  "title": "呕血黑便伴面色苍白、脉搏细速",
+  "display_name": "呕血黑便伴面色苍白、脉搏细速",
+  "difficulty": 3,
+  "category": "消化/腹痛",
+  "source_case_id": "VP-T017",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "呕血伴黑便"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "61岁",
+    "gender": "男",
+    "arrival_mode": "家属陪同，轮椅推入",
+    "appearance": "明显虚弱，面色苍白，皮肤湿冷，坐位不稳。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“吐了血，头晕，站不住。”",
+    "opening_line": "“吐血了，头晕，站不住",
+    "scene_description": "患者由家属推入急诊入口，衣物上有暗红色呕吐物痕迹，面色苍白，出冷汗。",
+    "family_information": "妻子称患者昨晚解黑便，今天呕血两次，刚才站起时差点晕倒。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅰ级",
+    "minimum_safe_level": "Ⅰ级",
+    "triage_zone": "红区",
+    "disposition": [
+      "立即进入红区",
+      "立即通知医生和抢救团队",
+      "不启动专病绿色通道，但启动急危重消化道出血抢救评估流程",
+      "优先评估循环、意识、血压、心率、脉搏强弱、出血量、误吸风险和灌注状态",
+      "不候诊，连续观察BP、HR、意识、皮肤灌注、呕血和黑便变化",
+      "已为Ⅰ级，不存在普通重新分诊",
+      "需持续记录并即时响应",
+      "加强标准防护，处理血液和呕吐物时注意职业暴露防护",
+      "防跌倒、防误吸，禁止患者自行站立或步行"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "呕血开始时间、次数和估计量",
+      "keywords": [
+        "呕血开始",
+        "时间",
+        "次数和估",
+        "计量"
+      ],
+      "answer": "“吐了血，头晕，站不住。”"
+    },
+    {
+      "id": "q_002",
+      "label": "黑便时间、次数和颜色",
+      "keywords": [
+        "黑便时间",
+        "次数和颜"
+      ],
+      "answer": "“吐了血，头晕，站不住。”"
+    },
+    {
+      "id": "q_003",
+      "label": "头晕、晕厥、心慌、出汗",
+      "keywords": [
+        "头晕",
+        "晕厥",
+        "心慌",
+        "出汗"
+      ],
+      "answer": "意识清楚。"
+    },
+    {
+      "id": "q_004",
+      "label": "腹痛、呕吐、误吸",
+      "keywords": [
+        "腹痛",
+        "呕吐",
+        "误吸"
+      ],
+      "answer": "“吐了血，头晕，站不住。”"
+    },
+    {
+      "id": "q_005",
+      "label": "有肝病、消化性溃疡、饮酒史",
+      "keywords": [
+        "有肝病",
+        "消化性溃",
+        "饮酒史"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "q_006",
+      "label": "服用抗凝药、止痛药或长期用药",
+      "keywords": [
+        "服用抗凝",
+        "止痛药或",
+        "长期用药"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“吐了血，头晕，站不住。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“吐了血，头晕，站不住。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“吐了血，头晕，站不住。”，明显虚弱，面色苍白，皮肤湿冷，坐位不稳。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，虚弱、声音低、回答短。 如果护士问无关问题，患者应回应：“我。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "抽烟，一天一包吧。偶尔喝酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "妻子称患者昨晚解黑便，今天呕血两次，刚才站起时差点晕倒。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "78/48 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": true,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.4",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "132",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "26",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "94",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "3.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒但反应迟缓，头晕明显",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "14",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "6.5",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "面色苍白，皮肤湿冷，大汗，末梢灌注差，无明显发绀",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "呕血次数和量",
+        "黑便次数",
+        "晕厥/近晕厥",
+        "腹痛",
+        "既往肝病或消化性溃疡史",
+        "抗凝药/止 痛药使用",
+        "呕吐误吸风险"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "呕血伴黑便",
+      "evidence": [
+        "呕血伴黑便"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "低血压",
+      "evidence": [
+        "低血压"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "心动过速和脉搏细弱",
+      "evidence": [
+        "心动过速和脉搏细弱"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "皮肤湿冷、灌注差",
+      "evidence": [
+        "皮肤湿冷、灌注差"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "头晕近晕厥",
+      "evidence": [
+        "头晕近晕厥"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未立即红区",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测血压",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "让患者站立或自行步行",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "将呕血黑便伴低血压安排 候诊",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "呕血开始时间、次数和估计量",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "黑便时间、次数和颜色",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "头晕、晕厥、心慌、出汗",
+        "canonical_intents": [
+          "ask_accompanying"
+        ],
+        "answer_facts": [
+          "意识清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "腹痛、呕吐、误吸",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "有肝病、消化性溃疡、饮酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "服用抗凝药、止痛药或长期用药",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“吐了血，头晕，站不住。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“吐了血，头晕，站不住。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“吐了血，头晕，站不住。”，明显虚弱，面色苍白，皮肤湿冷，坐位不稳。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，虚弱、声音低、回答短。 如果护士问无关问题，患者应回应：“我。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "抽烟，一天一包吧。偶尔喝酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "妻子称患者昨晚解黑便，今天呕血两次，刚才站起时差点晕倒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“吐血了，头晕，站不住",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“吐血了，头晕，站不住 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "虚弱、声音低、回答短。 如果护士问无关问题，患者应回应：“我头晕，站不住，能不能快点？” 如果护士重复询问，患者应回应：重复“吐血、头晕”，家属补充细节。 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；低血压和虚弱通过客观评估体现。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“失血性休克”“Ⅰ级”“消化道大出血”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "昨晚黑便",
+      "今天呕血两次",
+      "站起时差点晕倒"
+    ]
+  },
+  "patient_tone": "虚弱、声音低、回答短。 如果护士问无关问题，患者应回应：“我头晕，站不住，能不能快点？” 如果护士重复询问，患者应回应：重复“吐血、头晕”，家属补充细节。 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；低血压和虚弱通过客观评估体现。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别面色苍白",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "虚弱",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出冷汗",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "问呕血开始时间",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "次数和估计量",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "晕厥",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "心慌",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出汗",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "呕吐和误吸风险",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "溃疡",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "饮酒史",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "止痛药或长期用药",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "测血压并识别低血压",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "苍白",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "灌注差",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "识别呕血黑便",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "灌注差",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确判定Ⅰ级",
+            "score": 20,
+            "critical_fail": true
+          },
+          {
+            "criterion": "未红区",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未通知医生",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "让患者普通候诊或自行步行",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "一票否决项：未立即红区；未测血压；未通知医生",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "安排红区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "防误吸",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "明确不候诊",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "心率",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出血",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "简短安抚并说明立即处理",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "生命体征和入红区时间",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别呕血黑便伴低血压、脉搏细弱和皮肤湿冷为Ⅰ级，说明具备出血性休克风险识别 能力。",
+    "risk_if_missed": "漏问呕血量、黑便和抗凝药/肝病史，会影响后续风险交接。",
+    "key_red_flag": "呕血黑便、低血压、心动过速、脉搏细弱、皮肤湿冷、近晕厥。",
+    "reason_for_triage_level": "已经出现循环不稳定和灌注差，属于Ⅰ级。",
+    "correct_triage_logic": "先看循环和出血证据，立即红区，再补充病史。",
+    "recommended_remediation": [
+      "消化道出血分诊",
+      "休克表现",
+      "血液职业防护",
+      "SBAR危重交接"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "呕血伴黑便",
+    "低血压",
+    "心动过速和脉搏细弱",
+    "皮肤湿冷、灌注差",
+    "头晕近晕厥"
+  ],
+  "common_errors": [
+    "只按“胃痛”或“呕吐”处理",
+    "未测血压前安排普通候诊",
+    "Ⅱ级消化道出血或Ⅲ级胃痛候诊"
+  ],
+  "critical_errors": [
+    "未立即红区",
+    "未测血压",
+    "未通知医生",
+    "让患者站立或自行步行",
+    "将呕血黑便伴低血压安排 候诊",
+    "任一项为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "呕血两次，昨晚黑便",
+      "头晕、近晕厥",
+      "BP 78/48 mmHg，HR 132次/分，脉搏细弱，皮肤湿冷"
+    ],
+    "key_negative_information": [
+      "无明确胸部外伤",
+      "无发热寒战为主要表现"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅰ级",
+    "esi_ctas_mapping": "ESI 1/CTAS 1",
+    "standard_zone": "红区",
+    "standard_zone_detail": "红区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "不候诊，立即红区，连续观察",
+    "isolation_or_ppe": "不需要隔离；有血液/呕吐物暴露风险，需加强标准防护",
+    "violence_self_harm_risk": "否；存在晕厥、跌倒和误吸风险",
+    "triage_basis": "该患者应分为Ⅰ级。呕血黑便合并BP 78/48 mmHg、HR 132次/分、脉搏细弱、皮肤湿冷、面色苍白、头晕近 晕厥和灌注差，提示严重出血伴循环不稳定风险。不能分为Ⅱ级或更低，因为患者已经存在低血压和灌注不 良。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "立即进入红区",
+      "立即通知医生和抢救团队",
+      "不启动专病绿色通道，但启动急危重消化道出血抢救评估流程",
+      "优先评估循环、意识、血压、心率、脉搏强弱、出血量、误吸风险和灌注状态",
+      "不候诊，连续观察BP、HR、意识、皮肤灌注、呕血和黑便变化",
+      "已为Ⅰ级，不存在普通重新分诊",
+      "需持续记录并即时响应",
+      "加强标准防护，处理血液和呕吐物时注意职业暴露防护",
+      "防跌倒、防误吸，禁止患者自行站立或步行"
+    ],
+    "communication_points": [
+      "简短说明“目前有出血和血压低的危险，需要立即进入抢救区”",
+      "让家属快速提供出血量、 黑便和用药史"
+    ],
+    "documentation_points": [
+      "呕血时间",
+      "次数",
+      "估计量",
+      "黑便",
+      "BP",
+      "HR",
+      "脉搏强弱",
+      "意识",
+      "皮肤灌注",
+      "分诊等级",
+      "入红区时间",
+      "通知医生时间",
+      "防护措施"
+    ],
+    "sbar_handoff": "S：61岁男性，呕血两次、黑便，头晕站不住。 B：昨晚黑便，既往肝病/溃疡/抗凝用药待查。 A：Ⅰ级，BP 78/48 mmHg，HR 132次/分，脉搏细弱，皮肤湿冷，灌注差。 R：立即红区抢救评估，重点关注循环、持续出血、意识和误吸风险。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "呕血开始时间、次数和估计量",
+      "黑便时间、次数和颜色",
+      "头晕、晕厥、心慌、出汗",
+      "腹痛、呕吐、误吸",
+      "有肝病、消化性溃疡、饮酒史",
+      "服用抗凝药、止痛药或长期用药"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率和脉搏强弱",
+      "呼吸频率",
+      "SpO₂",
+      "意识/GCS",
+      "皮肤灌注"
+    ],
+    "must_observe_items": [
+      "面色苍白",
+      "出汗和皮肤湿冷",
+      "呕血/黑便证据",
+      "坐位或站立是否晕厥",
+      "腹痛和腹胀",
+      "呕吐误吸风险"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

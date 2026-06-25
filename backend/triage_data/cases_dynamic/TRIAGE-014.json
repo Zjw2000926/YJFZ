@@ -1,0 +1,1360 @@
+{
+  "external_id": "TRIAGE-014",
+  "stage": "REAL",
+  "title": "慢阻肺患者气促加重伴低氧",
+  "display_name": "慢阻肺患者气促加重伴低氧",
+  "difficulty": 2,
+  "category": "呼吸系统",
+  "source_case_id": "VP-T014",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "SpO₂ 88%"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "73岁",
+    "gender": "男",
+    "arrival_mode": "家属陪同，轮椅推入",
+    "appearance": "端坐位，桶状胸，呼吸费力，面色灰暗。",
+    "special_identity": "老年人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“这两天喘得厉害，今天走几步就不行。”",
+    "opening_line": "“喘得厉害”“走几步就不行”“比平时严重”",
+    "scene_description": "老年男性由女儿推入分诊区，诉气促较平时明显加重，讲话断续。",
+    "family_information": "女儿称患者有慢阻肺多年，近3天气促咳痰加重，今天精神变差。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅱ级",
+    "minimum_safe_level": "Ⅱ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "进入黄区优先或靠近抢救资源区",
+      "立即通知医生",
+      "启动慢病急性加重/呼吸困难优先评估流程",
+      "优先评估SpO₂、RR、HR、BP、意识、发绀、说话能力、呼吸做功和基础状态对比",
+      "流程等待期间每5–10分钟复评SpO₂、意识、RR和发绀",
+      "若SpO₂继续下降、意识模糊、嗜睡、呼吸疲劳、血压下降，应升级Ⅰ级",
+      "有咳嗽咳痰时加强呼吸道防护",
+      "如发热或流行病学风险明确，按隔离路径但不延误优先评估"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "气促加重时间和程度",
+      "keywords": [
+        "气促加重",
+        "时间和程"
+      ],
+      "answer": "“这两天喘得厉害，今天走几步就不行。”"
+    },
+    {
+      "id": "q_002",
+      "label": "平时基础SpO₂和活动耐量",
+      "keywords": [
+        "平时基础",
+        "和活动耐"
+      ],
+      "answer": "“这两天喘得厉害，今天走几步就不行。”"
+    },
+    {
+      "id": "q_003",
+      "label": "当前状态是否明显差于平时",
+      "keywords": [
+        "当前状态",
+        "是否明显",
+        "差于平时"
+      ],
+      "answer": "“这两天喘得厉害，今天走几步就不行。”"
+    },
+    {
+      "id": "q_004",
+      "label": "咳嗽、咳痰颜色和痰量变化",
+      "keywords": [
+        "咳嗽",
+        "咳痰颜色",
+        "和痰量变"
+      ],
+      "answer": "“这两天喘得厉害，今天走几步就不行。”"
+    },
+    {
+      "id": "q_005",
+      "label": "发热、胸痛、咯血",
+      "keywords": [
+        "发热",
+        "胸痛",
+        "咯血"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_006",
+      "label": "既往急性加重、住院、无创通气或插管史",
+      "keywords": [
+        "既往急性",
+        "加重",
+        "住院",
+        "无创通气",
+        "或插管史"
+      ],
+      "answer": "老年人"
+    },
+    {
+      "id": "q_007",
+      "label": "意识模糊、嗜睡或精神变差",
+      "keywords": [
+        "意识模糊",
+        "嗜睡或精",
+        "神变差"
+      ],
+      "answer": "意识清楚。"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“这两天喘得厉害，今天走几步就不行。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“这两天喘得厉害，今天走几步就不行。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“这两天喘得厉害，今天走几步就不行。”，端坐位，桶状胸，呼吸费力，面色灰暗。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，疲惫、短句、烦躁，回答速度慢。 如果护士问无关问题，患者应回。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "抽烟，一天一包吧。偶尔喝酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "女儿称患者有慢阻肺多年，近3天气促咳痰加重，今天精神变差。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "146/82 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "37.6",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "112",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "28",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "88",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "4.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒但反应较慢，疲惫",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "14",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "7.8",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "口唇轻度发绀，皮肤稍湿冷，末梢灌注尚可",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "基础SpO₂",
+        "平时活动耐量",
+        "当前是否明显差于基础状态",
+        "咳痰颜色和量",
+        "发热",
+        "意识变 化",
+        "既往慢阻肺急性加重史",
+        "家庭氧疗或长期吸烟"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "SpO₂ 88%",
+      "evidence": [
+        "SpO₂ 88%"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "老年慢阻肺气促较基础明显加重",
+      "evidence": [
+        "老年慢阻肺气促较基础明显加重"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "RR 28次/分",
+      "evidence": [
+        "RR 28次/分"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "反应较慢、疲惫",
+      "evidence": [
+        "反应较慢、疲惫"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "口唇发绀",
+      "evidence": [
+        "口唇发绀"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测SpO₂",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估意识和发绀",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问基础状态",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排绿区候诊",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "绿区为一票否决",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "气促加重时间和程度",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "平时基础SpO₂和活动耐量",
+        "canonical_intents": [
+          "ask_self_care"
+        ],
+        "answer_facts": [
+          "平时身体还行，没什么大毛病。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "当前状态是否明显差于平时",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "咳嗽、咳痰颜色和痰量变化",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "发热、胸痛、咯血",
+        "canonical_intents": [
+          "ask_children_fever"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "既往急性加重、住院、无创通气或插管史",
+        "canonical_intents": [
+          "ask_aggravating_relieving"
+        ],
+        "answer_facts": [
+          "老年人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_007",
+        "layer": "L2",
+        "label": "意识模糊、嗜睡或精神变差",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“这两天喘得厉害，今天走几步就不行。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“这两天喘得厉害，今天走几步就不行。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“这两天喘得厉害，今天走几步就不行。”，端坐位，桶状胸，呼吸费力，面色灰暗。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，疲惫、短句、烦躁，回答速度慢。 如果护士问无关问题，患者应回。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "抽烟，一天一包吧。偶尔喝酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "女儿称患者有慢阻肺多年，近3天气促咳痰加重，今天精神变差。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“喘得厉害”“走几步就不行”“比平时严重”",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“喘得厉害”“走几步就不行”“比平时严重” 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "疲惫、短句、烦躁，回答速度慢。 如果护士问无关问题，患者应回应：“我现在喘得厉害，能不能快点？” 如果护士重复询问，患者应回应：“就是比平时喘，今天特别厉害。” 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；动态恶化时可说“我想睡、越来越 没劲”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“呼吸衰竭”“Ⅱ级”“慢阻肺急性加重”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "近几天痰多",
+      "今天精神差",
+      "平时能走到楼下",
+      "今天走几步就喘"
+    ]
+  },
+  "patient_tone": "疲惫、短句、烦躁，回答速度慢。 如果护士问无关问题，患者应回应：“我现在喘得厉害，能不能快点？” 如果护士重复询问，患者应回应：“就是比平时喘，今天特别厉害。” 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；动态恶化时可说“我想睡、越来越 没劲”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别老年患者呼吸费力",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "问气促加重时间和程度",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "咳痰颜色和量",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "胸痛",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "咯血",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "住院或通气史",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "嗜睡",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "精神变差",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "测SpO₂",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "识别SpO₂ 88%",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疲惫",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确判定Ⅱ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "嗜睡",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "GCS下降后判Ⅰ级",
+            "score": 20,
+            "critical_fail": true
+          },
+          {
+            "criterion": "绿区候诊",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态低氧/嗜睡未升级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "一票否决项：未测SpO₂；未评估意识和发绀；未询问基础状态",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "黄区优先或靠近抢救资源区",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "5–",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发绀",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疲劳",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "安抚并限制活动",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "RR",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "GCS和防护",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别慢阻肺患者“比平时更喘”伴SpO₂ 88%和反应变慢为Ⅱ级，说明能发现慢病急 性加重风险。",
+    "risk_if_missed": "漏问基础SpO₂、活动耐量和精神状态变化，会低估急性加重程 度。",
+    "key_red_flag": "低氧、气促较基础加重、发绀、反应变慢。",
+    "reason_for_triage_level": "初始尚未昏迷或休克，但低氧明显且有恶化风险，需Ⅱ级优先。",
+    "correct_triage_logic": "慢病患者不能按“老毛病”处理，要比较基础状态和当前恶化程度。",
+    "recommended_remediation": [
+      "慢阻肺急性加重分诊",
+      "低氧和嗜睡识别",
+      "呼吸道防护",
+      "动态复评升级"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "SpO₂ 88%",
+    "老年慢阻肺气促较基础明显加重",
+    "RR 28次/分",
+    "反应较慢、疲惫",
+    "口唇发绀"
+  ],
+  "common_errors": [
+    "认为“慢阻肺老毛病”而低估",
+    "只看血压稳定，忽视低氧和意识变化",
+    "Ⅲ级慢性气促候诊或隔离区普通候诊"
+  ],
+  "critical_errors": [
+    "未测SpO₂",
+    "未评估意识和发绀",
+    "未询问基础状态",
+    "安排绿区候诊",
+    "绿区为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "慢阻肺病史多年",
+      "气促较平时明显加重",
+      "SpO₂ 88%，RR 28次/分，反应较慢"
+    ],
+    "key_negative_information": [
+      "当前无昏迷",
+      "当前无低血压或休克表现"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅱ级",
+    "esi_ctas_mapping": "ESI 2/CTAS 2",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区优先/靠近抢救资源区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "不普通候诊；流程等待5–10分钟复评，低氧加重或意识改变立即升级",
+    "isolation_or_ppe": "有咳嗽咳痰，按呼吸道症状加强标准防护；伴发热或流行病学风险时进入隔 离路径，但不得延误优先评估",
+    "violence_self_harm_risk": "否；存在低氧躁动和跌倒风险",
+    "triage_basis": "该患者应分为Ⅱ级。慢阻肺患者较基础状态明显气促加重，SpO₂ 88%、RR 28次/分、口唇发绀、反应较慢，提 示呼吸功能恶化风险。虽然血压稳定、无昏迷和休克，初始不为Ⅰ级，但低氧和精神状态变化使其不能分为Ⅲ 级或Ⅳ级。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入黄区优先或靠近抢救资源区",
+      "立即通知医生",
+      "启动慢病急性加重/呼吸困难优先评估流程",
+      "优先评估SpO₂、RR、HR、BP、意识、发绀、说话能力、呼吸做功和基础状态对比",
+      "流程等待期间每5–10分钟复评SpO₂、意识、RR和发绀",
+      "若SpO₂继续下降、意识模糊、嗜睡、呼吸疲劳、血压下降，应升级Ⅰ级",
+      "有咳嗽咳痰时加强呼吸道防护",
+      "如发热或流行病学风险明确，按隔离路径但不延误优先评估"
+    ],
+    "communication_points": [
+      "告知患者和家属气促加重伴低氧需要优先评估，不要自行走动",
+      "请家属提供平时氧合和活动 情况"
+    ],
+    "documentation_points": [
+      "慢阻肺史",
+      "气促加重时间",
+      "基础SpO₂",
+      "基础活动耐量",
+      "当前较基础恶化",
+      "SpO₂",
+      "RR",
+      "HR",
+      "意识",
+      "发绀",
+      "分诊等级",
+      "复评时间",
+      "防护措施"
+    ],
+    "sbar_handoff": "S：73岁男性，慢阻肺病史，气促较平时明显加重。 B：近3天咳嗽咳痰加重，今日精神变差，基础SpO₂和活动耐量待确认。 A：Ⅱ级，SpO₂ 88%，RR 28次/分，HR 112次/分，GCS 14分，轻度发绀。 R：黄区优先，严密观察氧合、呼吸做功和意识变化，低氧或嗜睡加重时升级。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "气促加重时间和程度",
+      "平时基础SpO₂和活动耐量",
+      "当前状态是否明显差于平时",
+      "咳嗽、咳痰颜色和痰量变化",
+      "发热、胸痛、咯血",
+      "既往急性加重、住院、无创通气或插管史",
+      "意识模糊、嗜睡或精神变差"
+    ],
+    "must_measure_items": [
+      "SpO₂",
+      "呼吸频率",
+      "心率",
+      "血压",
+      "体温",
+      "GCS或意识水平"
+    ],
+    "must_observe_items": [
+      "呼吸费力程度",
+      "说话完整性",
+      "发绀",
+      "嗜睡或反应变慢",
+      "咳痰情况",
+      "端坐呼吸或辅助呼吸肌使用"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅱ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "慢阻肺患者气促加重伴低氧加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "患者更疲惫，SpO₂降至85%，说话更少。",
+        "vital_changes": {},
+        "requires_reassessment": true,
+        "reassessment_instruction": "患者更疲惫，SpO₂降至85%，说话更少。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 6,
+        "event_description": "患者更疲惫，SpO₂降至85%，说话更少。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "嗜睡，GCS降至12分，呼吸表浅，口唇发绀加重。",
+        "vital_changes": {
+          "gcs_score": 12
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "嗜睡，GCS降至12分，呼吸表浅，口唇发绀加重。",
+        "standard_level_after_event": "Ⅰ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 10,
+        "event_description": "嗜睡，GCS降至12分，呼吸表浅，口唇发绀加重。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "端坐位，桶状胸，呼吸费力，面色灰暗。",
+      "time_minute": 0,
+      "appearance": "端坐位，桶状胸，呼吸费力，面色灰暗。",
+      "chief_complaint": "“这两天喘得厉害，今天走几步就不行。”",
+      "symptom_description": "老年男性由女儿推入分诊区，诉气促较平时明显加重，讲话断续。",
+      "mental_status": "清醒",
+      "pain_score": 4,
+      "risk_signals": [
+        "SpO₂ 88%",
+        "老年慢阻肺气促较基础明显加重",
+        "RR 28次/分"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 37.6,
+        "heart_rate": 112,
+        "respiratory_rate": 28,
+        "spo2": 88,
+        "pain_score": 4,
+        "consciousness": "清醒但反应较慢，疲惫",
+        "gcs_score": 14,
+        "blood_glucose": 7.8,
+        "skin_perfusion": "口唇轻度发绀，皮肤稍湿冷，末梢灌注尚可",
+        "other_assessments": [
+          "基础SpO₂",
+          "平时活动耐量",
+          "当前是否明显差于基础状态",
+          "咳痰颜色和量",
+          "发热",
+          "意识变 化",
+          "既往慢阻肺急性加重史",
+          "家庭氧疗或长期吸烟"
+        ],
+        "blood_pressure_systolic": 146,
+        "blood_pressure_diastolic": 82
+      },
+      "recommended_actions": [
+        "初始分诊Ⅱ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T6_event_1",
+      "state_name": "患者更疲惫，SpO₂降至85%，说话更少。",
+      "time_minute": 6,
+      "appearance": "端坐位，桶状胸，呼吸费力，面色灰暗。",
+      "chief_complaint": "患者更疲惫，SpO₂降至85%，说话更少。",
+      "symptom_description": "患者更疲惫，SpO₂降至85%，说话更少。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 4,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "temperature": 37.6,
+        "heart_rate": 112,
+        "respiratory_rate": 28,
+        "spo2": 88,
+        "pain_score": 4,
+        "consciousness": "清醒但反应较慢，疲惫",
+        "gcs_score": 14,
+        "blood_glucose": 7.8,
+        "skin_perfusion": "口唇轻度发绀，皮肤稍湿冷，末梢灌注尚可",
+        "other_assessments": [
+          "基础SpO₂",
+          "平时活动耐量",
+          "当前是否明显差于基础状态",
+          "咳痰颜色和量",
+          "发热",
+          "意识变 化",
+          "既往慢阻肺急性加重史",
+          "家庭氧疗或长期吸烟"
+        ],
+        "blood_pressure_systolic": 146,
+        "blood_pressure_diastolic": 82
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T10_event_2",
+      "state_name": "嗜睡，GCS降至12分，呼吸表浅，口唇发绀加重。",
+      "time_minute": 10,
+      "appearance": "端坐位，桶状胸，呼吸费力，面色灰暗。",
+      "chief_complaint": "嗜睡，GCS降至12分，呼吸表浅，口唇发绀加重。",
+      "symptom_description": "嗜睡，GCS降至12分，呼吸表浅，口唇发绀加重。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "gcs_score": 12
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅱ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "黄区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

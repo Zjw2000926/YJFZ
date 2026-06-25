@@ -1,0 +1,1225 @@
+{
+  "external_id": "TRIAGE-008",
+  "stage": "REAL",
+  "title": "2小时内突发口角歪斜和单侧肢体无力",
+  "display_name": "2小时内突发口角歪斜和单侧肢体无力",
+  "difficulty": 2,
+  "category": "神经系统",
+  "source_case_id": "VP-T008",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "突发局灶神经功能缺损"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "68岁",
+    "gender": "女",
+    "arrival_mode": "家属陪同，轮椅推入",
+    "appearance": "口角歪斜，右上肢抬举困难，言语含糊。",
+    "special_identity": "老年人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。",
+    "opening_line": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。",
+    "scene_description": "患者由女儿推入急诊入口，右侧肢体无力，讲话含糊。",
+    "family_information": "女儿称症状约2小时前突然出现，之前可正常交流。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅱ级",
+    "minimum_safe_level": "Ⅱ级",
+    "triage_zone": "专病绿色通道",
+    "disposition": [
+      "进入卒中绿色通道",
+      "立即通知医生和卒中流程人员",
+      "优先确认最后正常时间、血糖、血压、意识、FAST阳性体 征",
+      "等待期间观察意识、肢体肌力、语言、瞳孔和吞咽风险",
+      "若出现快速意识下降、反复呕吐、气道保护能力 下降、SpO₂下降或GCS明显下降，升级Ⅰ级"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "最后正常时间",
+      "keywords": [
+        "最后正常",
+        "时间"
+      ],
+      "answer": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。"
+    },
+    {
+      "id": "q_002",
+      "label": "症状是否突然",
+      "keywords": [
+        "症状是否",
+        "突然"
+      ],
+      "answer": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。"
+    },
+    {
+      "id": "q_003",
+      "label": "单侧肢体无力/麻木",
+      "keywords": [
+        "单侧肢体",
+        "无力",
+        "麻木"
+      ],
+      "answer": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。"
+    },
+    {
+      "id": "q_004",
+      "label": "言语不清、口角歪斜、视 物异常",
+      "keywords": [
+        "言语不清",
+        "口角歪斜",
+        "物异常"
+      ],
+      "answer": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。"
+    },
+    {
+      "id": "q_005",
+      "label": "头痛、呕吐、抽搐、意识改变",
+      "keywords": [
+        "头痛",
+        "呕吐",
+        "抽搐",
+        "意识改变"
+      ],
+      "answer": "意识清楚。"
+    },
+    {
+      "id": "q_006",
+      "label": "既往卒中、房颤、抗凝药、高血压、糖尿病史",
+      "keywords": [
+        "既往卒中",
+        "房颤",
+        "抗凝药",
+        "高血压",
+        "糖尿病史"
+      ],
+      "answer": "老年人"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。，口角歪斜，右上肢抬举困难，言语含糊。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，受不了。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "女儿称症状约2小时前突然出现，之前可正常交流。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "176/94 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.7",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "92",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "18",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "97",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒，言语含糊",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "14",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "6.2",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖，无发绀，无明显出汗",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "最后正常时间",
+        "FAST评估",
+        "瞳孔",
+        "肢体肌力",
+        "吞咽风险",
+        "抗凝药史",
+        "既往卒中史"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "突发局灶神经功能缺损",
+      "evidence": [
+        "突发局灶神经功能缺损"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "最后正常时间2小时内",
+      "evidence": [
+        "最后正常时间2小时内"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "言语障碍",
+      "evidence": [
+        "言语障碍"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "老年和血压升高",
+      "evidence": [
+        "老年和血压升高"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问最后正常时间",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测血糖",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未启动卒中绿色通道",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排普通候诊",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "任一项为一票否 决",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "最后正常时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "症状是否突然",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "单侧肢体无力/麻木",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "言语不清、口角歪斜、视 物异常",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "头痛、呕吐、抽搐、意识改变",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "既往卒中、房颤、抗凝药、高血压、糖尿病史",
+        "canonical_intents": [
+          "ask_past_history"
+        ],
+        "answer_facts": [
+          "老年人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。，口角歪斜，右上肢抬举困难，言语含糊。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，受不了。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "女儿称症状约2小时前突然出现，之前可正常交流。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": null,
+    "forbidden_spontaneous_information": [
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": []
+  },
+  "patient_tone": null,
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "完成第一眼评估相关要求",
+            "score": 10,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "完成主诉与聚焦病史采集相关要求",
+            "score": 15,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "完成生命体征与客观评估相关要求",
+            "score": 15,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "完成高危信号识别相关要求",
+            "score": 20,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "完成分诊等级判断相关要求",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出现严重错误项或低估分诊等级",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "一票否决项：未询问最后正常时间；未测血糖；未启动卒中绿色通道",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "完成分诊处置与区域安排相关要求",
+            "score": 10,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "完成候诊复评与安全管理相关要求",
+            "score": 5,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "完成沟通、解释与记录相关要求",
+            "score": 5,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "能识别核心主诉、关键生命体征异常和对应分诊等级。",
+    "risk_if_missed": "因清醒和生命体征尚稳误分Ⅲ级；未问最后正常时间",
+    "key_red_flag": "突发局灶神经功能缺损；最后正常时间2小时内；言语障碍",
+    "reason_for_triage_level": "该患者应分为Ⅱ级。2小时内突发口角歪斜、单侧肢体无力和言语含糊，属于时间敏感性神经功能缺损。当前无 昏迷、低氧、低血压或气道危象，因此初始不判Ⅰ级。但不能因清醒而分为Ⅲ级或Ⅳ级，必须启动卒中绿色通 道。",
+    "correct_triage_logic": "先进行第一眼评估和生命体征判断，再聚焦追问高危症状，最后匹配分诊等级、区域和复评要求。",
+    "recommended_remediation": [
+      "第一眼评估",
+      "生命体征判读",
+      "高危信号识别",
+      "分诊等级判断",
+      "候诊复评和SBAR交接"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "突发局灶神经功能缺损",
+    "最后正常时间2小时内",
+    "言语障碍",
+    "老年和血压升高"
+  ],
+  "common_errors": [
+    "因清醒和生命体征尚稳误分Ⅲ级",
+    "未问最后正常时间",
+    "Ⅲ级神经内科候诊或普通门诊"
+  ],
+  "critical_errors": [
+    "未询问最后正常时间",
+    "未测血糖",
+    "未启动卒中绿色通道",
+    "安排普通候诊",
+    "任一项为一票否 决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "2小时内突发口角歪斜",
+      "单侧肢体无力",
+      "言语含糊",
+      "血压升高"
+    ],
+    "key_negative_information": [
+      "无持续抽搐",
+      "当前无低氧、低血压或昏迷"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅱ级",
+    "esi_ctas_mapping": "ESI 2/CTAS 2",
+    "standard_zone": "专病绿色通道",
+    "standard_zone_detail": "卒中绿色通道",
+    "notify_doctor_immediately": true,
+    "green_channel_required": true,
+    "green_channel_name": "卒中绿色通道",
+    "reassessment_interval": "不普通候诊；如短暂流程等待，5分钟内复评",
+    "isolation_or_ppe": "不需要隔离，按标准防护",
+    "violence_self_harm_risk": "否；存在跌倒和误吸风险",
+    "triage_basis": "该患者应分为Ⅱ级。2小时内突发口角歪斜、单侧肢体无力和言语含糊，属于时间敏感性神经功能缺损。当前无 昏迷、低氧、低血压或气道危象，因此初始不判Ⅰ级。但不能因清醒而分为Ⅲ级或Ⅳ级，必须启动卒中绿色通 道。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入卒中绿色通道",
+      "立即通知医生和卒中流程人员",
+      "优先确认最后正常时间、血糖、血压、意识、FAST阳性体 征",
+      "等待期间观察意识、肢体肌力、语言、瞳孔和吞咽风险",
+      "若出现快速意识下降、反复呕吐、气道保护能力 下降、SpO₂下降或GCS明显下降，升级Ⅰ级"
+    ],
+    "communication_points": [
+      "指导家属准确提供最后正常时间",
+      "解释需立即走卒中绿色通道"
+    ],
+    "documentation_points": [
+      "最后正常时间",
+      "症状发现时间",
+      "FAST表现",
+      "血糖",
+      "血压",
+      "意识",
+      "GCS",
+      "绿色通道启动时 间"
+    ],
+    "sbar_handoff": "S：68岁女性，2小时内突发口角歪斜、右侧肢体无力、言语含糊。 B：家属称此前正常，既往高血压待核实。 A：Ⅱ级，血糖6.2 mmol/L，GCS 14分，疑似急性局灶神经功能缺损。 R：启动卒中绿色通道，关注意识、吞咽和病情进展。2."
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "最后正常时间",
+      "症状是否突然",
+      "单侧肢体无力/麻木",
+      "言语不清、口角歪斜、视 物异常",
+      "头痛、呕吐、抽搐、意识改变",
+      "既往卒中、房颤、抗凝药、高血压、糖尿病史"
+    ],
+    "must_measure_items": [
+      "血压",
+      "血糖",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "GCS/意识水平"
+    ],
+    "must_observe_items": [
+      "面瘫",
+      "上下肢肌力",
+      "言语清晰度",
+      "瞳孔",
+      "吞咽和误吸风险",
+      "步态和跌倒风险"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅱ级",
+      "expected_zone": "专病绿色通道",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "2小时内突发口角歪斜和单侧肢体无力加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "右上肢完全不能抬起，言语更含糊。",
+        "vital_changes": {},
+        "requires_reassessment": true,
+        "reassessment_instruction": "右上肢完全不能抬起，言语更含糊。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 5,
+        "event_description": "右上肢完全不能抬起，言语更含糊。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "明显嗜睡，反复呕吐，GCS降至9分，出现呛咳和气道保护能力下降。",
+        "vital_changes": {
+          "gcs_score": 9
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "明显嗜睡，反复呕吐，GCS降至9分，出现呛咳和气道保护能力下降。",
+        "standard_level_after_event": "Ⅰ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 10,
+        "event_description": "明显嗜睡，反复呕吐，GCS降至9分，出现呛咳和气道保护能力下降。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "口角歪斜，右上肢抬举困难，言语含糊。",
+      "time_minute": 0,
+      "appearance": "口角歪斜，右上肢抬举困难，言语含糊。",
+      "chief_complaint": "患者说不清；女儿代述“妈妈突然嘴歪、右手没劲”。",
+      "symptom_description": "患者由女儿推入急诊入口，右侧肢体无力，讲话含糊。",
+      "mental_status": "清醒",
+      "pain_score": 0,
+      "risk_signals": [
+        "突发局灶神经功能缺损",
+        "最后正常时间2小时内",
+        "言语障碍"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 36.7,
+        "heart_rate": 92,
+        "respiratory_rate": 18,
+        "spo2": 97,
+        "consciousness": "清醒，言语含糊",
+        "gcs_score": 14,
+        "blood_glucose": 6.2,
+        "skin_perfusion": "皮肤温暖，无发绀，无明显出汗",
+        "other_assessments": [
+          "最后正常时间",
+          "FAST评估",
+          "瞳孔",
+          "肢体肌力",
+          "吞咽风险",
+          "抗凝药史",
+          "既往卒中史"
+        ],
+        "blood_pressure_systolic": 176,
+        "blood_pressure_diastolic": 94
+      },
+      "recommended_actions": [
+        "初始分诊Ⅱ级",
+        "专病绿色通道候诊"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "专病绿色通道"
+    },
+    {
+      "state_id": "T5_event_1",
+      "state_name": "右上肢完全不能抬起，言语更含糊。",
+      "time_minute": 5,
+      "appearance": "口角歪斜，右上肢抬举困难，言语含糊。",
+      "chief_complaint": "右上肢完全不能抬起，言语更含糊。",
+      "symptom_description": "右上肢完全不能抬起，言语更含糊。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "temperature": 36.7,
+        "heart_rate": 92,
+        "respiratory_rate": 18,
+        "spo2": 97,
+        "consciousness": "清醒，言语含糊",
+        "gcs_score": 14,
+        "blood_glucose": 6.2,
+        "skin_perfusion": "皮肤温暖，无发绀，无明显出汗",
+        "other_assessments": [
+          "最后正常时间",
+          "FAST评估",
+          "瞳孔",
+          "肢体肌力",
+          "吞咽风险",
+          "抗凝药史",
+          "既往卒中史"
+        ],
+        "blood_pressure_systolic": 176,
+        "blood_pressure_diastolic": 94
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "专病绿色通道"
+    },
+    {
+      "state_id": "T10_event_2",
+      "state_name": "明显嗜睡，反复呕吐，GCS降至9分，出现呛咳和气道保护能力下降。",
+      "time_minute": 10,
+      "appearance": "口角歪斜，右上肢抬举困难，言语含糊。",
+      "chief_complaint": "明显嗜睡，反复呕吐，GCS降至9分，出现呛咳和气道保护能力下降。",
+      "symptom_description": "明显嗜睡，反复呕吐，GCS降至9分，出现呛咳和气道保护能力下降。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "gcs_score": 9
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "专病绿色通道"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅱ级",
+  "standard_initial_area": "专病绿色通道",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "专病绿色通道",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

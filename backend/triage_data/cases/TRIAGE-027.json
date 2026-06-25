@@ -1,0 +1,1159 @@
+{
+  "external_id": "TRIAGE-027",
+  "stage": "REAL",
+  "title": "高热寒战伴低血压和意识改变",
+  "display_name": "高热寒战伴低血压和意识改变",
+  "difficulty": 3,
+  "category": "感染/发热",
+  "source_case_id": "VP-T027",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "高热寒战"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "67岁",
+    "gender": "女",
+    "arrival_mode": "家属陪同，轮椅推入",
+    "appearance": "寒战、出汗、面色苍白，反应迟缓，坐轮椅，虚弱。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“冷……头晕……没力气。”",
+    "opening_line": "“冷……头晕……没力气",
+    "scene_description": "患者由家属推入急诊入口，寒战明显，面色差，回答迟钝，家属称高热后精神变差。",
+    "family_information": "女儿称患者发热1天，最高体温接近40℃，今天突然精神差、说话少，小便很少。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅰ级",
+    "minimum_safe_level": "Ⅰ级",
+    "triage_zone": "红区",
+    "disposition": [
+      "立即进入红区",
+      "立即通知医生和抢救团队",
+      "启动脓毒症/感染性休克高危快速评估流程",
+      "优先评估意识、呼吸、循环、体温、SpO₂、灌注、尿量和感染来源",
+      "不候诊，连续观察BP、HR、RR、SpO₂、GCS、皮肤灌注、尿量和寒战",
+      "已为Ⅰ级，不设置普通候诊复评",
+      "根据感染来源实施相应隔离和职业防护",
+      "未知感染来源时加强标准防护，但不得延误红区处置"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "发热开始时间、最高体温和寒战",
+      "keywords": [
+        "发热开始",
+        "时间",
+        "最高体温",
+        "和寒战"
+      ],
+      "answer": "“冷……头晕……没力气。”"
+    },
+    {
+      "id": "q_002",
+      "label": "意识变化、尿量减少、头晕或晕厥",
+      "keywords": [
+        "意识变化",
+        "尿量减少",
+        "头晕或晕"
+      ],
+      "answer": "意识清楚。"
+    },
+    {
+      "id": "q_003",
+      "label": "咳嗽咳痰、尿 痛、腹痛腹泻、皮疹等感染来源线索",
+      "keywords": [
+        "咳嗽咳痰",
+        "腹痛腹泻",
+        "皮疹等感",
+        "染来源线"
+      ],
+      "answer": "“冷……头晕……没力气。”"
+    },
+    {
+      "id": "q_004",
+      "label": "近期手术、导管、侵入操作或住院史",
+      "keywords": [
+        "近期手术",
+        "导管",
+        "侵入操作",
+        "或住院史"
+      ],
+      "answer": "“冷……头晕……没力气。”"
+    },
+    {
+      "id": "q_005",
+      "label": "糖尿病、肿瘤、免疫抑 制、长期激素或化疗史",
+      "keywords": [
+        "糖尿病",
+        "肿瘤",
+        "免疫抑",
+        "长期激素",
+        "或化疗史"
+      ],
+      "answer": "“冷……头晕……没力气。”"
+    },
+    {
+      "id": "q_006",
+      "label": "接触史或聚集性发病",
+      "keywords": [
+        "接触史或",
+        "聚集性发"
+      ],
+      "answer": "“冷……头晕……没力气。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“冷……头晕……没力气。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“冷……头晕……没力气。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“冷……头晕……没力气。”，寒战、出汗、面色苍白，反应迟缓，坐轮椅，虚弱。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，嗜睡、反应慢、短句。 如果护士问无关问题，患者应回应：“冷…。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "女儿称患者发热1天，最高体温接近40℃，今天突然精神差、说话少，小便很少。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "82/48 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": true,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "39.8",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "132",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "30",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "94",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "5.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "嗜睡，反应迟缓，能被唤醒但回答简单",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "13",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "8.2",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤湿冷，大汗，末梢灌注差，皮肤花斑样改变，无明显发绀",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "感染来源线索",
+        "尿量",
+        "皮疹",
+        "呼吸道症状",
+        "尿痛腹痛",
+        "近期手术/侵入操作",
+        "免疫抑制",
+        "基础病",
+        "意识和灌注动态变化"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "高热寒战",
+      "evidence": [
+        "高热寒战"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "低血压",
+      "evidence": [
+        "低血压"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "心动过速和呼吸增快",
+      "evidence": [
+        "心动过速和呼吸增快"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "意识改变",
+      "evidence": [
+        "意识改变"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "少尿、皮肤湿冷和灌注差",
+      "evidence": [
+        "少尿、皮肤湿冷和灌注差"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测血压",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未识别意识改变",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未立即红区",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "仅按发热隔离普通候诊",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "发热开始时间、最高体温和寒战",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "意识变化、尿量减少、头晕或晕厥",
+        "canonical_intents": [
+          "ask_accompanying"
+        ],
+        "answer_facts": [
+          "意识清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "咳嗽咳痰、尿 痛、腹痛腹泻、皮疹等感染来源线索",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "近期手术、导管、侵入操作或住院史",
+        "canonical_intents": [
+          "ask_past_history"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "糖尿病、肿瘤、免疫抑 制、长期激素或化疗史",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "接触史或聚集性发病",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“冷……头晕……没力气。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“冷……头晕……没力气。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“冷……头晕……没力气。”，寒战、出汗、面色苍白，反应迟缓，坐轮椅，虚弱。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，嗜睡、反应慢、短句。 如果护士问无关问题，患者应回应：“冷…。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "女儿称患者发热1天，最高体温接近40℃，今天突然精神差、说话少，小便很少。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“冷……头晕……没力气",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“冷……头晕……没力气 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "嗜睡、反应慢、短句。 如果护士问无关问题，患者应回应：“冷……没力气……” 如果护士重复询问，患者应回应：重复头晕、冷、乏力，细节由家属补充。 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；客观生命体征和家属信息体现危 险。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“脓毒症”“感染性休克”“Ⅰ级”“红区”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "最高体温接近40℃",
+      "精神变差",
+      "小便很少",
+      "发热1天"
+    ]
+  },
+  "patient_tone": "嗜睡、反应慢、短句。 如果护士问无关问题，患者应回应：“冷……没力气……” 如果护士重复询问，患者应回应：重复头晕、冷、乏力，细节由家属补充。 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；客观生命体征和家属信息体现危 险。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "寒战高热虚弱",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识迟钝",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "皮肤湿冷灌注差",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "立即红区",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "发热时间、最高体温、寒战",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识变化、尿量、头晕晕厥",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "感染来源",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "手术导管住院侵入操作",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "免疫抑制/糖尿病/肿瘤",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "接触史或聚集性发病",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "体温",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "BP低血压",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "HR和RR",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SpO₂",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "GCS/意识",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "灌注、花斑、 尿少线索",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "高热寒战",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "低血压",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "心动过速和呼吸增快",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识改变",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "少尿湿冷灌注差",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确Ⅰ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅱ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅲ/Ⅳ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "低估危重",
+            "score": 5,
+            "critical_fail": true
+          },
+          {
+            "criterion": "未测BP、未识别意识改 变、未红区、未通知医生、仅按发热隔离候诊任一项本项",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "一票否决项：未测血压；未识别意识改变；未立即红区",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "红区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "通知抢救团队",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "启动感染性休克高危流程",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "感染防控不延误抢救",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "防跌倒安全转运",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "明确不候诊",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "连续观察BP、HR、RR、GCS、灌注、尿量",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "即时记录",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "安抚家属并说明立即处理",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "快速获取感染和尿量信息",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录生命体征、意 识、灌注和防护",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别高热寒战伴低血压和意识改变为Ⅰ级。",
+    "risk_if_missed": "漏问尿量、免疫抑制和感染来源，会影响后续交接和防护。",
+    "key_red_flag": "低血压、意识改变、心动过速、呼吸增快、灌注差。",
+    "reason_for_triage_level": "感染表现合并循环不稳定和意识改变。",
+    "correct_triage_logic": "发热患者先看生命体征和意识，低血压/意识改变优先红区。",
+    "recommended_remediation": [
+      "脓毒症早期识别",
+      "感染性休克分诊",
+      "尿量和灌注评估",
+      "十二",
+      "输出限制 不写治疗处方",
+      "不写药物剂量",
+      "不写成医生诊断题",
+      "不让虚拟患者一开始暴露所有关键信息",
+      "不省略评分细则",
+      "不使用真实患者隐私信息",
+      "不让评分标准笼统"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "高热寒战",
+    "低血压",
+    "心动过速和呼吸增快",
+    "意识改变",
+    "少尿、皮肤湿冷和灌注差"
+  ],
+  "common_errors": [
+    "只按普通发热分到隔离区候诊",
+    "认为发热患者先完成流调登记，延误红区",
+    "Ⅱ级感染高危或Ⅲ级发热候诊"
+  ],
+  "critical_errors": [
+    "未测血压",
+    "未识别意识改变",
+    "未立即红区",
+    "未通知医生",
+    "仅按发热隔离普通候诊",
+    "任一项 为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "高热寒战T 39.8℃",
+      "BP 82/48 mmHg、HR 132次/分、RR 30次/分",
+      "嗜睡、尿少、皮肤 湿冷、灌注差"
+    ],
+    "key_negative_information": [
+      "无明确创伤出血",
+      "暂无明确中毒暴露"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅰ级",
+    "esi_ctas_mapping": "ESI 1/CTAS 1",
+    "standard_zone": "红区",
+    "standard_zone_detail": "红区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": true,
+    "green_channel_name": "脓毒症/感染性休克高危快速评估流程",
+    "reassessment_interval": "不候诊，立即红区，连续观察",
+    "isolation_or_ppe": "需要根据感染来源执行标准防护；若有呼吸道、消化道或不明感染风险，应 采取相应隔离路径，但不得延误红区处置",
+    "violence_self_harm_risk": "否；存在意识障碍、跌倒和循环崩溃风险",
+    "triage_basis": "该病例应分为Ⅰ级。患者高热寒战合并低血压、心动过速、呼吸增快、意识改变、少尿和灌注差，提示感染相 关循环不稳定和休克风险。不能分为Ⅱ级或更低。感染防控需同步进行，但不得延误红区抢救。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "立即进入红区",
+      "立即通知医生和抢救团队",
+      "启动脓毒症/感染性休克高危快速评估流程",
+      "优先评估意识、呼吸、循环、体温、SpO₂、灌注、尿量和感染来源",
+      "不候诊，连续观察BP、HR、RR、SpO₂、GCS、皮肤灌注、尿量和寒战",
+      "已为Ⅰ级，不设置普通候诊复评",
+      "根据感染来源实施相应隔离和职业防护",
+      "未知感染来源时加强标准防护，但不得延误红区处置"
+    ],
+    "communication_points": [
+      "简短告知家属患者存在低血压和意识变差，需立即进入抢救区",
+      "快速询问发热、尿量和感染 来源线索"
+    ],
+    "documentation_points": [
+      "发热时间",
+      "最高体温",
+      "寒战",
+      "BP",
+      "HR",
+      "RR",
+      "SpO₂",
+      "GCS",
+      "尿量",
+      "灌注",
+      "分诊等级",
+      "入 红区时间",
+      "通知医生时间",
+      "防护措施"
+    ],
+    "sbar_handoff": "S：67岁女性，高热寒战伴头晕、乏力、意识变差。 B：发热1天，家属称尿少，感染来源待查。 A：Ⅰ级，T 39.8℃，BP 82/48 mmHg，HR 132次/分，RR 30次/分，GCS 13分，灌注差。 R：立即红区，启动感染性休克高危流程，重点关注循环、意识、尿量和感染来源。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "发热开始时间、最高体温和寒战",
+      "意识变化、尿量减少、头晕或晕厥",
+      "咳嗽咳痰、尿 痛、腹痛腹泻、皮疹等感染来源线索",
+      "近期手术、导管、侵入操作或住院史",
+      "糖尿病、肿瘤、免疫抑 制、长期激素或化疗史",
+      "接触史或聚集性发病"
+    ],
+    "must_measure_items": [
+      "体温",
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "GCS/意识状态"
+    ],
+    "must_observe_items": [
+      "意识迟钝或嗜睡",
+      "皮肤湿冷、花斑和灌注差",
+      "寒战和出汗",
+      "呼吸频率增快",
+      "尿量减少",
+      "皮疹、感染灶或隔离风险"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

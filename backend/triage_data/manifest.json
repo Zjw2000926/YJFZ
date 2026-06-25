@@ -1,0 +1,16 @@
+{
+  "module": "triage_training",
+  "schema_version": "runtime_case_schema@real-1.0",
+  "stage": "real_case_library_replacement",
+  "commercial_status": "training_data_ready",
+  "case_count": 50,
+  "case_count_static": 16,
+  "case_count_dynamic": 34,
+  "source": "预检分诊系统病例库/triage_cases.jsonl",
+  "source_validation_report": "预检分诊系统病例库/validation_report.json",
+  "runtime_conversion_report": "预检分诊系统病例库/runtime_conversion_report.json",
+  "external_id_range": ["TRIAGE-001", "TRIAGE-050"],
+  "import_mode": "replace_runtime_cases_with_archive",
+  "archive": "backend/triage_data/archive/real_case_replacement_20260615_161938",
+  "created_for": "new_nurse_triage_training"
+}

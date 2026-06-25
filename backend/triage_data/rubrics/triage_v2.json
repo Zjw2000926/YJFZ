@@ -1,0 +1,32 @@
+{
+  "id": "triage_v2",
+  "version": "2.0",
+  "name": "预检分诊V2评分标准",
+  "total_max": 100,
+  "dimensions": [
+    {"id":"first_look","name":"第一眼评估","max":8,"description":"关注一般状态、痛苦、呼吸困难、意识异常"},
+    {"id":"chief_complaint","name":"主诉采集","max":10,"description":"主诉、起病时间、症状变化"},
+    {"id":"focused_history","name":"聚焦病史采集","max":15,"description":"部位、性质、程度、诱因、伴随症状、既往史、用药、过敏"},
+    {"id":"vital_signs","name":"生命体征评估","max":15,"description":"完整测量并解释异常"},
+    {"id":"critical_signals","name":"高危信号识别","max":20,"description":"识别红旗信号并说明危险性"},
+    {"id":"triage_level","name":"分诊等级判断","max":20,"description":"等级正确且未低估危重程度"},
+    {"id":"disposition","name":"处置安排","max":7,"description":"区域、通知医生、绿色通道、等待安排"},
+    {"id":"communication","name":"沟通记录","max":5,"description":"安抚解释、记录完整"}
+  ],
+  "penalties": [
+    {"id":"disorder","label":"问诊顺序混乱","deduction":"2-5"},
+    {"id":"irrelevant","label":"反复问无关问题而遗漏关键","deduction":"5-10"},
+    {"id":"missing_allergy","label":"非关键病例未询问过敏史或用药史","deduction":2},
+    {"id":"missing_special","label":"未询问特殊人群信息","deduction":5},
+    {"id":"no_emotional_response","label":"对患者情绪完全无回应","deduction":2}
+  ],
+  "severe_error_rules": {
+    "one_vote_veto": true,
+    "rules": [
+      "level_I_to_III_or_IV",
+      "level_II_to_IV",
+      "missed_hypoxia_shock_consciousness_hemorrhage",
+      "high_risk_case_treated_as_routine"
+    ]
+  }
+}

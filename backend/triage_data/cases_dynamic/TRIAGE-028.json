@@ -1,0 +1,1418 @@
+{
+  "external_id": "TRIAGE-028",
+  "stage": "REAL",
+  "title": "化疗后发热伴精神差",
+  "display_name": "化疗后发热伴精神差",
+  "difficulty": 3,
+  "category": "感染/发热",
+  "source_case_id": "VP-T028",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "近期化疗/免疫抑制发热"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "56岁",
+    "gender": "女",
+    "arrival_mode": "家属陪同，轮椅推入",
+    "appearance": "面色差，虚弱，回答缓慢，轻度寒战。",
+    "special_identity": "其他：免疫抑制风险；学员端初始不直接显示“化疗后”"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“发烧，浑身没劲。”",
+    "opening_line": "“发烧，浑身没劲",
+    "scene_description": "患者戴口罩，由丈夫推入急诊入口，诉发热、明显乏力，坐轮椅，面色差。",
+    "family_information": "丈夫陪同，初始只说患者今天发热、进食少、精神明显变差；若护士询问近期治疗或基础 病，丈夫补充“一周前做过化疗”。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅱ级",
+    "minimum_safe_level": "Ⅱ级",
+    "triage_zone": "专病绿色通道",
+    "disposition": [
+      "病情区域为黄区优先",
+      "感染防控路径为发热隔离和免疫抑制患者保护性分流",
+      "立即通知医生",
+      "启动免疫抑制发热/化疗后发热高危评估流程",
+      "优先评估体温、BP、HR、RR、SpO₂、意识、感染来源、导管/输液港和尿量",
+      "5–10分钟复评BP、HR、体温、意识、寒战和灌注",
+      "出现低血压、意识改变、皮肤灌注差、寒战加重或SpO₂下降，升级Ⅰ级",
+      "严格手卫生和标准防护，避免与普通发热患者交叉接触"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "近期是否化疗、肿瘤治疗或免疫抑制用药",
+      "keywords": [
+        "近期是否",
+        "化疗",
+        "肿瘤治疗",
+        "或免疫抑",
+        "制用药"
+      ],
+      "answer": "其他：免疫抑制风险；学员端初始不直接显示“化疗后”"
+    },
+    {
+      "id": "q_002",
+      "label": "发热时间、最高体温、寒战",
+      "keywords": [
+        "发热时间",
+        "最高体温",
+        "寒战"
+      ],
+      "answer": "“发烧，浑身没劲。”"
+    },
+    {
+      "id": "q_003",
+      "label": "咳嗽、咽痛、 口腔溃疡、尿痛、腹泻、皮疹",
+      "keywords": [
+        "咳嗽",
+        "咽痛",
+        "口腔溃疡",
+        "尿痛",
+        "腹泻"
+      ],
+      "answer": "“发烧，浑身没劲。”"
+    },
+    {
+      "id": "q_004",
+      "label": "有输液港、中心静脉导管或伤口",
+      "keywords": [
+        "有输液港",
+        "中心静脉",
+        "导管或伤"
+      ],
+      "answer": "“发烧，浑身没劲。”"
+    },
+    {
+      "id": "q_005",
+      "label": "精神变差、尿少、头晕",
+      "keywords": [
+        "精神变差",
+        "尿少",
+        "头晕"
+      ],
+      "answer": "“发烧，浑身没劲。”"
+    },
+    {
+      "id": "q_006",
+      "label": "近 期住院或感染接触",
+      "keywords": [
+        "期住院或",
+        "感染接触"
+      ],
+      "answer": "“发烧，浑身没劲。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“发烧，浑身没劲。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“发烧，浑身没劲。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“发烧，浑身没劲。”，面色差，虚弱，回答缓慢，轻度寒战。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，虚弱、疲惫、回答慢。 如果护士问无关问题，患者应回应：“我现。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "丈夫陪同，初始只说患者今天发热、进食少、精神明显变差；若护士询问近期治疗或基础 病，丈夫补充“一周前做过化疗”。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "108/66 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "38.3",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "112",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "22",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "96",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "3.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒但疲惫，反应稍慢",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "6.8",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤稍湿，面色差，无发绀，末梢灌注尚可",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "近期肿瘤治疗/化疗史",
+        "免疫抑制用药",
+        "白细胞/中性粒细胞低下风险",
+        "寒战",
+        "感染来 源",
+        "口腔溃疡",
+        "导管/输液港",
+        "尿量",
+        "意识和血压趋势"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "近期化疗/免疫抑制发热",
+      "evidence": [
+        "近期化疗/免疫抑制发热"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "精神差",
+      "evidence": [
+        "精神差"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "心动过速",
+      "evidence": [
+        "心动过速"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "血压边缘偏低",
+      "evidence": [
+        "血压边缘偏低"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "寒战",
+      "evidence": [
+        "寒战"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问近期化疗/免疫抑制",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未识别化疗后发热",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未保护性分流",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排普通绿 区",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "近期是否化疗、肿瘤治疗或免疫抑制用药",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "其他：免疫抑制风险；学员端初始不直接显示“化疗后”"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "发热时间、最高体温、寒战",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "咳嗽、咽痛、 口腔溃疡、尿痛、腹泻、皮疹",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "有输液港、中心静脉导管或伤口",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "精神变差、尿少、头晕",
+        "canonical_intents": [
+          "ask_accompanying"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "近 期住院或感染接触",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“发烧，浑身没劲。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“发烧，浑身没劲。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“发烧，浑身没劲。”，面色差，虚弱，回答缓慢，轻度寒战。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，虚弱、疲惫、回答慢。 如果护士问无关问题，患者应回应：“我现。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "丈夫陪同，初始只说患者今天发热、进食少、精神明显变差；若护士询问近期治疗或基础 病，丈夫补充“一周前做过化疗”。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“发烧，浑身没劲",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“发烧，浑身没劲 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "虚弱、疲惫、回答慢。 如果护士问无关问题，患者应回应：“我现在很没劲，发烧。” 如果护士重复询问，患者应回应：“就是发烧、没力气。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“我更冷、更 晕了”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“中性粒细胞减少”“Ⅱ级”“免疫抑制发热绿色通 道”“化疗后高危”",
+      "除非护士问近期治疗",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "丈夫在护士询问近期治疗后补充一周前化疗",
+      "今天进食少",
+      "精神明显变差"
+    ]
+  },
+  "patient_tone": "虚弱、疲惫、回答慢。 如果护士问无关问题，患者应回应：“我现在很没劲，发烧。” 如果护士重复询问，患者应回应：“就是发烧、没力气。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“我更冷、更 晕了”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "发热虚弱",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别需询问特殊宿主/近期治疗",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "精神差和心动过速风险",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "需优先处 理",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "近期化疗/治疗/免疫抑制",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发热时间、最高体温、寒战",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "咳嗽、口腔溃 疡、尿痛、腹泻、皮疹",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "导管/输液港/伤口",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "精神变差、尿少、头晕",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "近期住院或感染接触",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "体温",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "BP和HR",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "RR和SpO₂",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识/GCS",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "寒战出汗灌注",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "口 腔/皮肤/导管感染线索",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "化疗后或免疫抑制发热",
+            "score": 6,
+            "critical_fail": false
+          },
+          {
+            "criterion": "精神差",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "HR 112和BP边缘",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "寒战和免疫抑制风险",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态低血压/嗜睡需升级",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确Ⅱ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态低血压、嗜睡、灌注差后Ⅰ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅲ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅳ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "初始 判Ⅰ级但无循环不稳依据",
+            "score": 12,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未询问化疗/免疫抑制、绿区候诊、动态低血压未升级任一项本项",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "一票否决项：未询问近期化疗/免疫抑制；未识别化疗后发热；未保护性分流",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "黄区优先",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "通知医生",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "启动化疗后发热高危流程",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "保护性分流和防交叉 感染",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "恶化后红区",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "5–",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察寒战、意识、灌注",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "恶化后重新分诊",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "解释特殊宿主发热高危",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚患者和家属",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录化疗史、生命体征、防护和 复评",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "主动询问近期治疗/免疫抑制史，并识别化疗后发热为Ⅱ级高危。",
+    "risk_if_missed": "会把免疫抑制发热误判为普通发热。",
+    "key_red_flag": "化疗后发热、精神差、心动过速、血压边缘、寒战。",
+    "reason_for_triage_level": "尚未休克但免疫抑制感染风险高，需Ⅱ级优先。",
+    "correct_triage_logic": "发热患者先识别特殊宿主，再看生命体征和动态变化。",
+    "recommended_remediation": [
+      "化疗后发热",
+      "免疫抑制感染风险",
+      "保护性分流",
+      "动态低血压升级",
+      "十二",
+      "输出限制 不写治疗处方",
+      "不写药物剂量",
+      "不写成医生诊断题",
+      "不让虚拟患者一开始暴露所有关键信息",
+      "不省略评分细则",
+      "不使用真实患者隐私信息",
+      "不让评分标准笼统"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "近期化疗/免疫抑制发热",
+    "精神差",
+    "心动过速",
+    "血压边缘偏低",
+    "寒战"
+  ],
+  "common_errors": [
+    "体温不算特别高而低估",
+    "未主动询问化疗或免疫抑制风险",
+    "Ⅲ级普通发热或Ⅳ级感冒候诊"
+  ],
+  "critical_errors": [
+    "未询问近期化疗/免疫抑制",
+    "未识别化疗后发热",
+    "未保护性分流",
+    "未通知医生",
+    "安排普通绿 区",
+    "动态低血压或意识改变后未升级",
+    "绿区为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "发热38.3℃",
+      "精神差、明显乏力",
+      "HR 112次/分，BP 108/66 mmHg",
+      "护士追问后获知 一周前化疗"
+    ],
+    "key_negative_information": [
+      "当前无低血压休克",
+      "无昏迷",
+      "无严重低氧"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅱ级",
+    "esi_ctas_mapping": "ESI 2/CTAS 2；动态低血压/意识改变时ESI 1/CTAS 1",
+    "standard_zone": "专病绿色通道",
+    "standard_zone_detail": "黄区优先",
+    "notify_doctor_immediately": true,
+    "green_channel_required": true,
+    "green_channel_name": "免疫抑制发热/化疗后发热高危评估流程",
+    "reassessment_interval": "不普通候诊；流程等待5–10分钟复评，低血压、意识改变或寒战加重立即升级",
+    "isolation_or_ppe": "需要；感染防控路径为发热隔离加免疫抑制患者保护性分流，避免交叉感 染，按标准防护",
+    "violence_self_harm_risk": "否；存在感染快速恶化和跌倒风险",
+    "triage_basis": "该病例应分为Ⅱ级。化疗后一周发热伴精神差、心动过速和血压边缘偏低，提示免疫抑制相关严重感染风险。 当前无休克、昏迷或严重低氧，初始不属于Ⅰ级；但不能按普通发热分Ⅲ级或Ⅳ级。若出现低血压、嗜睡、皮 肤湿冷或灌注差，应升级Ⅰ级。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "病情区域为黄区优先",
+      "感染防控路径为发热隔离和免疫抑制患者保护性分流",
+      "立即通知医生",
+      "启动免疫抑制发热/化疗后发热高危评估流程",
+      "优先评估体温、BP、HR、RR、SpO₂、意识、感染来源、导管/输液港和尿量",
+      "5–10分钟复评BP、HR、体温、意识、寒战和灌注",
+      "出现低血压、意识改变、皮肤灌注差、寒战加重或SpO₂下降，升级Ⅰ级",
+      "严格手卫生和标准防护，避免与普通发热患者交叉接触"
+    ],
+    "communication_points": [
+      "说明发热伴近期特殊治疗风险较高",
+      "需要优先评估和保护性分流"
+    ],
+    "documentation_points": [
+      "发热时间",
+      "最高体温",
+      "近期化疗/免疫抑制史",
+      "精神状态",
+      "BP",
+      "HR",
+      "RR",
+      "SpO₂",
+      "导管/ 输液港情况",
+      "感染来源",
+      "分诊等级",
+      "防护措施"
+    ],
+    "sbar_handoff": "S：56岁女性，发热、精神差、明显乏力。 B：护士追问后获知一周前化疗，免疫抑制风险。 A：Ⅱ级，T 38.3℃，HR 112次/分，BP 108/66 mmHg，清醒但疲惫。 R：黄区优先，发热隔离和保护性分流，启动化疗后发热高危评估，5–10分钟复评血压、意识和寒战。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "近期是否化疗、肿瘤治疗或免疫抑制用药",
+      "发热时间、最高体温、寒战",
+      "咳嗽、咽痛、 口腔溃疡、尿痛、腹泻、皮疹",
+      "有输液港、中心静脉导管或伤口",
+      "精神变差、尿少、头晕",
+      "近 期住院或感染接触"
+    ],
+    "must_measure_items": [
+      "体温",
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "意识/GCS"
+    ],
+    "must_observe_items": [
+      "精神状态",
+      "寒战和出汗",
+      "皮肤灌注",
+      "呼吸情况",
+      "口腔黏膜和皮肤感染线索",
+      "导管/输液港 部位红肿疼痛"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅱ级",
+      "expected_zone": "专病绿色通道",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "化疗后发热伴精神差加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "寒战加重，HR 122次/分，BP 96/60 mmHg，面色更差。",
+        "vital_changes": {
+          "blood_pressure_systolic": 96,
+          "blood_pressure_diastolic": 60,
+          "heart_rate": 122
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "寒战加重，HR 122次/分，BP 96/60 mmHg，面色更差。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 6,
+        "event_description": "寒战加重，HR 122次/分，BP 96/60 mmHg，面色更差。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "嗜睡，BP 84/50 mmHg，皮肤湿冷，尿少明显。",
+        "vital_changes": {
+          "blood_pressure_systolic": 84,
+          "blood_pressure_diastolic": 50
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "嗜睡，BP 84/50 mmHg，皮肤湿冷，尿少明显。",
+        "standard_level_after_event": "Ⅰ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 12,
+        "event_description": "嗜睡，BP 84/50 mmHg，皮肤湿冷，尿少明显。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "面色差，虚弱，回答缓慢，轻度寒战。",
+      "time_minute": 0,
+      "appearance": "面色差，虚弱，回答缓慢，轻度寒战。",
+      "chief_complaint": "“发烧，浑身没劲。”",
+      "symptom_description": "患者戴口罩，由丈夫推入急诊入口，诉发热、明显乏力，坐轮椅，面色差。",
+      "mental_status": "清醒",
+      "pain_score": 3,
+      "risk_signals": [
+        "近期化疗/免疫抑制发热",
+        "精神差",
+        "心动过速"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 38.3,
+        "heart_rate": 112,
+        "respiratory_rate": 22,
+        "spo2": 96,
+        "pain_score": 3,
+        "consciousness": "清醒但疲惫，反应稍慢",
+        "gcs_score": 15,
+        "blood_glucose": 6.8,
+        "skin_perfusion": "皮肤稍湿，面色差，无发绀，末梢灌注尚可",
+        "other_assessments": [
+          "近期肿瘤治疗/化疗史",
+          "免疫抑制用药",
+          "白细胞/中性粒细胞低下风险",
+          "寒战",
+          "感染来 源",
+          "口腔溃疡",
+          "导管/输液港",
+          "尿量",
+          "意识和血压趋势"
+        ],
+        "blood_pressure_systolic": 108,
+        "blood_pressure_diastolic": 66
+      },
+      "recommended_actions": [
+        "初始分诊Ⅱ级",
+        "专病绿色通道候诊"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "专病绿色通道"
+    },
+    {
+      "state_id": "T6_event_1",
+      "state_name": "寒战加重，HR 122次/分，BP 96/60 mmHg，面色更差。",
+      "time_minute": 6,
+      "appearance": "面色差，虚弱，回答缓慢，轻度寒战。",
+      "chief_complaint": "寒战加重，HR 122次/分，BP 96/60 mmHg，面色更差。",
+      "symptom_description": "寒战加重，HR 122次/分，BP 96/60 mmHg，面色更差。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 96,
+        "blood_pressure_diastolic": 60,
+        "heart_rate": 122
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "专病绿色通道"
+    },
+    {
+      "state_id": "T12_event_2",
+      "state_name": "嗜睡，BP 84/50 mmHg，皮肤湿冷，尿少明显。",
+      "time_minute": 12,
+      "appearance": "面色差，虚弱，回答缓慢，轻度寒战。",
+      "chief_complaint": "嗜睡，BP 84/50 mmHg，皮肤湿冷，尿少明显。",
+      "symptom_description": "嗜睡，BP 84/50 mmHg，皮肤湿冷，尿少明显。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 84,
+        "blood_pressure_diastolic": 50
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "专病绿色通道"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅱ级",
+  "standard_initial_area": "专病绿色通道",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "专病绿色通道",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

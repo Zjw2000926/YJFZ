@@ -1,0 +1,1441 @@
+{
+  "external_id": "TRIAGE-026",
+  "stage": "REAL",
+  "title": "踝关节扭伤可负重行走",
+  "display_name": "踝关节扭伤可负重行走",
+  "difficulty": 1,
+  "category": "创伤",
+  "source_case_id": "VP-T026",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "不能负重"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "21岁",
+    "gender": "男",
+    "arrival_mode": "自行步入",
+    "appearance": "清醒，步态轻度跛行，无明显痛苦貌。",
+    "special_identity": "创伤患者"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“打球崴脚了，能走，就是有点肿痛。”",
+    "opening_line": "“打球崴脚了，能走，就是有点肿痛",
+    "scene_description": "患者打篮球后自行来到急诊入口，右踝轻度肿胀，能跛行进入。",
+    "family_information": "同学陪同，称患者崴脚后还能走到场边，无头部外伤。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅳ级",
+    "minimum_safe_level": "Ⅳ级",
+    "triage_zone": "绿区",
+    "disposition": [
+      "初始进入绿区",
+      "初始不需要通知医生",
+      "神经血管异常时立即通知",
+      "不启动绿色通道",
+      "完成疼痛、负重能力、畸形、末梢循环、感觉运动和跌倒风险评估",
+      "30–60分钟内复评疼痛、肿胀、负重能力和神经血管状态",
+      "疼痛肿胀加重但循环正常可升级Ⅲ级或加强观察",
+      "出现麻木、苍白、发凉、脉搏减弱或再充盈延长应升 级Ⅱ级",
+      "不需要隔离",
+      "防跌倒"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "受伤时间和机制",
+      "keywords": [
+        "受伤时间",
+        "和机制"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”"
+    },
+    {
+      "id": "q_002",
+      "label": "能负重行走",
+      "keywords": [
+        "能负重行"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”"
+    },
+    {
+      "id": "q_003",
+      "label": "疼痛部位和是否迅速加重",
+      "keywords": [
+        "疼痛部位",
+        "和是否迅",
+        "速加重"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”"
+    },
+    {
+      "id": "q_004",
+      "label": "听到响声或明显畸 形",
+      "keywords": [
+        "听到响声",
+        "或明显畸"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”"
+    },
+    {
+      "id": "q_005",
+      "label": "麻木、足部发凉或足趾活动异常",
+      "keywords": [
+        "麻木",
+        "足部发凉",
+        "或足趾活",
+        "动异常"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”"
+    },
+    {
+      "id": "q_006",
+      "label": "有其他部位损伤或头部撞击",
+      "keywords": [
+        "有其他部",
+        "位损伤或",
+        "头部撞击"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“打球崴脚了，能走，就是有点肿痛。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“打球崴脚了，能走，就是有点肿痛。”，清醒，步态轻度跛行，无明显痛苦貌。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，清醒、轻度焦虑、能完整回答。 如果护士问无关问题，患者应回应。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "没有特别的其他不舒服，就是这个问题。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "意识清楚，没晕过去。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "平时身体还行，没什么大毛病。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "没吃什么特别的药。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "同学陪同，称患者崴脚后还能走到场边，无头部外伤。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "118/72 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.6",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "78",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "16",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "4.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.4",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖干燥，无发绀，患足末梢颜色正常，毛细血管再充盈约2秒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "受伤机制",
+        "能负重",
+        "踝部肿胀和压痛位置",
+        "足趾感觉和活动",
+        "足背动脉/胫后动脉搏 动",
+        "皮肤破损",
+        "高能量损伤",
+        "其他部位损伤"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "不能负重",
+      "evidence": [
+        "不能负重"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "明显畸形",
+      "evidence": [
+        "明显畸形"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "麻木、发凉、足趾活动障碍",
+      "evidence": [
+        "麻木、发凉、足趾活动障碍"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "足部苍白或脉搏减弱",
+      "evidence": [
+        "足部苍白或脉搏减弱"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "高能量损伤或多 部位损伤",
+      "evidence": [
+        "高能量损伤或多 部位损伤"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估负重能力",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "畸形",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "末梢循环",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "感觉运动",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "出现足部发凉",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "受伤时间和机制",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "能负重行走",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "疼痛部位和是否迅速加重",
+        "canonical_intents": [
+          "ask_pain_location"
+        ],
+        "answer_facts": [
+          "就在这一块疼。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "听到响声或明显畸 形",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "麻木、足部发凉或足趾活动异常",
+        "canonical_intents": [
+          "ask_self_care"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "有其他部位损伤或头部撞击",
+        "canonical_intents": [
+          "ask_pain_location"
+        ],
+        "answer_facts": [
+          "篮球扭伤右踝"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“打球崴脚了，能走，就是有点肿痛。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“打球崴脚了，能走，就是有点肿痛。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“打球崴脚了，能走，就是有点肿痛。”，清醒，步态轻度跛行，无明显痛苦貌。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，清醒、轻度焦虑、能完整回答。 如果护士问无关问题，患者应回应。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "没有特别的其他不舒服，就是这个问题。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "平时身体还行，没什么大毛病。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "没吃什么特别的药。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "同学陪同，称患者崴脚后还能走到场边，无头部外伤。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“打球崴脚了，能走，就是有点肿痛",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“打球崴脚了，能走，就是有点肿痛 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "清醒、轻度焦虑、能完整回答。 如果护士问无关问题，患者应回应：“我就是脚踝疼，想看看有没有骨折。” 如果护士重复询问，患者应回应：“能走，但走起来疼。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“脚趾有点 麻”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“低危扭伤”“Ⅳ级”“没有神经血管问题”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "同学补充崴脚后能走到场边",
+      "无头部外伤"
+    ]
+  },
+  "patient_tone": "清醒、轻度焦虑、能完整回答。 如果护士问无关问题，患者应回应：“我就是脚踝疼，想看看有没有骨折。” 如果护士重复询问，患者应回应：“能走，但走起来疼。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“脚趾有点 麻”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "整体稳定",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "踝部肿痛但可负重",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "需查畸形和神经血管",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "可绿区但需复评",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "受伤时间机制",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "能负重",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛部位和加重",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "响声或畸形",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "麻 木、发凉、足趾活动异常",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "其他部位伤或头部撞击",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "BP/HR/RR/SpO₂",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛评分",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "肿胀畸形",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "负重和步态",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "足趾颜色温 度再充盈",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "感觉和活动",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "不能负重",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "明显畸形",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "麻木活动障碍",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "足部发凉苍白脉搏减弱",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "高能量或 多部位损伤",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "初始Ⅳ级",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "第一次变化后正确继续观察或升级Ⅲ级",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "第二次神经血管异常后升 级Ⅱ级",
+            "score": 6,
+            "critical_fail": false
+          },
+          {
+            "criterion": "初始判Ⅱ/Ⅰ级且无依据",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未查神经血管即分Ⅳ级",
+            "score": 8,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态神经血管异常未升级本项",
+            "score": 0,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "初始绿区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "30–",
+            "score": 60,
+            "critical_fail": false
+          },
+          {
+            "criterion": "防跌倒",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态异常后通知医生",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "升级 Ⅱ级",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "复评疼痛肿胀",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "复评负重能力",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "复评末梢循环、感觉、运动",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "异常后重 新分诊",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "解释绿区依据",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚担心骨折",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录负重、疼痛、肿胀、神经血管情况",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "初始排除神经血管异常后分Ⅳ级，并设置复评。",
+    "risk_if_missed": "可能漏掉骨折、肿胀压迫或神经血管损伤。",
+    "key_red_flag": "不能负重、明显畸形、麻木、发凉、再充盈延长、脉搏减弱。",
+    "reason_for_triage_level": "初始低危扭伤可Ⅳ级；动态出现神经血管异常后需Ⅱ级。",
+    "correct_triage_logic": "低危运动伤也要评估负重能力和末梢循环。",
+    "recommended_remediation": [
+      "踝扭伤分诊",
+      "末梢循环评估",
+      "动态升级条件",
+      "十二",
+      "输出限制 不写治疗处方",
+      "不写药物剂量",
+      "不写成医生诊断题",
+      "不让虚拟患者一开始暴露所有关键信息",
+      "不省略评分细则",
+      "不使用真实患者隐私信息",
+      "不让评分标准笼统"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "不能负重",
+    "明显畸形",
+    "麻木、发凉、足趾活动障碍",
+    "足部苍白或脉搏减弱",
+    "高能量损伤或多 部位损伤"
+  ],
+  "common_errors": [
+    "因能走而不做神经血管评估",
+    "因“扭伤”主诉而忽略骨折或神经血管损伤",
+    "未筛查红旗即绿区",
+    "动态神经血管异常仍不升级"
+  ],
+  "critical_errors": [
+    "未评估负重能力",
+    "畸形",
+    "末梢循环",
+    "感觉运动",
+    "出现足部发凉",
+    "麻木",
+    "颜色改变或再充盈 延长后仍不复评升级",
+    "7."
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "篮球扭伤右踝",
+      "轻度肿胀疼痛",
+      "能负重跛行"
+    ],
+    "key_negative_information": [
+      "无明显畸形",
+      "无足趾麻木、发凉、发紫",
+      "无开放伤口、头部外伤或高能量机制"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅳ级",
+    "esi_ctas_mapping": "ESI 4–5/CTAS 4–5；动态出现神经血管异常时映射ESI 2/CTAS 2",
+    "standard_zone": "绿区",
+    "standard_zone_detail": "绿区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "30–60分钟内复评；如肿胀迅速加重、不能负重、麻木、足部发凉、颜色改变或疼 痛明显加重，立即复评",
+    "isolation_or_ppe": "不需要隔离，按标准防护",
+    "violence_self_harm_risk": "否；存在跌倒风险",
+    "triage_basis": "初始应分为Ⅳ级。患者为低能量运动扭伤，能负重跛行，疼痛4/10，生命体征稳定，无明显畸形、开放伤口、 麻木、足部发凉或循环障碍。若动态出现不能负重、麻木、颜色改变和再充盈延长，应升级Ⅱ级优先评估。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "初始进入绿区",
+      "初始不需要通知医生",
+      "神经血管异常时立即通知",
+      "不启动绿色通道",
+      "完成疼痛、负重能力、畸形、末梢循环、感觉运动和跌倒风险评估",
+      "30–60分钟内复评疼痛、肿胀、负重能力和神经血管状态",
+      "疼痛肿胀加重但循环正常可升级Ⅲ级或加强观察",
+      "出现麻木、苍白、发凉、脉搏减弱或再充盈延长应升 级Ⅱ级",
+      "不需要隔离",
+      "防跌倒"
+    ],
+    "communication_points": [
+      "说明目前能负重且末梢循环可，可绿区候诊",
+      "若脚趾麻木、发凉、变白或不能走，立即告 知"
+    ],
+    "documentation_points": [
+      "受伤机制",
+      "负重能力",
+      "疼痛评分",
+      "肿胀",
+      "畸形阴性",
+      "末梢循环",
+      "感觉运动",
+      "分诊等级",
+      "复评提示"
+    ],
+    "sbar_handoff": "S：21岁男性，篮球后右踝扭伤，疼痛肿胀，可负重跛行。 B：低能量运动伤，无头部外伤。 A：初始Ⅳ级，生命体征平稳，末梢循环感觉运动正常。 R：绿区候诊，30–60分钟复评；神经血管异常时升级Ⅱ级。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "受伤时间和机制",
+      "能负重行走",
+      "疼痛部位和是否迅速加重",
+      "听到响声或明显畸 形",
+      "麻木、足部发凉或足趾活动异常",
+      "有其他部位损伤或头部撞击"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "疼痛评分",
+      "患足末梢循环"
+    ],
+    "must_observe_items": [
+      "否能负重",
+      "踝部肿胀程度",
+      "明显畸形",
+      "足趾颜色、温度和再充盈",
+      "足背动脉/胫后动脉 搏动",
+      "足趾感觉和活动"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅳ级",
+      "expected_zone": "绿区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "踝关节扭伤可负重行走加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "肿胀增加，疼痛6/10，仍可短距离负重，足趾颜色和温度正常。",
+        "vital_changes": {},
+        "requires_reassessment": true,
+        "reassessment_instruction": "肿胀增加，疼痛6/10，仍可短距离负重，足趾颜色和温度正常。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 35,
+        "event_description": "肿胀增加，疼痛6/10，仍可短距离负重，足趾颜色和温度正常。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化",
+        "severe_error_code": "NO_REASSESS_AFTER_WORSENING"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "不能继续负重，足趾麻木，足背颜色稍苍白，毛细血管再充盈约4秒，足背动脉 搏动较弱。",
+        "vital_changes": {},
+        "requires_reassessment": true,
+        "reassessment_instruction": "不能继续负重，足趾麻木，足背颜色稍苍白，毛细血管再充盈约4秒，足背动脉 搏动较弱。",
+        "standard_level_after_event": "Ⅱ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 60,
+        "event_description": "不能继续负重，足趾麻木，足背颜色稍苍白，毛细血管再充盈约4秒，足背动脉 搏动较弱。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化",
+        "severe_error_code": "NO_REASSESS_AFTER_WORSENING"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "清醒，步态轻度跛行，无明显痛苦貌。",
+      "time_minute": 0,
+      "appearance": "清醒，步态轻度跛行，无明显痛苦貌。",
+      "chief_complaint": "“打球崴脚了，能走，就是有点肿痛。”",
+      "symptom_description": "患者打篮球后自行来到急诊入口，右踝轻度肿胀，能跛行进入。",
+      "mental_status": "清醒",
+      "pain_score": 4,
+      "risk_signals": [
+        "不能负重",
+        "明显畸形",
+        "麻木、发凉、足趾活动障碍"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 36.6,
+        "heart_rate": 78,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "pain_score": 4,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 5.4,
+        "skin_perfusion": "皮肤温暖干燥，无发绀，患足末梢颜色正常，毛细血管再充盈约2秒",
+        "other_assessments": [
+          "受伤机制",
+          "能负重",
+          "踝部肿胀和压痛位置",
+          "足趾感觉和活动",
+          "足背动脉/胫后动脉搏 动",
+          "皮肤破损",
+          "高能量损伤",
+          "其他部位损伤"
+        ],
+        "blood_pressure_systolic": 118,
+        "blood_pressure_diastolic": 72
+      },
+      "recommended_actions": [
+        "初始分诊Ⅳ级",
+        "绿区候诊"
+      ],
+      "standard_triage_level": "Ⅳ级",
+      "standard_area": "绿区"
+    },
+    {
+      "state_id": "T35_event_1",
+      "state_name": "肿胀增加，疼痛6/10，仍可短距离负重，足趾颜色和温度正常。",
+      "time_minute": 35,
+      "appearance": "清醒，步态轻度跛行，无明显痛苦貌。",
+      "chief_complaint": "肿胀增加，疼痛6/10，仍可短距离负重，足趾颜色和温度正常。",
+      "symptom_description": "肿胀增加，疼痛6/10，仍可短距离负重，足趾颜色和温度正常。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 6,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "temperature": 36.6,
+        "heart_rate": 78,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "pain_score": 6,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 5.4,
+        "skin_perfusion": "皮肤温暖干燥，无发绀，患足末梢颜色正常，毛细血管再充盈约2秒",
+        "other_assessments": [
+          "受伤机制",
+          "能负重",
+          "踝部肿胀和压痛位置",
+          "足趾感觉和活动",
+          "足背动脉/胫后动脉搏 动",
+          "皮肤破损",
+          "高能量损伤",
+          "其他部位损伤"
+        ],
+        "blood_pressure_systolic": 118,
+        "blood_pressure_diastolic": 72
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "红区"
+    },
+    {
+      "state_id": "T60_event_2",
+      "state_name": "不能继续负重，足趾麻木，足背颜色稍苍白，毛细血管再充盈约4秒，足背动脉 搏动较弱",
+      "time_minute": 60,
+      "appearance": "清醒，步态轻度跛行，无明显痛苦貌。",
+      "chief_complaint": "不能继续负重，足趾麻木，足背颜色稍苍白，毛细血管再充盈约4秒，足背动脉 搏动较弱",
+      "symptom_description": "不能继续负重，足趾麻木，足背颜色稍苍白，毛细血管再充盈约4秒，足背动脉 搏动较弱。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 4,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "temperature": 36.6,
+        "heart_rate": 78,
+        "respiratory_rate": 16,
+        "spo2": 99,
+        "pain_score": 4,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 5.4,
+        "skin_perfusion": "皮肤温暖干燥，无发绀，患足末梢颜色正常，毛细血管再充盈约2秒",
+        "other_assessments": [
+          "受伤机制",
+          "能负重",
+          "踝部肿胀和压痛位置",
+          "足趾感觉和活动",
+          "足背动脉/胫后动脉搏 动",
+          "皮肤破损",
+          "高能量损伤",
+          "其他部位损伤"
+        ],
+        "blood_pressure_systolic": 118,
+        "blood_pressure_diastolic": 72
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "红区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅳ级",
+  "standard_initial_area": "绿区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "红区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

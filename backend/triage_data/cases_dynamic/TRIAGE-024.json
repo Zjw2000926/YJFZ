@@ -1,0 +1,1470 @@
+{
+  "external_id": "TRIAGE-024",
+  "stage": "REAL",
+  "title": "前臂明显畸形、剧痛但末梢循环可",
+  "display_name": "前臂明显畸形、剧痛但末梢循环可",
+  "difficulty": 2,
+  "category": "创伤",
+  "source_case_id": "VP-T024",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "明显畸形"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "32岁",
+    "gender": "男",
+    "arrival_mode": "家属陪同，自行步入后由护士安排轮椅",
+    "appearance": "痛苦貌，右前臂畸形肿胀，患肢不敢活动，无大量出血。",
+    "special_identity": "创伤患者"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“手臂摔歪了，特别疼。”",
+    "opening_line": "“手臂摔歪了，特别疼",
+    "scene_description": "患者右前臂摔伤后明显畸形，手托患肢，疼痛明显但意识清楚。",
+    "family_information": "妻子称患者骑车摔倒后右前臂着地，无头部撞击，无昏迷。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅲ级",
+    "minimum_safe_level": "Ⅲ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "进入黄区",
+      "初始不需立即通知医生",
+      "出现神经血管异常或开放性出血则立即通知",
+      "不启动绿色通道",
+      "优先评估疼痛、畸形、开放伤口、末梢循环、感觉、运动和压迫物",
+      "15–30分钟复评疼痛、肿胀、手指颜色温度、毛细血管再充盈、桡动脉搏动和感觉运动",
+      "出现麻木、苍白、发凉、脉搏减弱、再充盈延长或疼痛剧烈加重时升级Ⅱ级",
+      "按标准防护",
+      "防跌倒，避免患肢受压"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "受伤时间和机制",
+      "keywords": [
+        "受伤时间",
+        "和机制"
+      ],
+      "answer": "“手臂摔歪了，特别疼。”"
+    },
+    {
+      "id": "q_002",
+      "label": "头部撞击、昏迷或其他部位疼痛",
+      "keywords": [
+        "头部撞击",
+        "昏迷或其",
+        "他部位疼"
+      ],
+      "answer": "“手臂摔歪了，特别疼。”"
+    },
+    {
+      "id": "q_003",
+      "label": "手指麻木、无力、感觉异 常",
+      "keywords": [
+        "手指麻木",
+        "无力",
+        "感觉异"
+      ],
+      "answer": "患者右前臂摔伤后明显畸形，手托患肢，疼痛明显但意识清楚。"
+    },
+    {
+      "id": "q_004",
+      "label": "疼痛是否持续加重或被动活动明显加重",
+      "keywords": [
+        "疼痛是否",
+        "持续加重",
+        "或被动活",
+        "动明显加"
+      ],
+      "answer": "“手臂摔歪了，特别疼。”"
+    },
+    {
+      "id": "q_005",
+      "label": "开放伤口或出血",
+      "keywords": [
+        "开放伤口",
+        "或出血"
+      ],
+      "answer": "“手臂摔歪了，特别疼。”"
+    },
+    {
+      "id": "q_006",
+      "label": "既往骨折、抗凝药或基础病",
+      "keywords": [
+        "既往骨折",
+        "抗凝药或",
+        "基础病"
+      ],
+      "answer": "创伤患者"
+    },
+    {
+      "id": "q_007",
+      "label": "佩戴戒指/手表等压迫物",
+      "keywords": [
+        "佩戴戒指",
+        "手表等压",
+        "迫物"
+      ],
+      "answer": "“手臂摔歪了，特别疼。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“手臂摔歪了，特别疼。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“手臂摔歪了，特别疼。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“手臂摔歪了，特别疼。”，痛苦貌，右前臂畸形肿胀，患肢不敢活动，无大量出血。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，疼痛明显、焦虑，可配合。 如果护士问无关问题，患者应回应：“。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "抽烟，一天一包吧。偶尔喝酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "妻子称患者骑车摔倒后右前臂着地，无头部撞击，无昏迷。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "136/82 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.8",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "102",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "20",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "8.0",
+      "unit": "分",
+      "is_abnormal": true,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.9",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "因疼痛轻度出汗，无发绀，右手指颜色尚红润，毛细血管再充盈约2秒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "患肢畸形",
+        "肿胀",
+        "开放性伤口",
+        "末梢颜色温度",
+        "毛细血管再充盈",
+        "桡动脉搏动",
+        "手指感 觉和活动",
+        "疼痛变化",
+        "受伤机制",
+        "戒指/手表等压迫物情况"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "明显畸形",
+      "evidence": [
+        "明显畸形"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "剧烈疼痛",
+      "evidence": [
+        "剧烈疼痛"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "进行性肿胀",
+      "evidence": [
+        "进行性肿胀"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "手指麻木、苍白、发凉",
+      "evidence": [
+        "手指麻木、苍白、发凉"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "再充盈延长或脉搏减弱",
+      "evidence": [
+        "再充盈延长或脉搏减弱"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_006",
+      "label": "开放 伤口或持续出血",
+      "evidence": [
+        "开放 伤口或持续出血"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估末梢循环",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "感觉和运动",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "发现手指苍白",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "麻木",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "发凉",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "受伤时间和机制",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "头部撞击、昏迷或其他部位疼痛",
+        "canonical_intents": [
+          "ask_pain_location"
+        ],
+        "answer_facts": [
+          "没有明显的外伤。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "手指麻木、无力、感觉异 常",
+        "canonical_intents": [
+          "ask_breathing"
+        ],
+        "answer_facts": [
+          "患者右前臂摔伤后明显畸形，手托患肢，疼痛明显但意识清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "疼痛是否持续加重或被动活动明显加重",
+        "canonical_intents": [
+          "ask_duration"
+        ],
+        "answer_facts": [
+          "按压和活动时更痛，安静不动稍好。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "开放伤口或出血",
+        "canonical_intents": [
+          "ask_bleeding"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "既往骨折、抗凝药或基础病",
+        "canonical_intents": [
+          "ask_past_history"
+        ],
+        "answer_facts": [
+          "创伤患者"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_007",
+        "layer": "L2",
+        "label": "佩戴戒指/手表等压迫物",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“手臂摔歪了，特别疼。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“手臂摔歪了，特别疼。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“手臂摔歪了，特别疼。”，痛苦貌，右前臂畸形肿胀，患肢不敢活动，无大量出血。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，疼痛明显、焦虑，可配合。 如果护士问无关问题，患者应回应：“。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "抽烟，一天一包吧。偶尔喝酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "妻子称患者骑车摔倒后右前臂着地，无头部撞击，无昏迷。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“手臂摔歪了，特别疼",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“手臂摔歪了，特别疼 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "疼痛明显、焦虑，可配合。 如果护士问无关问题，患者应回应：“我手臂太疼了，能不能先看看？” 如果护士重复询问，患者应回应：“就是摔到手臂，疼得厉害。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“手指有点 麻”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“骨折”“Ⅲ级”“末梢循环正常”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "骑车摔倒",
+      "无昏迷",
+      "无其他明显伤"
+    ]
+  },
+  "patient_tone": "疼痛明显、焦虑，可配合。 如果护士问无关问题，患者应回应：“我手臂太疼了，能不能先看看？” 如果护士重复询问，患者应回应：“就是摔到手臂，疼得厉害。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“手指有点 麻”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别前臂畸形",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别疼痛明显和焦虑",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别当前无意识/循环危象",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判断需黄区 评估并复评末梢循环",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "受伤时间和机制",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "头部撞击/昏迷/其他疼痛",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "手指麻木无力感觉异常",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛是否进行性加重",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "开放伤口和出血",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "抗凝药、基础病、压迫物",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "BP/HR/RR/SpO₂",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛评分",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "畸形、肿胀、皮肤完整性",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "再充盈和颜 色温度",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "感觉和运动",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "明显畸形",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "剧烈疼痛",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "麻木/感觉异常",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "苍白发凉/再充盈延长",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "脉搏减弱 或开放伤口出血",
+            "score": 5,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "初始Ⅲ级",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态神经血管异常后升级Ⅱ级",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "初始判Ⅳ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态异常不升级 本项",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "判Ⅰ级但无休克或意识障碍依据",
+            "score": 6,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "初始黄区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "15–",
+            "score": 30,
+            "critical_fail": false
+          },
+          {
+            "criterion": "避免患肢受压和防跌倒",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "神经血管异常后 通知医生",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "升级Ⅱ级",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "复评疼痛和肿胀",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "复评末梢循环",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "复评感觉运动并重新分诊",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "告知麻木发凉变色需报告",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚疼痛焦虑",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录畸形、疼痛、末梢循环和复 评",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "初始识别为Ⅲ级并动态观察末梢循环，说明能安全处理肢体畸形。",
+    "risk_if_missed": "漏问麻木、无力和疼痛加重，可能漏掉神经血管损伤。",
+    "key_red_flag": "畸形、剧痛、麻木、发凉、再充盈延长、脉搏减弱。",
+    "reason_for_triage_level": "初始末梢循环可，故Ⅲ级；远端异常后升级Ⅱ级。",
+    "correct_triage_logic": "肢体创伤不只看疼痛，还必须评估远端循环、感觉和运动。",
+    "recommended_remediation": [
+      "肢体创伤神经血管评估",
+      "疼痛复评",
+      "动态升级条件",
+      "十二",
+      "输出限制 不写治疗处方",
+      "不写药物剂量",
+      "不写成医生诊断题",
+      "不让虚拟患者一开始暴露所有关键信息",
+      "不省略评分细则",
+      "不使用真实患者隐私信息",
+      "不让评分标准笼统"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "明显畸形",
+    "剧烈疼痛",
+    "进行性肿胀",
+    "手指麻木、苍白、发凉",
+    "再充盈延长或脉搏减弱",
+    "开放 伤口或持续出血"
+  ],
+  "common_errors": [
+    "只看生命体征稳定而忽略神经血管评估",
+    "只按“骨折”固定等级，不动态观察末梢循环",
+    "Ⅳ级普通扭伤候诊",
+    "或远端神经血管异常后仍维持Ⅲ级"
+  ],
+  "critical_errors": [
+    "未评估末梢循环",
+    "感觉和运动",
+    "发现手指苍白",
+    "麻木",
+    "发凉",
+    "脉搏弱或再充盈延长后未升 级",
+    "动态神经血管异常后未升级为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "右前臂外伤后明显畸形",
+      "疼痛8/10",
+      "肿胀明显",
+      "HR 102次/分"
+    ],
+    "key_negative_information": [
+      "末梢颜色尚可，再充盈约2秒",
+      "无头部外伤、意识障碍或大量出血"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅲ级",
+    "esi_ctas_mapping": "ESI 3/CTAS 3；动态出现神经血管异常时映射ESI 2/CTAS 2",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "15–30分钟内复评；出现麻木、苍白、发凉、脉搏减弱、再充盈延长，立即复评升 级",
+    "isolation_or_ppe": "不需要隔离；如有破皮出血按标准防护",
+    "violence_self_harm_risk": "否；存在疼痛、晕厥和跌倒风险",
+    "triage_basis": "初始应分为Ⅲ级。患者有明显畸形和重度疼痛，需要急诊评估，但生命体征稳定，意识清楚，无大量出血，末 梢循环、感觉和运动初步尚可，因此初始不是Ⅰ级或Ⅱ级。由于明显畸形和疼痛8/10，也不能归为Ⅳ级。若出 现远端神经血管异常，应升级Ⅱ级。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入黄区",
+      "初始不需立即通知医生",
+      "出现神经血管异常或开放性出血则立即通知",
+      "不启动绿色通道",
+      "优先评估疼痛、畸形、开放伤口、末梢循环、感觉、运动和压迫物",
+      "15–30分钟复评疼痛、肿胀、手指颜色温度、毛细血管再充盈、桡动脉搏动和感觉运动",
+      "出现麻木、苍白、发凉、脉搏减弱、再充盈延长或疼痛剧烈加重时升级Ⅱ级",
+      "按标准防护",
+      "防跌倒，避免患肢受压"
+    ],
+    "communication_points": [
+      "告知患者需要观察手指颜色、温度、麻木和疼痛变化",
+      "不要自行活动患肢"
+    ],
+    "documentation_points": [
+      "受伤机制",
+      "畸形部位",
+      "疼痛评分",
+      "末梢循环",
+      "感觉运动",
+      "皮肤完整性",
+      "压迫物",
+      "生命体 征",
+      "分诊等级",
+      "复评时间"
+    ],
+    "sbar_handoff": "S：32岁男性，摔倒后右前臂明显畸形，疼痛8分。 B：骑车摔倒右前臂着地，无头部撞击和昏迷。 A：初始Ⅲ级，生命体征稳定，末梢循环目前可，需动态观察神经血管状态。 R：黄区，15–30分钟复评末梢循环、感觉运动和疼痛，出现异常升级Ⅱ级。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "受伤时间和机制",
+      "头部撞击、昏迷或其他部位疼痛",
+      "手指麻木、无力、感觉异 常",
+      "疼痛是否持续加重或被动活动明显加重",
+      "开放伤口或出血",
+      "既往骨折、抗凝药或基础病",
+      "佩戴戒指/手表等压迫物"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "疼痛评分",
+      "患肢末梢循环"
+    ],
+    "must_observe_items": [
+      "前臂畸形和肿胀",
+      "皮肤破损或开放伤口",
+      "手指颜色、温度、毛细血管再充盈",
+      "桡动脉搏 动",
+      "手指感觉和主动活动",
+      "疼痛是否进行性加重"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅲ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "前臂明显畸形、剧痛但末梢循环可加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "疼痛加重至9/10，手指感觉麻木，肿胀增加。",
+        "vital_changes": {},
+        "requires_reassessment": true,
+        "reassessment_instruction": "疼痛加重至9/10，手指感觉麻木，肿胀增加。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 15,
+        "event_description": "疼痛加重至9/10，手指感觉麻木，肿胀增加。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "手指发凉、颜色变淡，毛细血管再充盈约4秒，桡动脉搏动较弱。",
+        "vital_changes": {},
+        "requires_reassessment": true,
+        "reassessment_instruction": "手指发凉、颜色变淡，毛细血管再充盈约4秒，桡动脉搏动较弱。",
+        "standard_level_after_event": "Ⅱ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 25,
+        "event_description": "手指发凉、颜色变淡，毛细血管再充盈约4秒，桡动脉搏动较弱。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化",
+        "severe_error_code": "NO_REASSESS_AFTER_WORSENING"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "痛苦貌，右前臂畸形肿胀，患肢不敢活动，无大量出血。",
+      "time_minute": 0,
+      "appearance": "痛苦貌，右前臂畸形肿胀，患肢不敢活动，无大量出血。",
+      "chief_complaint": "“手臂摔歪了，特别疼。”",
+      "symptom_description": "患者右前臂摔伤后明显畸形，手托患肢，疼痛明显但意识清楚。",
+      "mental_status": "清醒",
+      "pain_score": 8,
+      "risk_signals": [
+        "明显畸形",
+        "剧烈疼痛",
+        "进行性肿胀"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 36.8,
+        "heart_rate": 102,
+        "respiratory_rate": 20,
+        "spo2": 99,
+        "pain_score": 8,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 5.9,
+        "skin_perfusion": "因疼痛轻度出汗，无发绀，右手指颜色尚红润，毛细血管再充盈约2秒",
+        "other_assessments": [
+          "患肢畸形",
+          "肿胀",
+          "开放性伤口",
+          "末梢颜色温度",
+          "毛细血管再充盈",
+          "桡动脉搏动",
+          "手指感 觉和活动",
+          "疼痛变化",
+          "受伤机制",
+          "戒指/手表等压迫物情况"
+        ],
+        "blood_pressure_systolic": 136,
+        "blood_pressure_diastolic": 82
+      },
+      "recommended_actions": [
+        "初始分诊Ⅲ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T15_event_1",
+      "state_name": "疼痛加重至9/10，手指感觉麻木，肿胀增加。",
+      "time_minute": 15,
+      "appearance": "痛苦貌，右前臂畸形肿胀，患肢不敢活动，无大量出血。",
+      "chief_complaint": "疼痛加重至9/10，手指感觉麻木，肿胀增加。",
+      "symptom_description": "疼痛加重至9/10，手指感觉麻木，肿胀增加。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 10,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "temperature": 36.8,
+        "heart_rate": 102,
+        "respiratory_rate": 20,
+        "spo2": 99,
+        "pain_score": 10,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 5.9,
+        "skin_perfusion": "因疼痛轻度出汗，无发绀，右手指颜色尚红润，毛细血管再充盈约2秒",
+        "other_assessments": [
+          "患肢畸形",
+          "肿胀",
+          "开放性伤口",
+          "末梢颜色温度",
+          "毛细血管再充盈",
+          "桡动脉搏动",
+          "手指感 觉和活动",
+          "疼痛变化",
+          "受伤机制",
+          "戒指/手表等压迫物情况"
+        ],
+        "blood_pressure_systolic": 136,
+        "blood_pressure_diastolic": 82
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T25_event_2",
+      "state_name": "手指发凉、颜色变淡，毛细血管再充盈约4秒，桡动脉搏动较弱。",
+      "time_minute": 25,
+      "appearance": "痛苦貌，右前臂畸形肿胀，患肢不敢活动，无大量出血。",
+      "chief_complaint": "手指发凉、颜色变淡，毛细血管再充盈约4秒，桡动脉搏动较弱。",
+      "symptom_description": "手指发凉、颜色变淡，毛细血管再充盈约4秒，桡动脉搏动较弱。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 8,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "temperature": 36.8,
+        "heart_rate": 117,
+        "respiratory_rate": 20,
+        "spo2": 99,
+        "pain_score": 8,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 5.9,
+        "skin_perfusion": "因疼痛轻度出汗，无发绀，右手指颜色尚红润，毛细血管再充盈约2秒",
+        "other_assessments": [
+          "患肢畸形",
+          "肿胀",
+          "开放性伤口",
+          "末梢颜色温度",
+          "毛细血管再充盈",
+          "桡动脉搏动",
+          "手指感 觉和活动",
+          "疼痛变化",
+          "受伤机制",
+          "戒指/手表等压迫物情况"
+        ],
+        "blood_pressure_systolic": 136,
+        "blood_pressure_diastolic": 82
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "红区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅲ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "红区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

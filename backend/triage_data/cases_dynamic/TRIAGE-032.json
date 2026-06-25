@@ -1,0 +1,1419 @@
+{
+  "external_id": "TRIAGE-032",
+  "stage": "REAL",
+  "title": "全身瘙痒伴风团样皮疹",
+  "display_name": "全身瘙痒伴风团样皮疹",
+  "difficulty": 1,
+  "category": "过敏/皮肤",
+  "source_case_id": "VP-T032",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "喉咙发紧或声音改变"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "25岁",
+    "gender": "男",
+    "arrival_mode": "自行步入",
+    "appearance": "清醒，皮肤多处风团样皮疹，抓挠明显，无明显呼吸费力，无面唇肿胀。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“我身上起了一片疙瘩，很痒，而且越来越多。”",
+    "opening_line": "“我身上起了一片疙瘩，很痒，而且越来越多",
+    "scene_description": "患者自行来到分诊台，诉1小时内全身瘙痒和风团样皮疹逐渐增多，能完整交流。",
+    "family_information": "无家属陪同。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅲ级",
+    "minimum_safe_level": "Ⅲ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "进入黄区观察队列",
+      "初始不需要立即通知医生",
+      "出现气道、呼吸或循环异常时立即通知",
+      "不启动绿色通道",
+      "快速评估过敏诱因、皮疹范围、气道症状、呼吸症状、循环状态和既往严重过敏史",
+      "候诊期间15–30分钟内复评BP、HR、RR、SpO₂、声音、喉咙发紧、喘憋、头晕和皮疹进展",
+      "若出现喉咙发紧、声音改变、呼吸困难、低血压或晕厥，应升级Ⅱ级或Ⅰ级",
+      "不需要隔离，按标准防护，避免患者因瘙痒烦躁跌倒"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "皮疹出现时间和扩散速度",
+      "keywords": [
+        "皮疹出现",
+        "时间和扩",
+        "散速度"
+      ],
+      "answer": "“我身上起了一片疙瘩，很痒，而且越来越多。”"
+    },
+    {
+      "id": "q_002",
+      "label": "可能食物、药物、昆虫叮咬、运动或接触诱因",
+      "keywords": [
+        "可能食物",
+        "药物",
+        "昆虫叮咬",
+        "运动或接",
+        "触诱因"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "q_003",
+      "label": "喉咙发 紧、声音改变、吞咽困难",
+      "keywords": [
+        "喉咙发",
+        "声音改变",
+        "吞咽困难"
+      ],
+      "answer": "“我身上起了一片疙瘩，很痒，而且越来越多。”"
+    },
+    {
+      "id": "q_004",
+      "label": "胸闷、喘鸣、呼吸困难",
+      "keywords": [
+        "胸闷",
+        "喘鸣",
+        "呼吸困难"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_005",
+      "label": "头晕、晕厥、心慌",
+      "keywords": [
+        "头晕",
+        "晕厥",
+        "心慌"
+      ],
+      "answer": "意识清楚。"
+    },
+    {
+      "id": "q_006",
+      "label": "既往过敏史和严重过 敏反应史",
+      "keywords": [
+        "既往过敏",
+        "史和严重",
+        "敏反应史"
+      ],
+      "answer": "疼痛评分约7.0分。"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“我身上起了一片疙瘩，很痒，而且越来越多。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“我身上起了一片疙瘩，很痒，而且越来越多。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“我身上起了一片疙瘩，很痒，而且越来越多。”，清醒，皮肤多处风团样皮疹，抓挠明显，无明显呼吸费力，无面唇肿胀。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，烦躁、抓挠、焦虑，但能完整回答。 如果护士问无关问题，患者应。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "没有特别的其他不舒服，就是这个问题。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "意识清楚，没晕过去。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "平时身体还行，没什么大毛病。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "没吃什么特别的药。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "无家属陪同。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "124/78 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.7",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "92",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "18",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "7.0",
+      "unit": "分",
+      "is_abnormal": true,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.3",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖，散在风团样皮疹，无发绀，无冷汗，末梢灌注好",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "否喉咙发紧",
+        "声音改变",
+        "喘鸣",
+        "胸闷",
+        "头晕",
+        "晕厥",
+        "面唇舌肿胀",
+        "可能诱因",
+        "新用 药",
+        "昆虫叮咬",
+        "运动后发作",
+        "既往严重过敏史",
+        "皮疹进展速度"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "喉咙发紧或声音改变",
+      "evidence": [
+        "喉咙发紧或声音改变"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "呼吸困难或喘鸣",
+      "evidence": [
+        "呼吸困难或喘鸣"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "低血压或晕厥",
+      "evidence": [
+        "低血压或晕厥"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "面唇舌肿胀",
+      "evidence": [
+        "面唇舌肿胀"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "皮疹迅速扩散伴全身 症状",
+      "evidence": [
+        "皮疹迅速扩散伴全身 症状"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测血压和SpO₂",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问喉咙发紧",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "声音改变",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "喘憋",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "头晕晕厥",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "皮疹出现时间和扩散速度",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "可能食物、药物、昆虫叮咬、运动或接触诱因",
+        "canonical_intents": [
+          "ask_aggravating_relieving"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "喉咙发 紧、声音改变、吞咽困难",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "胸闷、喘鸣、呼吸困难",
+        "canonical_intents": [
+          "ask_breathing"
+        ],
+        "answer_facts": [
+          "按压和活动时更痛，安静不动稍好。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "头晕、晕厥、心慌",
+        "canonical_intents": [
+          "ask_accompanying"
+        ],
+        "answer_facts": [
+          "意识清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "既往过敏史和严重过 敏反应史",
+        "canonical_intents": [
+          "ask_severity"
+        ],
+        "answer_facts": [
+          "疼痛评分约7.0分。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“我身上起了一片疙瘩，很痒，而且越来越多。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“我身上起了一片疙瘩，很痒，而且越来越多。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“我身上起了一片疙瘩，很痒，而且越来越多。”，清醒，皮肤多处风团样皮疹，抓挠明显，无明显呼吸费力，无面唇肿胀。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，烦躁、抓挠、焦虑，但能完整回答。 如果护士问无关问题，患者应。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "没有特别的其他不舒服，就是这个问题。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "平时身体还行，没什么大毛病。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "没吃什么特别的药。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "无家属陪同。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“我身上起了一片疙瘩，很痒，而且越来越多",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“我身上起了一片疙瘩，很痒，而且越来越多 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "烦躁、抓挠、焦虑，但能完整回答。 如果护士问无关问题，患者应回应：“我现在就是特别痒，怕越来越严重。” 如果护士重复询问，患者应回应：“就是越来越痒，身上起疙瘩。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“嗓子好像有 点紧”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“荨麻疹”“Ⅲ级”“没有严重过敏”“无气道和循环异 常”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "无家属"
+    ]
+  },
+  "patient_tone": "烦躁、抓挠、焦虑，但能完整回答。 如果护士问无关问题，患者应回应：“我现在就是特别痒，怕越来越严重。” 如果护士重复询问，患者应回应：“就是越来越痒，身上起疙瘩。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“嗓子好像有 点紧”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别全身皮疹",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别瘙痒明显和焦虑",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别当前无气道/循环危象",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判断需观察 复评",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "皮疹出现时间和进展",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "食物/药物/昆虫叮咬/接触诱因",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "喉咙发紧、声音改 变、吞咽困难",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "胸闷、喘鸣、呼吸困难",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "头晕、晕厥、心慌",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "既往过敏和严重过敏史",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "测BP",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "测HR和RR",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "测SpO₂",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "评估意识",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察皮疹范围和面唇舌肿 胀",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察声音、呼吸费力和灌注",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "识别喉咙发紧/声音改变",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别呼吸困难或喘鸣",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别低血压/晕厥",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别面唇1. 舌肿胀",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别皮疹快速扩散伴全身症状",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "初始正确Ⅲ级",
+            "score": 12,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态气道/胸闷/血压下降后升级Ⅱ级",
+            "score": 6,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出现低血压加重或低氧后 升级Ⅰ级",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "初始判Ⅳ级",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未测BP/SpO₂或未问气道循环红旗本项",
+            "score": 8,
+            "critical_fail": true
+          },
+          {
+            "criterion": "动态恶化不升级本项",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "黄区观察队列",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "设置15–",
+            "score": 30,
+            "critical_fail": false
+          },
+          {
+            "criterion": "不启动绿色通道但说明依据",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动 态变化后通知医生",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "升级分诊",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "复评BP、HR、RR、SpO₂",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察声音、喉咙、呼吸、头晕",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "变化后重新分 诊",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "告知气道/呼吸/头晕需报告",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚焦虑",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录诱因、皮疹、阴性红旗和复评",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "能区分普通皮疹和潜在严重过敏进展，并设置复评。",
+    "risk_if_missed": "漏问喉咙发紧、声音改变、喘憋、头晕，可能延误严重过敏反 应。",
+    "key_red_flag": "气道症状、呼吸困难、血压下降、晕厥、面唇舌肿胀。",
+    "reason_for_triage_level": "初始无气道和循环异常，但皮疹快速扩散且范围广，需Ⅲ级观察。",
+    "correct_triage_logic": "过敏病例先评估气道、呼吸、循环，再看皮疹范围和诱因。",
+    "recommended_remediation": [
+      "过敏反应分诊",
+      "气道红旗",
+      "动态复评",
+      "Ⅱ级与Ⅰ级升级条件",
+      "十二",
+      "输出限制 不写治疗处方",
+      "不写药物剂量",
+      "不写成医生诊断题",
+      "不让虚拟患者一开始暴露所有关键信息",
+      "不省略评分细则",
+      "不使用真实患者隐私信息",
+      "不让评分标准过于笼统"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "喉咙发紧或声音改变",
+    "呼吸困难或喘鸣",
+    "低血压或晕厥",
+    "面唇舌肿胀",
+    "皮疹迅速扩散伴全身 症状"
+  ],
+  "common_errors": [
+    "只看到皮疹就分Ⅳ级，未排除气道和循环风险",
+    "因患者年轻而忽略严重过敏进展",
+    "Ⅳ级普通皮肤瘙痒候诊",
+    "未设置复评"
+  ],
+  "critical_errors": [
+    "未测血压和SpO₂",
+    "未询问喉咙发紧",
+    "声音改变",
+    "喘憋",
+    "头晕晕厥",
+    "动态出现气道或循环异 常后未升级"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "全身风团样皮疹",
+      "瘙痒明显7/10",
+      "1小时内从躯干部扩展至四肢",
+      "患者焦虑烦躁"
+    ],
+    "key_negative_information": [
+      "无喉咙发紧、声音改变、喘憋",
+      "无低血压、晕厥、意识改变",
+      "无面唇舌明显肿胀"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅲ级",
+    "esi_ctas_mapping": "ESI 3/CTAS 3；若仅局限皮疹、无进展且生命体征稳定，可本地化降为ESI 4/CTAS",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区观察队列",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "15–30分钟内复评；出现气道、呼吸或循环异常立即复评升级",
+    "isolation_or_ppe": "不需要隔离，按标准防护",
+    "violence_self_harm_risk": "否",
+    "triage_basis": "该病例应分为Ⅲ级。患者全身风团样皮疹在1小时内快速扩散，瘙痒明显，需要急诊评估和观察；当前生命体征 稳定，无气道、呼吸、循环异常，因此不是Ⅰ级或Ⅱ级。由于皮疹范围广且进展较快，不能简单按Ⅳ级皮肤瘙 痒常规候诊，必须设置15–30分钟复评。若本地系统定义为“稳定单纯皮疹”，可设为Ⅳ级；本病例已通过“快 速扩散+瘙痒明显”固定为Ⅲ级。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入黄区观察队列",
+      "初始不需要立即通知医生",
+      "出现气道、呼吸或循环异常时立即通知",
+      "不启动绿色通道",
+      "快速评估过敏诱因、皮疹范围、气道症状、呼吸症状、循环状态和既往严重过敏史",
+      "候诊期间15–30分钟内复评BP、HR、RR、SpO₂、声音、喉咙发紧、喘憋、头晕和皮疹进展",
+      "若出现喉咙发紧、声音改变、呼吸困难、低血压或晕厥，应升级Ⅱ级或Ⅰ级",
+      "不需要隔离，按标准防护，避免患者因瘙痒烦躁跌倒"
+    ],
+    "communication_points": [
+      "告知患者目前需要观察过敏是否进展",
+      "若嗓子紧、声音变、胸闷、喘、头晕应立即报告"
+    ],
+    "documentation_points": [
+      "皮疹开始时间",
+      "范围",
+      "扩散速度",
+      "诱因",
+      "瘙痒程度",
+      "气道/呼吸/循环阴性项目",
+      "生命体 征",
+      "分诊等级",
+      "复评时间"
+    ],
+    "sbar_handoff": "S：25岁男性，全身风团样皮疹、瘙痒明显，1小时内增多。5. B：诱因待查，无既往严重过敏史信息。 A：Ⅲ级，BP 124/78 mmHg，SpO₂ 99%，无喉咙发紧、喘憋或晕厥。 R：黄区观察队列，15–30分钟复评气道、呼吸、循环和皮疹进展。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "皮疹出现时间和扩散速度",
+      "可能食物、药物、昆虫叮咬、运动或接触诱因",
+      "喉咙发 紧、声音改变、吞咽困难",
+      "胸闷、喘鸣、呼吸困难",
+      "头晕、晕厥、心慌",
+      "既往过敏史和严重过 敏反应史"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "体温",
+      "意识状态"
+    ],
+    "must_observe_items": [
+      "皮疹范围和变化",
+      "面唇舌是否肿胀",
+      "呼吸费力",
+      "声音是否改变",
+      "皮肤灌注和出汗",
+      "候诊中是否出现头晕或喘憋"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅲ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "全身瘙痒伴风团样皮疹加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "皮疹增多，患者诉嗓子“有点紧”，声音尚清，SpO₂ 98%，BP 118/72 mmHg。",
+        "vital_changes": {
+          "blood_pressure_systolic": 118,
+          "blood_pressure_diastolic": 72,
+          "spo2": 98
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "皮疹增多，患者诉嗓子“有点紧”，声音尚清，SpO₂ 98%，BP 118/72 mmHg。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 15,
+        "event_description": "皮疹增多，患者诉嗓子“有点紧”，声音尚清，SpO₂ 98%，BP 118/72 mmHg。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "声音变轻，胸闷，RR 24次/分，HR 112次/分，BP 98/60 mmHg。",
+        "vital_changes": {
+          "blood_pressure_systolic": 98,
+          "blood_pressure_diastolic": 60,
+          "heart_rate": 112,
+          "respiratory_rate": 24
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "声音变轻，胸闷，RR 24次/分，HR 112次/分，BP 98/60 mmHg。",
+        "standard_level_after_event": "Ⅱ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 25,
+        "event_description": "声音变轻，胸闷，RR 24次/分，HR 112次/分，BP 98/60 mmHg。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化",
+        "severe_error_code": "NO_REASSESS_AFTER_WORSENING"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "清醒，皮肤多处风团样皮疹，抓挠明显，无明显呼吸费力，无面唇肿",
+      "time_minute": 0,
+      "appearance": "清醒，皮肤多处风团样皮疹，抓挠明显，无明显呼吸费力，无面唇肿胀。",
+      "chief_complaint": "“我身上起了一片疙瘩，很痒，而且越来越多。”",
+      "symptom_description": "患者自行来到分诊台，诉1小时内全身瘙痒和风团样皮疹逐渐增多，能完整交流。",
+      "mental_status": "清醒",
+      "pain_score": 7,
+      "risk_signals": [
+        "喉咙发紧或声音改变",
+        "呼吸困难或喘鸣",
+        "低血压或晕厥"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 36.7,
+        "heart_rate": 92,
+        "respiratory_rate": 18,
+        "spo2": 99,
+        "pain_score": 7,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 5.3,
+        "skin_perfusion": "皮肤温暖，散在风团样皮疹，无发绀，无冷汗，末梢灌注好",
+        "other_assessments": [
+          "否喉咙发紧",
+          "声音改变",
+          "喘鸣",
+          "胸闷",
+          "头晕",
+          "晕厥",
+          "面唇舌肿胀",
+          "可能诱因",
+          "新用 药",
+          "昆虫叮咬",
+          "运动后发作",
+          "既往严重过敏史",
+          "皮疹进展速度"
+        ],
+        "blood_pressure_systolic": 124,
+        "blood_pressure_diastolic": 78
+      },
+      "recommended_actions": [
+        "初始分诊Ⅲ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T15_event_1",
+      "state_name": "皮疹增多，患者诉嗓子“有点紧”，声音尚清，SpO₂ 98%，BP 118/72 ",
+      "time_minute": 15,
+      "appearance": "清醒，皮肤多处风团样皮疹，抓挠明显，无明显呼吸费力，无面唇肿胀。",
+      "chief_complaint": "皮疹增多，患者诉嗓子“有点紧”，声音尚清，SpO₂ 98%，BP 118/72 ",
+      "symptom_description": "皮疹增多，患者诉嗓子“有点紧”，声音尚清，SpO₂ 98%，BP 118/72 mmHg。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 118,
+        "blood_pressure_diastolic": 72,
+        "spo2": 98
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T25_event_2",
+      "state_name": "声音变轻，胸闷，RR 24次/分，HR 112次/分，BP 98/60 mmHg",
+      "time_minute": 25,
+      "appearance": "清醒，皮肤多处风团样皮疹，抓挠明显，无明显呼吸费力，无面唇肿胀。",
+      "chief_complaint": "声音变轻，胸闷，RR 24次/分，HR 112次/分，BP 98/60 mmHg",
+      "symptom_description": "声音变轻，胸闷，RR 24次/分，HR 112次/分，BP 98/60 mmHg。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 98,
+        "blood_pressure_diastolic": 60,
+        "heart_rate": 112,
+        "respiratory_rate": 24
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "红区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅲ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "红区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

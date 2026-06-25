@@ -1,0 +1,45 @@
+{
+  "id": "vital_thresholds_v1", "version": "1.0",
+  "thresholds": {
+    "spo2": [
+      {"operator":"<","value":85,"minimum_level":"Ⅰ级","rule_id":"VITAL_SPO2_CRITICAL_MIN_I","label":"SpO2危急值"},
+      {"operator":"<","value":90,"minimum_level":"Ⅱ级","rule_id":"VITAL_SPO2_LOW_MIN_II","label":"SpO2偏低"}
+    ],
+    "systolic_bp": [
+      {"operator":"<","value":80,"minimum_level":"Ⅰ级","rule_id":"VITAL_SBP_CRITICAL_MIN_I","label":"收缩压危急值"},
+      {"operator":"<","value":90,"minimum_level":"Ⅱ级","rule_id":"VITAL_SBP_LOW_MIN_II","label":"收缩压偏低"}
+    ],
+    "heart_rate": [
+      {"operator":">","value":140,"minimum_level":"Ⅱ级","rule_id":"VITAL_HR_TACHY_MIN_II","label":"严重心动过速"},
+      {"operator":"<","value":50,"minimum_level":"Ⅱ级","rule_id":"VITAL_HR_BRADY_MIN_II","label":"严重心动过缓"}
+    ],
+    "respiratory_rate": [
+      {"operator":">","value":30,"minimum_level":"Ⅱ级","rule_id":"VITAL_RR_TACHY_MIN_II","label":"呼吸急促"},
+      {"operator":"<","value":10,"minimum_level":"Ⅱ级","rule_id":"VITAL_RR_BRADY_MIN_II","label":"呼吸过缓"}
+    ],
+    "temperature": [
+      {"operator":">","value":39.5,"minimum_level":"Ⅱ级","rule_id":"VITAL_TEMP_HIGH_MIN_II","label":"高热"}
+    ],
+    "pain_score": [
+      {"operator":">=","value":8,"minimum_level":"Ⅱ级","rule_id":"VITAL_SEVERE_PAIN_MIN_II","label":"重度疼痛"},
+      {"operator":">=","value":4,"minimum_level":"Ⅲ级","rule_id":"VITAL_MODERATE_PAIN_MIN_III","label":"中度疼痛"}
+    ],
+    "gcs": [
+      {"operator":"<","value":9,"minimum_level":"Ⅰ级","rule_id":"VITAL_GCS_CRITICAL_MIN_I","label":"GCS危急值"},
+      {"operator":"<=","value":13,"minimum_level":"Ⅱ级","rule_id":"VITAL_GCS_ABNORMAL_MIN_II","label":"GCS异常"}
+    ],
+    "blood_glucose": [
+      {"operator":"<","value":3.0,"minimum_level":"Ⅰ级","rule_id":"VITAL_BG_CRITICAL_LOW_MIN_I","label":"严重低血糖"},
+      {"operator":"<","value":3.9,"minimum_level":"Ⅱ级","rule_id":"VITAL_BG_LOW_MIN_II","label":"低血糖"},
+      {"operator":">","value":20.0,"minimum_level":"Ⅱ级","rule_id":"VITAL_BG_HIGH_MIN_II","label":"严重高血糖(DKA/HHS风险)"}
+    ],
+    "shock_index": [
+      {"operator":">","value":1.4,"minimum_level":"Ⅰ级","rule_id":"VITAL_SI_CRITICAL_MIN_I","label":"休克指数危急值"},
+      {"operator":">","value":1.0,"minimum_level":"Ⅱ级","rule_id":"VITAL_SI_HIGH_MIN_II","label":"休克指数升高"}
+    ],
+    "mews": [
+      {"operator":">=","value":7,"minimum_level":"Ⅰ级","rule_id":"VITAL_MEWS_CRITICAL_MIN_I","label":"MEWS高危"},
+      {"operator":">=","value":5,"minimum_level":"Ⅱ级","rule_id":"VITAL_MEWS_HIGH_MIN_II","label":"MEWS升高"}
+    ]
+  }
+}

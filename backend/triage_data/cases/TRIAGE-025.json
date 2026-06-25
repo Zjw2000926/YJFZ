@@ -1,0 +1,1149 @@
+{
+  "external_id": "TRIAGE-025",
+  "stage": "REAL",
+  "title": "浅表切割伤少量出血",
+  "display_name": "浅表切割伤少量出血",
+  "difficulty": 1,
+  "category": "创伤",
+  "source_case_id": "VP-T025",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "出血不止或大量出血"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "24岁",
+    "gender": "女",
+    "arrival_mode": "自行步入",
+    "appearance": "清醒，状态稳定，左手食指少量渗血，无明显痛苦貌。",
+    "special_identity": "创伤患者"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“手指被刀划了一下，还在出一点血。”",
+    "opening_line": "“手指被刀划了一下，还在出一点血",
+    "scene_description": "患者自行来到分诊台，左手食指被水果刀划伤，创口表浅，少量渗血，已用纸巾按压。",
+    "family_information": "无家属陪同。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅳ级",
+    "minimum_safe_level": "Ⅳ级",
+    "triage_zone": "绿区",
+    "disposition": [
+      "进入绿区",
+      "不需要立即通知医生",
+      "不启动绿色通道",
+      "完成伤口、出血、感觉运动、污染和安全风险评估",
+      "候诊期间观察出血是否增多、疼痛是否加重、手指颜色感觉活动是否改变",
+      "若出血无法控制、麻木、活动障碍、污染严重或发现自伤风险，重新分诊",
+      "接触血液时按标准防护"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "受伤时间和工具",
+      "keywords": [
+        "受伤时间",
+        "和工具"
+      ],
+      "answer": "“手指被刀划了一下，还在出一点血。”"
+    },
+    {
+      "id": "q_002",
+      "label": "出血量和是否按压可止",
+      "keywords": [
+        "出血量和",
+        "是否按压",
+        "可止"
+      ],
+      "answer": "“手指被刀划了一下，还在出一点血。”"
+    },
+    {
+      "id": "q_003",
+      "label": "伤口是否污染或有异物",
+      "keywords": [
+        "伤口是否",
+        "污染或有",
+        "异物"
+      ],
+      "answer": "“手指被刀划了一下，还在出一点血。”"
+    },
+    {
+      "id": "q_004",
+      "label": "麻木、感觉异 常或活动障碍",
+      "keywords": [
+        "麻木",
+        "感觉异",
+        "常或活动",
+        "障碍"
+      ],
+      "answer": "患者自行来到分诊台，左手食指被水果刀划伤，创口表浅，少量渗血，已用纸巾按压。"
+    },
+    {
+      "id": "q_005",
+      "label": "抗凝用药或凝血异常",
+      "keywords": [
+        "抗凝用药",
+        "或凝血异"
+      ],
+      "answer": "创伤患者"
+    },
+    {
+      "id": "q_006",
+      "label": "自伤、暴力伤或被他人伤害",
+      "keywords": [
+        "自伤",
+        "暴力伤或",
+        "被他人伤"
+      ],
+      "answer": "“手指被刀划了一下，还在出一点血。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“手指被刀划了一下，还在出一点血。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“手指被刀划了一下，还在出一点血。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“手指被刀划了一下，还在出一点血。”，清醒，状态稳定，左手食指少量渗血，无明显痛苦貌。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，轻度紧张，配合。 如果护士问无关问题，患者应回应：“我主要是。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "没有特别的其他不舒服，就是这个问题。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "意识清楚，没晕过去。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "平时身体还行，没什么大毛病。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "没吃什么特别的药。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "好像没有药物过敏，没注意过。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "无家属陪同。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "112/70 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.5",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "80",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "16",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "2.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.1",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖干燥，无出汗，无发绀，末梢灌注好",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "伤口部位",
+        "深度",
+        "长度",
+        "污染情况",
+        "出血量",
+        "末梢感觉和活动",
+        "异物可能",
+        "受伤时间",
+        "受伤工具",
+        "破伤风相关免疫史",
+        "自伤/暴力风险"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "出血不止或大量出血",
+      "evidence": [
+        "出血不止或大量出血"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "麻木、活动障碍、肌腱/骨外露",
+      "evidence": [
+        "麻木、活动障碍、肌腱/骨外露"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "严重污染或异物残留",
+      "evidence": [
+        "严重污染或异物残留"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "抗凝药或凝血 异常",
+      "evidence": [
+        "抗凝药或凝血 异常"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "自伤或暴力伤风险",
+      "evidence": [
+        "自伤或暴力伤风险"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估出血是否可控",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "感觉运动",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "伤口污染和自伤/暴力风险",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "即直接常规候诊",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "7.",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "受伤时间和工具",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "出血量和是否按压可止",
+        "canonical_intents": [
+          "ask_bleeding"
+        ],
+        "answer_facts": [
+          "按压和活动时更痛，安静不动稍好。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "伤口是否污染或有异物",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "麻木、感觉异 常或活动障碍",
+        "canonical_intents": [
+          "ask_breathing"
+        ],
+        "answer_facts": [
+          "患者自行来到分诊台，左手食指被水果刀划伤，创口表浅，少量渗血，已用纸巾按压。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "抗凝用药或凝血异常",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "创伤患者"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "自伤、暴力伤或被他人伤害",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“手指被刀划了一下，还在出一点血。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“手指被刀划了一下，还在出一点血。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“手指被刀划了一下，还在出一点血。”，清醒，状态稳定，左手食指少量渗血，无明显痛苦貌。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，轻度紧张，配合。 如果护士问无关问题，患者应回应：“我主要是。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "没有特别的其他不舒服，就是这个问题。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "平时身体还行，没什么大毛病。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "没吃什么特别的药。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "好像没有药物过敏，没注意过。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "无家属陪同。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“手指被刀划了一下，还在出一点血",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“手指被刀划了一下，还在出一点血 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "轻度紧张，配合。 如果护士问无关问题，患者应回应：“我主要是手指还在出血。” 如果护士重复询问，患者应回应：“就是水果刀划的，出血不多。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“浅表伤”“Ⅳ级”“没有神经损伤”“不是自伤”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "无"
+    ]
+  },
+  "patient_tone": "轻度紧张，配合。 如果护士问无关问题，患者应回应：“我主要是手指还在出血。” 如果护士重复询问，患者应回应：“就是水果刀划的，出血不多。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "患者稳定",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "浅表切割伤和少量出血",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "需查感觉、活动和出血可控性",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "可绿区但 需防护",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "受伤时间和工具",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出血量和按压是否可止",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "污染/异物",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "麻木/感觉异 常/活动障碍",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "抗凝药和凝血问题",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "自伤或暴力风险",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "BP/HR",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "RR/SpO₂/体温",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛评分",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "伤口深度长度污染",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出血是否 可控",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "末梢循环感觉活动",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "不可控出血",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "麻木活动障碍",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "肌腱/骨外露",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "严重污染或异物",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "抗凝/凝血 异常",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "自伤或暴力伤风险",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确Ⅳ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅲ级",
+            "score": 12,
+            "critical_fail": false
+          },
+          {
+            "criterion": "无依据判Ⅱ级",
+            "score": 6,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅰ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未完成神经血管、出血和 安全风险评估即分Ⅳ级",
+            "score": 8,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "绿区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "不启动绿色通道",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "标准防护",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "告知出血或麻木变化需报告",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "避免过度占用资源",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "30–",
+            "score": 60,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察出血、感觉、活动变化",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "异常后重新分诊",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "解释绿区依据",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚紧张情绪",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录伤口、出血、感觉运动和安全筛查",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "排除出血、神经肌腱和安全风险后分Ⅳ级。",
+    "risk_if_missed": "可能漏掉深部损伤、污染异物或自伤/暴力事件。",
+    "key_red_flag": "不可控出血、感觉运动异常、深部结构暴露、污染、自伤/暴力风险。",
+    "reason_for_triage_level": "伤口浅表、出血少、生命体征稳定、无神经血管异常。",
+    "correct_triage_logic": "小伤口也要查出血控制、感觉运动、污染和安全风险。",
+    "recommended_remediation": [
+      "低危创伤分诊",
+      "末梢神经血管评估",
+      "职业防护",
+      "安全风险筛查",
+      "十二",
+      "输出限制 不写治疗处方",
+      "不写药物剂量",
+      "不写成医生诊断题",
+      "不让虚拟患者一开始暴露所有关键信息",
+      "不省略评分细则",
+      "不使用真实患者隐私信息",
+      "不让评分标准笼统"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "出血不止或大量出血",
+    "麻木、活动障碍、肌腱/骨外露",
+    "严重污染或异物残留",
+    "抗凝药或凝血 异常",
+    "自伤或暴力伤风险"
+  ],
+  "common_errors": [
+    "只看伤口小而不查感觉和活动",
+    "忽略自伤或暴力伤筛查",
+    "未筛查神经血管和安全风险即绿区",
+    "无高危依据分Ⅲ级"
+  ],
+  "critical_errors": [
+    "未评估出血是否可控",
+    "感觉运动",
+    "伤口污染和自伤/暴力风险",
+    "即直接常规候诊",
+    "7."
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "左手食指浅表切割伤",
+      "少量渗血",
+      "生命体征稳定"
+    ],
+    "key_negative_information": [
+      "无喷射性或大量出血",
+      "无手指麻木、活动受限或肌腱外露",
+      "无意识异常"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅳ级",
+    "esi_ctas_mapping": "ESI 4–5/CTAS 4–5",
+    "standard_zone": "绿区",
+    "standard_zone_detail": "绿区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "30–60分钟内复评；若出血增多、麻木、活动障碍或伤口污染严重，立即复评",
+    "isolation_or_ppe": "不需要隔离；接触血液需标准防护",
+    "violence_self_harm_risk": "否；需排除自伤或暴力伤可能",
+    "triage_basis": "该病例应分为Ⅳ级。患者为浅表切割伤，少量渗血，可按压控制，生命体征稳定，无麻木、活动障碍、肌腱暴 露、严重污染、大量出血或自伤风险。Ⅳ级成立前必须完成出血、神经肌腱、污染异物、凝血异常和安全风险 排除。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入绿区",
+      "不需要立即通知医生",
+      "不启动绿色通道",
+      "完成伤口、出血、感觉运动、污染和安全风险评估",
+      "候诊期间观察出血是否增多、疼痛是否加重、手指颜色感觉活动是否改变",
+      "若出血无法控制、麻木、活动障碍、污染严重或发现自伤风险，重新分诊",
+      "接触血液时按标准防护"
+    ],
+    "communication_points": [
+      "说明目前出血少且生命体征稳定，可绿区候诊",
+      "如出血增多、手指麻木或不能活动，立即告 知"
+    ],
+    "documentation_points": [
+      "受伤时间",
+      "工具",
+      "伤口部位",
+      "出血量",
+      "污染情况",
+      "疼痛评分",
+      "感觉运动",
+      "末梢循环",
+      "安 全风险筛查",
+      "分诊等级"
+    ],
+    "sbar_handoff": "S：24岁女性，左手食指浅表切割伤，少量渗血。 B：水果刀划伤，受伤时间待确认。 A：Ⅳ级，生命体征稳定，出血可控，末梢感觉活动初步正常。 R：绿区候诊，观察出血和感觉运动变化，按标准防护处理血液暴露。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "受伤时间和工具",
+      "出血量和是否按压可止",
+      "伤口是否污染或有异物",
+      "麻木、感觉异 常或活动障碍",
+      "抗凝用药或凝血异常",
+      "自伤、暴力伤或被他人伤害"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "体温",
+      "疼痛评分"
+    ],
+    "must_observe_items": [
+      "伤口深度和长度",
+      "出血是否可控",
+      "污染和异物",
+      "手指末梢颜色和再充盈",
+      "手指感觉和活 动",
+      "患者情绪和自伤风险线索"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "mapping_domestic_esi_ctas_v1", "version": "1.0",
+  "name": "国内四级分诊与ESI/CTAS教学映射",
+  "mappings": {
+    "Ⅰ级": {"label":"急危","zone":"红区","esi":1,"ctas":1,"description":"生命体征极不稳定，需立即干预"},
+    "Ⅱ级": {"label":"急重","zone":"红区","esi":2,"ctas":2,"description":"可能迅速恶化，需快速处理"},
+    "Ⅲ级": {"label":"急症","zone":"黄区","esi":3,"ctas":3,"description":"有潜在加重风险，短时间内救治"},
+    "Ⅳ级": {"label":"亚急症/非急症","zone":"绿区","esi":[4,5],"ctas":[4,5],"description":"生命体征平稳，可候诊或建议门诊"}
+  },
+  "disclaimer": "此为教学映射，非临床系统完全等同。ESI强调资源需求，国内四级强调危重程度和分区处置。"
+}

@@ -1,0 +1,1413 @@
+{
+  "external_id": "TRIAGE-029",
+  "stage": "REAL",
+  "title": "发热伴尿痛、心率增快但血压稳定",
+  "display_name": "发热伴尿痛、心率增快但血压稳定",
+  "difficulty": 2,
+  "category": "感染/发热",
+  "source_case_id": "VP-T029",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "发热伴心率增快"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "43岁",
+    "gender": "女",
+    "arrival_mode": "自行步入",
+    "appearance": "清醒，轻度疲惫，能自行行走，无明显呼吸困难。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“发烧，还有尿痛，腰有点酸。”",
+    "opening_line": "“发烧，还有尿痛，腰有点酸",
+    "scene_description": "患者自行来到分诊台，诉发热、尿痛、腰部酸痛，能完整交流。",
+    "family_information": "无家属陪同。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅲ级",
+    "minimum_safe_level": "Ⅲ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "初始进入黄区观察队列",
+      "初始不需立即通知医生",
+      "第一次恶化时通知医生并升级Ⅱ级",
+      "不启动绿色通道",
+      "优先评估体温、BP、HR、尿痛、腰痛、寒战、尿量、妊娠和基础病",
+      "15–30分钟复评体温、BP、HR、意识、尿量和寒战",
+      "BP下降、HR持续升高、意识改变、皮肤灌注差或少尿时重新分诊，Ⅱ级或Ⅰ级",
+      "按发热患者分区和标准防护，做好手卫生"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "发热时间和最高体温",
+      "keywords": [
+        "发热时间",
+        "和最高体"
+      ],
+      "answer": "“发烧，还有尿痛，腰有点酸。”"
+    },
+    {
+      "id": "q_002",
+      "label": "尿痛、尿频、尿急、血尿",
+      "keywords": [
+        "尿痛",
+        "尿频",
+        "尿急",
+        "血尿"
+      ],
+      "answer": "“发烧，还有尿痛，腰有点酸。”"
+    },
+    {
+      "id": "q_003",
+      "label": "腰痛、寒战、恶心呕吐",
+      "keywords": [
+        "腰痛",
+        "寒战",
+        "恶心呕吐"
+      ],
+      "answer": "“发烧，还有尿痛，腰有点酸。”"
+    },
+    {
+      "id": "q_004",
+      "label": "尿量是否减 少",
+      "keywords": [
+        "尿量是否"
+      ],
+      "answer": "“发烧，还有尿痛，腰有点酸。”"
+    },
+    {
+      "id": "q_005",
+      "label": "妊娠可能、末次月经",
+      "keywords": [
+        "妊娠可能",
+        "末次月经"
+      ],
+      "answer": "“发烧，还有尿痛，腰有点酸。”"
+    },
+    {
+      "id": "q_006",
+      "label": "糖尿病、肾病、免疫低下、泌尿系结石或既往类似感染",
+      "keywords": [
+        "糖尿病",
+        "肾病",
+        "免疫低下",
+        "泌尿系结",
+        "石或既往"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“发烧，还有尿痛，腰有点酸。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“发烧，还有尿痛，腰有点酸。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“发烧，还有尿痛，腰有点酸。”，清醒，轻度疲惫，能自行行走，无明显呼吸困难。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，疲惫、担心，但能完整回答。 如果护士问无关问题，患者应回应：。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "好像没有药物过敏，没注意过。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "无家属陪同。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "118/72 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "38.7",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "108",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "20",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "4.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "6.4",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖，轻度出汗，无发绀，末梢灌注好",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "尿痛",
+        "尿频尿急",
+        "腰痛",
+        "寒战",
+        "尿量",
+        "恶心呕吐",
+        "妊娠可能",
+        "糖尿病/肾病/免疫低下",
+        "血压和心率趋势"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "发热伴心率增快",
+      "evidence": [
+        "发热伴心率增快"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "寒战",
+      "evidence": [
+        "寒战"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "腰痛",
+      "evidence": [
+        "腰痛"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "血压下降趋势",
+      "evidence": [
+        "血压下降趋势"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "少尿、意识改变、妊娠或基础病",
+      "evidence": [
+        "少尿、意识改变、妊娠或基础病"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测血压和心率",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问寒战",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "腰痛",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "尿量和妊娠可能",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "动态出现寒战明显",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "发热时间和最高体温",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "尿痛、尿频、尿急、血尿",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "腰痛、寒战、恶心呕吐",
+        "canonical_intents": [
+          "ask_accompanying"
+        ],
+        "answer_facts": [
+          "没有特别的其他不舒服。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "尿量是否减 少",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "妊娠可能、末次月经",
+        "canonical_intents": [
+          "ask_menstrual_pregnancy"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "糖尿病、肾病、免疫低下、泌尿系结石或既往类似感染",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“发烧，还有尿痛，腰有点酸。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“发烧，还有尿痛，腰有点酸。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“发烧，还有尿痛，腰有点酸。”，清醒，轻度疲惫，能自行行走，无明显呼吸困难。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，疲惫、担心，但能完整回答。 如果护士问无关问题，患者应回应：。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "好像没有药物过敏，没注意过。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "无家属陪同。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“发烧，还有尿痛，腰有点酸",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“发烧，还有尿痛，腰有点酸 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "疲惫、担心，但能完整回答。 如果护士问无关问题，患者应回应：“我主要是发烧、尿痛、腰酸。” 如果护士重复询问，患者应回应：“尿的时候疼，腰也酸，发烧。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“我更冷、更 头晕了”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“肾盂肾炎”“脓毒症风险”“Ⅲ级”“感染加重”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "无"
+    ]
+  },
+  "patient_tone": "疲惫、担心，但能完整回答。 如果护士问无关问题，患者应回应：“我主要是发烧、尿痛、腰酸。” 如果护士重复询问，患者应回应：“尿的时候疼，腰也酸，发烧。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时可说“我更冷、更 头晕了”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "发热疲惫",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "尿痛腰酸提示感染来源",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "当前无休克但需复评",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "不能简单绿区",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "发热时间和最高体温",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "尿痛尿频尿急血尿",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "腰痛寒战恶心呕吐",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "尿量 减少",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "妊娠可能和末次月经",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "糖尿病肾病免疫低下结石史",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "体温",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "BP",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "HR",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "RR和SpO₂",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "GCS/意识",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "寒战灌注尿量线索",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "发热伴HR增快",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "腰痛和寒战",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "尿量减少",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "妊娠或基础病风险",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "BP下降/意 识改变需升级",
+            "score": 6,
+            "critical_fail": false
+          },
+          {
+            "criterion": "2.",
+            "score": 0,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "初始Ⅲ级",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "第一次变化后升级Ⅱ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "第二次变化后升级Ⅰ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "初始判Ⅳ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "初始判Ⅱ级但理由为感染高危",
+            "score": 8,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未测BP/HR或动态低血压未升级本项",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "黄区观察队列/发热分区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "15–",
+            "score": 30,
+            "critical_fail": false
+          },
+          {
+            "criterion": "妊娠和基础病评估",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "第一 次恶化后通知医生并升级",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "第二次恶化后转红区",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "复评BP、HR、体温",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察寒战、意识、尿量、灌注",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "变化后重新分诊",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "告知感染加重信号",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚患者",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录尿痛、腰痛、生命体征和复评",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别发热尿痛伴心率增快为Ⅲ级，并设置复评。",
+    "risk_if_missed": "漏问寒战、尿量、腰痛、妊娠和基础病，会低估感染严重程度。",
+    "key_red_flag": "发热、心率增快、腰痛、寒战、血压下降趋势和少尿。",
+    "reason_for_triage_level": "初始血压稳定无意识改变，故Ⅲ级；动态低血压和意识变化后升级。",
+    "correct_triage_logic": "感染病例不只看体温，要看HR、BP、意识、尿量和动态变化。",
+    "recommended_remediation": [
+      "泌尿感染分诊",
+      "发热复评",
+      "感染进展高危信号",
+      "妊娠风险筛查",
+      "十二",
+      "输出限制 不写治疗处方",
+      "不写药物剂量",
+      "不写成医生诊断题",
+      "不让虚拟患者一开始暴露所有关键信息",
+      "不省略评分细则",
+      "不使用真实患者隐私信息",
+      "不让评分标准笼统"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "发热伴心率增快",
+    "寒战",
+    "腰痛",
+    "血压下降趋势",
+    "少尿、意识改变、妊娠或基础病"
+  ],
+  "common_errors": [
+    "只按普通尿痛分Ⅳ级",
+    "未关注心率增快、寒战和血压趋势",
+    "Ⅳ级泌尿系症状候诊",
+    "未设置复评"
+  ],
+  "critical_errors": [
+    "未测血压和心率",
+    "未询问寒战",
+    "腰痛",
+    "尿量和妊娠可能",
+    "动态出现寒战明显",
+    "HR BP下降后未升级Ⅱ级",
+    "出现低血压或意识改变后未升级Ⅰ级"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "发热38.7℃",
+      "尿痛、尿频、腰酸",
+      "HR 108次/分"
+    ],
+    "key_negative_information": [
+      "当前血压稳定",
+      "无意识改变",
+      "无低氧或呼吸困难",
+      "无明显少尿或休克表现"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅲ级",
+    "esi_ctas_mapping": "ESI 3/CTAS 3；动态Ⅱ级/Ⅰ级按病情变化映射ESI 2/1",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区观察队列",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "15–30分钟内复评；若寒战加重、血压下降、意识改变或尿量明显减少，立即复评",
+    "isolation_or_ppe": "不需呼吸道隔离；感染防控路径为发热分区/标准防护，注意手卫生",
+    "violence_self_harm_risk": "否；存在发热乏力和跌倒风险2.",
+    "triage_basis": "初始应分为Ⅲ级。患者发热、尿痛、腰酸、HR 108次/分，需要急诊评估和复评，但BP 118/72 mmHg、GCS 15分、SpO₂ 99%，无低血压、意识障碍或休克表现，因此不是Ⅰ/Ⅱ级。因已有发热、心率增快和腰痛线索， 也不能简单分为Ⅳ级。动态出现寒战明显、HR升高、BP下降趋势应升级Ⅱ级；若出现BP 90/56 mmHg、反应 变慢、皮肤湿冷、尿少，应升级Ⅰ级。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "初始进入黄区观察队列",
+      "初始不需立即通知医生",
+      "第一次恶化时通知医生并升级Ⅱ级",
+      "不启动绿色通道",
+      "优先评估体温、BP、HR、尿痛、腰痛、寒战、尿量、妊娠和基础病",
+      "15–30分钟复评体温、BP、HR、意识、尿量和寒战",
+      "BP下降、HR持续升高、意识改变、皮肤灌注差或少尿时重新分诊，Ⅱ级或Ⅰ级",
+      "按发热患者分区和标准防护，做好手卫生"
+    ],
+    "communication_points": [
+      "告知发热伴尿痛需要观察感染加重风险",
+      "寒战、头晕、尿少或精神变差需立即告知"
+    ],
+    "documentation_points": [
+      "发热时间",
+      "体温",
+      "尿痛尿频",
+      "腰痛",
+      "寒战",
+      "尿量",
+      "妊娠可能",
+      "基础病",
+      "BP",
+      "HR",
+      "分诊 等级",
+      "复评时间"
+    ],
+    "sbar_handoff": "S：43岁女性，发热、尿痛、腰酸。 B：泌尿系统感染线索，妊娠和基础病待确认。 A：初始Ⅲ级，T 38.7℃，HR 108次/分，BP 118/72 mmHg，意识清楚。 R：黄区观察队列，15–30分钟复评BP、HR、意识、寒战和尿量；恶化时升级。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "发热时间和最高体温",
+      "尿痛、尿频、尿急、血尿",
+      "腰痛、寒战、恶心呕吐",
+      "尿量是否减 少",
+      "妊娠可能、末次月经",
+      "糖尿病、肾病、免疫低下、泌尿系结石或既往类似感染"
+    ],
+    "must_measure_items": [
+      "体温",
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "意识/GCS"
+    ],
+    "must_observe_items": [
+      "寒战和出汗",
+      "精神状态",
+      "皮肤灌注",
+      "腰痛程度",
+      "尿量减少线索",
+      "候诊中血压和心率变 化"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅲ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "发热伴尿痛、心率增快但血压稳定加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "寒战明显，HR 122次/分，BP 104/64 mmHg，头晕。 第一次",
+        "vital_changes": {
+          "blood_pressure_systolic": 104,
+          "blood_pressure_diastolic": 64,
+          "heart_rate": 122
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "寒战明显，HR 122次/分，BP 104/64 mmHg，头晕。 第一次",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 20,
+        "event_description": "寒战明显，HR 122次/分，BP 104/64 mmHg，头晕。 第一次",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "BP 90/56 mmHg，反应变慢，皮肤湿冷，尿量明显少。 第二次",
+        "vital_changes": {
+          "blood_pressure_systolic": 90,
+          "blood_pressure_diastolic": 56
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "BP 90/56 mmHg，反应变慢，皮肤湿冷，尿量明显少。 第二次",
+        "standard_level_after_event": "Ⅱ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 35,
+        "event_description": "BP 90/56 mmHg，反应变慢，皮肤湿冷，尿量明显少。 第二次",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化",
+        "severe_error_code": "NO_REASSESS_AFTER_WORSENING"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "清醒，轻度疲惫，能自行行走，无明显呼吸困难。",
+      "time_minute": 0,
+      "appearance": "清醒，轻度疲惫，能自行行走，无明显呼吸困难。",
+      "chief_complaint": "“发烧，还有尿痛，腰有点酸。”",
+      "symptom_description": "患者自行来到分诊台，诉发热、尿痛、腰部酸痛，能完整交流。",
+      "mental_status": "清醒",
+      "pain_score": 4,
+      "risk_signals": [
+        "发热伴心率增快",
+        "寒战",
+        "腰痛"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 38.7,
+        "heart_rate": 108,
+        "respiratory_rate": 20,
+        "spo2": 99,
+        "pain_score": 4,
+        "consciousness": "清醒",
+        "gcs_score": 15,
+        "blood_glucose": 6.4,
+        "skin_perfusion": "皮肤温暖，轻度出汗，无发绀，末梢灌注好",
+        "other_assessments": [
+          "尿痛",
+          "尿频尿急",
+          "腰痛",
+          "寒战",
+          "尿量",
+          "恶心呕吐",
+          "妊娠可能",
+          "糖尿病/肾病/免疫低下",
+          "血压和心率趋势"
+        ],
+        "blood_pressure_systolic": 118,
+        "blood_pressure_diastolic": 72
+      },
+      "recommended_actions": [
+        "初始分诊Ⅲ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T20_event_1",
+      "state_name": "寒战明显，HR 122次/分，BP 104/64 mmHg，头晕。 第一次",
+      "time_minute": 20,
+      "appearance": "清醒，轻度疲惫，能自行行走，无明显呼吸困难。",
+      "chief_complaint": "寒战明显，HR 122次/分，BP 104/64 mmHg，头晕。 第一次",
+      "symptom_description": "寒战明显，HR 122次/分，BP 104/64 mmHg，头晕。 第一次",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 104,
+        "blood_pressure_diastolic": 64,
+        "heart_rate": 122
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T35_event_2",
+      "state_name": "BP 90/56 mmHg，反应变慢，皮肤湿冷，尿量明显少。 第二次",
+      "time_minute": 35,
+      "appearance": "清醒，轻度疲惫，能自行行走，无明显呼吸困难。",
+      "chief_complaint": "BP 90/56 mmHg，反应变慢，皮肤湿冷，尿量明显少。 第二次",
+      "symptom_description": "BP 90/56 mmHg，反应变慢，皮肤湿冷，尿量明显少。 第二次",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 90,
+        "blood_pressure_diastolic": 56
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "红区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅲ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "红区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

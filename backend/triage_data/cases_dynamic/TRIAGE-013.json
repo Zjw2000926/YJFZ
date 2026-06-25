@@ -1,0 +1,1366 @@
+{
+  "external_id": "TRIAGE-013",
+  "stage": "REAL",
+  "title": "哮喘发作只能说短句",
+  "display_name": "哮喘发作只能说短句",
+  "difficulty": 2,
+  "category": "呼吸系统",
+  "source_case_id": "VP-T013",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "只能说短句"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "24岁",
+    "gender": "女",
+    "arrival_mode": "朋友陪同，轮椅推入",
+    "appearance": "端坐位，呼吸急促，辅助呼吸肌使用，能点头或短句回答。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“喘……说不长……胸闷。”",
+    "opening_line": "“喘……说不长”“胸闷”“用了自己的……没好”",
+    "scene_description": "年轻女性由朋友推入急诊入口，明显喘息，只能短句回答，手握自己的吸入装置但效果 不佳。",
+    "family_information": "朋友陪同，称患者有哮喘史，今晚接触灰尘后开始喘，自行处理后仍未缓解。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅱ级",
+    "minimum_safe_level": "Ⅱ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "进入黄区优先或靠近抢救资源区",
+      "立即通知医生",
+      "启动急性喘息/呼吸困难优先评估流程",
+      "优先评估SpO₂、说话完整性、RR、呼吸做功、意识和喘鸣变化",
+      "流程等待期间每5–10分钟复评呼吸、SpO₂、意识、说话能力、疲劳表现和喘鸣强弱",
+      "若SpO₂下降、不能说话、意识改变、发绀、喘鸣明显减弱或呼吸疲劳，应升级Ⅰ级",
+      "无感染症状时不隔离",
+      "如伴发热咳嗽，增加呼吸道防护"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "呼吸困难开始时间和加重速度",
+      "keywords": [
+        "呼吸困难",
+        "开始时间",
+        "和加重速"
+      ],
+      "answer": "“喘……说不长……胸闷。”"
+    },
+    {
+      "id": "q_002",
+      "label": "有哮喘史和既往严重发作、急诊抢救、ICU或气管插管史",
+      "keywords": [
+        "有哮喘史",
+        "和既往严",
+        "重发作",
+        "急诊抢救",
+        "或气管插"
+      ],
+      "answer": "疼痛评分约5.0分。"
+    },
+    {
+      "id": "q_003",
+      "label": "本次诱因，如灰尘、运动、过敏、感染",
+      "keywords": [
+        "本次诱因",
+        "如灰尘",
+        "运动",
+        "过敏",
+        "感染"
+      ],
+      "answer": "否认已知药物及食物过敏史。"
+    },
+    {
+      "id": "q_004",
+      "label": "自行处理后是否缓解",
+      "keywords": [
+        "自行处理",
+        "后是否缓"
+      ],
+      "answer": "“喘……说不长……胸闷。”"
+    },
+    {
+      "id": "q_005",
+      "label": "胸痛、发热、咳脓痰、咯血",
+      "keywords": [
+        "胸痛",
+        "发热",
+        "咳脓痰",
+        "咯血"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_006",
+      "label": "能完整说话、是否越来越说不出话",
+      "keywords": [
+        "能完整说",
+        "是否越来",
+        "越说不出"
+      ],
+      "answer": "“喘……说不长……胸闷。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“喘……说不长……胸闷。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“喘……说不长……胸闷。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“喘……说不长……胸闷。”，端坐位，呼吸急促，辅助呼吸肌使用，能点头或短句回答。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，初始短句、断续、焦虑；第一次恶化只能单词或点头；第二次恶化反。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "朋友陪同，称患者有哮喘史，今晚接触灰尘后开始喘，自行处理后仍未缓解。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "132/78 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.8",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "118",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "30",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "93",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "5.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒，焦虑，可配合短句回答",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.8",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "轻度出汗，无明显发绀，末梢灌注尚可",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "说话完整性",
+        "呼吸做功",
+        "喘鸣强弱",
+        "既往严重发作史",
+        "曾急诊抢救/ICU/气管插管",
+        "近期诱因",
+        "使用自备吸入装置后是否缓解"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "只能说短句",
+      "evidence": [
+        "只能说短句"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "SpO₂ 93%",
+      "evidence": [
+        "SpO₂ 93%"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "RR 30次/分",
+      "evidence": [
+        "RR 30次/分"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "使用自备装置后仍未缓解",
+      "evidence": [
+        "使用自备装置后仍未缓解"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "动态出现喘鸣减弱、沉默胸、疲劳或意识改变",
+      "evidence": [
+        "动态出现喘鸣减弱、沉默胸、疲劳或意识改变"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测SpO₂",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估说话完整性",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未识别只能短句为高危",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排绿区候诊",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未 评估说话完整性或绿区候诊为一票否决",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "呼吸困难开始时间和加重速度",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "有哮喘史和既往严重发作、急诊抢救、ICU或气管插管史",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "疼痛评分约5.0分。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "本次诱因，如灰尘、运动、过敏、感染",
+        "canonical_intents": [
+          "ask_aggravating_relieving"
+        ],
+        "answer_facts": [
+          "否认已知药物及食物过敏史。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "自行处理后是否缓解",
+        "canonical_intents": [
+          "ask_aggravating_relieving"
+        ],
+        "answer_facts": [
+          "按压和活动时更痛，安静不动稍好。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "胸痛、发热、咳脓痰、咯血",
+        "canonical_intents": [
+          "ask_children_fever"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "能完整说话、是否越来越说不出话",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“喘……说不长……胸闷。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“喘……说不长……胸闷。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“喘……说不长……胸闷。”，端坐位，呼吸急促，辅助呼吸肌使用，能点头或短句回答。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，初始短句、断续、焦虑；第一次恶化只能单词或点头；第二次恶化反。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "朋友陪同，称患者有哮喘史，今晚接触灰尘后开始喘，自行处理后仍未缓解。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“喘……说不长”“胸闷”“用了自己的……没好”",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“喘……说不长”“胸闷”“用了自己的……没好” 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "初始短句、断续、焦虑；第一次恶化只能单词或点头；第二次恶化反应迟缓，不能 完整回答。 如果护士问无关问题，患者应回应：“我……喘……说不动。” 如果护士重复询问，患者应回应：重复“喘、胸闷、说不长”。 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；动态恶化时可说“我更说不出来 了”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“重症哮喘”“Ⅱ级”“沉默胸风险”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "朋友补充接触灰尘后发作",
+      "自行处理后仍喘"
+    ]
+  },
+  "patient_tone": "初始短句、断续、焦虑；第一次恶化只能单词或点头；第二次恶化反应迟缓，不能 完整回答。 如果护士问无关问题，患者应回应：“我……喘……说不动。” 如果护士重复询问，患者应回应：重复“喘、胸闷、说不长”。 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；动态恶化时可说“我更说不出来 了”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别明显喘息和端坐呼吸",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "呼吸费力和低氧风险",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "问起病和加重时间",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "如灰尘",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "运动",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "过敏",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "感染",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发热",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "咯血",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "咳脓痰",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "测SpO₂",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发绀",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疲劳",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "识别只能说短句",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疲劳",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识变慢需升级",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确判定Ⅱ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "反应变慢",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "喘鸣减弱后判Ⅰ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识异常依据",
+            "score": 12,
+            "critical_fail": true
+          },
+          {
+            "criterion": "未评估说话完整性",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "绿区候诊",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态低氧未升级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "一票否决项：未测SpO₂；未评估说话完整性；未识别只能短句为高危",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "安排黄区优先/靠近抢救资源区",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "5–",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "喘鸣",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疲劳和意识",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "指导患者少说话并安抚焦虑",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "RR",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "说话能力",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别只能说短句、SpO₂下降和呼吸费力，并分为Ⅱ级，说明具备高危喘息识别能力。",
+    "risk_if_missed": "漏问既往严重发作、ICU或插管史，以及自行处理是否无效，会 低估恶化风险。",
+    "key_red_flag": "只能说短句、SpO₂下降、呼吸费力和喘鸣减弱。",
+    "reason_for_triage_level": "尚无初始昏迷或严重低氧，但存在明显高危喘息，需Ⅱ级优先。",
+    "correct_triage_logic": "先评估氧合和说话能力，再结合呼吸做功、诱因、既往史和动态变化判断。",
+    "recommended_remediation": [
+      "哮喘急性发作分诊",
+      "说话完整性评估",
+      "低氧复评",
+      "喘鸣减弱的危险意义"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "只能说短句",
+    "SpO₂ 93%",
+    "RR 30次/分",
+    "使用自备装置后仍未缓解",
+    "动态出现喘鸣减弱、沉默胸、疲劳或意识改变"
+  ],
+  "common_errors": [
+    "因患者年轻而低估",
+    "只听到喘鸣明显而误以为通气尚可，忽视喘鸣减弱更危险",
+    "Ⅲ级普通哮喘候诊或Ⅳ级咳嗽/过敏候诊"
+  ],
+  "critical_errors": [
+    "未测SpO₂",
+    "未评估说话完整性",
+    "未识别只能短句为高危",
+    "安排绿区候诊",
+    "未 评估说话完整性或绿区候诊为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "既往哮喘史",
+      "只能说短句，RR 30次/分",
+      "SpO₂ 93%，HR 118次/分，使用自备装置后仍未缓解"
+    ],
+    "key_negative_information": [
+      "当前无意识障碍",
+      "当前无低血压或明显发绀"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅱ级",
+    "esi_ctas_mapping": "ESI 2/CTAS 2",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区优先/靠近抢救资源区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "不普通候诊；流程等待5–10分钟内复评，若沉默胸、SpO₂下降或意识改变立即升 级",
+    "isolation_or_ppe": "无感染症状时不需要隔离，按标准防护；如伴发热咳嗽需增加呼吸道防护",
+    "violence_self_harm_risk": "否；存在低氧焦虑和跌倒风险",
+    "triage_basis": "该患者应分为Ⅱ级。其核心依据是急性喘息、只能说短句、RR 30次/分、SpO₂ 93%、HR 118次/分，且自行处 理后仍未缓解。患者目前清醒、血压稳定、无明显发绀或意识障碍，因此初始不判Ⅰ级。但患者已存在进行性 呼吸衰竭风险，不能分为Ⅲ级或Ⅳ级。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入黄区优先或靠近抢救资源区",
+      "立即通知医生",
+      "启动急性喘息/呼吸困难优先评估流程",
+      "优先评估SpO₂、说话完整性、RR、呼吸做功、意识和喘鸣变化",
+      "流程等待期间每5–10分钟复评呼吸、SpO₂、意识、说话能力、疲劳表现和喘鸣强弱",
+      "若SpO₂下降、不能说话、意识改变、发绀、喘鸣明显减弱或呼吸疲劳，应升级Ⅰ级",
+      "无感染症状时不隔离",
+      "如伴发热咳嗽，增加呼吸道防护"
+    ],
+    "communication_points": [
+      "让患者减少说话，采用点头或短句回答",
+      "告知需优先评估，不要自行走动"
+    ],
+    "documentation_points": [
+      "呼吸困难起病时间",
+      "哮喘史",
+      "既往严重发作/ICU/插管史",
+      "诱因",
+      "自行处理是否缓解",
+      "SpO₂",
+      "RR",
+      "HR",
+      "说话完整性",
+      "分诊等级",
+      "复评结果"
+    ],
+    "sbar_handoff": "S：24岁女性，哮喘样喘息，只能说短句，胸闷。 B：既往哮喘史，接触灰尘后发作，自行处理后未缓解，既往严重发作史待确认。 A：Ⅱ级，RR 30次/分，HR 118次/分，SpO₂ 93%，清醒但焦虑。 R：黄区优先评估，密切观察SpO₂、说话能力、喘鸣和意识变化，恶化时升级Ⅰ级。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "呼吸困难开始时间和加重速度",
+      "有哮喘史和既往严重发作、急诊抢救、ICU或气管插管史",
+      "本次诱因，如灰尘、运动、过敏、感染",
+      "自行处理后是否缓解",
+      "胸痛、发热、咳脓痰、咯血",
+      "能完整说话、是否越来越说不出话"
+    ],
+    "must_measure_items": [
+      "SpO₂",
+      "呼吸频率",
+      "心率",
+      "血压",
+      "体温",
+      "意识/GCS"
+    ],
+    "must_observe_items": [
+      "说话完整性",
+      "辅助呼吸肌使用",
+      "喘鸣是否明显或减弱",
+      "口唇颜色",
+      "焦虑、疲劳或嗜睡",
+      "胸廓起伏和呼吸费力"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅱ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "哮喘发作只能说短句加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "说话更困难，只能点头或单词回答，SpO₂降至90%，呼吸费力增加。",
+        "vital_changes": {},
+        "requires_reassessment": true,
+        "reassessment_instruction": "说话更困难，只能点头或单词回答，SpO₂降至90%，呼吸费力增加。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 6,
+        "event_description": "说话更困难，只能点头或单词回答，SpO₂降至90%，呼吸费力增加。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "喘鸣明显减弱，患者疲惫、反应变慢，SpO₂ 88%。",
+        "vital_changes": {
+          "spo2": 88
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "喘鸣明显减弱，患者疲惫、反应变慢，SpO₂ 88%。",
+        "standard_level_after_event": "Ⅰ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 10,
+        "event_description": "喘鸣明显减弱，患者疲惫、反应变慢，SpO₂ 88%。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "端坐位，呼吸急促，辅助呼吸肌使用，能点头或短句回答。",
+      "time_minute": 0,
+      "appearance": "端坐位，呼吸急促，辅助呼吸肌使用，能点头或短句回答。",
+      "chief_complaint": "“喘……说不长……胸闷。”",
+      "symptom_description": "年轻女性由朋友推入急诊入口，明显喘息，只能短句回答，手握自己的吸入装置但效果 不佳。",
+      "mental_status": "清醒",
+      "pain_score": 5,
+      "risk_signals": [
+        "只能说短句",
+        "SpO₂ 93%",
+        "RR 30次/分"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 36.8,
+        "heart_rate": 118,
+        "respiratory_rate": 30,
+        "spo2": 93,
+        "pain_score": 5,
+        "consciousness": "清醒，焦虑，可配合短句回答",
+        "gcs_score": 15,
+        "blood_glucose": 5.8,
+        "skin_perfusion": "轻度出汗，无明显发绀，末梢灌注尚可",
+        "other_assessments": [
+          "说话完整性",
+          "呼吸做功",
+          "喘鸣强弱",
+          "既往严重发作史",
+          "曾急诊抢救/ICU/气管插管",
+          "近期诱因",
+          "使用自备吸入装置后是否缓解"
+        ],
+        "blood_pressure_systolic": 132,
+        "blood_pressure_diastolic": 78
+      },
+      "recommended_actions": [
+        "初始分诊Ⅱ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T6_event_1",
+      "state_name": "说话更困难，只能点头或单词回答，SpO₂降至90%，呼吸费力增加。",
+      "time_minute": 6,
+      "appearance": "端坐位，呼吸急促，辅助呼吸肌使用，能点头或短句回答。",
+      "chief_complaint": "说话更困难，只能点头或单词回答，SpO₂降至90%，呼吸费力增加。",
+      "symptom_description": "说话更困难，只能点头或单词回答，SpO₂降至90%，呼吸费力增加。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "temperature": 36.8,
+        "heart_rate": 118,
+        "respiratory_rate": 33,
+        "spo2": 93,
+        "pain_score": 5,
+        "consciousness": "清醒，焦虑，可配合短句回答",
+        "gcs_score": 15,
+        "blood_glucose": 5.8,
+        "skin_perfusion": "轻度出汗，无明显发绀，末梢灌注尚可",
+        "other_assessments": [
+          "说话完整性",
+          "呼吸做功",
+          "喘鸣强弱",
+          "既往严重发作史",
+          "曾急诊抢救/ICU/气管插管",
+          "近期诱因",
+          "使用自备吸入装置后是否缓解"
+        ],
+        "blood_pressure_systolic": 132,
+        "blood_pressure_diastolic": 78
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T10_event_2",
+      "state_name": "喘鸣明显减弱，患者疲惫、反应变慢，SpO₂ 88%。",
+      "time_minute": 10,
+      "appearance": "端坐位，呼吸急促，辅助呼吸肌使用，能点头或短句回答。",
+      "chief_complaint": "喘鸣明显减弱，患者疲惫、反应变慢，SpO₂ 88%。",
+      "symptom_description": "喘鸣明显减弱，患者疲惫、反应变慢，SpO₂ 88%。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "spo2": 88
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅱ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "黄区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

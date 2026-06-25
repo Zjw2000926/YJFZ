@@ -1,0 +1,733 @@
+{
+  "external_id": "TRIAGE-DYN-RLQ-001",
+  "stage": "PUBLISHED",
+  "title": "右下腹痛候诊恶化（动态 MVP）",
+  "display_name": "右下腹痛候诊期间病情恶化",
+  "difficulty": 3,
+  "category": "腹痛/急腹症",
+  "source_case_id": "DYN-MVP-RLQ-001",
+  "source_version": "dynamic_mvp_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "dynamic_triage_mvp_v1",
+  "is_dynamic": true,
+  "training_focus": [
+    "动态候诊观察",
+    "病情恶化识别",
+    "复评及时性",
+    "分诊等级升级判断",
+    "通知医生时机"
+  ],
+  "expert_review_required": true,
+  "review_status": {
+    "ai_generated": true,
+    "expert_reviewed": true,
+    "reviewer_role": null,
+    "review_date": "2026-06-20",
+    "approved_for_training": true
+  },
+  "patient_profile": {
+    "age": "34岁",
+    "gender": "女",
+    "arrival_mode": "自行步入",
+    "appearance": "右手捂右下腹，表情痛苦但能交流",
+    "special_identity": "育龄女性"
+  },
+  "initial_exposure": {
+    "chief_complaint": "右下腹痛6小时，逐渐加重",
+    "opening_line": "医生，我肚子右边疼，已经疼了六个小时了，越来越疼。",
+    "scene_description": "34岁女性自行步入急诊，右手捂右下腹，表情痛苦但能正常交流。",
+    "family_information": "家属在旁陪同。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅲ级",
+    "minimum_safe_level": "Ⅲ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "黄区候诊",
+      "30分钟内复评",
+      "监测生命体征",
+      "通知医生关注"
+    ],
+    "reassessment_plan": "30分钟内复评；若疼痛加重、出现腹膜刺激征或生命体征恶化，立即复评并通知医生",
+    "communication_and_record": "向患者和家属解释目前评估为急腹症可能，需在黄区密切观察；若疼痛突然加重或出现冷汗晕厥须立即告知护士。"
+  },
+  "standard_initial_triage_level": "Ⅲ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "红区",
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "右手捂右下腹，表情痛苦但能交流",
+      "time_minute": 0,
+      "appearance": "右手捂右下腹，表情痛苦但能交流",
+      "chief_complaint": "右下腹痛6小时，逐渐加重",
+      "symptom_description": "34岁女性自行步入急诊，右手捂右下腹，表情痛苦但能正常交流。",
+      "mental_status": "清醒",
+      "pain_score": 5,
+      "risk_signals": [
+        "育龄女性急腹症（异位妊娠不能排除）",
+        "腹膜刺激征可能",
+        "休克早期表现（HR↑、BP↓、冷汗、头晕）"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 37.8,
+        "heart_rate": 94,
+        "respiratory_rate": 20,
+        "spo2": 98,
+        "pain_score": 5,
+        "consciousness": "清楚",
+        "blood_pressure_systolic": 118,
+        "blood_pressure_diastolic": 74
+      },
+      "recommended_actions": [
+        "初始分诊Ⅲ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T15_event_1",
+      "state_name": "疼痛和恶心加重",
+      "time_minute": 15,
+      "appearance": "坐立不安、右下腹疼痛明显、恶心加重",
+      "chief_complaint": "疼得更厉害了，还有点恶心",
+      "symptom_description": "疼痛从NRS 5升至7，恶心加重，心率108次/分，血压开始下降",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 7,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "heart_rate": 108,
+        "respiratory_rate": 22,
+        "blood_pressure_systolic": 108,
+        "blood_pressure_diastolic": 68,
+        "temperature": 38,
+        "pain_score": 7,
+        "spo2": 98
+      },
+      "recommended_actions": [
+        "提前复评",
+        "重新测量生命体征",
+        "通知医生关注",
+        "缩短复评间隔"
+      ],
+      "standard_triage_level": "Ⅲ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T30_event_2",
+      "state_name": "明显恶化伴循环不稳定表现",
+      "time_minute": 30,
+      "appearance": "面色苍白、额部冷汗、诉头晕",
+      "chief_complaint": "我头晕，疼得受不了了",
+      "symptom_description": "HR 122、BP 96/60、NRS 8，提示休克早期风险",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 8,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "heart_rate": 122,
+        "respiratory_rate": 24,
+        "blood_pressure_systolic": 96,
+        "blood_pressure_diastolic": 60,
+        "temperature": 38.3,
+        "pain_score": 8,
+        "spo2": 97
+      },
+      "recommended_actions": [
+        "升级II级",
+        "红区或急诊优先处置区",
+        "立即通知医生",
+        "建立静脉通路"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "红区"
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "set_reassessment_time",
+    "advance_to_T15",
+    "reassess_at_T15",
+    "advance_to_T30",
+    "reassess_at_T30",
+    "upgrade_triage_level",
+    "notify_doctor",
+    "adjust_area",
+    "record_notes",
+    "submit_case"
+  ],
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": "ARRIVAL",
+    "events": [
+      {
+        "event_id": "EVT_T15_PAIN_WORSENING",
+        "scheduled_minute": 15,
+        "event_type": "symptom_worsening",
+        "trigger_condition": "simulated_time >= 14",
+        "patient_state_id": "T15_event_1",
+        "event_description": "患者疼痛和恶心加重，心率增快，血压开始下降",
+        "visible_to_student": true,
+        "student_prompt": "患者疼痛明显加重，恶心得厉害，建议提前复评",
+        "requires_reassessment": true,
+        "expected_student_actions": [
+          "重新测量HR/BP/R/NRS",
+          "评估腹膜刺激征",
+          "通知医生关注"
+        ],
+        "vital_changes": {
+          "heart_rate": 108,
+          "respiratory_rate": 22,
+          "blood_pressure_systolic": 108,
+          "blood_pressure_diastolic": 68,
+          "temperature": 38,
+          "pain_score": 7
+        },
+        "consequence_if_missed": "延误识别病情恶化",
+        "standard_level_after_event": "Ⅲ级",
+        "patient_expression": "疼得更厉害了，还有点恶心，我坐不住。"
+      },
+      {
+        "event_id": "EVT_T30_DETERIORATED",
+        "scheduled_minute": 30,
+        "event_type": "deterioration",
+        "trigger_condition": "simulated_time >= 29",
+        "patient_state_id": "T30_event_2",
+        "event_description": "患者面色苍白、出冷汗、头晕，HR 122，BP 96/60，NRS 8",
+        "visible_to_student": true,
+        "student_prompt": "患者病情明显恶化，出现休克早期表现，必须立即复评并升级分诊！",
+        "requires_reassessment": true,
+        "expected_student_actions": [
+          "立即重新测量全部生命体征",
+          "复评分诊等级",
+          "升级为Ⅱ级",
+          "通知医生",
+          "调整至红区"
+        ],
+        "vital_changes": {
+          "heart_rate": 122,
+          "respiratory_rate": 24,
+          "blood_pressure_systolic": 96,
+          "blood_pressure_diastolic": 60,
+          "temperature": 38.3,
+          "pain_score": 8
+        },
+        "consequence_if_missed": "延误抢救时机 — 严重错误",
+        "severe_error_if_ignored": true,
+        "severe_error_code": "NO_REASSESS_AFTER_WORSENING",
+        "standard_level_after_event": "Ⅱ级",
+        "patient_expression": "我头晕，疼得受不了了，身上一直冒冷汗。"
+      }
+    ]
+  },
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess_after_T15_or_T30",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "T30_reassessed_but_still_III_or_IV",
+      "message": "患者病情明显恶化后未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_DOCTOR_NOTIFICATION",
+      "condition": "T30_upgrade_but_no_doctor_notified",
+      "message": "升级后未通知医生",
+      "critical_fail": false,
+      "deduction": 30
+    },
+    {
+      "code": "T30_VITALS_NOT_REMEASURED",
+      "condition": "T30_did_not_remeasure_key_vitals",
+      "message": "T30后未重新测量关键生命体征",
+      "critical_fail": false,
+      "deduction": 15
+    },
+    {
+      "code": "NO_REASSESSMENT_TIME_SET",
+      "condition": "initial_triage_no_reassessment_time",
+      "message": "初始分诊未设置复评时间",
+      "critical_fail": false,
+      "deduction": 8
+    }
+  ],
+  "dynamic_feedback": {
+    "correct_points": [
+      "完成第一眼观察和病史采集",
+      "准确进行初始分诊（Ⅲ级黄区）",
+      "按时复评并识别病情变化",
+      "及时升级分诊（Ⅱ级）并通知医生"
+    ],
+    "risk_if_missed": [
+      "育龄女性急腹症延误诊断可能导致输卵管破裂出血",
+      "T30恶化后未升级可能导致患者在候诊区休克"
+    ],
+    "key_red_flag": [
+      "育龄女性右下腹痛需排除异位妊娠和卵巢囊肿蒂扭转",
+      "心率持续上升 + 血压持续下降 = 休克早期",
+      "面色苍白、出冷汗、头晕 = 循环不稳定"
+    ],
+    "reason_for_triage_level": "T0: Ⅲ级黄区 — 生命体征尚稳但腹痛持续加重需密切观察；T30: Ⅱ级红区 — HR122/BP96/NRS8伴冷汗头晕提示休克早期",
+    "correct_triage_logic": "初始Ⅲ级观察 → 15min症状加重主动复评 → 30min休克表现立即升级Ⅱ级红区通知医生",
+    "recommended_remediation": [
+      "动态候诊观察",
+      "休克早期识别",
+      "育龄女性急腹症评估",
+      "复评决策及时性"
+    ]
+  },
+  "required_questions": [
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "肚子右边疼，疼了六个小时，越来越疼。"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病",
+        "时间",
+        "开始"
+      ],
+      "answer": "今天中午开始疼的，到现在大概6个小时了。"
+    },
+    {
+      "id": "pain_location",
+      "label": "疼痛位置",
+      "keywords": [
+        "位置",
+        "哪里疼",
+        "部位"
+      ],
+      "answer": "右边下面这一块疼，没有放射到其他地方。"
+    },
+    {
+      "id": "pain_nature",
+      "label": "疼痛性质",
+      "keywords": [
+        "性质",
+        "怎么疼",
+        "什么样的"
+      ],
+      "answer": "持续性钝痛，现在是绞痛的感觉了，越来越疼。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随",
+        "恶心",
+        "呕吐",
+        "腹泻",
+        "发烧"
+      ],
+      "answer": "有点恶心，没吐出来，没有腹泻。好像有点发烧。"
+    },
+    {
+      "id": "menstrual_history",
+      "label": "月经史",
+      "keywords": [
+        "月经",
+        "末次",
+        "怀孕",
+        "妇"
+      ],
+      "answer": "末次月经大概4周前，我平时月经不是特别规律。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史",
+      "keywords": [
+        "既往",
+        "过去",
+        "病史",
+        "手术"
+      ],
+      "answer": "没有高血压糖尿病，以前做过一次阑尾手术，不过是很多年前的事了。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药",
+        "吃药",
+        "药物"
+      ],
+      "answer": "没吃特别的药，疼了之后也没敢乱吃。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏"
+      ],
+      "answer": "没有药物过敏。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "temperature",
+      "label": "体温",
+      "value": 37.8,
+      "unit": "℃",
+      "is_abnormal": false
+    },
+    {
+      "id": "heart_rate",
+      "label": "心率",
+      "value": 94,
+      "unit": "次/分",
+      "is_abnormal": false
+    },
+    {
+      "id": "respiratory_rate",
+      "label": "呼吸频率",
+      "value": 20,
+      "unit": "次/分",
+      "is_abnormal": false
+    },
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "118/74",
+      "unit": "mmHg",
+      "is_abnormal": false
+    },
+    {
+      "id": "spo2",
+      "label": "SpO2",
+      "value": 98,
+      "unit": "%",
+      "is_abnormal": false
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": 5,
+      "unit": "分",
+      "is_abnormal": false
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清楚",
+      "unit": "",
+      "is_abnormal": false
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "ectopic_risk",
+      "label": "育龄女性急腹症（异位妊娠不能排除）"
+    },
+    {
+      "id": "peritonitis_risk",
+      "label": "腹膜刺激征可能"
+    },
+    {
+      "id": "shock_early",
+      "label": "休克早期表现（HR↑、BP↓、冷汗、头晕）"
+    }
+  ],
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "肚子右边疼，疼了六个小时，越来越疼。"
+        ],
+        "is_required": true,
+        "layer": "L1"
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "今天中午开始疼的，到现在大概6个小时。"
+        ],
+        "is_required": true,
+        "layer": "L1"
+      },
+      {
+        "slot_id": "pain_location",
+        "label": "疼痛位置",
+        "canonical_intents": [
+          "ask_pain_location"
+        ],
+        "answer_facts": [
+          "右边下面这一块疼，没有放射到其他部位。"
+        ],
+        "is_required": true,
+        "layer": "L1"
+      },
+      {
+        "slot_id": "pain_nature",
+        "label": "疼痛性质",
+        "canonical_intents": [
+          "ask_pain_nature"
+        ],
+        "answer_facts": [
+          "持续性钝痛，现在变成绞痛，越来越疼。"
+        ],
+        "is_required": true,
+        "layer": "L1"
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting"
+        ],
+        "answer_facts": [
+          "有点恶心，没吐，没有腹泻。"
+        ],
+        "is_required": true,
+        "layer": "L1"
+      },
+      {
+        "slot_id": "menstrual",
+        "label": "月经史",
+        "canonical_intents": [
+          "ask_menstrual_history",
+          "ask_pregnancy"
+        ],
+        "answer_facts": [
+          "末次月经大概4周前，平时不太规律。"
+        ],
+        "is_required": true,
+        "layer": "L2"
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史",
+        "canonical_intents": [
+          "ask_past_history"
+        ],
+        "answer_facts": [
+          "没有高血压糖尿病，以前做过一次阑尾手术。"
+        ],
+        "is_required": true,
+        "layer": "L2"
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "没吃特别的药。"
+        ],
+        "is_required": true,
+        "layer": "L2"
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "没有药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2"
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "医生，我肚子右边疼，已经疼了六个小时了，越来越疼。",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "哎哟医生，我右边肚子疼得要命啊，从中午到现在六个钟头了，越来越厉害...",
+      "tone": "colloquial",
+      "description": "口语化表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生我肚子好疼...我也不知道怎么说...就是右边一直疼，我害怕要做手术...",
+      "tone": "anxious",
+      "description": "焦虑、表达含糊"
+    }
+  ],
+  "emotional_state": "anxious",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": null
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "menstrual_history",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "red_flags": [
+    "育龄女性右下腹痛需排除异位妊娠",
+    "休克早期表现",
+    "生命体征持续恶化"
+  ],
+  "common_errors": [
+    "未设置复评时间",
+    "恶化后未复评",
+    "未升级分诊",
+    "未通知医生",
+    "未重新测量生命体征"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "右下腹痛6小时逐渐加重",
+      "育龄女性，末次月经4周前",
+      "恶心、低热",
+      "T30出现冷汗、头晕"
+    ],
+    "key_negative_information": [
+      "无呕吐",
+      "无腹泻",
+      "无放射痛",
+      "既往无重大疾病"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅲ级(初始)→Ⅱ级(最终)",
+    "esi_ctas_mapping": "ESI 3→ESI 2",
+    "standard_zone": "黄区→红区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "reassessment_interval": "30分钟内复评",
+    "isolation_or_ppe": "标准防护",
+    "triage_basis": "T0Ⅲ级:生命体征稳定但腹痛持续加重需动态观察；T30Ⅱ级:心率>120、血压<100、冷汗头晕提示休克早期，必须立即评估处理。"
+  }
+}

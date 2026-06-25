@@ -1,0 +1,1214 @@
+{
+  "external_id": "TRIAGE-044",
+  "stage": "REAL",
+  "title": "眼部化学品溅入后剧痛流泪",
+  "display_name": "眼部化学品溅入后剧痛流泪",
+  "difficulty": 3,
+  "category": "五官/眼外伤与化学暴露",
+  "source_case_id": "VP-T044",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "化学品不明或强酸强碱可能"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "41岁",
+    "gender": "男",
+    "arrival_mode": "同事陪同，自行步入",
+    "appearance": "右眼紧闭，流泪明显，结膜充血，疼痛明显，能交流。",
+    "special_identity": "创伤患者"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“右眼被化学液体溅到了，很痛，看不清。”",
+    "opening_line": "“右眼被化学液体溅到了，很痛，看不清",
+    "scene_description": "患者在工厂工作时不明清洁剂溅入右眼，同事陪同急诊就诊，患者捂眼、流泪明显。",
+    "family_information": "无家属；同事称现场为工业清洁剂溅入，具体成分不清，是否携带化学品包装或安全资料待 问。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅱ级",
+    "minimum_safe_level": "Ⅱ级",
+    "triage_zone": "专病绿色通道",
+    "disposition": [
+      "进入黄区优先/眼科急症优先评估区",
+      "立即通知医生",
+      "启动眼化学伤/眼部化学暴露优先处理流程",
+      "优先评估化学品性质、接触时间、冲洗情况、视力、眼部外观和皮肤污染",
+      "不普通候诊",
+      "等待期间观察疼痛、视力、眼部红肿、双眼受累和患者配合情况",
+      "若出现双眼严重受累、意识异常、化学品广泛污染或全身暴露症状，重新分诊升级",
+      "采取化学品接触防护，避免二次污染",
+      "保护患者行走安全"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "化学品名称和性质",
+      "keywords": [
+        "化学品名",
+        "称和性质"
+      ],
+      "answer": "患者在工厂工作时不明清洁剂溅入右眼，同事陪同急诊就诊，患者捂眼、流泪明显。"
+    },
+    {
+      "id": "q_002",
+      "label": "接触时间",
+      "keywords": [
+        "接触时间"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "q_003",
+      "label": "已现场冲洗、冲洗多久",
+      "keywords": [
+        "已现场冲",
+        "冲洗多久"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "q_004",
+      "label": "双眼受累",
+      "keywords": [
+        "双眼受累"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "q_005",
+      "label": "视力是否 下降、能否辨认物体",
+      "keywords": [
+        "视力是否",
+        "下降",
+        "能否辨认",
+        "物体"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "q_006",
+      "label": "戴隐形眼镜",
+      "keywords": [
+        "戴隐形眼"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "q_007",
+      "label": "有皮肤或面部其他污染",
+      "keywords": [
+        "有皮肤或",
+        "面部其他",
+        "污染"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "q_008",
+      "label": "携带化学品包装或安全资 料",
+      "keywords": [
+        "携带化学",
+        "品包装或",
+        "安全资"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“右眼被化学液体溅到了，很痛，看不清。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“右眼被化学液体溅到了，很痛，看不清。”，右眼紧闭，流泪明显，结膜充血，疼痛明显，能交流。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，疼痛焦急、捂眼、回答急促。 如果护士问无关问题，患者应回应：。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "抽烟，一天一包吧。偶尔喝酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "无家属；同事称现场为工业清洁剂溅入，具体成分不清，是否携带化学品包装或安全资料待 问。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "138/84 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.6",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "106",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "20",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "9.0",
+      "unit": "分",
+      "is_abnormal": true,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.7",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "因疼痛出汗，无发绀，末梢灌注好",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "化学品种类",
+        "酸碱性质",
+        "接触时间",
+        "已冲洗",
+        "视力变化",
+        "双眼受累",
+        "角膜混浊",
+        "眼 睑痉挛",
+        "皮肤污染",
+        "职业暴露资料",
+        "携带化学品包装或安全资料"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "化学品不明或强酸强碱可能",
+      "evidence": [
+        "化学品不明或强酸强碱可能"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "眼痛剧烈",
+      "evidence": [
+        "眼痛剧烈"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "视力下降",
+      "evidence": [
+        "视力下降"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "角膜混浊",
+      "evidence": [
+        "角膜混浊"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "双眼受累",
+      "evidence": [
+        "双眼受累"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_006",
+      "label": "冲洗延误",
+      "evidence": [
+        "冲洗延误"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未识别化学暴露",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未立即优先处理",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排普通候诊",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问化学品和冲洗 史",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "化学品名称和性质",
+        "canonical_intents": [
+          "ask_breathing"
+        ],
+        "answer_facts": [
+          "患者在工厂工作时不明清洁剂溅入右眼，同事陪同急诊就诊，患者捂眼、流泪明显。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "接触时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "已现场冲洗、冲洗多久",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L1",
+        "label": "双眼受累",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "视力是否 下降、能否辨认物体",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "戴隐形眼镜",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_007",
+        "layer": "L2",
+        "label": "有皮肤或面部其他污染",
+        "canonical_intents": [
+          "ask_accompanying"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_008",
+        "layer": "L2",
+        "label": "携带化学品包装或安全资 料",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“右眼被化学液体溅到了，很痛，看不清。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“右眼被化学液体溅到了，很痛，看不清。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“右眼被化学液体溅到了，很痛，看不清。”，右眼紧闭，流泪明显，结膜充血，疼痛明显，能交流。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，疼痛焦急、捂眼、回答急促。 如果护士问无关问题，患者应回应：。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "抽烟，一天一包吧。偶尔喝酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "无家属；同事称现场为工业清洁剂溅入，具体成分不清，是否携带化学品包装或安全资料待 问。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“右眼被化学液体溅到了，很痛，看不清",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“右眼被化学液体溅到了，很痛，看不清 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "疼痛焦急、捂眼、回答急促。 如果护士问无关问题，患者应回应：“我眼睛太痛了，看不清。” 如果护士重复询问，患者应回应：“就是溅到右眼了，特别痛。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；若等待延误可说“眼睛越来越 痛，看得更模糊”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“眼化学伤”“Ⅱ级”“需要立即冲洗流程”“强酸或强 碱”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "无家属",
+      "同事补充工业清洁剂暴露和现场情况"
+    ]
+  },
+  "patient_tone": "疼痛焦急、捂眼、回答急促。 如果护士问无关问题，患者应回应：“我眼睛太痛了，看不清。” 如果护士重复询问，患者应回应：“就是溅到右眼了，特别痛。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；若等待延误可说“眼睛越来越 痛，看得更模糊”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别化学暴露",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别剧烈眼痛和视力下降",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别眼部流泪充血",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判断需优先处 理",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "化学品名称和性质",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "接触时间",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "现场冲洗及时间",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "双眼受累",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "视力变化",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "隐形眼镜、皮肤污染和包装资料",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "BP/HR/RR/SpO₂",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛评分",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "眼睑痉挛和流泪",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "视力粗测",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "角膜混浊/双眼受累/皮肤污染",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "化学品不明或强酸强碱可能",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "眼痛剧烈",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "视力下降",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "角膜混浊或双眼受累",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "冲洗延误",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确Ⅱ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅰ级但无全身危象依据",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅲ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅳ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未识别化学暴 露、普通候诊、未通知医生任一项本项",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "一票否决项：未识别化学暴露；未立即优先处理；未通知医生",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "眼科急症优先区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "通知医生",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "启动眼化学暴露流程",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "化学品防护",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "防跌倒",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "明确不普通候诊",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察疼痛、视力、眼部变化",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "异常升级",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "安抚焦虑",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "快速询问化学品和暴露时间",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录受累眼别、视力、冲洗史和通 知时间",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别眼部化学暴露是时间敏感急症，而非普通眼痛。",
+    "risk_if_missed": "漏问化学品性质、接触时间和冲洗史，会影响后续优先处理和交 接。",
+    "key_red_flag": "化学品入眼、剧痛、视力下降、冲洗延误、化学品不明。",
+    "reason_for_triage_level": "有眼部化学暴露和视功能风险，需Ⅱ级优先。",
+    "correct_triage_logic": "眼化学暴露优先于普通排队，先判断暴露性质和视力风险。",
+    "recommended_remediation": [
+      "眼部化学暴露分诊",
+      "视力粗评",
+      "职业暴露防护",
+      "SBAR交接",
+      "十二",
+      "输出限制 不要写治疗处方",
+      "不要写药物剂量",
+      "不要把病例写成医生诊断题",
+      "不要让虚拟患者一开始暴露所有关键信息",
+      "不要省略评分细则",
+      "不要使用真实患者隐私信息",
+      "不要让评分标准过于笼统",
+      "本病例可以直接录入系统病例库"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "化学品不明或强酸强碱可能",
+    "眼痛剧烈",
+    "视力下降",
+    "角膜混浊",
+    "双眼受累",
+    "冲洗延误"
+  ],
+  "common_errors": [
+    "按普通眼痛/结膜炎候诊",
+    "等待挂号后再处理",
+    "未询问化学品性质和冲洗史",
+    "Ⅲ级眼痛候诊或Ⅳ级眼部不适"
+  ],
+  "critical_errors": [
+    "未识别化学暴露",
+    "未立即优先处理",
+    "未通知医生",
+    "安排普通候诊",
+    "未询问化学品和冲洗 史",
+    "任一项为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "不明化学液体溅入右眼",
+      "剧痛9/10",
+      "看不清",
+      "流泪、结膜充血、眼睑紧闭"
+    ],
+    "key_negative_information": [
+      "意识清楚",
+      "无全身低血压或呼吸困难",
+      "无明确穿通伤暴露"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅱ级",
+    "esi_ctas_mapping": "ESI 2/CTAS 2",
+    "standard_zone": "专病绿色通道",
+    "standard_zone_detail": "黄区优先/眼科急症优先评估区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": true,
+    "green_channel_name": "眼化学伤/眼部化学暴露优先处理流程",
+    "reassessment_interval": "不普通候诊；立即优先评估，等待期间持续观察疼痛、视力变化和暴露信息",
+    "isolation_or_ppe": "不需要感染隔离；需化学品接触防护，防止二次污染",
+    "violence_self_harm_risk": "否；存在视力损害、疼痛躁动和跌倒风险",
+    "triage_basis": "该病例应分为Ⅱ级。眼部化学暴露合并剧烈疼痛、流泪和视力下降，存在快速眼损伤风险，需要立即优先评估 和处理。当前无意识障碍、休克或全身危象，因此不属于Ⅰ级；但绝不能分为Ⅲ级或Ⅳ级候诊，因为眼化学伤 时间敏感，延误可能造成严重视功能损害。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入黄区优先/眼科急症优先评估区",
+      "立即通知医生",
+      "启动眼化学伤/眼部化学暴露优先处理流程",
+      "优先评估化学品性质、接触时间、冲洗情况、视力、眼部外观和皮肤污染",
+      "不普通候诊",
+      "等待期间观察疼痛、视力、眼部红肿、双眼受累和患者配合情况",
+      "若出现双眼严重受累、意识异常、化学品广泛污染或全身暴露症状，重新分诊升级",
+      "采取化学品接触防护，避免二次污染",
+      "保护患者行走安全"
+    ],
+    "communication_points": [
+      "快速询问化学品名称、接触时间、是否冲洗和是否有包装资料",
+      "告知患者眼部化学暴露需要 立即优先处理"
+    ],
+    "documentation_points": [
+      "化学品来源",
+      "接触时间",
+      "冲洗",
+      "受累眼别",
+      "疼痛评分",
+      "视力主诉",
+      "眼部外观",
+      "分诊 等级",
+      "通知医生时间",
+      "防护措施"
+    ],
+    "sbar_handoff": "S：41岁男性，右眼化学液体溅入后剧痛、流泪、看不清。 B：工厂工业清洁剂暴露，成分不清，现场冲洗情况待确认。 A：Ⅱ级，右眼疼痛9/10，流泪、结膜充血、视力下降主诉，生命体征稳定。 R：眼化学伤优先处理流程，尽快明确化学品和接触时间，关注视力和角膜表现。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "化学品名称和性质",
+      "接触时间",
+      "已现场冲洗、冲洗多久",
+      "双眼受累",
+      "视力是否 下降、能否辨认物体",
+      "戴隐形眼镜",
+      "有皮肤或面部其他污染",
+      "携带化学品包装或安全资 料"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "疼痛评分",
+      "意识状态"
+    ],
+    "must_observe_items": [
+      "眼睑痉挛",
+      "流泪和充血",
+      "角膜是否混浊",
+      "视力粗测",
+      "双眼是否受累",
+      "面部皮肤污染",
+      "患 者是否能配合"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

@@ -1,0 +1,1084 @@
+{
+  "external_id": "TRIAGE-011",
+  "stage": "REAL",
+  "title": "既往偏头痛样头痛无神经缺损",
+  "display_name": "既往偏头痛样头痛无神经缺损",
+  "difficulty": 1,
+  "category": "神经系统",
+  "source_case_id": "VP-T011",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "突发雷击样头痛"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "29岁",
+    "gender": "女",
+    "arrival_mode": "自行步入",
+    "appearance": "清醒，能完整表达，无肢体活动异常，无呕吐，无明显痛苦呻吟。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“我头痛，像以前偏头痛发作一样。”",
+    "opening_line": "“我头痛",
+    "scene_description": "患者自行来到急诊分诊台，戴帽子，表情疲惫，能正常交流，步态稳定。",
+    "family_information": "无家属陪同。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅳ级",
+    "minimum_safe_level": "Ⅳ级",
+    "triage_zone": "绿区",
+    "disposition": [
+      "进入绿区",
+      "不需要立即通知医生",
+      "不启动绿色通道",
+      "需要完成头痛红旗筛查、生命体征测量和神经系统快速观察",
+      "候诊期间观察头痛是否突然加重、是否出现呕吐、意识改变、肢体异常、语言异常或步态不稳",
+      "出现头痛红旗或生命体征异常时重新分诊，升级至Ⅲ级、Ⅱ级或Ⅰ级",
+      "不需要隔离",
+      "按标准防护，注意候诊安全和隐私保护"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "头痛开始时间和发展速度",
+      "keywords": [
+        "头痛开始",
+        "时间和发",
+        "展速度"
+      ],
+      "answer": "“我头痛，像以前偏头痛发作一样。”"
+    },
+    {
+      "id": "q_002",
+      "label": "突然达到最重程度",
+      "keywords": [
+        "突然达到",
+        "最重程度"
+      ],
+      "answer": "疼痛评分约4.0分。"
+    },
+    {
+      "id": "q_003",
+      "label": "为此生最严重头痛",
+      "keywords": [
+        "为此生最",
+        "严重头痛"
+      ],
+      "answer": "疼痛评分约4.0分。"
+    },
+    {
+      "id": "q_004",
+      "label": "伴呕吐、发热、颈部僵硬",
+      "keywords": [
+        "伴呕吐",
+        "发热",
+        "颈部僵硬"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_005",
+      "label": "有肢体无力、麻木、言语异常、视物异常",
+      "keywords": [
+        "有肢体无",
+        "麻木",
+        "言语异常",
+        "视物异常"
+      ],
+      "answer": "“我头痛，像以前偏头痛发作一样。”"
+    },
+    {
+      "id": "q_006",
+      "label": "近期外伤、妊娠/产后、抗凝药使用或高血压病史",
+      "keywords": [
+        "近期外伤",
+        "妊娠",
+        "产后",
+        "抗凝药使",
+        "用或高血"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“我头痛，像以前偏头痛发作一样。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“我头痛，像以前偏头痛发作一样。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“我头痛，像以前偏头痛发作一样。”，清醒，能完整表达，无肢体活动异常，无呕吐，无明显痛苦呻吟。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，清醒、烦躁、希望快点缓解头痛，但能配合。 如果护士问无关问题。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "没有特别的其他不舒服，就是这个问题。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "意识清楚，没晕过去。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "平时身体还行，没什么大毛病。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "没吃什么特别的药。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "好像没有药物过敏，没注意过。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "无家属陪同。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "118/72 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.6",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "82",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "16",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "4.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒，定向力正常",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.6",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖干燥，无出汗，无发绀，末梢灌注好",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "头痛起病方式",
+        "突发达峰",
+        "此生最严重",
+        "发热",
+        "呕吐",
+        "颈部僵硬",
+        "肢体无 力",
+        "言语异常",
+        "视物异常",
+        "外伤",
+        "妊娠/产后可能",
+        "抗凝药使用情况"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "突发雷击样头痛",
+      "evidence": [
+        "突发雷击样头痛"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "此生最严重头痛",
+      "evidence": [
+        "此生最严重头痛"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "意识改变或神经功能缺损",
+      "evidence": [
+        "意识改变或神经功能缺损"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "发热伴颈部僵硬",
+      "evidence": [
+        "发热伴颈部僵硬"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "近期外伤、妊娠/产后或抗凝药使用",
+      "evidence": [
+        "近期外伤、妊娠/产后或抗凝药使用"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问突发达峰",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "最严重头痛",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "神经功能缺损",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "发热颈部僵硬",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "外伤",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "头痛开始时间和发展速度",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "突然达到最重程度",
+        "canonical_intents": [
+          "ask_severity"
+        ],
+        "answer_facts": [
+          "疼痛评分约4.0分。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "为此生最严重头痛",
+        "canonical_intents": [
+          "ask_severity"
+        ],
+        "answer_facts": [
+          "疼痛评分约4.0分。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "伴呕吐、发热、颈部僵硬",
+        "canonical_intents": [
+          "ask_children_fever"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "有肢体无力、麻木、言语异常、视物异常",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "近期外伤、妊娠/产后、抗凝药使用或高血压病史",
+        "canonical_intents": [
+          "ask_past_history"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“我头痛，像以前偏头痛发作一样。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“我头痛，像以前偏头痛发作一样。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“我头痛，像以前偏头痛发作一样。”，清醒，能完整表达，无肢体活动异常，无呕吐，无明显痛苦呻吟。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，清醒、烦躁、希望快点缓解头痛，但能配合。 如果护士问无关问题。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "没有特别的其他不舒服，就是这个问题。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "平时身体还行，没什么大毛病。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "没吃什么特别的药。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "好像没有药物过敏，没注意过。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "无家属陪同。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“我头痛",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "我这头啊，疼得不行不行的，跟要炸了一样...",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "清醒、烦躁、希望快点缓解头痛，但能配合。 如果护士问无关问题，患者应回应：“这些和我头痛有关系吗？我现在主要是头痛。” 如果护士重复询问，患者应回应：“就是像以前那种头痛，不是突然炸开的。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“低危头痛”“Ⅳ级”“没有红旗”“偏头痛诊断明确”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "无家属",
+      "系统设置无外部补充信息"
+    ]
+  },
+  "patient_tone": "清醒、烦躁、希望快点缓解头痛，但能配合。 如果护士问无关问题，患者应回应：“这些和我头痛有关系吗？我现在主要是头痛。” 如果护士重复询问，患者应回应：“就是像以前那种头痛，不是突然炸开的。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别患者清醒",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "步态稳定",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "无急危外观",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "循环",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识异常",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "问头痛起病时间和发展速度",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发热",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "颈部僵硬",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "语言",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "视物异常",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "妊娠/产后",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "抗凝药",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "高血压史",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "测血压",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "语言",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "肢体",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "步态",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "排除雷击样头痛",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "颈部僵硬和反复呕吐",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "妊娠/产后或抗凝药相关风险",
+            "score": 4,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确判定Ⅳ级",
+            "score": 20,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "安排绿区",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "设置30–",
+            "score": 60,
+            "critical_fail": false
+          },
+          {
+            "criterion": "呕吐",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "神经症状立即报告",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "解释低危判断依据",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "在不漏筛红旗的前提下将患者分为Ⅳ级，说明能安全处理低危头痛。",
+    "risk_if_missed": "漏问雷击样头痛、最严重头痛、神经缺损、发热颈部僵硬、妊娠/ 产后或抗凝药使用，可能将高危头痛误分为低危。",
+    "key_red_flag": "本例关键是确认头痛红旗均阴性。",
+    "reason_for_triage_level": "生命体征平稳，头痛性质与既往类似，无神经缺损和高危红旗，适合Ⅳ级 候诊。",
+    "correct_triage_logic": "头痛先筛红旗，再看生命体征和神经系统表现。",
+    "recommended_remediation": [
+      "头痛红旗",
+      "低危头痛分诊",
+      "神经系统快速筛查",
+      "绿区复评告知",
+      "•"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "突发雷击样头痛",
+    "此生最严重头痛",
+    "意识改变或神经功能缺损",
+    "发热伴颈部僵硬",
+    "近期外伤、妊娠/产后或抗凝药使用"
+  ],
+  "common_errors": [
+    "只听患者说“偏头痛”就不做危险信号筛查",
+    "因患者年轻而忽略神经系统红旗",
+    "未排除红旗即直接分Ⅳ级",
+    "或无高危依据过度分为Ⅱ级"
+  ],
+  "critical_errors": [
+    "未询问突发达峰",
+    "最严重头痛",
+    "神经功能缺损",
+    "发热颈部僵硬",
+    "外伤",
+    "妊娠/产后或抗凝药 使用等红旗",
+    "即直接安排绿区"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "既往有类似头痛发作",
+      "本次头痛逐渐出现，性质与既往相似",
+      "当前意识清楚，生命体征平稳"
+    ],
+    "key_negative_information": [
+      "无突发雷击样头痛",
+      "无肢体无力、言语不清、意识改变",
+      "无发热、颈部僵硬、反复呕吐"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅳ级",
+    "esi_ctas_mapping": "ESI 4–5/CTAS 4–5",
+    "standard_zone": "绿区",
+    "standard_zone_detail": "绿区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "30–60分钟内复评；若头痛突然加重、呕吐、意识改变或出现神经症状，立即复评",
+    "isolation_or_ppe": "不需要隔离，按标准防护",
+    "violence_self_harm_risk": "否",
+    "triage_basis": "该病例应分为Ⅳ级。患者头痛逐渐出现，与既往类似，疼痛评分4/10，生命体征平稳，GCS 15分，无发热、呕 吐、颈部僵硬、意识改变、言语异常、肢体无力、外伤、妊娠/产后或抗凝药相关风险。 不能仅凭患者说“偏头痛”直接判定低危。Ⅳ级成立的前提是已经完成头痛红旗排除。如果出现雷击样头痛、 此生最严重头痛、意识改变、神经缺损、发热颈部僵硬、外伤、妊娠/产后或抗凝药使用，应重新分诊。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入绿区",
+      "不需要立即通知医生",
+      "不启动绿色通道",
+      "需要完成头痛红旗筛查、生命体征测量和神经系统快速观察",
+      "候诊期间观察头痛是否突然加重、是否出现呕吐、意识改变、肢体异常、语言异常或步态不稳",
+      "出现头痛红旗或生命体征异常时重新分诊，升级至Ⅲ级、Ⅱ级或Ⅰ级",
+      "不需要隔离",
+      "按标准防护，注意候诊安全和隐私保护"
+    ],
+    "communication_points": [
+      "告知患者目前未发现急危红旗，可绿区候诊",
+      "若头痛突然加重、呕吐、说话不清、肢体无力 或意识异常，应立即告知护士"
+    ],
+    "documentation_points": [
+      "头痛起病时间",
+      "既往类似发作",
+      "疼痛评分",
+      "头痛红旗阴性项目",
+      "生命体征",
+      "GCS",
+      "分诊 等级",
+      "复评提示"
+    ],
+    "sbar_handoff": "S：29岁女性，头痛，性质与既往偏头痛样发作相似。 B：既往有类似头痛史，本次逐渐出现，无外伤、妊娠/产后或抗凝药相关风险。 A：Ⅳ级，生命体征平稳，GCS 15分，无神经功能缺损和头痛红旗。 R：绿区候诊，30–60分钟复评；出现红旗症状立即重新分诊。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "头痛开始时间和发展速度",
+      "突然达到最重程度",
+      "为此生最严重头痛",
+      "伴呕吐、发热、颈部僵硬",
+      "有肢体无力、麻木、言语异常、视物异常",
+      "近期外伤、妊娠/产后、抗凝药使用或高血压病史"
+    ],
+    "must_measure_items": [
+      "体温",
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "疼痛评分",
+      "血糖"
+    ],
+    "must_observe_items": [
+      "意识状态",
+      "语言表达",
+      "面部是否对称",
+      "肢体活动是否对称",
+      "步态是否稳定",
+      "畏光、呕吐或颈部僵硬"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

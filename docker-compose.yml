@@ -1,0 +1,45 @@
+services:
+  yjfz_backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8010:8000"
+    volumes:
+      - yjfz_db_data:/app/data
+      - yjfz_runtime_data:/app/runtime_triage_data
+      - ./backend/triage_data/cases:/app/static_triage_data/cases:ro
+      - ./backend/triage_data/cases_dynamic:/app/static_triage_data/cases_dynamic:ro
+      - ./backend/triage_data/rubrics:/app/static_triage_data/rubrics:ro
+      - ./backend/triage_data/rules:/app/static_triage_data/rules:ro
+      - ./backend/triage_data/intents:/app/static_triage_data/intents:ro
+      - ./backend/triage_data/mappings:/app/static_triage_data/mappings:ro
+      - ./backend/triage_data/manifest.json:/app/static_triage_data/manifest.json:ro
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=sqlite:///data/yjfz.db
+      - TRIAGE_STATIC_DATA_DIR=/app/static_triage_data
+      - TRIAGE_RUNTIME_DATA_DIR=/app/runtime_triage_data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  yjfz_frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      yjfz_backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  yjfz_db_data:
+  yjfz_runtime_data:

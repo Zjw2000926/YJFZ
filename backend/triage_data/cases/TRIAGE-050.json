@@ -1,0 +1,1188 @@
+{
+  "external_id": "TRIAGE-050",
+  "stage": "REAL",
+  "title": "骑车摔倒后膝部擦伤",
+  "display_name": "骑车摔倒后膝部擦伤",
+  "difficulty": 1,
+  "category": "低危创伤/健康需求",
+  "source_case_id": "VP-T050",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "头部撞击后呕吐/意识异常"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "20岁",
+    "gender": "女",
+    "arrival_mode": "自行步入",
+    "appearance": "清醒，行走正常，右膝浅表擦伤，少量渗血，无明显畸形。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“膝盖擦破了，有点疼，想处理一下。”",
+    "opening_line": "“膝盖擦破了，有点疼，想处理一下",
+    "scene_description": "患者骑共享单车时轻微摔倒，膝盖擦伤，自行步入急诊分诊台，希望处理伤口。学员端 初始不直接显示“生命体征稳定”。",
+    "family_information": "无家属陪同。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅳ级",
+    "minimum_safe_level": "Ⅳ级",
+    "triage_zone": "绿区",
+    "disposition": [
+      "进入绿区",
+      "不需要立即通知医生",
+      "不启动绿色通道",
+      "需要完成创伤机制、头部损伤、负重能力、伤口污染、出血、感觉运动和安全风险筛查",
+      "候诊期间30–60分钟复评出血、疼痛、头痛呕吐、行走能力和伤口情况",
+      "出现头痛呕吐、意识异常、不能负重、出血不止或安全风险时重新分诊",
+      "少量血液接触按标准防护，保持伤口和环境清洁，防跌倒"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "摔倒时间和机制",
+      "keywords": [
+        "摔倒时间",
+        "和机制"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "q_002",
+      "label": "头部撞击、昏迷、呕吐或头痛",
+      "keywords": [
+        "头部撞击",
+        "昏迷",
+        "呕吐或头"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "q_003",
+      "label": "能负重行走",
+      "keywords": [
+        "能负重行"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "q_004",
+      "label": "伤口是否污 染、异物或动物/人咬伤",
+      "keywords": [
+        "伤口是否",
+        "异物或动",
+        "人咬伤"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "q_005",
+      "label": "麻木、活动受限或关节明显疼痛",
+      "keywords": [
+        "麻木",
+        "活动受限",
+        "或关节明",
+        "显疼痛"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "q_006",
+      "label": "自伤、暴力伤或被他人伤害",
+      "keywords": [
+        "自伤",
+        "暴力伤或",
+        "被他人伤"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "q_007",
+      "label": "破伤 风相关免疫史记录",
+      "keywords": [
+        "破伤",
+        "风相关免",
+        "疫史记录"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“膝盖擦破了，有点疼，想处理一下。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“膝盖擦破了，有点疼，想处理一下。”，清醒，行走正常，右膝浅表擦伤，少量渗血，无明显畸形。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，轻度紧张、配合、能完整回答。 如果护士问无关问题，患者应回应。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "没有特别的其他不舒服，就是这个问题。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "意识清楚，没晕过去。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "平时身体还行，没什么大毛病。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "没吃什么特别的药。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "好像没有药物过敏，没注意过。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "无家属陪同。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "110/68 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.7",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "78",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "16",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "2.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.1",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖干燥，无出汗，无发绀，末梢灌注好",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "摔倒机制",
+        "头部撞击",
+        "昏迷",
+        "不能负重",
+        "伤口深度",
+        "污染异物",
+        "出血是否 可控",
+        "膝关节活动",
+        "末梢感觉运动",
+        "自伤/暴力风险",
+        "破伤风相关免疫史记录"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "头部撞击后呕吐/意识异常",
+      "evidence": [
+        "头部撞击后呕吐/意识异常"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "不能负重或明显畸形",
+      "evidence": [
+        "不能负重或明显畸形"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "出血不止",
+      "evidence": [
+        "出血不止"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "伤口深、污染重或异物",
+      "evidence": [
+        "伤口深、污染重或异物"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "自 伤/暴力伤风险",
+      "evidence": [
+        "自 伤/暴力伤风险"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问头部撞击",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "昏迷",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "呕吐",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "不能负重",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "污染异物",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "摔倒时间和机制",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "头部撞击、昏迷、呕吐或头痛",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "没有明显的外伤。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "能负重行走",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "伤口是否污 染、异物或动物/人咬伤",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "麻木、活动受限或关节明显疼痛",
+        "canonical_intents": [
+          "ask_self_care"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "自伤、暴力伤或被他人伤害",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_007",
+        "layer": "L2",
+        "label": "破伤 风相关免疫史记录",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“膝盖擦破了，有点疼，想处理一下。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“膝盖擦破了，有点疼，想处理一下。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“膝盖擦破了，有点疼，想处理一下。”，清醒，行走正常，右膝浅表擦伤，少量渗血，无明显畸形。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，轻度紧张、配合、能完整回答。 如果护士问无关问题，患者应回应。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "没有特别的其他不舒服，就是这个问题。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "平时身体还行，没什么大毛病。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "没吃什么特别的药。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "好像没有药物过敏，没注意过。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "无家属陪同。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“膝盖擦破了，有点疼，想处理一下",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“膝盖擦破了，有点疼，想处理一下 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "轻度紧张、配合、能完整回答。 如果护士问无关问题，患者应回应：“我就是膝盖擦伤，想处理一下。” 如果护士重复询问，患者应回应：“骑车摔了一下，膝盖擦破了。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“浅表擦伤”“Ⅳ级”“没有危险信号”“生命体征稳 定”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "无家属"
+    ]
+  },
+  "patient_tone": "轻度紧张、配合、能完整回答。 如果护士问无关问题，患者应回应：“我就是膝盖擦伤，想处理一下。” 如果护士重复询问，患者应回应：“骑车摔了一下，膝盖擦破了。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别患者总体稳定",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别浅表擦伤和少量出血",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别需排除头部外伤/负重异常",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判断可绿区",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "摔倒时间和机制",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "头部撞击、昏迷、呕吐、头痛",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "能否负重行走",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "污 染异物、咬伤或深伤",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "麻木、活动受限、关节明显疼痛",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "自伤/暴力伤风险",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "体温",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "BP和HR",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "RR和SpO₂",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛评分",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "伤口深度污染和出血",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "步态、负重和关节活动",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "头部撞击后呕吐/意识异常",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "不能负重或明显畸形",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出血不止",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "深伤、污染重 或异物",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "自伤/暴力伤风险",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "红旗排除完整后正确Ⅳ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅲ级",
+            "score": 12,
+            "critical_fail": false
+          },
+          {
+            "criterion": "无依据判Ⅱ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅰ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未完成创 伤红旗和安全风险排除即分Ⅳ级",
+            "score": 8,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "绿区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "不启动绿色通道",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "标准防护",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "告知红旗变化",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "防跌倒",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "30–",
+            "score": 60,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察出血、疼痛、头痛呕吐和行走能力",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出现红旗重新分 诊",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "6.",
+            "score": 0,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "解释绿区依据",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚患者",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录伤口、红旗阴性、负重和安全筛查",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "能在低危创伤中完成头部外伤、负重能力、污染和安全风险排除。",
+    "risk_if_missed": "漏问头部撞击、昏迷、呕吐或不能负重，可能漏掉隐匿损伤。",
+    "key_red_flag": "头部撞击后呕吐/意识异常、不能负重、明显畸形、出血不止、污染异 物、自伤/暴力风险。",
+    "reason_for_triage_level": "伤口表浅、测得生命体征稳定、可步入、红旗阴性。",
+    "correct_triage_logic": "低危创伤也要先排除头部伤、深部伤和安全风险，再绿区候诊。",
+    "recommended_remediation": [
+      "轻微创伤分诊",
+      "伤口污染评估",
+      "头外伤红旗",
+      "暴力/自伤筛查",
+      "十二",
+      "输出限制 不要写治疗处方",
+      "不要写药物剂量",
+      "不要把病例写成医生诊断题",
+      "不要让虚拟患者一开始暴露所有关键信息",
+      "不要省略评分细则",
+      "不要使用真实患者隐私信息",
+      "不要让评分标准过于笼统",
+      "本病例可以直接录入系统病例库",
+      "VP-T041—VP-T050 定稿汇总 病例编 号病例名称初始分 诊等级动态升 级标准区域 关键质控修订 VP- T041高温环境后意识模糊伴 高热Ⅰ级 无 红区保留Ⅰ级",
+      "体温和GCS为硬 触发 VP- T042高温运动后肌肉痉挛",
+      "头晕但意识清楚Ⅲ级Ⅱ级/ Ⅰ级黄区观察队 列明确动态Ⅱ级和Ⅰ级升级阈 值 VP- T043洗澡后头痛恶心乏力 Ⅱ级 Ⅰ级 黄区优先学员端不泄露密闭空间和多 人同症状 VP- T044眼部化学品溅入后剧痛 流泪Ⅱ级 无眼科急症优 先区强化局部时间敏感急症",
+      "不 普通候诊 VP- T045老年鼻出血约40分钟未 止Ⅲ级Ⅱ级/ Ⅰ级黄区观察队 列抗凝药史问到才披露 VP- T046突发尿潴留伴下腹胀痛 Ⅲ级Ⅱ级/ Ⅰ级黄区观察队 列强化低血压",
+      "GCS下降",
+      "湿 冷等Ⅰ级指标 VP- T047搬重物后急性腰痛 Ⅳ级 无 绿区学员端不泄露无神经缺损",
+      "红旗排除后给Ⅳ级1. 病例编 号病例名称初始分 诊等级动态升 级标准区域 关键质控修订 VP- T048老年突发眩晕伴行走不 稳Ⅱ级 Ⅰ级神经系统高 危评估区禁止LLM主动说卒中",
+      "强化 神经红旗 VP- T049酒后呕吐伴嗜睡 Ⅱ级 Ⅰ级 黄区优先增加混合物质",
+      "头外伤和被 伤害风险筛查 VP- T050骑车摔倒后膝部擦伤 Ⅳ级 无 绿区学员端不泄露生命体征稳 定",
+      "红旗排除后给Ⅳ级"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "头部撞击后呕吐/意识异常",
+    "不能负重或明显畸形",
+    "出血不止",
+    "伤口深、污染重或异物",
+    "自 伤/暴力伤风险"
+  ],
+  "common_errors": [
+    "只按小擦伤处理而不问头部撞击",
+    "忽略自伤/暴力风险和污染异物",
+    "未问红旗即Ⅳ级",
+    "无高危依据分入黄区"
+  ],
+  "critical_errors": [
+    "未询问头部撞击",
+    "昏迷",
+    "呕吐",
+    "不能负重",
+    "污染异物",
+    "自伤/暴力风险",
+    "即直接分Ⅳ级"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "右膝浅表擦伤",
+      "少量渗血",
+      "疼痛2/10",
+      "可自行步入"
+    ],
+    "key_negative_information": [
+      "主动询问后无头部撞击、昏迷、呕吐",
+      "无明显畸形、不能负重或持续出血",
+      "无自伤或暴 力伤线索"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅳ级",
+    "esi_ctas_mapping": "ESI 4–5/CTAS 4–5",
+    "standard_zone": "绿区",
+    "standard_zone_detail": "绿区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "30–60分钟内复评；出血增多、疼痛加重、不能行走、头痛呕吐或意识异常立即复 评",
+    "isolation_or_ppe": "不需要隔离；少量血液接触按标准防护",
+    "violence_self_harm_risk": "否；需常规排除自伤、暴力伤和被他人伤害",
+    "triage_basis": "该病例应分为Ⅳ级。患者为轻微摔倒后浅表膝部擦伤，疼痛2/10，测得生命体征稳定，可自行步入。经主动询 问和观察，排除头部撞击、意识异常、呕吐、不能负重、明显畸形、持续出血、污染异物或自伤/暴力风险后， 可绿区候诊。Ⅳ级成立前必须完成创伤红旗和安全风险排除。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入绿区",
+      "不需要立即通知医生",
+      "不启动绿色通道",
+      "需要完成创伤机制、头部损伤、负重能力、伤口污染、出血、感觉运动和安全风险筛查",
+      "候诊期间30–60分钟复评出血、疼痛、头痛呕吐、行走能力和伤口情况",
+      "出现头痛呕吐、意识异常、不能负重、出血不止或安全风险时重新分诊",
+      "少量血液接触按标准防护，保持伤口和环境清洁，防跌倒"
+    ],
+    "communication_points": [
+      "说明目前伤口表浅、生命体征稳定，可绿区候诊",
+      "若头痛呕吐、不能走、出血增多或疼痛加 重，立即告知"
+    ],
+    "documentation_points": [
+      "摔倒机制",
+      "伤口部位和深度",
+      "出血量",
+      "污染情况",
+      "疼痛评分",
+      "头部撞击阴性",
+      "负重能 力",
+      "安全风险筛查",
+      "分诊等级",
+      "复评时间"
+    ],
+    "sbar_handoff": "S：20岁女性，骑车轻摔后右膝浅表擦伤。 B：主动询问后无头部撞击、昏迷或呕吐。 A：Ⅳ级，生命体征稳定，疼痛2/10，出血少，可负重。 R：绿区候诊，30–60分钟复评，出现创伤红旗重新分诊。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "摔倒时间和机制",
+      "头部撞击、昏迷、呕吐或头痛",
+      "能负重行走",
+      "伤口是否污 染、异物或动物/人咬伤",
+      "麻木、活动受限或关节明显疼痛",
+      "自伤、暴力伤或被他人伤害",
+      "破伤 风相关免疫史记录"
+    ],
+    "must_measure_items": [
+      "体温",
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "疼痛评分"
+    ],
+    "must_observe_items": [
+      "伤口深度和污染",
+      "出血是否可控",
+      "膝关节活动",
+      "步态和负重",
+      "头面部是否有损伤",
+      "患者 情绪和安全风险线索"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

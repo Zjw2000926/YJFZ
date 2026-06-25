@@ -1,0 +1,1347 @@
+{
+  "external_id": "TRIAGE-018",
+  "stage": "REAL",
+  "title": "突发剧烈腹痛伴腹部紧张、拒按和保护性体位",
+  "display_name": "突发剧烈腹痛伴腹部紧张、拒按和保护性体位",
+  "difficulty": 3,
+  "category": "消化/腹痛",
+  "source_case_id": "VP-T018",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "突发剧烈腹痛"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "47岁",
+    "gender": "男",
+    "arrival_mode": "家属陪同，轮椅推入",
+    "appearance": "痛苦貌，保护性体位，轻度出汗，腹部不愿被触碰。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“肚子突然疼得受不了，一动更疼。” •",
+    "opening_line": "“肚子突然很痛”“一动就更痛”",
+    "scene_description": "患者弯腰蜷缩坐在轮椅上，表情痛苦，拒绝走动，家属称其突然腹痛。",
+    "family_information": "妻子称患者1小时前突发上腹痛，很快加重，途中曾恶心。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅱ级",
+    "minimum_safe_level": "Ⅱ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "进入黄区优先或靠近抢救资源区",
+      "立即通知医生",
+      "启动高危急腹症优先评估流程",
+      "优先评估生命体征、疼痛评分、腹部紧张/拒按、一动更痛、呕吐、黑便和血压趋势",
+      "流程等待期间5–10分钟复评疼痛、BP、HR、意识和腹部表现",
+      "若出现血压下降、意识改变、冷汗加重、持续呕吐或休克表现，升级Ⅰ级",
+      "按标准防护，防跌倒，避免患者自行走动"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "腹痛开始时间和是否突然达到最痛",
+      "keywords": [
+        "腹痛开始",
+        "时间和是",
+        "否突然达",
+        "到最痛"
+      ],
+      "answer": "“肚子突然疼得受不了，一动更疼。” •"
+    },
+    {
+      "id": "q_002",
+      "label": "腹痛部位、性质、是否迁移",
+      "keywords": [
+        "腹痛部位",
+        "性质",
+        "是否迁移"
+      ],
+      "answer": "“肚子突然疼得受不了，一动更疼。” •"
+    },
+    {
+      "id": "q_003",
+      "label": "呕吐、黑便、呕血、发热",
+      "keywords": [
+        "呕吐",
+        "黑便",
+        "呕血",
+        "发热"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_004",
+      "label": "停止排气排便或腹胀",
+      "keywords": [
+        "停止排气",
+        "排便或腹"
+      ],
+      "answer": "“肚子突然疼得受不了，一动更疼。” •"
+    },
+    {
+      "id": "q_005",
+      "label": "既往消化性溃疡、胆石、腹部手术史",
+      "keywords": [
+        "既往消化",
+        "性溃疡",
+        "胆石",
+        "腹部手术"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "q_006",
+      "label": "外伤、饮酒、抗凝药使用",
+      "keywords": [
+        "外伤",
+        "饮酒",
+        "抗凝药使"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“肚子突然疼得受不了，一动更疼。” •"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“肚子突然疼得受不了，一动更疼。” •。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“肚子突然疼得受不了，一动更疼。” •，痛苦貌，保护性体位，轻度出汗，腹部不愿被触碰。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，痛苦、烦躁、回答简短。 如果护士问无关问题，患者应回应：“我。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "抽烟，一天一包吧。偶尔喝酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "妻子称患者1小时前突发上腹痛，很快加重，途中曾恶心。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "138/84 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "37.4",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "112",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "24",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "98",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "9.0",
+      "unit": "分",
+      "is_abnormal": true,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒，烦躁",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "6.7",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "轻度出汗，皮肤稍凉，末梢灌注尚可，无发绀",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "腹痛起病方式",
+        "部位和迁移",
+        "腹部紧张",
+        "拒按",
+        "一动更痛",
+        "保护性体位",
+        "呕吐",
+        "黑便/呕 血",
+        "排便排气",
+        "既往溃疡或腹部手术史",
+        "外伤史"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "突发剧烈腹痛",
+      "evidence": [
+        "突发剧烈腹痛"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "腹部紧张、拒按、一动更痛",
+      "evidence": [
+        "腹部紧张、拒按、一动更痛"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "保护性体位",
+      "evidence": [
+        "保护性体位"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "心动过速",
+      "evidence": [
+        "心动过速"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "出汗和痛苦貌",
+      "evidence": [
+        "出汗和痛苦貌"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估疼痛强度和腹部紧张/拒按",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排绿区",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "血压下降或意识改变后未升 级",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排绿区为一票否决",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "腹痛开始时间和是否突然达到最痛",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "腹痛部位、性质、是否迁移",
+        "canonical_intents": [
+          "ask_pain_location"
+        ],
+        "answer_facts": [
+          "就在这一块疼。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "呕吐、黑便、呕血、发热",
+        "canonical_intents": [
+          "ask_children_fever"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "停止排气排便或腹胀",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "既往消化性溃疡、胆石、腹部手术史",
+        "canonical_intents": [
+          "ask_past_history"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "外伤、饮酒、抗凝药使用",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“肚子突然疼得受不了，一动更疼。” •"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“肚子突然疼得受不了，一动更疼。” •。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“肚子突然疼得受不了，一动更疼。” •，痛苦貌，保护性体位，轻度出汗，腹部不愿被触碰。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，痛苦、烦躁、回答简短。 如果护士问无关问题，患者应回应：“我。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "抽烟，一天一包吧。偶尔喝酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "妻子称患者1小时前突发上腹痛，很快加重，途中曾恶心。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“肚子突然很痛”“一动就更痛”",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“肚子突然很痛”“一动就更痛” 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "痛苦、烦躁、回答简短。 如果护士问无关问题，患者应回应：“我肚子太痛了，能不能快点？” 如果护士重复询问，患者应回应：“就是突然痛，一动更痛。” 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；动态恶化时可说“更晕了、出汗更 多”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“急腹症”“腹膜炎”“Ⅱ级”“板状腹”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "1小时前突发",
+      "途中恶心",
+      "患者不愿走动"
+    ]
+  },
+  "patient_tone": "痛苦、烦躁、回答简短。 如果护士问无关问题，患者应回应：“我肚子太痛了，能不能快点？” 如果护士重复询问，患者应回应：“就是突然痛，一动更痛。” 如果护士没有追问关键危险信号，患者是否主动提示：不主动提示；动态恶化时可说“更晕了、出汗更 多”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别剧烈痛苦和保护性体位",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "问起病时间和是否突然达到最痛",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "性质",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "迁移",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "黑便",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "呕血",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发热",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "排气排便",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "胆石",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "腹部手术史",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "饮酒",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "抗凝药",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "测血压",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "拒按",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "一动更痛",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "保护性体位",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "识别突发剧烈腹痛",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "拒按",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "一动更痛",
+            "score": 5,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确判定Ⅱ级",
+            "score": 20,
+            "critical_fail": true
+          },
+          {
+            "criterion": "未通知医生",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "血压下降后未升级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "一票否决项：未评估疼痛强度和腹部紧张/拒按；安排绿区；未通知医生",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "安排黄区优先",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "5–",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "BP",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "HR和意识",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "安抚并说明优先评估",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别突发剧烈腹痛、腹部紧张拒按和保护性体位为高危，而非普通胃痛。",
+    "risk_if_missed": "漏问黑便、呕血、外伤、手术史和排气排便，会影响风险判断和 交接。",
+    "key_red_flag": "突发剧烈腹痛、腹部紧张拒按、一动更痛、保护性体位、心动过速和 动态低血压。",
+    "reason_for_triage_level": "初始血压尚稳但急腹症风险高，符合Ⅱ级；低血压后升级Ⅰ级。",
+    "correct_triage_logic": "腹痛先看生命体征、疼痛强度和腹部高危表现，再决定是否普通候诊。",
+    "recommended_remediation": [
+      "高危腹痛红旗",
+      "急腹症分诊",
+      "疼痛评分",
+      "动态复评升级"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "突发剧烈腹痛",
+    "腹部紧张、拒按、一动更痛",
+    "保护性体位",
+    "心动过速",
+    "出汗和痛苦貌"
+  ],
+  "common_errors": [
+    "只按普通胃痛处理",
+    "因血压暂稳而误分Ⅲ级普通腹痛",
+    "Ⅲ级腹痛候诊或Ⅳ级胃痛"
+  ],
+  "critical_errors": [
+    "未评估疼痛强度和腹部紧张/拒按",
+    "安排绿区",
+    "未通知医生",
+    "血压下降或意识改变后未升 级",
+    "安排绿区为一票否决",
+    "10."
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "腹痛突发且剧烈，疼痛9/10",
+      "一动更疼，保护性体位",
+      "腹部紧张、拒按，HR 112次/分"
+    ],
+    "key_negative_information": [
+      "当前无低血压",
+      "当前无意识障碍或低氧"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅱ级",
+    "esi_ctas_mapping": "ESI 2/CTAS 2",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区优先/靠近抢救资源区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "不普通候诊；流程等待5–10分钟复评，血压下降或意识改变立即升级",
+    "isolation_or_ppe": "不需要隔离，按标准防护",
+    "violence_self_harm_risk": "否；疼痛导致跌倒风险",
+    "triage_basis": "该患者应分为Ⅱ级。突发剧烈腹痛、疼痛9/10、保护性体位、一动更疼、腹部紧张拒按和心动过速均提示高危 急腹症。当前血压尚稳定、意识清楚、无低氧，因此初始不属于Ⅰ级。但该病例存在快速恶化风险，不能分为 Ⅲ级或Ⅳ级。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入黄区优先或靠近抢救资源区",
+      "立即通知医生",
+      "启动高危急腹症优先评估流程",
+      "优先评估生命体征、疼痛评分、腹部紧张/拒按、一动更痛、呕吐、黑便和血压趋势",
+      "流程等待期间5–10分钟复评疼痛、BP、HR、意识和腹部表现",
+      "若出现血压下降、意识改变、冷汗加重、持续呕吐或休克表现，升级Ⅰ级",
+      "按标准防护，防跌倒，避免患者自行走动"
+    ],
+    "communication_points": [
+      "告知患者腹痛较重，需要优先评估",
+      "请患者不要自行走动，保持舒适体位"
+    ],
+    "documentation_points": [
+      "腹痛起病时间",
+      "疼痛评分",
+      "部位",
+      "突发",
+      "腹部紧张",
+      "拒按",
+      "一动更痛",
+      "保护性体 位",
+      "生命体征",
+      "分诊等级",
+      "复评结果"
+    ],
+    "sbar_handoff": "S：47岁男性，1小时前突发剧烈腹痛，一动更疼。 B：既往溃疡或手术史待查，途中恶心。 A：Ⅱ级，疼痛9/10，HR 112次/分，腹部紧张拒按，血压暂稳。 R：高危急腹症优先评估，5–10分钟复评，出现血压下降或意识变化时升级。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "腹痛开始时间和是否突然达到最痛",
+      "腹痛部位、性质、是否迁移",
+      "呕吐、黑便、呕血、发热",
+      "停止排气排便或腹胀",
+      "既往消化性溃疡、胆石、腹部手术史",
+      "外伤、饮酒、抗凝药使用"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "呼吸频率",
+      "体温",
+      "SpO₂",
+      "疼痛评分"
+    ],
+    "must_observe_items": [
+      "保护性体位",
+      "腹部紧张、拒按",
+      "一动更痛",
+      "出汗和面色",
+      "呕吐和腹胀",
+      "意识变化",
+      "血压和心率趋势"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅱ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "突发剧烈腹痛伴腹部紧张、拒按和保护性体位加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "疼痛加重至10/10，出汗增多，HR 124次/分。",
+        "vital_changes": {
+          "blood_pressure_systolic": 10,
+          "blood_pressure_diastolic": 10,
+          "heart_rate": 124
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "疼痛加重至10/10，出汗增多，HR 124次/分。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 6,
+        "event_description": "疼痛加重至10/10，出汗增多，HR 124次/分。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "头晕，BP降至92/58 mmHg，面色苍白，反应变慢。",
+        "vital_changes": {
+          "blood_pressure_systolic": 92,
+          "blood_pressure_diastolic": 58
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "头晕，BP降至92/58 mmHg，面色苍白，反应变慢。",
+        "standard_level_after_event": "Ⅰ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 12,
+        "event_description": "头晕，BP降至92/58 mmHg，面色苍白，反应变慢。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "痛苦貌，保护性体位，轻度出汗，腹部不愿被触碰。",
+      "time_minute": 0,
+      "appearance": "痛苦貌，保护性体位，轻度出汗，腹部不愿被触碰。",
+      "chief_complaint": "“肚子突然疼得受不了，一动更疼。” •",
+      "symptom_description": "患者弯腰蜷缩坐在轮椅上，表情痛苦，拒绝走动，家属称其突然腹痛。",
+      "mental_status": "清醒",
+      "pain_score": 9,
+      "risk_signals": [
+        "突发剧烈腹痛",
+        "腹部紧张、拒按、一动更痛",
+        "保护性体位"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 37.4,
+        "heart_rate": 112,
+        "respiratory_rate": 24,
+        "spo2": 98,
+        "pain_score": 9,
+        "consciousness": "清醒，烦躁",
+        "gcs_score": 15,
+        "blood_glucose": 6.7,
+        "skin_perfusion": "轻度出汗，皮肤稍凉，末梢灌注尚可，无发绀",
+        "other_assessments": [
+          "腹痛起病方式",
+          "部位和迁移",
+          "腹部紧张",
+          "拒按",
+          "一动更痛",
+          "保护性体位",
+          "呕吐",
+          "黑便/呕 血",
+          "排便排气",
+          "既往溃疡或腹部手术史",
+          "外伤史"
+        ],
+        "blood_pressure_systolic": 138,
+        "blood_pressure_diastolic": 84
+      },
+      "recommended_actions": [
+        "初始分诊Ⅱ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T6_event_1",
+      "state_name": "疼痛加重至10/10，出汗增多，HR 124次/分。",
+      "time_minute": 6,
+      "appearance": "痛苦貌，保护性体位，轻度出汗，腹部不愿被触碰。",
+      "chief_complaint": "疼痛加重至10/10，出汗增多，HR 124次/分。",
+      "symptom_description": "疼痛加重至10/10，出汗增多，HR 124次/分。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 10,
+        "blood_pressure_diastolic": 10,
+        "heart_rate": 124
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T12_event_2",
+      "state_name": "头晕，BP降至92/58 mmHg，面色苍白，反应变慢。",
+      "time_minute": 12,
+      "appearance": "痛苦貌，保护性体位，轻度出汗，腹部不愿被触碰。",
+      "chief_complaint": "头晕，BP降至92/58 mmHg，面色苍白，反应变慢。",
+      "symptom_description": "头晕，BP降至92/58 mmHg，面色苍白，反应变慢。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "blood_pressure_systolic": 92,
+        "blood_pressure_diastolic": 58
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅱ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "黄区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

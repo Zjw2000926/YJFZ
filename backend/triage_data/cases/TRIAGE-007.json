@@ -1,0 +1,1007 @@
+{
+  "external_id": "TRIAGE-007",
+  "stage": "REAL",
+  "title": "突发意识丧失伴持续抽搐",
+  "display_name": "突发意识丧失伴持续抽搐",
+  "difficulty": 3,
+  "category": "神经系统",
+  "source_case_id": "VP-T007",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "持续抽搐"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "36岁",
+    "gender": "男",
+    "arrival_mode": "120送入，担架送入",
+    "appearance": "意识不清，四肢强直-阵挛样抽动，口唇发绀，分泌物多。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。",
+    "opening_line": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。",
+    "scene_description": "患者被送入急诊入口，仍有四肢抽动，口角分泌物增多，无法回答。",
+    "family_information": "同事陪同，称患者工作中突然倒地，头部可能磕到桌角。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅰ级",
+    "minimum_safe_level": "Ⅰ级",
+    "triage_zone": "红区",
+    "disposition": [
+      "立即进入红区",
+      "通知医生和抢救团队",
+      "启动急危重抢救响应",
+      "优先评估气道、呼吸、循环、意识、血糖和外 伤",
+      "不候诊",
+      "连续观察抽搐、SpO₂、呼吸、意识、分泌物、误吸和外伤",
+      "按标准防护，防坠床、防误吸、防外 伤"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "向急救人员/同事询问抽搐开始时间和持续时间",
+      "keywords": [
+        "向急救人",
+        "同事询问",
+        "抽搐开始",
+        "时间和持",
+        "续时间"
+      ],
+      "answer": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。"
+    },
+    {
+      "id": "q_002",
+      "label": "首次发作",
+      "keywords": [
+        "首次发作"
+      ],
+      "answer": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。"
+    },
+    {
+      "id": "q_003",
+      "label": "发作前是否头痛、胸 闷、发热、外伤",
+      "keywords": [
+        "发作前是",
+        "否头痛",
+        "发热",
+        "外伤"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_004",
+      "label": "既往癫痫、糖尿病、脑卒中史",
+      "keywords": [
+        "既往癫痫",
+        "糖尿病",
+        "脑卒中史"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "q_005",
+      "label": "饮酒、服药、接触毒物",
+      "keywords": [
+        "饮酒",
+        "服药",
+        "接触毒物"
+      ],
+      "answer": "普通成人"
+    },
+    {
+      "id": "q_006",
+      "label": "摔倒、头部撞击、 呕吐",
+      "keywords": [
+        "摔倒",
+        "头部撞击",
+        "呕吐"
+      ],
+      "answer": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。，意识不清，四肢强直-阵挛样抽动，口唇发绀，分泌物多。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，受不了。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "好像没有药物过敏，没注意过。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "抽烟，一天一包吧。偶尔喝酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "同事陪同，称患者工作中突然倒地，头部可能磕到桌角。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "150/90 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "37.0",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "132",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "30",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "88",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "意识不清，持续抽搐",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "6",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "3.1",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "口唇发绀，出汗，皮肤湿冷",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "抽搐持续时间",
+        "气道分泌物",
+        "外伤",
+        "瞳孔",
+        "肢体活动",
+        "既往癫痫史",
+        "糖尿病史",
+        "毒物或 饮酒可能"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "持续抽搐",
+      "evidence": [
+        "持续抽搐"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "意识不清",
+      "evidence": [
+        "意识不清"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "SpO₂显著降低",
+      "evidence": [
+        "SpO₂显著降低"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "呼吸不规则",
+      "evidence": [
+        "呼吸不规则"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "气道保护能力差",
+      "evidence": [
+        "气道保护能力差"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_006",
+      "label": "低血糖可能",
+      "evidence": [
+        "低血糖可能"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_007",
+      "label": "外伤风 险",
+      "evidence": [
+        "外伤风 险"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未红区",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测SpO₂",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未测血糖",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估气道/误吸",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "向急救人员/同事询问抽搐开始时间和持续时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "首次发作",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "发作前是否头痛、胸 闷、发热、外伤",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "既往癫痫、糖尿病、脑卒中史",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "饮酒、服药、接触毒物",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "普通成人"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "摔倒、头部撞击、 呕吐",
+        "canonical_intents": [
+          "ask_trauma_detail"
+        ],
+        "answer_facts": [
+          "没有明显的外伤。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。，意识不清，四肢强直-阵挛样抽动，口唇发绀，分泌物多。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，受不了。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "好像没有药物过敏，没注意过。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "抽烟，一天一包吧。偶尔喝酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "同事陪同，称患者工作中突然倒地，头部可能磕到桌角。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "患者不能表达；急救人员代述“突发倒地抽搐约8分钟”。 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": null,
+    "forbidden_spontaneous_information": [
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": []
+  },
+  "patient_tone": null,
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "完成第一眼评估相关要求",
+            "score": 10,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "完成主诉与聚焦病史采集相关要求",
+            "score": 15,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "完成生命体征与客观评估相关要求",
+            "score": 15,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "完成高危信号识别相关要求",
+            "score": 20,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "完成分诊等级判断相关要求",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出现严重错误项或低估分诊等级",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "一票否决项：未红区；未通知医生；未测SpO₂",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "完成分诊处置与区域安排相关要求",
+            "score": 10,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "完成候诊复评与安全管理相关要求",
+            "score": 5,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "完成沟通、解释与记录相关要求",
+            "score": 5,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "能识别核心主诉、关键生命体征异常和对应分诊等级。",
+    "risk_if_missed": "等待抽搐自然停止后再分诊；只关注癫痫病史，忽略气道和低氧",
+    "key_red_flag": "持续抽搐；意识不清；SpO₂显著降低",
+    "reason_for_triage_level": "该患者应分为Ⅰ级。持续抽搐、意识不清、SpO₂ 88%、呼吸不规则、发绀和气道分泌物增多提示气道、呼吸和 神经系统立即危及生命风险。不能等待完整病史，也不能按普通癫痫发作后观察处理。",
+    "correct_triage_logic": "先进行第一眼评估和生命体征判断，再聚焦追问高危症状，最后匹配分诊等级、区域和复评要求。",
+    "recommended_remediation": [
+      "第一眼评估",
+      "生命体征判读",
+      "高危信号识别",
+      "分诊等级判断",
+      "候诊复评和SBAR交接"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "持续抽搐",
+    "意识不清",
+    "SpO₂显著降低",
+    "呼吸不规则",
+    "气道保护能力差",
+    "低血糖可能",
+    "外伤风 险"
+  ],
+  "common_errors": [
+    "等待抽搐自然停止后再分诊",
+    "只关注癫痫病史，忽略气道和低氧",
+    "Ⅱ级观察或Ⅲ级神经系统候诊"
+  ],
+  "critical_errors": [
+    "未红区",
+    "未通知医生",
+    "未测SpO₂",
+    "未测血糖",
+    "未评估气道/误吸",
+    "让患者坐立等待",
+    "强行 约束肢体造成伤害",
+    "前五项任一为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "持续抽搐约8分钟",
+      "意识不清",
+      "SpO₂ 88%",
+      "血糖偏低",
+      "可能头部外伤"
+    ],
+    "key_negative_information": [
+      "暂无明确发热皮疹信息",
+      "暂无明确毒物接触信息"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅰ级",
+    "esi_ctas_mapping": "ESI 1/CTAS 1",
+    "standard_zone": "红区",
+    "standard_zone_detail": "红区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "不候诊，连续观察",
+    "isolation_or_ppe": "不需隔离；处理分泌物时加强标准防护",
+    "violence_self_harm_risk": "存在非故意伤害风险，需防坠床、防误吸、防外伤",
+    "triage_basis": "该患者应分为Ⅰ级。持续抽搐、意识不清、SpO₂ 88%、呼吸不规则、发绀和气道分泌物增多提示气道、呼吸和 神经系统立即危及生命风险。不能等待完整病史，也不能按普通癫痫发作后观察处理。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "立即进入红区",
+      "通知医生和抢救团队",
+      "启动急危重抢救响应",
+      "优先评估气道、呼吸、循环、意识、血糖和外 伤",
+      "不候诊",
+      "连续观察抽搐、SpO₂、呼吸、意识、分泌物、误吸和外伤",
+      "按标准防护，防坠床、防误吸、防外 伤"
+    ],
+    "communication_points": [
+      "向陪同人员说明患者正在抽搐且有低氧风险",
+      "需要立即抢救评估",
+      "同时快速询问发作时间和 病史"
+    ],
+    "documentation_points": [
+      "抽搐开始时间",
+      "持续时间",
+      "意识",
+      "SpO₂",
+      "血糖",
+      "呼吸状态",
+      "外伤",
+      "入红区时间",
+      "通知医 生时间"
+    ],
+    "sbar_handoff": "S：36岁男性，突发倒地后持续抽搐约8分钟，意识不清。 B：可能头部撞击，既往病史待查。 A：Ⅰ级，SpO₂ 88%，血糖3.1 mmol/L，呼吸不规则，存在气道和误吸风险。 R：红区抢救评估，重点关注气道、呼吸、血糖、外伤和抽搐持续情况。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "向急救人员/同事询问抽搐开始时间和持续时间",
+      "首次发作",
+      "发作前是否头痛、胸 闷、发热、外伤",
+      "既往癫痫、糖尿病、脑卒中史",
+      "饮酒、服药、接触毒物",
+      "摔倒、头部撞击、 呕吐"
+    ],
+    "must_measure_items": [
+      "SpO₂",
+      "心率",
+      "呼吸频率",
+      "血压",
+      "血糖",
+      "意识水平/GCS或AVPU"
+    ],
+    "must_observe_items": [
+      "气道分泌物和误吸风险",
+      "抽搐持续情况",
+      "口唇发绀",
+      "瞳孔",
+      "头部外伤和出血",
+      "抽搐后意 识恢复情况"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

@@ -1,0 +1,1166 @@
+{
+  "external_id": "TRIAGE-047",
+  "stage": "REAL",
+  "title": "搬重物后急性腰痛",
+  "display_name": "搬重物后急性腰痛",
+  "difficulty": 1,
+  "category": "骨科/疼痛",
+  "source_case_id": "VP-T047",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": false,
+  "training_focus": [
+    "大小便障碍"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "34岁",
+    "gender": "男",
+    "arrival_mode": "自行步入",
+    "appearance": "清醒，轻度痛苦貌，扶腰行走，无明显肢体拖曳。",
+    "special_identity": "普通成人"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“搬东西后腰闪了，腰疼。”",
+    "opening_line": "“搬东西后腰闪了，腰疼",
+    "scene_description": "患者搬重物后腰痛，自行步入急诊，步态缓慢但能独立行走。学员端初始不直接显 示“无神经功能缺损”。",
+    "family_information": "无家属陪同。"
+  },
+  "standard_answer": {
+    "triage_level": "Ⅳ级",
+    "minimum_safe_level": "Ⅳ级",
+    "triage_zone": "绿区",
+    "disposition": [
+      "进入绿区",
+      "初始不通知医生",
+      "不启动绿色通道",
+      "需要完成腰痛红旗筛查、疼痛评分、生命体征和步态观察",
+      "30–60分钟复评疼痛、步态、下肢感觉运动、大小便情况和发热",
+      "若出现神经功能缺损、大小便障碍、发热、外伤或疼痛剧烈加重，重新分诊升级",
+      "不需要感染隔离",
+      "防跌倒，指导候诊期间避免突然起身"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "起病时间和诱因",
+      "keywords": [
+        "起病时间",
+        "和诱因"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”"
+    },
+    {
+      "id": "q_002",
+      "label": "外伤或高处坠落",
+      "keywords": [
+        "外伤或高",
+        "处坠落"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”"
+    },
+    {
+      "id": "q_003",
+      "label": "下肢无力、麻木、放射痛",
+      "keywords": [
+        "下肢无力",
+        "麻木",
+        "放射痛"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”"
+    },
+    {
+      "id": "q_004",
+      "label": "大小便障 碍或尿潴留",
+      "keywords": [
+        "大小便障",
+        "碍或尿潴"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”"
+    },
+    {
+      "id": "q_005",
+      "label": "鞍区麻木",
+      "keywords": [
+        "鞍区麻木"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”"
+    },
+    {
+      "id": "q_006",
+      "label": "发热、肿瘤、感染、免疫抑制或长期激素使用",
+      "keywords": [
+        "发热",
+        "肿瘤",
+        "感染",
+        "免疫抑制",
+        "或长期激"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_007",
+      "label": "疼痛是否突然剧烈或 进行性加重",
+      "keywords": [
+        "疼痛是否",
+        "突然剧烈",
+        "进行性加"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“搬东西后腰闪了，腰疼。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“搬东西后腰闪了，腰疼。”，清醒，轻度痛苦貌，扶腰行走，无明显肢体拖曳。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，清醒、担心、疼痛但能配合。 如果护士问无关问题，患者应回应：。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "没有特别的其他不舒服，就是这个问题。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "意识清楚，没晕过去。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "平时身体还行，没什么大毛病。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "没吃什么特别的药。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "无家属陪同。"
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "122/76 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.6",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "82",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "16",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "99",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "4.0",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "15",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.3",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "皮肤温暖干燥，无出汗，无发绀，末梢灌注好",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "外伤史",
+        "发热",
+        "大小便功能",
+        "鞍区感觉",
+        "下肢无力/麻木",
+        "疼痛是否进行性加重",
+        "恶性肿 瘤/感染/免疫抑制史",
+        "步态和跌倒风险"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "大小便障碍",
+      "evidence": [
+        "大小便障碍"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "鞍区麻木",
+      "evidence": [
+        "鞍区麻木"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "下肢无力或进行性神经缺损",
+      "evidence": [
+        "下肢无力或进行性神经缺损"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "发热或感染风险",
+      "evidence": [
+        "发热或感染风险"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "严重外伤",
+      "evidence": [
+        "严重外伤"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_006",
+      "label": "肿瘤/免 疫抑制背景",
+      "evidence": [
+        "肿瘤/免 疫抑制背景"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问大小便障碍",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "鞍区麻木",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "下肢无力",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "发热和外伤史",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "即直接分Ⅳ级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "起病时间和诱因",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "外伤或高处坠落",
+        "canonical_intents": [
+          "ask_trauma_detail"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "下肢无力、麻木、放射痛",
+        "canonical_intents": [
+          "ask_pain_radiation"
+        ],
+        "answer_facts": [
+          "没有放射到其他部位。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "大小便障 碍或尿潴留",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "鞍区麻木",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "发热、肿瘤、感染、免疫抑制或长期激素使用",
+        "canonical_intents": [
+          "ask_children_fever"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_007",
+        "layer": "L2",
+        "label": "疼痛是否突然剧烈或 进行性加重",
+        "canonical_intents": [
+          "ask_aggravating_relieving"
+        ],
+        "answer_facts": [
+          "按压和活动时更痛，安静不动稍好。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“搬东西后腰闪了，腰疼。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“搬东西后腰闪了，腰疼。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“搬东西后腰闪了，腰疼。”，清醒，轻度痛苦貌，扶腰行走，无明显肢体拖曳。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，清醒、担心、疼痛但能配合。 如果护士问无关问题，患者应回应：。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "没有特别的其他不舒服，就是这个问题。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚，没晕过去。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "平时身体还行，没什么大毛病。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "没吃什么特别的药。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "无家属陪同。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“搬东西后腰闪了，腰疼",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“搬东西后腰闪了，腰疼 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "清醒、担心、疼痛但能配合。 如果护士问无关问题，患者应回应：“我主要是腰疼，走路慢。” 如果护士重复询问，患者应回应：“搬东西以后开始疼，没有摔倒。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“普通腰肌劳损”“Ⅳ级”“没有神经问题”“无红旗”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "无家属"
+    ]
+  },
+  "patient_tone": "清醒、担心、疼痛但能配合。 如果护士问无关问题，患者应回应：“我主要是腰疼，走路慢。” 如果护士重复询问，患者应回应：“搬东西以后开始疼，没有摔倒。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别患者总体稳定",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别腰痛但可步入",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别需排除神经红旗",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判断可绿区但 需复评",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "起病和诱因",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "外伤/坠落",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "下肢无力、麻木、放射痛",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "大小便障碍/尿潴 留",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "鞍区麻木",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发热、肿瘤、感染、免疫抑制或长期激素",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "体温",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "BP/HR/RR/SpO₂",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "疼痛评分",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "步态和能否行走",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "下肢活动和 跌倒风险",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "大小便障碍",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "鞍区麻木",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "下肢无力/进行性神经缺损",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "发热/感染风险",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "严 重外伤、肿瘤或免疫抑制",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "正确Ⅳ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅲ级",
+            "score": 12,
+            "critical_fail": false
+          },
+          {
+            "criterion": "无依据判Ⅱ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅰ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未完成红旗排除即分Ⅳ级",
+            "score": 8,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "绿区",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "不启动绿色通道",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "告知红旗变化",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "防跌倒",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "30–",
+            "score": 60,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察疼痛、步态和神经症状",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "出现红旗重新分诊",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "解释低危依据",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "安抚担心",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录红旗阴性、疼痛和步态",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "排除腰痛红旗后将患者分为Ⅳ级。",
+    "risk_if_missed": "漏问大小便障碍、鞍区麻木或下肢无力，可能漏掉神经压迫高 危。",
+    "key_red_flag": "大小便障碍、鞍区麻木、下肢无力、发热、严重外伤。",
+    "reason_for_triage_level": "生命体征稳定，可步入，红旗阴性。",
+    "correct_triage_logic": "低危腰痛必须先完成红旗筛查再绿区候诊。",
+    "recommended_remediation": [
+      "腰痛红旗",
+      "神经功能筛查",
+      "低危疼痛分诊",
+      "十二",
+      "输出限制 不要写治疗处方",
+      "不要写药物剂量",
+      "不要把病例写成医生诊断题",
+      "不要让虚拟患者一开始暴露所有关键信息",
+      "不要省略评分细则",
+      "不要使用真实患者隐私信息",
+      "不要让评分标准过于笼统",
+      "本病例可以直接录入系统病例库"
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "大小便障碍",
+    "鞍区麻木",
+    "下肢无力或进行性神经缺损",
+    "发热或感染风险",
+    "严重外伤",
+    "肿瘤/免 疫抑制背景"
+  ],
+  "common_errors": [
+    "只听“腰痛”就直接低危而不筛红旗",
+    "因患者年轻而不问大小便和神经功能",
+    "未排除红旗即Ⅳ级",
+    "或无红旗依据分入黄区"
+  ],
+  "critical_errors": [
+    "未询问大小便障碍",
+    "鞍区麻木",
+    "下肢无力",
+    "发热和外伤史",
+    "即直接分Ⅳ级"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "搬重物后急性腰痛",
+      "能自行步入",
+      "生命体征稳定",
+      "疼痛4–5/10"
+    ],
+    "key_negative_information": [
+      "主动问诊后无大小便障碍",
+      "无下肢无力或鞍区麻木",
+      "无发热、严重外伤或意识异常"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅳ级",
+    "esi_ctas_mapping": "ESI 4–5/CTAS 4–5",
+    "standard_zone": "绿区",
+    "standard_zone_detail": "绿区",
+    "notify_doctor_immediately": false,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "30–60分钟内复评；出现神经功能异常、发热、尿潴留或疼痛明显加重立即复评",
+    "isolation_or_ppe": "不需要隔离，按标准防护",
+    "violence_self_harm_risk": "否；存在疼痛导致跌倒风险",
+    "triage_basis": "该病例应分为Ⅳ级。患者为搬重物后腰痛，生命体征平稳，疼痛中等，可自行步入；通过主动问诊和观察排除 神经功能缺损、大小便障碍、发热、严重外伤或感染/肿瘤高危背景后，才可常规候诊。Ⅳ级成立前必须排除大 小便障碍、鞍区麻木、下肢无力、发热、严重外伤和肿瘤/免疫抑制等红旗。"
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入绿区",
+      "初始不通知医生",
+      "不启动绿色通道",
+      "需要完成腰痛红旗筛查、疼痛评分、生命体征和步态观察",
+      "30–60分钟复评疼痛、步态、下肢感觉运动、大小便情况和发热",
+      "若出现神经功能缺损、大小便障碍、发热、外伤或疼痛剧烈加重，重新分诊升级",
+      "不需要感染隔离",
+      "防跌倒，指导候诊期间避免突然起身"
+    ],
+    "communication_points": [
+      "解释目前无明显危险信号，可绿区候诊",
+      "告知一旦出现腿无力、麻木、大小便异常或发热需 立即报告"
+    ],
+    "documentation_points": [
+      "起病诱因",
+      "疼痛评分",
+      "生命体征",
+      "红旗阴性项目",
+      "步态",
+      "下肢功能",
+      "分诊等级",
+      "复评时 间"
+    ],
+    "sbar_handoff": "S：34岁男性，搬重物后急性腰痛。 B：无明显外伤，能自行步入。 A：Ⅳ级，生命体征稳定，主动筛查后无下肢无力、大小便障碍、发热或鞍区麻木。 R：绿区候诊，30–60分钟复评，出现腰痛红旗重新分诊。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "起病时间和诱因",
+      "外伤或高处坠落",
+      "下肢无力、麻木、放射痛",
+      "大小便障 碍或尿潴留",
+      "鞍区麻木",
+      "发热、肿瘤、感染、免疫抑制或长期激素使用",
+      "疼痛是否突然剧烈或 进行性加重"
+    ],
+    "must_measure_items": [
+      "体温",
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "疼痛评分"
+    ],
+    "must_observe_items": [
+      "步态",
+      "能否独立行走",
+      "下肢活动",
+      "痛苦程度",
+      "发热或全身病容",
+      "跌倒风险"
+    ]
+  },
+  "dynamic_timeline": null,
+  "emotional_state": "anxious",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  }
+}

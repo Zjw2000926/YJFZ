@@ -1,0 +1,49 @@
+# Runtime data
+*.db
+*.db-wal
+*.db-shm
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+backend/triage_data/records/*.json
+backend/triage_data/*_events.json
+backend/triage_data/learning_paths.json
+backend/triage_data/cohorts.json
+backend/triage_data/tasks.json
+backend/triage_data/case_reviews.json
+backend/triage_data/case_versions.json
+backend/triage_data/safety_audits.json
+backend/triage_data/organizations.json
+backend/triage_data/case_library_scopes.json
+backend/triage_data/scenarios/queue_records.json
+logs/
+
+# Frontend build and dependencies
+frontend/dist/
+frontend/node_modules/
+frontend/test-results/
+frontend/playwright-report/
+node_modules/
+
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Environment configuration
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

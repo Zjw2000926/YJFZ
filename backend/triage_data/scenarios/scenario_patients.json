@@ -1,0 +1,8 @@
+[
+  {"id":"sp-001","scenario_id":"sc-001","patient_external_id":"P1","case_external_id":"TRIAGE-V2-01","arrival_minute":0,"priority_order":1,"scenario_role":"patient"},
+  {"id":"sp-002","scenario_id":"sc-001","patient_external_id":"P2","case_external_id":"TRIAGE-V2-03","arrival_minute":0,"priority_order":2,"scenario_role":"patient"},
+  {"id":"sp-003","scenario_id":"sc-002","patient_external_id":"P1","case_external_id":"TRIAGE-DYN-06","arrival_minute":0,"priority_order":1,"scenario_role":"patient"},
+  {"id":"sp-004","scenario_id":"sc-002","patient_external_id":"P2","case_external_id":"TRIAGE-V2-07","arrival_minute":5,"priority_order":2,"scenario_role":"patient"},
+  {"id":"sp-005","scenario_id":"sc-002","patient_external_id":"P3","case_external_id":"TRIAGE-V1-08","arrival_minute":10,"priority_order":3,"scenario_role":"patient"},
+  {"id":"sp-006","scenario_id":"sc-003","patient_external_id":"P1","case_external_id":"TRIAGE-DYN-02","arrival_minute":0,"priority_order":1,"scenario_role":"patient"}
+]

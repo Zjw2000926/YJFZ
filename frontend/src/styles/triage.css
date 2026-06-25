@@ -1,0 +1,33 @@
+/* P2-4: 预检分诊模块统一样式 */
+.triage-decision-panel { background: #fafafa; border-left: 1px solid #e5e7eb; padding: 16px; overflow-y: auto; }
+.triage-vital-card { padding: 10px; background: #fff; border-radius: 6px; border: 1px solid #e5e7eb; margin-bottom: 10px; }
+.triage-vital-item { display: flex; justify-content: space-between; font-size: 0.75rem; padding: 2px 0; }
+.triage-vital-abnormal { color: #dc2626; font-weight: 600; }
+.triage-level-btn { padding: 8px 10px; margin-bottom: 4px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; border: 1px solid #e5e7eb; background: #fff; }
+.triage-level-btn.selected { font-weight: 600; }
+.triage-timeline { padding: 10px; background: #fff; border-radius: 6px; border: 1px solid #e5e7eb; }
+.triage-timeline-event { padding: 5px 0; border-left: 2px solid #d1d5db; padding-left: 8px; margin-bottom: 2px; font-size: 0.7rem; }
+.triage-timeline-event.triggered { border-left-color: #22c55e; }
+.triage-report-card { margin-bottom: 16px; }
+.triage-disclaimer { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px; font-size: 0.72rem; color: #991b1b; margin-bottom: 16px; }
+.triage-exam-badge { color: #dc2626; font-weight: 600; }
+.triage-rule-explanation { padding: 12px; background: #f8fafc; border-radius: 8px; font-size: 0.78rem; }
+
+/* P0 responsive fixes */
+.triage-report-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.triage-decision-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .training-shell-body { flex-direction: column; }
+  .triage-decision-panel { width: 100% !important; min-width: 0; border-left: none; border-top: 1px solid #e5e7eb; }
+}
+@media (max-width: 600px) {
+  .triage-report-summary { grid-template-columns: 1fr; }
+}

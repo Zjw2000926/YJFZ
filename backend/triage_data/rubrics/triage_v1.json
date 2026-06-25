@@ -1,0 +1,82 @@
+{
+  "id": "triage_v1",
+  "version": "1.0",
+  "name": "预检分诊V1评分标准",
+  "total_max": 100,
+  "dimensions": [
+    {
+      "id": "chief_complaint",
+      "name": "主诉与起病时间采集",
+      "max": 15,
+      "description": "是否准确获取患者主诉和发病时间",
+      "items": [
+        {"id": "chief_complaint", "name": "主诉采集", "max": 8, "check": "asked_about_chief_complaint"},
+        {"id": "onset_time", "name": "起病时间", "max": 7, "check": "asked_about_onset_time"}
+      ]
+    },
+    {
+      "id": "accompanying_symptoms",
+      "name": "关键伴随症状追问",
+      "max": 15,
+      "description": "是否追问了关键伴随症状",
+      "items": [
+        {"id": "symptom_questions", "name": "伴随症状追问", "max": 15, "check": "asked_accompanying_symptoms"}
+      ]
+    },
+    {
+      "id": "vital_signs",
+      "name": "生命体征测量",
+      "max": 15,
+      "description": "是否测量了必要的生命体征",
+      "items": [
+        {"id": "vital_measurement", "name": "生命体征测量", "max": 15, "check": "measured_vitals"}
+      ]
+    },
+    {
+      "id": "critical_signals",
+      "name": "高危信号识别",
+      "max": 20,
+      "description": "是否识别了病例中的高危信号",
+      "items": [
+        {"id": "critical_identified", "name": "高危信号识别", "max": 20, "check": "identified_critical_signals"}
+      ]
+    },
+    {
+      "id": "triage_level",
+      "name": "分诊等级判断",
+      "max": 20,
+      "description": "分诊等级Ⅰ-Ⅳ级判断是否准确",
+      "items": [
+        {"id": "level_correct", "name": "分诊等级正确", "max": 20, "check": "level_correct"}
+      ]
+    },
+    {
+      "id": "zone_disposition",
+      "name": "就诊区域与初步处置",
+      "max": 10,
+      "description": "就诊区域选择和初步处置是否合理",
+      "items": [
+        {"id": "zone_correct", "name": "区域选择正确", "max": 5, "check": "zone_correct"},
+        {"id": "disposition", "name": "初步处置合理", "max": 5, "check": "disposition_reasonable"}
+      ]
+    },
+    {
+      "id": "communication",
+      "name": "沟通与记录",
+      "max": 5,
+      "description": "护患沟通质量和记录完整性",
+      "items": [
+        {"id": "communication", "name": "沟通质量", "max": 5, "check": "communication_quality"}
+      ]
+    }
+  ],
+  "severe_error_rules": {
+    "one_vote_veto": true,
+    "rules": [
+      "level_I_to_III_or_IV",
+      "level_II_to_IV",
+      "missed_hypoxia_shock_consciousness_hemorrhage",
+      "high_risk_case_treated_as_routine"
+    ]
+  }
+}

@@ -1,0 +1,1429 @@
+{
+  "external_id": "TRIAGE-043",
+  "stage": "REAL",
+  "title": "洗澡后头痛恶心乏力",
+  "display_name": "洗澡后头痛恶心乏力",
+  "difficulty": 3,
+  "category": "中毒/环境暴露",
+  "source_case_id": "VP-T043",
+  "source_version": "real_triage_case_library_v1.0",
+  "target_user": "新入职护士/护生/急诊轮转护士",
+  "case_schema_version": "real_triage_runtime_v2",
+  "source_library": "预检分诊系统病例库/triage_cases.jsonl",
+  "is_dynamic": true,
+  "training_focus": [
+    "密闭空间暴露"
+  ],
+  "expert_review_required": true,
+  "patient_profile": {
+    "age": "36岁",
+    "gender": "女",
+    "arrival_mode": "家属陪同，自行步入后坐轮椅",
+    "appearance": "清醒但疲惫，面色潮红，坐轮椅，反应稍慢。",
+    "special_identity": "其他：疑似环境暴露风险；教师端隐藏标签为密闭空间暴露、多人同症状"
+  },
+  "initial_exposure": {
+    "chief_complaint": "“头很痛，恶心，浑身没力气。”",
+    "opening_line": "“头很痛，恶心，浑身没力气",
+    "scene_description": "患者冬季洗澡后出现头痛、恶心、乏力，由丈夫陪同来院。学员端初始不直接显示“密 闭空间”和“多人同症状”，需护士主动询问获得。",
+    "family_information": "丈夫陪同，初始只说“她洗完澡后就不舒服”，若护士追问环境和同行人员症状，丈夫补充 两人在家中密闭环境使用燃气热水器后均头晕恶心，开窗后稍缓解。1."
+  },
+  "standard_answer": {
+    "triage_level": "Ⅱ级",
+    "minimum_safe_level": "Ⅱ级",
+    "triage_zone": "黄区",
+    "disposition": [
+      "进入黄区优先/靠近抢救资源区",
+      "立即通知医生",
+      "不启动绿色通道，启动环境中毒暴露高危评估流程",
+      "优先评估暴露来源、同伴症状、意识、呼吸、循环、头痛恶心和现场是否仍有人暴露",
+      "5–10分钟复评意识、GCS、BP、HR、RR、SpO₂、头痛、恶心和胸闷",
+      "若出现意识下降、抽搐、晕厥、呼吸困难、循环不稳，升级Ⅰ级",
+      "不需感染隔离",
+      "需提示院前环境风险和同住人员安全，注意陪同人员也需分诊评估"
+    ],
+    "reassessment_plan": "",
+    "communication_and_record": ""
+  },
+  "positive_findings": [],
+  "negative_findings": [],
+  "required_questions": [
+    {
+      "id": "q_001",
+      "label": "否在密闭空间",
+      "keywords": [
+        "否在密闭",
+        "空间"
+      ],
+      "answer": "“头很痛，恶心，浑身没力气。”"
+    },
+    {
+      "id": "q_002",
+      "label": "使用燃气、炭火、煤炉、汽车或发电机",
+      "keywords": [
+        "使用燃气",
+        "炭火",
+        "煤炉",
+        "汽车或发",
+        "电机"
+      ],
+      "answer": "“头很痛，恶心，浑身没力气。”"
+    },
+    {
+      "id": "q_003",
+      "label": "多人同症状",
+      "keywords": [
+        "多人同症"
+      ],
+      "answer": "“头很痛，恶心，浑身没力气。”"
+    },
+    {
+      "id": "q_004",
+      "label": "暴露 时间和脱离时间",
+      "keywords": [
+        "暴露",
+        "时间和脱",
+        "离时间"
+      ],
+      "answer": "“头很痛，恶心，浑身没力气。”"
+    },
+    {
+      "id": "q_005",
+      "label": "意识模糊、晕厥、抽搐",
+      "keywords": [
+        "意识模糊",
+        "晕厥",
+        "抽搐"
+      ],
+      "answer": "意识清楚。"
+    },
+    {
+      "id": "q_006",
+      "label": "胸闷、呼吸困难、心悸",
+      "keywords": [
+        "胸闷",
+        "呼吸困难",
+        "心悸"
+      ],
+      "answer": "根据病例资料回答。"
+    },
+    {
+      "id": "q_007",
+      "label": "有儿童、孕妇、老人 仍在现场",
+      "keywords": [
+        "有儿童",
+        "孕妇",
+        "老人",
+        "仍在现场"
+      ],
+      "answer": "“头很痛，恶心，浑身没力气。”"
+    },
+    {
+      "id": "chief_complaint",
+      "label": "主诉/哪里不舒服",
+      "keywords": [
+        "主诉",
+        "哪里不舒"
+      ],
+      "answer": "“头很痛，恶心，浑身没力气。”"
+    },
+    {
+      "id": "onset_time",
+      "label": "起病时间",
+      "keywords": [
+        "起病时间"
+      ],
+      "answer": "大概就是刚才开始的，“头很痛，恶心，浑身没力气。”。"
+    },
+    {
+      "id": "symptom_detail",
+      "label": "症状具体表现",
+      "keywords": [
+        "症状具体",
+        "表现"
+      ],
+      "answer": "“头很痛，恶心，浑身没力气。”，清醒但疲惫，面色潮红，坐轮椅，反应稍慢。。"
+    },
+    {
+      "id": "severity",
+      "label": "严重程度/疼痛评分",
+      "keywords": [
+        "严重程度",
+        "疼痛评分"
+      ],
+      "answer": "挺疼的，打个七八分吧，疲惫、头痛明显、回答稍慢。 如果护士问无关问题，患者应回应：。"
+    },
+    {
+      "id": "accompanying",
+      "label": "伴随症状",
+      "keywords": [
+        "伴随症状"
+      ],
+      "answer": "有点恶心、出汗，不太舒服。"
+    },
+    {
+      "id": "breathing",
+      "label": "呼吸/胸闷/气促",
+      "keywords": [
+        "呼吸",
+        "胸闷",
+        "气促"
+      ],
+      "answer": "呼吸还行，就是有点喘不上气的感觉。"
+    },
+    {
+      "id": "consciousness",
+      "label": "意识/晕厥/头晕",
+      "keywords": [
+        "意识",
+        "晕厥",
+        "头晕"
+      ],
+      "answer": "人还是清醒的，就是有点头晕。"
+    },
+    {
+      "id": "past_history",
+      "label": "既往史/基础疾病",
+      "keywords": [
+        "既往史",
+        "基础疾病"
+      ],
+      "answer": "以前有高血压、糖尿病，控制得不太好。"
+    },
+    {
+      "id": "medication",
+      "label": "用药史",
+      "keywords": [
+        "用药史"
+      ],
+      "answer": "平时吃降压药和降糖药，叫什么名字记不清了。"
+    },
+    {
+      "id": "allergy",
+      "label": "过敏史",
+      "keywords": [
+        "过敏史"
+      ],
+      "answer": "以前没发现明显的药物过敏。"
+    },
+    {
+      "id": "smoking_alcohol",
+      "label": "烟酒史",
+      "keywords": [
+        "烟酒史"
+      ],
+      "answer": "不抽烟，偶尔喝点酒。"
+    },
+    {
+      "id": "family_or_witness",
+      "label": "家属/目击者补充",
+      "keywords": [
+        "家属",
+        "目击者补"
+      ],
+      "answer": "丈夫陪同，初始只说“她洗完澡后就不舒服”，若护士追问环境和同行人员症状，丈夫补充 两人在家中密闭环境使用燃气热水器后均头晕恶心，开窗后稍缓解。1."
+    }
+  ],
+  "required_measurements": [
+    {
+      "id": "blood_pressure",
+      "label": "血压",
+      "value": "132/78 mmHg",
+      "unit": "mmHg",
+      "is_abnormal": false,
+      "source_field": "vital_signs.systolic_bp_mmhg/diastolic_bp_mmhg"
+    },
+    {
+      "id": "temperature_c",
+      "label": "体温",
+      "value": "36.5",
+      "unit": "℃",
+      "is_abnormal": false,
+      "source_field": "vital_signs.temperature_c",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "heart_rate_bpm",
+      "label": "心率",
+      "value": "108",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.heart_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "respiratory_rate_bpm",
+      "label": "呼吸频率",
+      "value": "22",
+      "unit": "次/分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.respiratory_rate_bpm",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "spo2_percent",
+      "label": "SpO2",
+      "value": "98",
+      "unit": "%",
+      "is_abnormal": false,
+      "source_field": "vital_signs.spo2_percent",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "pain_score",
+      "label": "疼痛评分",
+      "value": "7.0",
+      "unit": "分",
+      "is_abnormal": true,
+      "source_field": "vital_signs.pain_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "consciousness",
+      "label": "意识状态",
+      "value": "清醒但反应稍慢",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.consciousness",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "gcs_score",
+      "label": "GCS评分",
+      "value": "14",
+      "unit": "分",
+      "is_abnormal": false,
+      "source_field": "vital_signs.gcs_score",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "blood_glucose_mmol_l",
+      "label": "血糖",
+      "value": "5.6",
+      "unit": "mmol/L",
+      "is_abnormal": false,
+      "source_field": "vital_signs.blood_glucose_mmol_l",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "skin_perfusion",
+      "label": "皮肤灌注",
+      "value": "面色潮红，轻度出汗，无发绀，末梢灌注可",
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.skin_perfusion",
+      "clinical_meaning": ""
+    },
+    {
+      "id": "other_assessments",
+      "label": "其他评估",
+      "value": [
+        "密闭空间暴露",
+        "燃气/炭火/发动机尾气接触",
+        "同住人员症状",
+        "意识变化",
+        "抽搐",
+        "胸闷",
+        "呼吸困难",
+        "孕妇/儿童同住情况",
+        "暴露脱离时间"
+      ],
+      "unit": "",
+      "is_abnormal": false,
+      "source_field": "vital_signs.other_assessments",
+      "clinical_meaning": ""
+    }
+  ],
+  "critical_signals": [
+    {
+      "id": "rf_001",
+      "label": "密闭空间暴露",
+      "evidence": [
+        "密闭空间暴露"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_002",
+      "label": "多人同症状",
+      "evidence": [
+        "多人同症状"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅰ级"
+    },
+    {
+      "id": "rf_003",
+      "label": "意识变慢/GCS 14分",
+      "evidence": [
+        "意识变慢/GCS 14分"
+      ],
+      "expected_action": "立即红区评估并通知医生",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_004",
+      "label": "头痛明显、恶心乏力",
+      "evidence": [
+        "头痛明显、恶心乏力"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    },
+    {
+      "id": "rf_005",
+      "label": "晕厥、抽搐或胸 闷风险",
+      "evidence": [
+        "晕厥、抽搐或胸 闷风险"
+      ],
+      "expected_action": "优先评估",
+      "related_triage_level": "Ⅱ级"
+    }
+  ],
+  "severe_errors": [
+    {
+      "code": "CRITICAL_FAIL_001",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问密闭空间和燃气暴露",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_002",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未询问多人同症状",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_003",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未评估意识",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_004",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "CRITICAL_FAIL_005",
+      "condition": "student_level_lower_than_minimum_safe_level",
+      "message": "安排绿区",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "standard_feedback": {
+    "summary": "",
+    "must_mention": []
+  },
+  "dialogue_state_machine": {
+    "slots": [
+      {
+        "slot_id": "slot_001",
+        "layer": "L1",
+        "label": "否在密闭空间",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_002",
+        "layer": "L1",
+        "label": "使用燃气、炭火、煤炉、汽车或发电机",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_003",
+        "layer": "L1",
+        "label": "多人同症状",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_004",
+        "layer": "L2",
+        "label": "暴露 时间和脱离时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "刚才开始的，大概十来分钟。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_005",
+        "layer": "L2",
+        "label": "意识模糊、晕厥、抽搐",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "意识清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_006",
+        "layer": "L2",
+        "label": "胸闷、呼吸困难、心悸",
+        "canonical_intents": [
+          "ask_breathing"
+        ],
+        "answer_facts": [
+          "按压和活动时更痛，安静不动稍好。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "slot_007",
+        "layer": "L2",
+        "label": "有儿童、孕妇、老人 仍在现场",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "这个我说不太清楚。"
+        ],
+        "is_required": true,
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "chief_complaint",
+        "label": "主诉/哪里不舒服",
+        "canonical_intents": [
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“头很痛，恶心，浑身没力气。”"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "onset_time",
+        "label": "起病时间",
+        "canonical_intents": [
+          "ask_onset_time"
+        ],
+        "answer_facts": [
+          "大概就是刚才开始的，“头很痛，恶心，浑身没力气。”。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "symptom_detail",
+        "label": "症状具体表现",
+        "canonical_intents": [
+          "ask_pain_nature",
+          "ask_chief_complaint"
+        ],
+        "answer_facts": [
+          "“头很痛，恶心，浑身没力气。”，清醒但疲惫，面色潮红，坐轮椅，反应稍慢。。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "severity",
+        "label": "严重程度/疼痛评分",
+        "canonical_intents": [
+          "ask_severity",
+          "ask_pain_score"
+        ],
+        "answer_facts": [
+          "挺疼的，打个七八分吧，疲惫、头痛明显、回答稍慢。 如果护士问无关问题，患者应回应：。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "accompanying",
+        "label": "伴随症状",
+        "canonical_intents": [
+          "ask_accompanying",
+          "ask_nausea_vomiting",
+          "ask_sweating"
+        ],
+        "answer_facts": [
+          "有点恶心、出汗，不太舒服。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "breathing",
+        "label": "呼吸/胸闷/气促",
+        "canonical_intents": [
+          "ask_breathing",
+          "ask_dyspnea"
+        ],
+        "answer_facts": [
+          "呼吸还行，就是有点喘不上气的感觉。"
+        ],
+        "is_required": true,
+        "layer": "L1",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "consciousness",
+        "label": "意识/晕厥/头晕",
+        "canonical_intents": [
+          "ask_consciousness"
+        ],
+        "answer_facts": [
+          "人还是清醒的，就是有点头晕。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "past_history",
+        "label": "既往史/基础疾病",
+        "canonical_intents": [
+          "ask_past_history",
+          "ask_cardiovascular_history",
+          "ask_hypertension_diabetes"
+        ],
+        "answer_facts": [
+          "以前有高血压、糖尿病，控制得不太好。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "medication",
+        "label": "用药史",
+        "canonical_intents": [
+          "ask_medication"
+        ],
+        "answer_facts": [
+          "平时吃降压药和降糖药，叫什么名字记不清了。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "allergy",
+        "label": "过敏史",
+        "canonical_intents": [
+          "ask_allergy"
+        ],
+        "answer_facts": [
+          "以前没发现明显的药物过敏。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "smoking_alcohol",
+        "label": "烟酒史",
+        "canonical_intents": [
+          "ask_smoking_alcohol"
+        ],
+        "answer_facts": [
+          "不抽烟，偶尔喝点酒。"
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      },
+      {
+        "slot_id": "family_or_witness",
+        "label": "家属/目击者补充",
+        "canonical_intents": [
+          "ask_social_support",
+          "ask_family_history"
+        ],
+        "answer_facts": [
+          "丈夫陪同，初始只说“她洗完澡后就不舒服”，若护士追问环境和同行人员症状，丈夫补充 两人在家中密闭环境使用燃气热水器后均头晕恶心，开窗后稍缓解。1."
+        ],
+        "is_required": true,
+        "layer": "L2",
+        "score_tags": [
+          "聚焦病史采集"
+        ]
+      }
+    ],
+    "disclosure_policy": {
+      "allow_only_triggered_slots": true,
+      "max_new_slots_per_reply": 1,
+      "repeat_answer_policy": "brief_confirm",
+      "unknown_policy": "patient_uncertain"
+    }
+  },
+  "patient_variants": [
+    {
+      "variant_id": "standard",
+      "label": "标准表达",
+      "opening_line": "“头很痛，恶心，浑身没力气",
+      "tone": "neutral",
+      "description": "患者标准叙述"
+    },
+    {
+      "variant_id": "colloquial",
+      "label": "口语化表达",
+      "opening_line": "“头很痛，恶心，浑身没力气 反正就是特别难受，我也不知道咋形容。",
+      "tone": "colloquial",
+      "description": "患者口语化、断续表达"
+    },
+    {
+      "variant_id": "anxious_vague",
+      "label": "含糊/焦虑表达",
+      "opening_line": "医生...我、我也不知道怎么说，就是特别不舒服，我害怕是不是什么大病...",
+      "tone": "anxious",
+      "description": "患者焦虑、表达含糊、信息不完整"
+    }
+  ],
+  "dialogue_rules": {
+    "patient_tone": "疲惫、头痛明显、回答稍慢。 如果护士问无关问题，患者应回应：“我就是头痛恶心，没力气。” 如果护士重复询问，患者应回应：“洗完澡后开始不舒服，头很痛。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时丈夫可说“我也越 来越晕”。",
+    "forbidden_spontaneous_information": [
+      "不得主动说“一氧化碳中毒”“Ⅱ级”“SpO₂正常也危险”“多人同症 状”",
+      "诊断名称",
+      "标准分诊等级",
+      "所有高危信号",
+      "系统评分答案"
+    ],
+    "irrelevant_question_response": null,
+    "repeated_question_response": null,
+    "family_can_add": [
+      "丈夫在护士追问后补充两人同症状",
+      "环境密闭和燃气使用"
+    ]
+  },
+  "patient_tone": "疲惫、头痛明显、回答稍慢。 如果护士问无关问题，患者应回应：“我就是头痛恶心，没力气。” 如果护士重复询问，患者应回应：“洗完澡后开始不舒服，头很痛。” 如果护士没有追问关键危险信号，患者是否主动提示：一般不主动提示；动态恶化时丈夫可说“我也越 来越晕”。",
+  "scoring_rubric": {
+    "total_score": 100,
+    "items": [
+      {
+        "dimension": "第一眼评估",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "识别头痛恶心和疲惫",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "识别反应稍慢",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "追问并识别环境和同行人员风险",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判断 需优先处理",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "主诉与聚焦病史采集",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "密闭空间暴露",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "燃气/炭火/尾气等来源",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "多人同症状",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "暴露时间和脱离 时间",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识、晕厥、抽搐",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "还有儿童/孕妇/老人留在现场",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "生命体征与客观评估",
+        "max_score": 15,
+        "criteria": [
+          {
+            "criterion": "BP和HR",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "RR和SpO₂",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "GCS/意识",
+            "score": 4,
+            "critical_fail": false
+          },
+          {
+            "criterion": "血糖",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "头痛恶心和呕吐",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观 察陪同人员状态",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "高危信号识别",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "密闭空间暴露",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "多人同症状",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "意识变慢/GCS",
+            "score": 14,
+            "critical_fail": false
+          },
+          {
+            "criterion": "明显头痛恶心",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "晕 厥、抽搐或胸闷风险",
+            "score": 3,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "分诊等级判断",
+        "max_score": 20,
+        "criteria": [
+          {
+            "criterion": "初始正确Ⅱ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "动态嗜睡/GCS下降后Ⅰ级",
+            "score": 20,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅲ级",
+            "score": 5,
+            "critical_fail": false
+          },
+          {
+            "criterion": "判Ⅳ级",
+            "score": 0,
+            "critical_fail": false
+          },
+          {
+            "criterion": "未问环 境暴露/多人同症状、绿区候诊、动态意识下降未升级任一项本项",
+            "score": 0,
+            "critical_fail": true
+          },
+          {
+            "criterion": "一票否决项：未询问密闭空间和燃气暴露；未询问多人同症状；未评估意识",
+            "score": 0,
+            "critical_fail": true
+          }
+        ]
+      },
+      {
+        "dimension": "分诊处置与区域安排",
+        "max_score": 10,
+        "criteria": [
+          {
+            "criterion": "黄区优先",
+            "score": 3,
+            "critical_fail": false
+          },
+          {
+            "criterion": "通知医生",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "启动环境暴露评估",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "同伴和现场安全提醒",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "恶化后红区",
+            "score": 2,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "候诊复评与安全管理",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "5–",
+            "score": 10,
+            "critical_fail": false
+          },
+          {
+            "criterion": "观察头痛、呕吐、同伴症状",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "变化后重新 分诊",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      },
+      {
+        "dimension": "沟通、解释与记录",
+        "max_score": 5,
+        "criteria": [
+          {
+            "criterion": "解释环境暴露风险",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "询问是否仍有人在现场",
+            "score": 1,
+            "critical_fail": false
+          },
+          {
+            "criterion": "记录暴露、多人同症状、GCS和 复评",
+            "score": 2,
+            "critical_fail": false
+          },
+          {
+            "criterion": "SBAR交接",
+            "score": 1,
+            "critical_fail": false
+          }
+        ]
+      }
+    ]
+  },
+  "feedback": {
+    "correct_points": "识别“洗澡后头痛恶心乏力”需要追问环境暴露和同行人员症状。",
+    "risk_if_missed": "漏问密闭空间、燃气设备和多人同症状，会误分低危并遗漏多人 暴露风险。",
+    "key_red_flag": "密闭空间暴露、多人同症状、意识变慢、头痛恶心。",
+    "reason_for_triage_level": "环境暴露高危线索明确，需Ⅱ级优先；意识下降后Ⅰ级。",
+    "correct_triage_logic": "头痛恶心要结合环境和群体症状判断，不只看SpO₂。",
+    "recommended_remediation": [
+      "环境中毒分诊",
+      "多人同症状识别",
+      "意识动态评估",
+      "同伴分诊和现场安全",
+      "十二",
+      "输出限制 不要写治疗处方",
+      "不要写药物剂量",
+      "不要把病例写成医生诊断题",
+      "不要让虚拟患者一开始暴露所有关键信息",
+      "不要省略评分细则",
+      "不要使用真实患者隐私信息",
+      "不要让评分标准过于笼统",
+      "本病例可以直接录入系统病例库",
+      "10."
+    ]
+  },
+  "review_status": {
+    "ai_generated": false,
+    "expert_reviewed": true,
+    "reviewer_role": "原始病例库定稿资料",
+    "review_date": "2026-06-10",
+    "approved_for_training": true
+  },
+  "red_flags": [
+    "密闭空间暴露",
+    "多人同症状",
+    "意识变慢/GCS 14分",
+    "头痛明显、恶心乏力",
+    "晕厥、抽搐或胸 闷风险"
+  ],
+  "common_errors": [
+    "只按普通头痛或胃肠不适分诊",
+    "SpO₂正常就排除中毒风险",
+    "未询问多人同症状和环境暴 露",
+    "Ⅲ级头痛恶心候诊或Ⅳ级胃部不适候诊"
+  ],
+  "critical_errors": [
+    "未询问密闭空间和燃气暴露",
+    "未询问多人同症状",
+    "未评估意识",
+    "未通知医生",
+    "安排绿区",
+    "绿区为一票否决"
+  ],
+  "clinical_information": {
+    "key_positive_information": [
+      "洗澡后头痛恶心乏力",
+      "追问后可获得密闭空间和燃气热水器暴露",
+      "追问后可获得丈夫也 头晕",
+      "头痛7/10、GCS 14分",
+      "HR 108次/分"
+    ],
+    "key_negative_information": [
+      "当前无昏迷",
+      "无抽搐",
+      "无明显低血压或严重呼吸困难"
+    ]
+  },
+  "triage_standard": {
+    "domestic_triage_level": "Ⅱ级",
+    "esi_ctas_mapping": "ESI 2/CTAS 2；意识障碍、抽搐、严重低氧或循环不稳时ESI 1/CTAS 1",
+    "standard_zone": "黄区",
+    "standard_zone_detail": "黄区优先/靠近抢救资源区",
+    "notify_doctor_immediately": true,
+    "green_channel_required": false,
+    "green_channel_name": null,
+    "reassessment_interval": "不普通候诊；5–10分钟内复评意识、SpO₂、头痛、恶心和同行人员症状",
+    "isolation_or_ppe": "不需要感染隔离；需避免污染源继续暴露，注意同伴和院前环境安全信息",
+    "violence_self_harm_risk": "否；存在意识下降、跌倒、抽搐和同住人员继续暴露风险",
+    "triage_basis": "该病例应分为Ⅱ级。患者存在洗澡后头痛恶心乏力、反应稍慢和心率增快，追问可获得密闭空间燃气暴露和多 人同症状，提示环境中毒高危。当前无昏迷、抽搐或循环不稳，因此初始不属Ⅰ级；但不能分为Ⅲ级或Ⅳ级， 因为SpO₂正常不能排除此类暴露风险，且多人同症状和意识变慢是高危信号。1."
+  },
+  "standard_actions": {
+    "immediate_actions": [
+      "进入黄区优先/靠近抢救资源区",
+      "立即通知医生",
+      "不启动绿色通道，启动环境中毒暴露高危评估流程",
+      "优先评估暴露来源、同伴症状、意识、呼吸、循环、头痛恶心和现场是否仍有人暴露",
+      "5–10分钟复评意识、GCS、BP、HR、RR、SpO₂、头痛、恶心和胸闷",
+      "若出现意识下降、抽搐、晕厥、呼吸困难、循环不稳，升级Ⅰ级",
+      "不需感染隔离",
+      "需提示院前环境风险和同住人员安全，注意陪同人员也需分诊评估"
+    ],
+    "communication_points": [
+      "询问患者和丈夫洗澡环境、燃气设备和是否还有人在现场",
+      "告知多人同症状提示环境暴露风 险，需要优先评估"
+    ],
+    "documentation_points": [
+      "洗澡后发病时间",
+      "暴露环境",
+      "燃气/炭火等线索",
+      "多人同症状",
+      "头痛评分",
+      "意识/GCS",
+      "生命体征",
+      "陪同人员症状",
+      "分诊等级",
+      "通知医生时间"
+    ],
+    "sbar_handoff": "S：36岁女性，洗澡后头痛恶心乏力，反应稍慢。 B：追问后发现冬季密闭环境使用燃气热水器，丈夫也头晕。 A：Ⅱ级，头痛7/10，HR 108次/分，GCS 14分，SpO₂ 98%。 R：环境中毒暴露高危评估，关注意识、呼吸、同住人员和现场继续暴露风险。"
+  },
+  "assessment_checklist": {
+    "must_ask_items": [
+      "否在密闭空间",
+      "使用燃气、炭火、煤炉、汽车或发电机",
+      "多人同症状",
+      "暴露 时间和脱离时间",
+      "意识模糊、晕厥、抽搐",
+      "胸闷、呼吸困难、心悸",
+      "有儿童、孕妇、老人 仍在现场"
+    ],
+    "must_measure_items": [
+      "血压",
+      "心率",
+      "呼吸频率",
+      "SpO₂",
+      "意识/GCS",
+      "血糖"
+    ],
+    "must_observe_items": [
+      "意识迟钝",
+      "头痛恶心程度",
+      "面色潮红或出汗",
+      "呼吸状态",
+      "步态和跌倒风险",
+      "陪同人员是 否也有症状"
+    ]
+  },
+  "dynamic_timeline": {
+    "enabled": true,
+    "time_scale": "simulated",
+    "initial_stage": {
+      "expected_level": "Ⅱ级",
+      "expected_zone": "黄区",
+      "reassessment_due_minutes": 10,
+      "initial_risk": [
+        "洗澡后头痛恶心乏力加重风险"
+      ]
+    },
+    "events": [
+      {
+        "event_id": "event_001",
+        "patient_expression": "患者头痛加重，反应更慢，HR 118次/分，丈夫也诉明显头晕。",
+        "vital_changes": {
+          "heart_rate": 118
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "患者头痛加重，反应更慢，HR 118次/分，丈夫也诉明显头晕。",
+        "standard_level_after_event": null,
+        "severe_error_if_ignored": false,
+        "event_type": "time_elapsed",
+        "scheduled_minute": 6,
+        "event_description": "患者头痛加重，反应更慢，HR 118次/分，丈夫也诉明显头晕。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      },
+      {
+        "event_id": "event_002",
+        "patient_expression": "患者嗜睡，GCS降至11分，出现呕吐，站立不稳。",
+        "vital_changes": {
+          "gcs_score": 11
+        },
+        "requires_reassessment": true,
+        "reassessment_instruction": "患者嗜睡，GCS降至11分，出现呕吐，站立不稳。",
+        "standard_level_after_event": "Ⅰ级",
+        "severe_error_if_ignored": true,
+        "event_type": "time_elapsed_without_reassessment",
+        "scheduled_minute": 12,
+        "event_description": "患者嗜睡，GCS降至11分，出现呕吐，站立不稳。",
+        "visible_to_student": true,
+        "student_prompt": "请关注患者病情变化"
+      }
+    ],
+    "reassessment_required_items": [
+      "blood_pressure",
+      "heart_rate_bpm",
+      "spo2_percent",
+      "pain_score"
+    ],
+    "failure_consequence": "未复评或未升级可能延误病情恶化识别。"
+  },
+  "emotional_state": "neutral",
+  "proxy_mode": {
+    "enabled": false,
+    "proxy_type": "family_member"
+  },
+  "unclear_expression_mode": {
+    "enabled": true,
+    "trigger_on_reask": 2
+  },
+  "forbidden_disclosure": [
+    "diagnosis",
+    "exam_results",
+    "consultation_conclusion"
+  ],
+  "allowed_disclosure_by_stage": {
+    "initial": [
+      "chief_complaint",
+      "onset",
+      "basic_info"
+    ],
+    "questioning": [
+      "symptoms",
+      "history",
+      "medication",
+      "allergy"
+    ],
+    "assessment": [
+      "vitals",
+      "observations"
+    ]
+  },
+  "patient_states": [
+    {
+      "state_id": "T0_initial",
+      "state_name": "清醒但疲惫，面色潮红，坐轮椅，反应稍慢。",
+      "time_minute": 0,
+      "appearance": "清醒但疲惫，面色潮红，坐轮椅，反应稍慢。",
+      "chief_complaint": "“头很痛，恶心，浑身没力气。”",
+      "symptom_description": "患者冬季洗澡后出现头痛、恶心、乏力，由丈夫陪同来院。学员端初始不直接显示“密 闭空间”和“多人同症状”，需护士主动询问获得。",
+      "mental_status": "清醒",
+      "pain_score": 7,
+      "risk_signals": [
+        "密闭空间暴露",
+        "多人同症状",
+        "意识变慢/GCS 14分"
+      ],
+      "available_dialogue_slots": [
+        "chief_complaint",
+        "onset",
+        "pain_location",
+        "pain_nature",
+        "accompanying",
+        "past_history"
+      ],
+      "vital_signs": {
+        "temperature": 36.5,
+        "heart_rate": 108,
+        "respiratory_rate": 22,
+        "spo2": 98,
+        "pain_score": 7,
+        "consciousness": "清醒但反应稍慢",
+        "gcs_score": 14,
+        "blood_glucose": 5.6,
+        "skin_perfusion": "面色潮红，轻度出汗，无发绀，末梢灌注可",
+        "other_assessments": [
+          "密闭空间暴露",
+          "燃气/炭火/发动机尾气接触",
+          "同住人员症状",
+          "意识变化",
+          "抽搐",
+          "胸闷",
+          "呼吸困难",
+          "孕妇/儿童同住情况",
+          "暴露脱离时间"
+        ],
+        "blood_pressure_systolic": 132,
+        "blood_pressure_diastolic": 78
+      },
+      "recommended_actions": [
+        "初始分诊Ⅱ级",
+        "黄区候诊"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T6_event_1",
+      "state_name": "患者头痛加重，反应更慢，HR 118次/分，丈夫也诉明显头晕。",
+      "time_minute": 6,
+      "appearance": "清醒但疲惫，面色潮红，坐轮椅，反应稍慢。",
+      "chief_complaint": "患者头痛加重，反应更慢，HR 118次/分，丈夫也诉明显头晕。",
+      "symptom_description": "患者头痛加重，反应更慢，HR 118次/分，丈夫也诉明显头晕。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "heart_rate": 118
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    },
+    {
+      "state_id": "T12_event_2",
+      "state_name": "患者嗜睡，GCS降至11分，出现呕吐，站立不稳。",
+      "time_minute": 12,
+      "appearance": "清醒但疲惫，面色潮红，坐轮椅，反应稍慢。",
+      "chief_complaint": "患者嗜睡，GCS降至11分，出现呕吐，站立不稳。",
+      "symptom_description": "患者嗜睡，GCS降至11分，出现呕吐，站立不稳。",
+      "mental_status": "清醒但烦躁",
+      "pain_score": 5,
+      "risk_signals": [
+        "病情变化"
+      ],
+      "available_dialogue_slots": [
+        "current_symptoms",
+        "pain_change",
+        "new_symptoms"
+      ],
+      "vital_signs": {
+        "gcs_score": 11
+      },
+      "recommended_actions": [
+        "升级分诊等级",
+        "通知医生",
+        "调整区域"
+      ],
+      "standard_triage_level": "Ⅱ级",
+      "standard_area": "黄区"
+    }
+  ],
+  "standard_initial_triage_level": "Ⅱ级",
+  "standard_initial_area": "黄区",
+  "standard_final_triage_level": "Ⅱ级",
+  "standard_final_area": "黄区",
+  "dynamic_scoring_rubric": {
+    "total_score": 100,
+    "dimensions": [
+      {
+        "name": "初始第一眼评估",
+        "max_score": 8,
+        "key": "initial_first_look"
+      },
+      {
+        "name": "初始病史采集",
+        "max_score": 12,
+        "key": "initial_history"
+      },
+      {
+        "name": "初始生命体征评估",
+        "max_score": 12,
+        "key": "initial_vitals"
+      },
+      {
+        "name": "初始高危信号识别",
+        "max_score": 15,
+        "key": "initial_risk_signals"
+      },
+      {
+        "name": "初始分诊等级",
+        "max_score": 15,
+        "key": "initial_triage_level"
+      },
+      {
+        "name": "初始处置安排",
+        "max_score": 8,
+        "key": "initial_disposition"
+      },
+      {
+        "name": "复评时间设置",
+        "max_score": 8,
+        "key": "reassessment_timing"
+      },
+      {
+        "name": "复评内容完成",
+        "max_score": 10,
+        "key": "reassessment_content"
+      },
+      {
+        "name": "病情变化识别与升级",
+        "max_score": 8,
+        "key": "deterioration_response"
+      },
+      {
+        "name": "沟通记录",
+        "max_score": 4,
+        "key": "communication"
+      }
+    ]
+  },
+  "dynamic_severe_errors": [
+    {
+      "code": "NO_REASSESS_AFTER_WORSENING",
+      "condition": "student_did_not_reassess",
+      "message": "患者病情恶化后未进行复评",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "NO_UPGRADE_AFTER_WORSENING",
+      "condition": "reassessed_but_not_upgraded",
+      "message": "复评后病情恶化仍未升级分诊等级",
+      "critical_fail": true,
+      "score_cap": 59
+    }
+  ],
+  "required_dynamic_actions": [
+    "first_look_observation",
+    "history_taking",
+    "vital_signs_measurement",
+    "initial_triage_decision",
+    "advance_time",
+    "reassess",
+    "submit_case"
+  ]
+}

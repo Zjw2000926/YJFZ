@@ -1,0 +1,63 @@
+{
+  "external_id": "TRIAGE-STATIC-CHEST-II-001",
+  "stage": "PUBLISHED",
+  "title": "胸痛30分钟伴左肩放射痛",
+  "display_name": "胸骨后压榨样疼痛30分钟",
+  "difficulty": 2,
+  "category": "胸痛/心血管",
+  "is_dynamic": false,
+  "training_focus": ["心源性胸痛识别", "高危信号筛查", "II级红区分诊"],
+  "expert_review_required": false,
+  "review_status": {"ai_generated": false, "expert_reviewed": true, "approved_for_training": true},
+  "patient_profile": {"age": "56岁", "gender": "男", "arrival_mode": "轮椅推入", "appearance": "表情痛苦，左手按胸，面色苍白，出冷汗"},
+  "initial_exposure": {"chief_complaint": "胸骨后压榨样疼痛30分钟", "opening_line": "医生，我胸口疼得厉害，像石头压着一样，半个小时了。", "scene_description": "56岁男性轮椅推入急诊，左手按胸骨后区，面色苍白、出冷汗。", "family_information": "家属陪同，代诉患者有高血压病史。"},
+  "standard_answer": {"triage_level": "Ⅱ级", "minimum_safe_level": "Ⅱ级", "triage_zone": "红区", "disposition": ["红区胸痛优先诊区", "立即心电图", "通知医生", "心电监护", "建立静脉通路"], "reassessment_plan": "15分钟内复评；若疼痛加重、血压下降或意识改变立即升级通知医生", "communication_and_record": "向患者和家属解释胸痛需紧急排除心源性和大血管原因，红区密切观察。"},
+  "required_questions": [
+    {"id": "chief_complaint","label": "主诉","keywords": ["主诉","哪里不舒"],"answer": "胸口疼，像石头压着，半个小时了。"},
+    {"id": "onset_time","label": "起病时间","keywords": ["时间","开始","多久"],"answer": "半个小时前开始的，突然一下就疼起来了。"},
+    {"id": "pain_location","label": "疼痛位置","keywords": ["位置","哪里","部位"],"answer": "胸口正中间这块，还往左肩膀和左胳膊那边窜。"},
+    {"id": "pain_nature","label": "疼痛性质","keywords": ["怎么疼","性质","什么样"],"answer": "压榨样的疼，闷得慌，不是刺痛那种。"},
+    {"id": "pain_radiation","label": "放射痛","keywords": ["放射","窜","肩膀","胳膊","下颌"],"answer": "左边肩膀和胳膊也疼，还有点酸麻感。"},
+    {"id": "accompanying","label": "伴随症状","keywords": ["伴随","恶心","出汗","气促"],"answer": "出冷汗，有点恶心，胸口闷，感觉气不够用。"},
+    {"id": "past_history","label": "既往史","keywords": ["既往","过去","高血压","糖尿病","心脏病"],"answer": "有高血压好几年了，平时吃降压药，没查过心脏。"},
+    {"id": "medication","label": "用药史","keywords": ["吃药","用药","药"],"answer": "就吃降压药，别的没吃。"},
+    {"id": "allergy","label": "过敏史","keywords": ["过敏"],"answer": "没有药物过敏。"}
+  ],
+  "required_measurements": [
+    {"id": "blood_pressure","label": "血压","value": "158/96","unit": "mmHg","is_abnormal": true},
+    {"id": "heart_rate","label": "心率","value": "108","unit": "次/分","is_abnormal": true},
+    {"id": "respiratory_rate","label": "呼吸频率","value": "22","unit": "次/分","is_abnormal": false},
+    {"id": "temperature","label": "体温","value": "36.7","unit": "℃","is_abnormal": false},
+    {"id": "spo2","label": "SpO2","value": "96","unit": "%","is_abnormal": false},
+    {"id": "pain_score","label": "疼痛评分","value": "8","unit": "分","is_abnormal": true},
+    {"id": "consciousness","label": "意识状态","value": "清楚","unit": "","is_abnormal": false}
+  ],
+  "critical_signals": [{"id": "cardiac_chest_pain","label": "心源性胸痛：压榨样+放射+冷汗+高血压"}],
+  "severe_errors": [{"code": "MISSED_CARDIAC_CHEST_PAIN","condition": "判为IV级或绿区","message": "胸痛高危信号未识别","critical_fail": true,"score_cap": 59}],
+  "red_flags": ["压榨样胸痛伴放射痛", "冷汗、恶心", "高血压病史", "HR 108 + BP 158/96"],
+  "feedback": {"correct_points": "识别胸痛高危信号、正确分为II级红区", "risk_if_missed": "心源性胸痛漏诊可导致心梗延误", "key_red_flag": "压榨样胸痛+放射+冷汗+高血压", "reason_for_triage_level": "胸骨后压榨样疼痛30分钟，向左肩左臂放射，伴冷汗恶心，高血压病史，HR108 BP158/96。高度怀疑ACS，按II级红区处理。", "recommended_remediation": ["胸痛高危信号识别","心源性vs非心源性鉴别","II级红区处置流程"]},
+  "clinical_information": {"key_positive_information": ["胸骨后压榨样疼痛30分钟","向左肩左臂放射","出冷汗","高血压病史","HR108 BP158/96"], "key_negative_information": ["无晕厥","无意识障碍","SpO2 96%"]},
+  "triage_standard": {"domestic_triage_level": "Ⅱ级", "esi_ctas_mapping": "ESI 2/CTAS 2", "standard_zone": "红区", "notify_doctor_immediately": true, "green_channel_required": false, "reassessment_interval": "15分钟内复评"},
+  "dialogue_state_machine": {"slots": [
+    {"slot_id":"chief_complaint","label":"主诉","canonical_intents":["ask_chief_complaint"],"answer_facts":["胸口疼得厉害，像石头压着一样，半个小时了。"],"is_required":true,"layer":"L1"},
+    {"slot_id":"onset_time","label":"起病时间","canonical_intents":["ask_onset_time"],"answer_facts":["半小时前突然开始的，一下子就疼了。"],"is_required":true,"layer":"L1"},
+    {"slot_id":"pain_location","label":"疼痛位置","canonical_intents":["ask_pain_location"],"answer_facts":["胸口正中，还往左肩左臂窜。"],"is_required":true,"layer":"L1"},
+    {"slot_id":"pain_nature","label":"疼痛性质","canonical_intents":["ask_pain_nature"],"answer_facts":["压榨样，闷得慌，不是刺痛。"],"is_required":true,"layer":"L1"},
+    {"slot_id":"pain_radiation","label":"放射痛","canonical_intents":["ask_pain_radiation"],"answer_facts":["左边肩膀和胳膊疼，酸麻感。"],"is_required":true,"layer":"L1"},
+    {"slot_id":"accompanying","label":"伴随症状","canonical_intents":["ask_accompanying","ask_nausea_vomiting","ask_sweating"],"answer_facts":["出冷汗，有点恶心，胸闷气不够用。"],"is_required":true,"layer":"L1"},
+    {"slot_id":"past_history","label":"既往史","canonical_intents":["ask_past_history","ask_hypertension_diabetes"],"answer_facts":["有高血压好几年了，平时吃降压药。"],"is_required":true,"layer":"L2"},
+    {"slot_id":"medication","label":"用药","canonical_intents":["ask_medication"],"answer_facts":["就吃降压药，别的没吃。"],"is_required":true,"layer":"L2"},
+    {"slot_id":"allergy","label":"过敏","canonical_intents":["ask_allergy"],"answer_facts":["没有药物过敏。"],"is_required":true,"layer":"L2"}
+  ]},
+  "patient_variants": [
+    {"variant_id":"standard","label":"标准表达","opening_line":"医生，我胸口疼得厉害，像石头压着一样，半个小时了。","tone":"neutral"},
+    {"variant_id":"colloquial","label":"口语化表达","opening_line":"哎哟医生，我这胸口啊，闷得不行，跟压了块大石头似的，半小时了……","tone":"colloquial"},
+    {"variant_id":"anxious_vague","label":"含糊/焦虑表达","opening_line":"医生……我胸口好难受……说不清……就是特别闷……我是不是心脏出事了……","tone":"anxious"}
+  ],
+  "emotional_state": "anxious",
+  "proxy_mode": {"enabled": false},
+  "unclear_expression_mode": {"enabled": true, "trigger_on_reask": 2},
+  "forbidden_disclosure": ["diagnosis","exam_results","consultation_conclusion"],
+  "allowed_disclosure_by_stage": {"initial":["chief_complaint","onset","basic_info"],"questioning":["symptoms","history","medication","allergy"],"assessment":["vitals","observations"]},
+  "dynamic_timeline": null
+}
