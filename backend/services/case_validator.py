@@ -5,6 +5,7 @@ attach the result to a case or tests can call it directly before a case is used.
 """
 
 from collections import Counter
+import json
 from typing import Any
 
 from services.case_types import (
@@ -23,6 +24,7 @@ from services.case_types import (
 def validate_case(case_data: dict[str, Any]) -> dict[str, Any]:
     errors: list[str] = []
     warnings: list[str] = []
+    dynamic_profile: dict[str, Any] = {}
 
     case_id = get_case_id(case_data)
     if not case_id:
@@ -33,17 +35,20 @@ def validate_case(case_data: dict[str, Any]) -> dict[str, Any]:
         errors.append(f"case_type must be static or dynamic, got {case_type!r}")
 
     if is_dynamic_case(case_data):
-        _validate_dynamic_case(case_data, errors, warnings)
+        dynamic_profile = _validate_dynamic_case(case_data, errors, warnings)
     else:
         _validate_static_case(case_data, errors, warnings)
 
-    return {
+    result = {
         "valid": not errors,
         "case_id": case_id,
         "case_type": case_type,
         "errors": errors,
         "warnings": warnings,
     }
+    if dynamic_profile:
+        result["dynamic_profile"] = dynamic_profile
+    return result
 
 
 def validate_case_or_raise(case_data: dict[str, Any]) -> dict[str, Any]:
@@ -54,7 +59,7 @@ def validate_case_or_raise(case_data: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
-def _validate_dynamic_case(case_data: dict[str, Any], errors: list[str], warnings: list[str]):
+def _validate_dynamic_case(case_data: dict[str, Any], errors: list[str], warnings: list[str]) -> dict[str, Any]:
     states = get_patient_states(case_data)
     events = get_timeline_events(case_data)
 
@@ -122,6 +127,45 @@ def _validate_dynamic_case(case_data: dict[str, Any], errors: list[str], warning
         unreachable = sorted(set(state_ids) - reachable - referenced)
         if unreachable:
             warnings.append(f"unreachable patient_state ids: {', '.join(unreachable)}")
+
+    profile = _build_dynamic_profile(states, events)
+    if profile["timeline_node_count"] >= 2 and not profile["has_state_change"] and not profile["has_vital_change"]:
+        warnings.append("dynamic case has multiple timeline nodes but no observable patient-state or vital-sign changes")
+    elif profile["timeline_node_count"] >= 2 and not profile["has_vital_change"]:
+        warnings.append("dynamic case has timeline/state changes but vital signs do not change across patient_states")
+    return profile
+
+
+def _build_dynamic_profile(states: list[dict[str, Any]], events: list[dict[str, Any]]) -> dict[str, Any]:
+    state_keys = ("appearance", "chief_complaint", "symptom_description", "mental_status", "pain_score", "risk_signals")
+    state_signatures = {
+        json.dumps({key: state.get(key) for key in state_keys}, ensure_ascii=False, sort_keys=True)
+        for state in states
+    }
+    vital_signatures = {
+        json.dumps(state.get("vital_signs") or {}, ensure_ascii=False, sort_keys=True)
+        for state in states
+    }
+    has_state_change = len(state_signatures) > 1
+    has_vital_change = len(vital_signatures) > 1
+    has_deterioration_event = any((event.get("event_type") or "").lower() in {"deterioration", "critical_change"} for event in events)
+    standard_levels = [state.get("standard_triage_level") for state in states if state.get("standard_triage_level")]
+    has_level_change = len(set(standard_levels)) > 1
+    if has_deterioration_event or has_level_change:
+        dynamic_subtype = "deterioration"
+    elif has_state_change or has_vital_change:
+        dynamic_subtype = "stable_reassessment"
+    else:
+        dynamic_subtype = "timeline_only"
+    return {
+        "timeline_node_count": len(states),
+        "event_count": len(events),
+        "has_state_change": has_state_change,
+        "has_vital_change": has_vital_change,
+        "has_level_change": has_level_change,
+        "has_deterioration_event": has_deterioration_event,
+        "dynamic_subtype": dynamic_subtype,
+    }
 
 
 def _validate_static_case(case_data: dict[str, Any], errors: list[str], warnings: list[str]):

@@ -5,6 +5,7 @@
 backend/*.db
 backend/*.db-wal
 backend/*.db-shm
+backend/triage_data/records/
 backend/triage_data/records/*.json
 backend/triage_data/*_events.json
 backend/triage_data/learning_paths.json

@@ -5,15 +5,65 @@
 
 from datetime import datetime, timezone
 
+VITAL_ALIASES = {
+    "heart_rate": {"heart_rate", "heart_rate_bpm"},
+    "respiratory_rate": {"respiratory_rate", "respiratory_rate_bpm"},
+    "spo2": {"spo2", "spo2_percent"},
+    "temperature": {"temperature", "temperature_c"},
+    "pain_score": {"pain_score", "nrs"},
+    "consciousness": {"consciousness", "mental_status", "gcs", "gcs_score"},
+    "blood_glucose": {"blood_glucose", "blood_glucose_mmol_l"},
+    "blood_pressure": {"blood_pressure", "systolic_bp_mmhg", "diastolic_bp_mmhg"},
+}
+
+
+def _latest_measured_items(record: dict, minute: int) -> list[str]:
+    items: list[str] = []
+    for entry in record.get("vital_measurement_log", []) or []:
+        entry_minute = entry.get("simulation_minute")
+        if entry_minute is not None and abs(int(entry_minute) - int(minute)) <= 5:
+            for item in entry.get("measurement_ids", []) or []:
+                if item and item not in items:
+                    items.append(item)
+    return items
+
+
+def _matches_required(measured_item: str, required_item: str) -> bool:
+    if measured_item == required_item:
+        return True
+    measured_aliases = VITAL_ALIASES.get(measured_item, {measured_item})
+    required_aliases = VITAL_ALIASES.get(required_item, {required_item})
+    return bool(measured_aliases & required_aliases)
+
+
+def _calculate_completeness(required_items: list[str], measured_items: list[str]) -> float:
+    if not measured_items:
+        return 0.0
+    if not required_items:
+        return 1.0
+    matched = 0
+    for required in required_items:
+        if any(_matches_required(measured, required) for measured in measured_items):
+            matched += 1
+    return matched / max(len(required_items), 1)
+
+
 def create_reassessment(record: dict, payload: dict, case_data: dict = None) -> dict:
     """创建一次复评记录"""
     state = record.get("timeline_state", {})
     reassessments = state.get("reassessments", [])
 
+    minute = state.get("current_simulated_minute", 0)
+    measured_items = payload.get("measured_items") or _latest_measured_items(record, minute)
+    required_items = state.get("reassessment_required_items") or []
+    completeness = _calculate_completeness(required_items, measured_items)
+
     ra = {
         "id": len(reassessments) + 1,
-        "minute": state.get("current_simulated_minute", 0),
-        "measured_items": payload.get("measured_items", []),
+        "minute": minute,
+        "measured_items": measured_items,
+        "required_items": required_items,
+        "completeness": round(completeness, 2),
         "symptom_change_questioned": payload.get("symptom_change_questioned", False),
         "selected_level": payload.get("selected_level"),
         "selected_zone": payload.get("selected_zone"),
@@ -95,9 +145,13 @@ def evaluate_reassessment(record: dict, ra_id: int) -> dict:
     if not ra:
         return {"error": "复评记录不存在"}
 
-    required_items = state.get("reassessment_required_items", [])
+    required_items = ra.get("required_items") or state.get("reassessment_required_items", [])
     measured = ra.get("measured_items", [])
-    completeness = len([i for i in required_items if i in measured]) / max(len(required_items), 1)
+    if not measured:
+        measured = _latest_measured_items(record, ra.get("minute", state.get("current_simulated_minute", 0)))
+        ra["measured_items"] = measured
+    completeness = _calculate_completeness(required_items, measured)
+    ra["completeness"] = round(completeness, 2)
 
     return {
         "reassessment_id": ra_id,

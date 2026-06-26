@@ -945,6 +945,7 @@
     "events": [
       {
         "event_id": "event_001",
+        "patient_state_id": "T5_event_1",
         "patient_expression": "右上肢完全不能抬起，言语更含糊。",
         "vital_changes": {},
         "requires_reassessment": true,
@@ -959,6 +960,7 @@
       },
       {
         "event_id": "event_002",
+        "patient_state_id": "T10_event_2",
         "patient_expression": "明显嗜睡，反复呕吐，GCS降至9分，出现呛咳和气道保护能力下降。",
         "vital_changes": {
           "gcs_score": 9
@@ -1081,13 +1083,13 @@
         "new_symptoms"
       ],
       "vital_signs": {
-        "temperature": 36.7,
-        "heart_rate": 92,
-        "respiratory_rate": 18,
-        "spo2": 97,
+        "temperature": 36.8,
+        "heart_rate": 96,
+        "respiratory_rate": 20,
+        "spo2": 96,
         "consciousness": "清醒，言语含糊",
-        "gcs_score": 14,
-        "blood_glucose": 6.2,
+        "gcs_score": 13,
+        "blood_glucose": 6.3,
         "skin_perfusion": "皮肤温暖，无发绀，无明显出汗",
         "other_assessments": [
           "最后正常时间",
@@ -1098,8 +1100,8 @@
           "抗凝药史",
           "既往卒中史"
         ],
-        "blood_pressure_systolic": 176,
-        "blood_pressure_diastolic": 94
+        "blood_pressure_systolic": 182,
+        "blood_pressure_diastolic": 98
       },
       "recommended_actions": [
         "升级分诊等级",
@@ -1127,7 +1129,14 @@
         "new_symptoms"
       ],
       "vital_signs": {
-        "gcs_score": 9
+        "gcs_score": 9,
+        "temperature": 36.9,
+        "heart_rate": 104,
+        "respiratory_rate": 22,
+        "spo2": 95,
+        "blood_glucose": 6.1,
+        "blood_pressure_systolic": 188,
+        "blood_pressure_diastolic": 102
       },
       "recommended_actions": [
         "升级分诊等级",

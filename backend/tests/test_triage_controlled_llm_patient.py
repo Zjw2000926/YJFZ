@@ -68,7 +68,7 @@ def test_llm_prompt_is_grounded_to_allowed_slot_facts(monkeypatch):
 
     system_prompt = captured["messages"][0]["content"]
     assert "【已允许披露的信息】" in system_prompt
-    assert "【受控事实包规则】" in system_prompt
+    assert "【事实受控、表达自然规则】" in system_prompt
     assert "起病时间" in system_prompt
     assert "刚才" in system_prompt
     allowed_info = system_prompt.rsplit("【已允许披露的信息】", 1)[1].split("【受控事实包规则】", 1)[0]
@@ -76,4 +76,4 @@ def test_llm_prompt_is_grounded_to_allowed_slot_facts(monkeypatch):
     assert "Ⅳ级" not in allowed_info
     assert "绿区" not in allowed_info
     assert "根据病例资料回答" not in allowed_info
-    assert captured["kwargs"]["temperature"] == 0.45
+    assert captured["kwargs"]["temperature"] == 0.68

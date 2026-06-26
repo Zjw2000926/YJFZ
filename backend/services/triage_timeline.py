@@ -246,6 +246,7 @@ def get_current_patient_state(record: dict, case_data: dict = None) -> dict:
 
     if ps:
         result.update({
+            "state_id": ps.get("state_id", ""),
             "patient_state_id": ps.get("state_id", ""),
             "state_name": ps.get("state_name", ""),
             "standard_triage_level": ps.get("standard_triage_level", ""),

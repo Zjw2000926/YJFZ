@@ -13,6 +13,8 @@ const TriageAdmin = lazy(() => import("./pages/triage/TriageAdmin"));
 const TriageTasks = lazy(() => import("./pages/triage/TriageTasks"));
 const TriageLearningPath = lazy(() => import("./pages/triage/TriageLearningPath"));
 
+const TRAINING_ROLES = ["student", "teacher", "reviewer", "admin"];
+
 function ProtectedRoute({ children, role }) {
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("userRole");
@@ -57,9 +59,9 @@ export default function App() {
               <Routes>
                 <Route path="/login" element={user ? <Navigate to="/triage" replace /> : <Login onLogin={handleLogin} />} />
                 <Route path="/triage" element={<ProtectedRoute><TriageCaseSelect user={user} onLogout={handleLogout} /></ProtectedRoute>} />
-                <Route path="/triage/training/start" element={<ProtectedRoute role="student"><TriageTraining /></ProtectedRoute>} />
-                <Route path="/triage/dynamic/start" element={<ProtectedRoute role="student"><TriageDynamicTraining /></ProtectedRoute>} />
-                <Route path="/triage/dynamic/:recordId" element={<ProtectedRoute role="student"><TriageDynamicTraining /></ProtectedRoute>} />
+                <Route path="/triage/training/start" element={<ProtectedRoute role={TRAINING_ROLES}><TriageTraining /></ProtectedRoute>} />
+                <Route path="/triage/dynamic/start" element={<ProtectedRoute role={TRAINING_ROLES}><TriageDynamicTraining /></ProtectedRoute>} />
+                <Route path="/triage/dynamic/:recordId" element={<ProtectedRoute role={TRAINING_ROLES}><TriageDynamicTraining /></ProtectedRoute>} />
                 <Route path="/triage/record/:id" element={<ProtectedRoute><TriageRecordDetail user={user} onLogout={handleLogout} /></ProtectedRoute>} />
                 <Route path="/triage/admin" element={<ProtectedRoute role={["teacher", "reviewer", "admin"]}><TriageAdmin user={user} onLogout={handleLogout} /></ProtectedRoute>} />
                 <Route path="/triage/tasks" element={<ProtectedRoute role="student"><TriageTasks user={user} onLogout={handleLogout} /></ProtectedRoute>} />

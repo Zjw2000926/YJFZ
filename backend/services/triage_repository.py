@@ -13,6 +13,7 @@ V1 从 JSON 文件读取数据，提供稳定的 API 给路由层。
 
 import json
 import os
+import time
 import uuid
 from datetime import datetime, timezone
 from typing import Optional
@@ -79,6 +80,7 @@ def list_cases(include_draft: bool = False) -> list:
             "display_name": case.get("display_name", case.get("title", "")),
             "difficulty": case.get("difficulty", 1),
             "is_dynamic": case.get("is_dynamic", False),
+            "dynamic_profile": (case.get("_validation") or {}).get("dynamic_profile", {}),
             "training_focus": case.get("training_focus", []),
             "review_status": {"approved_for_training": rs.get("approved_for_training", True)},
             "patient_profile": {
@@ -399,10 +401,33 @@ def _load_record(record_id: str) -> Optional[dict]:
 
 def _save_record(record: dict):
     path = _record_path(record["id"])
-    tmp = path + ".tmp"
+    tmp = f"{path}.{os.getpid()}.{uuid.uuid4().hex}.tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(record, f, ensure_ascii=False, indent=2)
-    os.replace(tmp, path)  # 原子替换，防止并发损坏
+    last_error = None
+    for attempt in range(8):
+        try:
+            os.replace(tmp, path)
+            return
+        except PermissionError as exc:
+            last_error = exc
+            time.sleep(0.03 * (attempt + 1))
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(record, f, ensure_ascii=False, indent=2)
+        if os.path.exists(tmp):
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+        return
+    except PermissionError:
+        if os.path.exists(tmp):
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+        raise last_error
 
 
 def normalize_triage_level(level_str: str) -> str:

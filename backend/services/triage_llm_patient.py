@@ -30,6 +30,33 @@ CONTROLLED_FACT_PROMPT = """【受控事实包规则】
 输出 1-2 句，口语化，像真实患者。"""
 
 
+CONTROLLED_FACT_PROMPT = """
+【事实受控、表达自然规则】
+你扮演真实患者或家属，不是系统、医生、教师或评分员。
+
+1. 医学事实层必须严格基于【已允许披露的信息】：
+- 年龄、性别、起病时间、疼痛部位、症状、既往史、用药、过敏、检查/生命体征等关键事实，只能使用已列出的内容。
+- 不得新增诊断、检查结果、治疗方案、分诊等级、就诊区域或评分依据。
+
+2. 患者表达层必须自然：
+- 不要逐字照抄字段，必须改写成普通患者会说的话。
+- 可以使用“嗯”“大概”“我记得”“好像”“说不太准”“有点担心”“就是挺难受的”等自然语气。
+- 可以表达焦虑、疼痛、犹豫、记不清，但不能借此新增关键病情。
+
+3. 问到原因/诱因：
+- 已允许信息里有诱因，就用患者口吻说出来，并可补一句“具体是不是这个引起的我也不确定”。
+- 没有诱因信息，只能说“不太清楚/没注意到明显诱因”，不能编造饮食、外伤、运动等。
+
+4. 问到诊断：
+- 患者不能判断“是不是某某病”，只能说“不清楚，需要你们帮我看看”。
+
+5. 禁止输出：
+- “病例信息中”“系统未提供”“根据资料”“无法回答”“你还是问医生吧”等破坏沉浸感的话。
+
+输出 1-2 句，口语化，像真实患者正在回答护士。
+"""
+
+
 def _normalize_slot_ids(new_slot_id) -> list:
     if not new_slot_id:
         return []
@@ -123,10 +150,50 @@ def _normalize_reply_text(reply):
     return reply.strip()
 
 
-def _fallback_from_slots(slots) -> str:
+def _strip_sentence_end(text):
+    return re.sub(r"[。！？.!?；;，,、\s]+$", "", _clean_fact(text))
+
+
+def _patientize_facts(facts, question="") -> str:
+    cleaned = []
+    seen = set()
+    for fact in facts:
+        text = _strip_sentence_end(_clean_fact(fact)).strip("“”\"'")
+        if not text:
+            continue
+        key = re.sub(r"\s+", "", text)
+        if key in seen:
+            continue
+        seen.add(key)
+        cleaned.append(text)
+    if not cleaned:
+        return "这个我一时说不太清楚，就是现在不太舒服。"
+
+    q = str(question or "")
+    joined = "，".join(cleaned[:2])
+    first = cleaned[0]
+    if any(term in q for term in ("撞击", "撞到", "碰撞", "碰到", "撞伤", "外伤")) and "搬" in joined:
+        return _normalize_reply_text(f"不是被东西撞到，我记得是{joined}。")
+    if any(term in q for term in ("搬东西", "搬重物", "搬箱子", "扭伤", "扭到")) and "搬" in joined:
+        return _normalize_reply_text(f"对，就是{joined}。")
+    if any(term in q for term in ("有没有", "有无", "是否", "是吗", "的吗", "吗")):
+        if any(term in joined for term in ("没有", "无", "否认", "未见")):
+            return _normalize_reply_text(f"没有，我目前能说清的就是{joined}。")
+        return _normalize_reply_text(f"嗯，有的，{joined}。")
+    if any(term in q for term in ("什么时候", "多久", "多长时间", "几点", "开始", "起病")):
+        return _normalize_reply_text(f"大概就是{first}，具体时间我也只能按感觉说个大概。")
+    if any(term in q for term in ("哪里", "哪个位置", "部位", "位置", "哪儿")):
+        return _normalize_reply_text(f"主要就是{first}，我自己感觉这个地方最明显。")
+    if len(cleaned) > 1:
+        return _normalize_reply_text(f"我现在主要就是{cleaned[0]}，另外{cleaned[1]}。")
+    return _normalize_reply_text(f"我现在主要就是{first}，有点不舒服，也有点担心。")
+
+
+def _fallback_from_slots(slots, question="") -> str:
     facts = _unique_facts(slots)
     if not facts:
         return "这个我说不太清楚。"
+    return _patientize_facts(facts, question)
     sentences = []
     for fact in facts[:2]:
         if fact.endswith(("。", "！", "？", "…", ".", "!", "?")):
@@ -260,9 +327,9 @@ async def generate_patient_reply(
         # 从 answer_facts 直接生成（规则模式，不调 LLM 也能用）
         facts = _unique_facts(matched_slots)
         if not facts:
-            reply_content = _fallback_from_slots(matched_slots)
+            reply_content = _fallback_from_slots(matched_slots, student_message)
         elif not _should_use_llm(case_data):
-            reply_content = _fallback_from_slots(matched_slots)
+            reply_content = _fallback_from_slots(matched_slots, student_message)
         else:
             # LLM 模式
             try:
@@ -271,12 +338,12 @@ async def generate_patient_reply(
                     case_data, disclosed_slots, variant_id,
                     student_message, history_messages, selected_ids)
                 reply_content = await call_llm(
-                    messages, temperature=0.45, max_tokens=120, timeout=20,
+                    messages, temperature=0.68, max_tokens=160, timeout=20,
                     purpose="triage_patient", max_retries=1)
                 if not _clean_fact(reply_content):
-                    reply_content = _fallback_from_slots(matched_slots)
+                    reply_content = _fallback_from_slots(matched_slots, student_message)
             except Exception:
-                reply_content = _fallback_from_slots(matched_slots)
+                reply_content = _fallback_from_slots(matched_slots, student_message)
     else:
         # 未命中：温和兜底
         if policy.get("unknown_policy") == "patient_uncertain":
@@ -301,11 +368,10 @@ async def generate_patient_reply(
 
 
 def _should_use_llm(case_data: dict) -> bool:
-    """判断是否使用 LLM 生成回答"""
-    # V2默认使用规则回答（answer_facts），LLM为备选
-    use_llm = case_data.get("_use_llm", False)
-    # 检查环境变量
-    import os
-    if os.getenv("TRIAGE_USE_LLM", "").lower() in ("1", "true", "yes"):
-        use_llm = True
-    return use_llm
+    """Use LLM automatically when a key exists, while keeping an explicit off switch."""
+    flag = os.getenv("TRIAGE_USE_LLM", "auto").lower()
+    if flag in ("0", "false", "no", "off"):
+        return False
+    if flag in ("1", "true", "yes", "on"):
+        return True
+    return bool(os.getenv("DEEPSEEK_API_KEY")) or bool(case_data.get("_use_llm", False))

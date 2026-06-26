@@ -21,11 +21,21 @@ def score_triage_v3(record: dict, case_data: dict) -> dict:
     all_slots = state.get("slots", [])
     required = [s for s in all_slots if s.get("is_required")]
     req_ms = case_data.get("required_measurements", [])
+    intent_events = record.get("intent_events", []) or []
+    intent_count = len({e.get("intent") for e in intent_events if e.get("intent")})
+    student_question_count = len([m for m in record.get("messages", []) or [] if m.get("role") == "student"])
+    final_disposition = record.get("final_disposition") or []
+    notes = record.get("notes") or []
+    evidence_count = len(disclosed) + intent_count
 
     # A. 第一眼评估 (10)
-    first_score = min(10, int(10 * len(disclosed) / max(len(required), 1)))
+    first_score = min(10, int(10 * max(evidence_count, len(record.get("observed_items", []))) / max(len(required), 1)))
+    if measured:
+        first_score = max(first_score, 5)
     # B. 聚焦病史 (15)
-    hist_score = min(15, int(15 * len(disclosed) / max(len(required) + 3, 1)))
+    hist_score = min(15, int(15 * evidence_count / max(len(required) + 2, 1)))
+    if student_question_count:
+        hist_score = max(hist_score, min(12, student_question_count * 2))
     # C. 生命体征 (15)
     vital_score = min(15, int(15 * len(measured) / max(len(req_ms), 1)))
     # D. 高危信号 (20)
@@ -40,11 +50,17 @@ def score_triage_v3(record: dict, case_data: dict) -> dict:
         level_score = max(0, level_score - 5)
     # F. 处置 (10)
     zone_ok = (record.get("final_zone_selected") or "") in (rule_dict.get("recommended_zone") or "")
-    disp_score = 5 + (3 if zone_ok else 0) + min(2, len(record.get("final_disposition") or []))
+    disp_score = 5 + (3 if zone_ok else 0) + min(2, len(final_disposition))
     # G. 复评计划 (5)
     recheck = 3 if len(measured) >= len(req_ms) * 0.6 else 0
+    disposition_text = " ".join(str(item) for item in final_disposition)
+    if any(term in disposition_text.lower() for term in ["notify", "doctor", "ecg", "monitor", "priority", "reassess"]):
+        recheck = max(recheck, 4)
     # H. 沟通 (5)
-    comm = min(5, int(5 * len(disclosed) / max(len(required), 1)))
+    comm_evidence = len(notes) + len(final_disposition) + len(record.get("notification_events") or [])
+    if student_question_count >= 2:
+        comm_evidence += 1
+    comm = min(5, max(int(5 * evidence_count / max(len(required), 1)), comm_evidence))
 
     detail = {
         "A.第一眼评估":{"score":first_score,"max":10},
@@ -58,6 +74,11 @@ def score_triage_v3(record: dict, case_data: dict) -> dict:
     }
     total = sum(d["score"] for d in detail.values())
     total = max(0, min(100, total))
+    missed_required = [
+        s.get("label") or s.get("slot_id")
+        for s in required
+        if s.get("slot_id") not in disclosed
+    ]
 
     if rule_dict.get("severe_error_triggered"):
         ps = "fail"
@@ -85,6 +106,14 @@ def score_triage_v3(record: dict, case_data: dict) -> dict:
             "strengths": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] >= v['max'] * 0.7],
             "weaknesses": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] < v['max'] * 0.5],
             "explanations": rule_dict.get("explanations", []),
+            "missed_required_questions": missed_required,
+            "process_evidence": {
+                "disclosed_slot_count": len(disclosed),
+                "intent_event_count": intent_count,
+                "student_question_count": student_question_count,
+                "disposition_count": len(final_disposition),
+                "note_count": len(notes),
+            },
             "suggestions": "\n".join(rule_dict.get("explanations", [])) or "请根据评分细则改进。",
         }
     }

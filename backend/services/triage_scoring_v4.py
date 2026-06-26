@@ -22,7 +22,12 @@
 
 from services.triage_rules.models import LEVEL_RANK
 from services.triage_rule_engine import detect_serious_errors, evaluate_minimum_triage_level
-from services.report_generator import generate_training_report
+from services.report_generator import (
+    event_indicates_deterioration,
+    generate_training_report,
+    student_recognized_deterioration,
+    _clean_training_suggestions,
+)
 
 
 def score_triage_v4(record: dict, case_data: dict) -> dict:
@@ -43,9 +48,15 @@ def score_triage_v4(record: dict, case_data: dict) -> dict:
     # 初始评分
     vital_count = len(measured)
     slot_count = len(disclosed)
+    intent_count = len({e.get("intent") for e in record.get("intent_events", []) or [] if e.get("intent")})
+    question_count = len([m for m in record.get("messages", []) or [] if m.get("role") == "student"])
     observed_count = len(record.get("observed_items", []))
     first_look = min(8, int(8 * (observed_count + slot_count / 2) / 8)) if observed_count > 0 else 3
-    history = min(12, int(12 * slot_count / max(len(case_data.get("dialogue_state_machine", {}).get("slots", [])), 1)))
+    history_basis = max(len(case_data.get("dialogue_state_machine", {}).get("slots", [])), 1)
+    history_evidence = slot_count + intent_count
+    history = min(12, int(12 * history_evidence / history_basis))
+    if question_count:
+        history = max(history, min(10, question_count * 2))
     vitals = min(12, int(12 * len(vital_log) / 3)) if vital_log else min(12, int(12 * vital_count / max(len(case_data.get("required_measurements", [])), 1)))
 
     # 规则引擎
@@ -69,11 +80,17 @@ def score_triage_v4(record: dict, case_data: dict) -> dict:
     ra_decisions = [d for d in triage_decisions if d.get("decision_type") == "reassessment"]
     ra_count = max(len(reassessments), len(ra_decisions))
     recheck_time = 8 if triage_decisions and any(d.get("reassessment_minutes") for d in triage_decisions if d.get("decision_type") == "initial") else 0
-    ra_content = min(10, int(10 * ra_count / 2)) if ra_count > 0 else 0
+    if reassessments:
+        best_completeness = max(float(r.get("completeness", 0) or 0) for r in reassessments)
+        ra_content = min(10, int(round(10 * best_completeness)))
+        if ra_content == 0 and ra_count > 0:
+            ra_content = 3
+    else:
+        ra_content = 0
 
     # 升级识别
     events = dt.get("events", [])
-    deterioration_events = [e for e in events if e.get("event_type") == "deterioration"]
+    deterioration_events = [e for e in events if event_indicates_deterioration(e)]
     upgrade_detected = 0
     if deterioration_events:
         for e in deterioration_events:
@@ -145,7 +162,7 @@ def score_triage_v4(record: dict, case_data: dict) -> dict:
             "risk_if_missed": case_data.get("dynamic_feedback", {}).get("risk_if_missed", []),
             "key_red_flag": case_data.get("dynamic_feedback", {}).get("key_red_flag", []),
             "reason_for_triage_level": case_data.get("dynamic_feedback", {}).get("reason_for_triage_level", ""),
-            "recommended_remediation": case_data.get("dynamic_feedback", {}).get("recommended_remediation", []),
+            "recommended_remediation": _clean_training_suggestions(case_data.get("dynamic_feedback", {}).get("recommended_remediation", [])),
             "strengths": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] >= v['max'] * 0.7],
             "weaknesses": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] < v['max'] * 0.5],
             "suggestions": "严重错误触发，一票否决。" if has_critical else "请关注候诊复评和病情变化识别。",
@@ -204,7 +221,7 @@ def _build_timeline_report(record: dict, case_data: dict, reassessments: list) -
     # 复评判定
     # P1-1: 优先使用 state.reassessment_on_time 和 reassessment_overdue
     reassessment_on_time = state.get("reassessment_on_time", False) or (state.get("reassessment_completed", False) and not state.get("reassessment_overdue", False))
-    deterioration_recognized = any(a.get("action_type") == "reassess" for a in student_actions) and state.get("deteriorated", False)
+    deterioration_recognized = student_recognized_deterioration(record)
     triage_upgraded = student_final_level != student_init_level and _level_is_upgrade(student_init_level, student_final_level)
     doctor_notified = len(notification_events) > 0
 

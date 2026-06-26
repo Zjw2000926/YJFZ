@@ -14,6 +14,7 @@ import os, re, random
 from typing import Optional
 from services.triage_intent import match_intent, get_intent_slot_mapping
 from services.triage_guard import sanitize_triage_reply
+from services.llm_service import call_llm
 
 # ── 操作类回应 ──
 OPERATION_REPLIES = [
@@ -70,6 +71,7 @@ def classifyQuestionType(userInput: str) -> str:
     trigger_terms = [
         "什么原因", "什么引起", "什么导致", "为什么", "诱因", "原因",
         "吃坏", "吃东西", "吃完", "饭后", "有没有什么引起", "怎么引起",
+        "撞击", "撞到", "碰撞", "碰到", "撞伤", "搬东西", "搬重物", "扭伤", "扭到", "外伤",
     ]
     if any(term in text for term in trigger_terms):
         return "trigger_question"
@@ -157,6 +159,11 @@ def _is_placeholder_fact(fact):
     }
 
 
+def _is_non_informative_fact(fact):
+    cleaned = _clean_fact(fact)
+    return _is_placeholder_fact(cleaned) or cleaned in {"儿童", "老年人", "成人", "育龄女性", "孕产妇"}
+
+
 def _case_initial_texts(case_data):
     initial = case_data.get("initial_exposure", {}) or {}
     return {
@@ -221,17 +228,211 @@ def _normalize_reply_text(reply):
     return reply.strip()
 
 
+def _naturalize_fact_text(fact):
+    text = _strip_sentence_end(_humanize_case_text(fact))
+    text = text.strip("“”\"'")
+    return text
+
+
+def _is_negative_fact(text):
+    return any(term in text for term in ("没有", "无", "否认", "不明显", "未见"))
+
+
+def _question_has_any(text, terms):
+    return any(term in str(text or "") for term in terms)
+
+
+def _patientize_facts(facts, question="", case_data=None, record=None):
+    cleaned = []
+    seen = set()
+    for fact in facts:
+        text = _naturalize_fact_text(fact)
+        if not text:
+            continue
+        key = re.sub(r"\s+", "", text)
+        if key in seen:
+            continue
+        seen.add(key)
+        cleaned.append(text)
+
+    if not cleaned:
+        return _subjective_reply(case_data or {}, record)
+
+    q = str(question or "")
+    first = cleaned[0]
+    second = cleaned[1] if len(cleaned) > 1 else ""
+    joined = "，".join(cleaned[:2])
+
+    if _question_has_any(q, ("撞击", "撞到", "碰撞", "碰到", "撞伤", "外伤")) and "搬" in joined:
+        return _normalize_reply_text(f"不是被东西撞到，我记得是{joined}。")
+
+    if _question_has_any(q, ("搬东西", "搬重物", "搬箱子", "扭伤", "扭到")) and "搬" in joined:
+        return _normalize_reply_text(f"对，就是{joined}。")
+
+    if _question_has_any(q, ("有没有", "有无", "是否", "是吗", "的吗", "吗")):
+        if _is_negative_fact(joined):
+            return _normalize_reply_text(f"没有，我目前能说清的就是{joined}。")
+        return _normalize_reply_text(f"嗯，有的，{joined}。")
+
+    if _question_has_any(q, ("什么时候", "多久", "多长时间", "几点", "开始", "起病")):
+        return _normalize_reply_text(f"大概就是{first}，具体时间我也只能按感觉说个大概。")
+
+    if _question_has_any(q, ("哪里", "哪个位置", "部位", "位置", "哪儿")):
+        return _normalize_reply_text(f"主要就是{first}，我自己感觉这个地方最明显。")
+
+    if _question_has_any(q, ("几分", "多少分", "厉害", "严重", "难受")):
+        return _normalize_reply_text(f"现在感觉{joined}，挺不舒服的。")
+
+    if second:
+        return _normalize_reply_text(f"我现在主要就是{first}，另外{second}。")
+    return _normalize_reply_text(f"我现在主要就是{first}，有点不舒服，也有点担心。")
+
+
+def _current_patient_state(case_data, record=None):
+    """Return the current dynamic patient state, falling back to T0/current case text."""
+    record = record or {}
+    timeline_state = record.get("timeline_state") or {}
+    current_id = timeline_state.get("current_patient_state_id")
+    current_minute = timeline_state.get("current_simulated_minute", 0)
+    states = case_data.get("patient_states") or []
+    if current_id:
+        for state in states:
+            if state.get("state_id") == current_id:
+                return state
+    best = None
+    for state in sorted(states, key=lambda item: item.get("time_minute", 0)):
+        if state.get("time_minute", 0) <= current_minute:
+            best = state
+    return best or {}
+
+
+def _humanize_case_text(text):
+    """Remove authoring phrases that sound like a rubric rather than a patient."""
+    text = _clean_fact(text)
+    if not text:
+        return ""
+    replacements = [
+        ("患者说不清；女儿代述", "家属说"),
+        ("患者说不清;女儿代述", "家属说"),
+        ("患者说不清楚；女儿代述", "家属说"),
+        ("患儿不能完整表达；母亲说", "妈妈说"),
+        ("患儿不能完整表达;母亲说", "妈妈说"),
+        ("患儿不能完整表达", "孩子现在说不太清"),
+        ("患者说不清", "我现在说不太清"),
+    ]
+    for old, new in replacements:
+        text = text.replace(old, new)
+    text = re.sub(r"^(儿童|老年人|育龄女性|成人)\s*[，,。；;：:]*\s*", "", text)
+    return text.replace("。。", "。").replace("，，", "，").strip()
+
+
+def _patient_context_phrase(case_data, record=None):
+    state = _current_patient_state(case_data, record)
+    candidates = [
+        state.get("symptom_description"),
+        state.get("chief_complaint"),
+        state.get("appearance"),
+        (case_data.get("initial_exposure") or {}).get("chief_complaint"),
+        (case_data.get("initial_exposure") or {}).get("opening_line"),
+    ]
+    for candidate in candidates:
+        cleaned = _humanize_case_text(candidate)
+        if cleaned:
+            return _strip_sentence_end(cleaned)
+    return "不太舒服"
+
+
+def _subjective_reply(case_data, record=None):
+    state = _current_patient_state(case_data, record)
+    appearance = _humanize_case_text(state.get("appearance"))
+    symptom = _humanize_case_text(state.get("symptom_description") or state.get("chief_complaint"))
+    pain_score = state.get("pain_score")
+    risk_signals = state.get("risk_signals") or []
+
+    fragments = []
+    if symptom:
+        fragments.append(_strip_sentence_end(symptom))
+    if appearance and appearance not in symptom:
+        fragments.append(_strip_sentence_end(appearance))
+    if pain_score not in (None, ""):
+        fragments.append(f"疼痛大概有{pain_score}分")
+    if risk_signals:
+        fragments.append(_strip_sentence_end("，".join(str(item) for item in risk_signals[:2])))
+
+    if not fragments:
+        context = _patient_context_phrase(case_data, record)
+        return f"我现在主要就是{context}，有点担心，想让你们帮我看看。"
+    return "我现在" + "，".join(fragments[:3]) + "，有点难受，也有点担心。"
+
+
+def _asks_current_state_detail(text):
+    text = str(text or "")
+    anchors = ("现在", "目前", "刚才", "还", "还能", "此刻", "这会儿")
+    state_terms = (
+        "头晕", "坐不住", "坐得住", "冷汗", "出汗", "面色", "苍白", "意识", "清醒",
+        "嗜睡", "说话", "听懂", "抬手", "抽搐", "呕吐", "发绀", "呼吸", "GCS",
+        "疼得", "难受", "加重", "变严重", "恶化",
+    )
+    return any(anchor in text for anchor in anchors) and any(term in text for term in state_terms)
+
+
+def _current_state_targeted_reply(case_data, record=None):
+    state = _current_patient_state(case_data, record)
+    if not state:
+        return _subjective_reply(case_data, record)
+
+    symptom = _humanize_case_text(state.get("symptom_description") or state.get("chief_complaint"))
+    appearance = _humanize_case_text(state.get("appearance"))
+    mental = _humanize_case_text(state.get("mental_status") or state.get("consciousness"))
+    risk_signals = [_humanize_case_text(item) for item in (state.get("risk_signals") or []) if item]
+    pain_score = state.get("pain_score")
+
+    fragments = []
+    for item in (symptom, appearance, mental):
+        cleaned = _strip_sentence_end(item)
+        if cleaned and cleaned not in fragments:
+            fragments.append(cleaned)
+    for item in risk_signals[:2]:
+        cleaned = _strip_sentence_end(item)
+        if cleaned and cleaned not in fragments:
+            fragments.append(cleaned)
+    if pain_score not in (None, ""):
+        fragments.append(f"疼痛大概{pain_score}分")
+
+    if not fragments:
+        return _subjective_reply(case_data, record)
+    return _normalize_reply_text("我现在" + "，".join(fragments[:4]) + "，有点难受，也有点担心。")
+
+
+def _finalize_reply(reply, case_data, record=None, question_type=""):
+    """Last-mile cleanup: keep facts grounded while removing mechanical system prose."""
+    cleaned = _humanize_case_text(reply)
+    mechanical_terms = ("病例信息中", "系统未提供", "无法回答", "您还是问医生吧", "还是问医生吧", "我说不太准", "问得具体一点")
+    if any(term in cleaned for term in mechanical_terms):
+        current_message = (record or {}).get("_current_student_message", "")
+        if _asks_current_state_detail(current_message):
+            return _current_state_targeted_reply(case_data, record)
+        if question_type == "subjective_question":
+            return _subjective_reply(case_data, record)
+        if question_type != "diagnostic_question":
+            context = _patient_context_phrase(case_data, record)
+            return _normalize_reply_text(f"这个我一下说不太准，我现在主要就是{context}，有点担心。")
+    if question_type != "diagnostic_question":
+        cleaned = cleaned.replace("您还是问医生吧。", "").replace("还是问医生吧。", "")
+    return _normalize_reply_text(cleaned)
+
+
 def _strip_sentence_end(text):
     return re.sub(r"[。！？.!?；;，,、\s]+$", "", _clean_fact(text))
 
 
-def _combine_slot_facts(slots):
+def _combine_slot_facts(slots, question="", case_data=None, record=None):
     """把命中的病例事实合成患者回答；不使用占位事实，不重复同一句。"""
     facts = []
     seen = set()
     for slot in slots[:2]:
         fact = _first_fact(slot)
-        if _is_placeholder_fact(fact):
+        if _is_non_informative_fact(fact):
             continue
         key = re.sub(r"\s+", "", fact)
         if key in seen:
@@ -240,6 +441,7 @@ def _combine_slot_facts(slots):
         facts.append(fact)
     if not facts:
         return "这个我说不太清楚。"
+    return _patientize_facts(facts, question, case_data, record)
     sentences = []
     for fact in facts:
         if fact.endswith(("。", "！", "？", "…", ".", "!", "?")):
@@ -277,7 +479,7 @@ def _find_trigger_fact(case_data):
             " ".join(slot.get("canonical_intents", []) or []),
             " ".join(slot.get("keywords", []) or []),
         ])
-        facts = [_clean_fact(f) for f in slot.get("answer_facts", []) or [] if _clean_fact(f)]
+        facts = [_clean_fact(f) for f in slot.get("answer_facts", []) or [] if _clean_fact(f) and not _is_non_informative_fact(f)]
         if not facts:
             continue
         combined = searchable + " " + " ".join(facts)
@@ -336,6 +538,167 @@ def _natural_trigger_reply(case_data, disclosed=None, question=""):
     return "我也说不清楚是什么原因，好像没有特别明显的诱因。"
 
 
+def _is_mechanical_trigger_question(question):
+    text = str(question or "")
+    terms = ("撞击", "撞到", "碰撞", "碰到", "撞伤", "外伤", "搬东西", "搬重物", "扭伤", "扭到")
+    return any(term in text for term in terms)
+
+
+def _mechanical_trigger_reply(case_data, question):
+    text = str(question or "")
+    fact = _find_trigger_fact(case_data) or _get_onset_hint(case_data)
+    fact_text = _strip_sentence_end(_humanize_case_text(fact))
+    if not fact_text:
+        return "我不太确定具体诱因，只知道当时开始不舒服了。"
+
+    collision_terms = ("撞击", "撞到", "碰撞", "碰到", "撞伤", "外伤")
+    lifting_terms = ("搬东西", "搬重物", "搬箱子", "搬")
+    fact_has_lifting = any(term in fact_text for term in lifting_terms)
+    fact_has_collision = any(term in fact_text for term in collision_terms)
+
+    if any(term in text for term in collision_terms) and fact_has_lifting and not fact_has_collision:
+        return _normalize_reply_text(f"不是被东西撞到，我记得是{fact_text}。")
+    if any(term in text for term in lifting_terms) and fact_has_lifting:
+        return _normalize_reply_text(f"对，是{fact_text}。")
+    return _normalize_reply_text(f"我记得主要是{fact_text}。")
+
+
+def _slots_by_ids(case_data, slot_ids):
+    all_slots = (case_data.get("dialogue_state_machine") or {}).get("slots", []) or []
+    by_id = {slot.get("slot_id"): slot for slot in all_slots}
+    return [by_id[sid] for sid in (slot_ids or []) if sid in by_id]
+
+
+def _facts_for_slots(case_data, slot_ids):
+    slots = _slots_by_ids(case_data, slot_ids or [])
+    facts = []
+    seen = set()
+    for slot in slots:
+        label = slot.get("label") or slot.get("slot_id") or "病例事实"
+        for fact in slot.get("answer_facts", []) or []:
+            text = _naturalize_fact_text(fact)
+            if not text or _is_non_informative_fact(text):
+                continue
+            key = re.sub(r"\s+", "", f"{label}:{text}")
+            if key in seen:
+                continue
+            seen.add(key)
+            facts.append(f"{label}: {text}")
+    return facts
+
+
+def _current_state_facts(case_data, record=None):
+    state = _current_patient_state(case_data, record)
+    initial = case_data.get("initial_exposure") or {}
+    candidates = [
+        ("当前主诉", state.get("chief_complaint")),
+        ("当前症状", state.get("symptom_description")),
+        ("当前外观", state.get("appearance")),
+        ("意识状态", state.get("mental_status") or state.get("consciousness")),
+        ("初始主诉", initial.get("chief_complaint") or initial.get("opening_line")),
+    ]
+    facts = []
+    seen = set()
+    for label, value in candidates:
+        text = _naturalize_fact_text(value)
+        if not text:
+            continue
+        key = re.sub(r"\s+", "", f"{label}:{text}")
+        if key in seen:
+            continue
+        seen.add(key)
+        facts.append(f"{label}: {text}")
+    for signal in (state.get("risk_signals") or [])[:3]:
+        text = _naturalize_fact_text(signal)
+        if text:
+            facts.append(f"当前风险表现: {text}")
+    if state.get("pain_score") not in (None, ""):
+        facts.append(f"疼痛评分: {state.get('pain_score')}")
+    return facts
+
+
+def _allowed_fact_pack(case_data, record, dialog_result):
+    facts = _facts_for_slots(case_data, dialog_result.get("matched_slots") or [])
+    if not facts:
+        facts = _current_state_facts(case_data, record)
+    draft = _naturalize_fact_text(dialog_result.get("content"))
+    if draft:
+        facts.append(f"规则草稿中已经表达的病例事实: {draft}")
+    seen = set()
+    unique = []
+    for item in facts:
+        key = re.sub(r"\s+", "", item)
+        if key and key not in seen:
+            seen.add(key)
+            unique.append(item)
+    return unique
+
+
+async def require_llm_patient_reply(case_data, record, student_message, dialog_result):
+    """Force the final patient-facing answer through the LLM API.
+
+    Rule code only decides the allowed fact boundary. The returned content must
+    be generated by the API so the virtual patient sounds like a person while
+    keeping triage-critical facts grounded in the case.
+    """
+    facts = _allowed_fact_pack(case_data, record or {}, dialog_result or {})
+    fact_pack = "\n".join(f"- {item}" for item in facts) or "- 暂无可新增披露的病例事实"
+    draft = _naturalize_fact_text((dialog_result or {}).get("content"))
+    question_type = (dialog_result or {}).get("question_type") or classifyQuestionType(student_message)
+    mode = (record or {}).get("mode", "practice")
+
+    system_prompt = """你是急诊预检分诊训练系统中的真实患者或家属。
+你的任务不是判断分诊，也不是给医学建议，而是用普通患者口吻回答护士问题。
+
+硬性边界：
+1. 关键医学事实只能来自【允许披露的病例事实】和【规则草稿】。
+2. 不得新增诊断、治疗、检查结果、生命体征、分诊等级、就诊区域或病例没有的高危信息。
+3. 必须把有助于护士预检分诊判断的核心信息说出来，例如起病时间、部位、诱因、伴随症状、否认项、疼痛程度、当前变化等。
+4. 允许自然表达：可以使用“嗯”“大概”“我记得”“好像”“有点担心”“就是挺难受的”等语气和情绪。
+5. 禁止说“病例信息中”“系统未提供”“根据资料”“无法回答”“你还是问医生吧”“请问具体一点”。
+6. 如果护士问诊断，患者不能下诊断，只能说自己不知道，需要医护帮忙看看。
+7. 输出 1-2 句，只输出患者/家属说的话。"""
+
+    user_prompt = f"""护士问题：
+{student_message}
+
+问题类型：{question_type}
+训练模式：{mode}
+
+允许披露的病例事实：
+{fact_pack}
+
+规则草稿：
+{draft or "患者不确定，但仍需围绕当前不适自然回答。"}
+
+请基于上述事实，生成一句或两句拟人化患者回答。"""
+
+    content = await call_llm(
+        [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+        temperature=0.72,
+        max_tokens=180,
+        timeout=20,
+        max_retries=1,
+        purpose="triage_patient_required",
+        log_meta={
+            "case_id": case_data.get("case_id") or case_data.get("id") or case_data.get("external_id"),
+            "record_id": (record or {}).get("id"),
+            "base_reply_mode": (dialog_result or {}).get("reply_mode"),
+            "question_type": question_type,
+        },
+    )
+    sanitized, violations = sanitize_triage_reply(content)
+    finalized = _finalize_reply(sanitized, case_data, record, question_type)
+    if not finalized:
+        raise RuntimeError("LLM returned empty patient reply")
+    result = dict(dialog_result or {})
+    result["content"] = finalized
+    result["reply_mode"] = f"{result.get('reply_mode', 'patient')}_llm_api"
+    result["llm_called"] = True
+    result["llm_violations"] = violations
+    return result
+
+
 def _diagnostic_reply(case_data):
     complaint = _clean_fact((case_data.get("initial_exposure") or {}).get("chief_complaint"))
     if complaint:
@@ -358,6 +721,8 @@ async def generate_triage_patient_reply(case_data, record, student_message):
         "should_append_disclosed": bool, "violations": list
     }
     """
+    record = dict(record or {})
+    record["_current_student_message"] = student_message
     disclosed = record.get("disclosed_slots", [])
     state_machine = case_data.get("dialogue_state_machine", {})
     all_slots = state_machine.get("slots", [])
@@ -370,15 +735,54 @@ async def generate_triage_patient_reply(case_data, record, student_message):
     answer_policy = _answer_policy(question_type)
 
     if answer_policy["must_not_diagnose"]:
-        reply = _diagnostic_reply(case_data)
+        reply = _finalize_reply(_diagnostic_reply(case_data), case_data, record, question_type)
         return {"content": reply, "reply_mode": "diagnostic_policy",
                 "matched_intents": intent_ids, "matched_slots": [],
                 "disclosed_slots": disclosed, "should_append_disclosed": False,
                 "violations": [], "question_type": question_type}
 
+    if _is_mechanical_trigger_question(student_message):
+        matched_trigger_slots = []
+        for intent_id in ["ask_trauma_detail", "ask_aggravating_relieving"]:
+            slot = _select_best_slot(intent_id, all_slots, disclosed, case_data)
+            if slot:
+                matched_trigger_slots.append(slot.get("slot_id"))
+                break
+        if matched_trigger_slots:
+            disclosed = _append_disclosed(disclosed, _unique_list(matched_trigger_slots))
+        reply = _finalize_reply(_mechanical_trigger_reply(case_data, student_message), case_data, record, "trigger_question")
+        return {"content": reply, "reply_mode": "mechanical_trigger_policy",
+                "matched_intents": _unique_list(intent_ids + ["ask_trauma_detail"]),
+                "matched_slots": matched_trigger_slots,
+                "disclosed_slots": disclosed,
+                "should_append_disclosed": bool(matched_trigger_slots),
+                "violations": [], "question_type": "trigger_question"}
+
     if answer_policy["prefer_trigger_answer"]:
-        reply = _natural_trigger_reply(case_data, disclosed, student_message)
+        reply = _finalize_reply(_natural_trigger_reply(case_data, disclosed, student_message), case_data, record, question_type)
+        matched_trigger_slots = []
+        for intent in intents[:2]:
+            slot = _select_best_slot(intent["intent_id"], all_slots, disclosed, case_data)
+            if slot:
+                matched_trigger_slots.append(slot.get("slot_id"))
+        if matched_trigger_slots:
+            disclosed = _append_disclosed(disclosed, _unique_list(matched_trigger_slots))
         return {"content": reply, "reply_mode": "trigger_policy",
+                "matched_intents": intent_ids, "matched_slots": matched_trigger_slots,
+                "disclosed_slots": disclosed, "should_append_disclosed": bool(matched_trigger_slots),
+                "violations": [], "question_type": question_type}
+
+    if _asks_current_state_detail(student_message):
+        reply = _current_state_targeted_reply(case_data, record)
+        return {"content": _finalize_reply(reply, case_data, record, "subjective_question"),
+                "reply_mode": "current_state_policy",
+                "matched_intents": intent_ids, "matched_slots": [],
+                "disclosed_slots": disclosed, "should_append_disclosed": False,
+                "violations": [], "question_type": question_type}
+
+    if question_type == "subjective_question" and not intent_ids:
+        reply = _subjective_reply(case_data, record)
+        return {"content": reply, "reply_mode": "subjective_policy",
                 "matched_intents": intent_ids, "matched_slots": [],
                 "disclosed_slots": disclosed, "should_append_disclosed": False,
                 "violations": [], "question_type": question_type}
@@ -402,6 +806,13 @@ async def generate_triage_patient_reply(case_data, record, student_message):
             if len(matched) >= 2:
                 break
 
+    if question_type == "subjective_question" and not matched:
+        reply = _subjective_reply(case_data, record)
+        return {"content": reply, "reply_mode": "subjective_policy",
+                "matched_intents": intent_ids, "matched_slots": [],
+                "disclosed_slots": disclosed, "should_append_disclosed": False,
+                "violations": [], "question_type": question_type}
+
     if matched:
         new_slots = _unique_list([m.get("slot_id") for m in matched])
         use_llm = os.getenv("TRIAGE_USE_LLM", "true").lower() in ("1", "true", "yes")
@@ -415,6 +826,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
                 content = llm_result.get("content", "")
                 if content and content not in ("这个我说不太清楚。",):
                     sanitized, violations = sanitize_triage_reply(content)
+                    sanitized = _finalize_reply(sanitized, case_data, record, question_type)
                     disclosed = _append_disclosed(disclosed, new_slots)
                     return {"content": sanitized, "reply_mode": "slot_llm",
                             "matched_intents": intent_ids, "matched_slots": new_slots,
@@ -424,7 +836,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
                 pass
 
         # LLM失败或关闭 → 规则自然化
-        reply = _combine_slot_facts(matched)
+        reply = _finalize_reply(_combine_slot_facts(matched, student_message, case_data, record), case_data, record, question_type)
         disclosed = _append_disclosed(disclosed, new_slots)
         return {"content": reply, "reply_mode": "slot_rule", "matched_intents": intent_ids,
                 "matched_slots": new_slots, "disclosed_slots": disclosed,
@@ -433,7 +845,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
     # ── 第3层：slot label 模糊匹配 ──
     fuzzy = _fuzzy_match_slot(student_message, all_slots)
     if fuzzy and fuzzy["slot_id"] not in disclosed:
-        reply = _combine_slot_facts([fuzzy])
+        reply = _finalize_reply(_combine_slot_facts([fuzzy], student_message, case_data, record), case_data, record, question_type)
         disclosed = _append_disclosed(disclosed, [fuzzy["slot_id"]])
         return {"content": reply, "reply_mode": "fuzzy_match", "matched_intents": [],
                 "matched_slots": [fuzzy["slot_id"]], "disclosed_slots": disclosed,
@@ -448,6 +860,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
         # 过滤占位答案，避免返回"根据病例资料回答。"
         if _is_placeholder_fact(reply) or _is_generic_initial_fact(reply, case_data):
             reply = _get_role_fallback("general")
+        reply = _finalize_reply(reply, case_data, record, question_type)
         return {"content": reply, "reply_mode": "v1_fallback", "matched_intents": [],
                 "matched_slots": [], "disclosed_slots": disclosed,
                 "should_append_disclosed": False, "violations": [], "question_type": question_type}
@@ -463,6 +876,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
             content = llm_result.get("content", "")
             if content and len(content) > 3:
                 sanitized, violations = sanitize_triage_reply(content)
+                sanitized = _finalize_reply(sanitized, case_data, record, question_type)
                 return {"content": sanitized, "reply_mode": "llm_semantic", "matched_intents": [],
                         "matched_slots": [], "disclosed_slots": disclosed,
                         "should_append_disclosed": False, "violations": violations, "question_type": question_type}
@@ -481,6 +895,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
         reply = _out_of_scope_reply(case_data)
     else:
         reply = _get_role_fallback(category)
+    reply = _finalize_reply(reply, case_data, record, question_type)
     return {"content": reply, "reply_mode": "role_fallback", "matched_intents": [],
             "matched_slots": [], "disclosed_slots": disclosed,
             "should_append_disclosed": False, "violations": [], "question_type": question_type}

@@ -1126,6 +1126,7 @@
     "events": [
       {
         "event_id": "event_001",
+        "patient_state_id": "T4_event_1",
         "patient_expression": "患儿短暂四肢抖动，哭声更弱，SpO₂降至93%。",
         "vital_changes": {},
         "requires_reassessment": true,
@@ -1140,6 +1141,7 @@
       },
       {
         "event_id": "event_002",
+        "patient_state_id": "T7_event_2",
         "patient_expression": "再次抽搐持续不止，口唇发绀，SpO₂ 88%，呼吸不规则。",
         "vital_changes": {
           "spo2": 88
@@ -1266,13 +1268,13 @@
         "new_symptoms"
       ],
       "vital_signs": {
-        "temperature": 39.4,
-        "heart_rate": 158,
-        "respiratory_rate": 32,
-        "spo2": 96,
+        "temperature": 39.6,
+        "heart_rate": 164,
+        "respiratory_rate": 34,
+        "spo2": 93,
         "consciousness": "嗜睡，可刺激唤醒，哭声弱",
         "gcs_score": 13,
-        "blood_glucose": 4.9,
+        "blood_glucose": 4.8,
         "skin_perfusion": "面色潮红，皮肤热，轻度出汗，无发绀，末梢灌注约2秒",
         "other_assessments": [
           "抽搐持续时间",
@@ -1287,8 +1289,8 @@
           "疫苗/基础病史",
           "误吸风险"
         ],
-        "blood_pressure_systolic": 92,
-        "blood_pressure_diastolic": 58
+        "blood_pressure_systolic": 90,
+        "blood_pressure_diastolic": 56
       },
       "recommended_actions": [
         "升级分诊等级",
@@ -1316,7 +1318,14 @@
         "new_symptoms"
       ],
       "vital_signs": {
-        "spo2": 88
+        "spo2": 88,
+        "temperature": 39.8,
+        "heart_rate": 170,
+        "respiratory_rate": 36,
+        "blood_pressure_systolic": 88,
+        "blood_pressure_diastolic": 54,
+        "gcs_score": 12,
+        "blood_glucose": 4.7
       },
       "recommended_actions": [
         "升级分诊等级",

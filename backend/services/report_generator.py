@@ -12,6 +12,46 @@ from services.case_types import (
 from services.triage_rule_engine import generate_rule_basis
 
 
+def event_indicates_deterioration(event: dict[str, Any] | None) -> bool:
+    """Return True for timeline events that should be treated as clinical worsening."""
+    if not event:
+        return False
+    event_type = str(event.get("event_type") or "").lower()
+    if event_type in {
+        "deterioration",
+        "critical_change",
+        "symptom_worsening",
+        "time_elapsed_without_reassessment",
+    }:
+        return True
+    if event.get("severe_error_if_ignored"):
+        return True
+    if event.get("standard_level_after_event"):
+        return True
+    return False
+
+
+def record_has_triggered_deterioration(record: dict[str, Any]) -> bool:
+    """Infer deterioration from timeline flags and triggered events, not one field only."""
+    state = record.get("timeline_state") or {}
+    if state.get("deteriorated"):
+        return True
+    for event in state.get("timeline_events") or []:
+        if event.get("triggered") and event_indicates_deterioration(event):
+            return True
+    return False
+
+
+def student_recognized_deterioration(record: dict[str, Any]) -> bool:
+    """A deterioration is recognized when the student reassesses, upgrades, or notifies."""
+    if not record_has_triggered_deterioration(record):
+        return False
+    actions = {a.get("action_type") for a in record.get("student_actions") or []}
+    if actions.intersection({"reassess", "upgrade_triage", "notify_doctor"}):
+        return True
+    return any((d.get("decision_type") == "reassessment") for d in record.get("triage_decisions") or [])
+
+
 def generate_training_report(
     record: dict[str, Any],
     case_data: dict[str, Any],
@@ -39,7 +79,9 @@ def generate_training_report(
     feedback = case_data.get("dynamic_feedback") or case_data.get("feedback") or {}
     correct_points = feedback.get("correct_points") or []
     incorrect_points = _build_incorrect_points(record, serious_error_result)
-    suggestions = feedback.get("recommended_remediation") or feedback.get("improvement_suggestions") or []
+    suggestions = _clean_training_suggestions(
+        feedback.get("recommended_remediation") or feedback.get("improvement_suggestions") or []
+    )
 
     report = {
         "case_info": {
@@ -71,7 +113,7 @@ def generate_training_report(
         "triage_decisions": triage_decisions,
         "reassessment_on_time": state.get("reassessment_on_time", False) or (state.get("reassessment_completed", False) and not state.get("reassessment_overdue", False)),
         "reassessment_reasonable": _reassessment_interval_reasonable(init_decision),
-        "deterioration_recognized": bool(state.get("deteriorated") and any(a.get("action_type") == "reassess" for a in student_actions)),
+        "deterioration_recognized": student_recognized_deterioration(record),
         "triage_upgraded": _has_upgrade(student_initial_level, student_final_level),
         "doctor_notified": bool(record.get("notification_events")),
         "notification_events": record.get("notification_events") or [],
@@ -145,17 +187,53 @@ def _build_incorrect_points(record: dict[str, Any], serious_error_result: dict[s
     actions = [a.get("action_type") for a in record.get("student_actions") or []]
     if "record_note" not in actions:
         points.append("Missing record note")
-    if "notify_doctor" not in actions and (record.get("timeline_state") or {}).get("deteriorated"):
+    if "notify_doctor" not in actions and record_has_triggered_deterioration(record):
         points.append("Doctor was not notified after deterioration")
+    if record_has_triggered_deterioration(record) and not student_recognized_deterioration(record):
+        points.append("Deterioration was not reassessed or recognized")
     return points
 
 
 def _recommended_training(incorrect_points: list[str], suggestions: list[str]) -> list[str]:
+    suggestions = _clean_training_suggestions(suggestions)
     if suggestions:
         return suggestions
     if incorrect_points:
         return ["Reassessment timing", "Dynamic vital-sign interpretation", "Retriage documentation"]
     return ["Maintain current dynamic triage workflow practice"]
+
+
+def _clean_training_suggestions(suggestions: Any) -> list[str]:
+    if isinstance(suggestions, str):
+        raw_items = [suggestions]
+    elif isinstance(suggestions, list):
+        raw_items = [str(item) for item in suggestions if item]
+    else:
+        raw_items = []
+
+    blocked_terms = (
+        "输出限制",
+        "不写治疗处方",
+        "不写药物剂量",
+        "不写成医生诊断题",
+        "不让虚拟患者",
+        "不省略评分细则",
+        "不使用真实患者隐私",
+        "评分标准过于笼统",
+        "提示词",
+        "LLM",
+        "token",
+    )
+    cleaned: list[str] = []
+    seen = set()
+    for item in raw_items:
+        text = item.strip(" -，,。；;")
+        if not text or any(term in text for term in blocked_terms):
+            continue
+        if text not in seen:
+            seen.add(text)
+            cleaned.append(text)
+    return cleaned
 
 
 def _reassessment_interval_reasonable(init_decision: dict[str, Any] | None) -> bool:
@@ -168,4 +246,3 @@ def _reassessment_interval_reasonable(init_decision: dict[str, Any] | None) -> b
 def _has_upgrade(from_level: str, to_level: str) -> bool:
     rank = {"Ⅰ级": 1, "Ⅱ级": 2, "Ⅲ级": 3, "Ⅳ级": 4}
     return bool(from_level and to_level and rank.get(to_level, 5) < rank.get(from_level, 5))
-

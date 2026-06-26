@@ -245,7 +245,7 @@ def get_records(current_user: User = Depends(get_current_user)):
 @router.get("/training/records/all")
 def get_all_records(current_user: User = Depends(get_current_user)):
     """教师查看所有训练记录"""
-    if current_user.role != "teacher":
+    if current_user.role not in ("teacher", "reviewer", "admin"):
         raise HTTPException(status_code=403, detail="仅教师可查看全部记录")
     from services.triage_repository import list_records
     records = list_records(user_id=None)
@@ -310,21 +310,33 @@ async def send_message(record_id: str, req: TriageMessageRequest,
     append_message(record_id, "student", req.content)
 
     # 使用统一拟人化回答服务
-    from services.triage_patient_dialogue import generate_triage_patient_reply
+    from services.triage_patient_dialogue import generate_triage_patient_reply, require_llm_patient_reply
     dialog_result = await generate_triage_patient_reply(case, record, req.content)
+
+    # 更新记录
+    record = _reload(record_id)
+    try:
+        dialog_result = await require_llm_patient_reply(case, record or {}, req.content, dialog_result)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=503,
+            detail=f"虚拟患者 LLM API 调用失败，未生成模板回复：{str(exc)[:200]}",
+        )
 
     patient_reply = dialog_result["content"]
     reply_mode = dialog_result["reply_mode"]
     disclosed = dialog_result["disclosed_slots"]
 
-    # 更新记录
-    record = _reload(record_id)
-    if record and dialog_result["should_append_disclosed"]:
-        record["disclosed_slots"] = disclosed
+    if record:
         ie = record.get("intent_events", [])
-        for ms in dialog_result.get("matched_slots", []):
-            ie.append({"intent": dialog_result.get("matched_intents", ["unknown"])[0] if dialog_result.get("matched_intents") else "unknown",
-                        "slot": ms, "matched_by": "dialogue_service", "reply_mode": reply_mode})
+        if dialog_result["should_append_disclosed"]:
+            record["disclosed_slots"] = disclosed
+            for ms in dialog_result.get("matched_slots", []):
+                ie.append({"intent": dialog_result.get("matched_intents", ["unknown"])[0] if dialog_result.get("matched_intents") else "unknown",
+                            "slot": ms, "matched_by": "dialogue_service", "reply_mode": reply_mode})
+        elif dialog_result.get("matched_intents"):
+            for intent in dialog_result.get("matched_intents", [])[:3]:
+                ie.append({"intent": intent, "slot": None, "matched_by": "dialogue_service", "reply_mode": reply_mode})
         record["intent_events"] = ie
         from services.triage_repository import _save_record
         _save_record(record)
@@ -343,6 +355,7 @@ async def send_message(record_id: str, req: TriageMessageRequest,
     return {
         "reply": patient_reply,
         "reply_mode": reply_mode,
+        "llm_called": dialog_result.get("llm_called", False),
         "matched": bool(dialog_result.get("matched_slots")),
         "matched_intents": dialog_result.get("matched_intents", []),
         "disclosed_slots": disclosed,
@@ -726,7 +739,14 @@ def advance_timeline(record_id: str, req: dict, current_user: User = Depends(get
 
     minutes = req.get("minutes", 5)
     case = get_case(record.get("case_external_id", ""))
-    from services.triage_timeline import get_due_events, record_student_action
+    from services.triage_timeline import (
+        get_due_events,
+        get_current_patient_state,
+        record_student_action,
+        normalize_stage_value,
+        sanitize_timeline_events_for_mode,
+        sanitize_patient_state_for_mode,
+    )
     events = get_due_events(record, minutes, case)
 
     mode = record.get("mode", "practice")
@@ -758,13 +778,27 @@ def advance_timeline(record_id: str, req: dict, current_user: User = Depends(get
     _save_record(record)
 
     state = record.get("timeline_state", {})
+    raw_patient_state = get_current_patient_state(record, case) if case else {}
+    patient_state = sanitize_patient_state_for_mode(raw_patient_state, mode)
+    safe_events = sanitize_timeline_events_for_mode(state.get("timeline_events", []), mode)
+    due_events = sanitize_timeline_events_for_mode(events, mode)
     return {
         "current_minute": state.get("current_simulated_minute", 0),
+        "current_stage": normalize_stage_value(state.get("current_stage", "ARRIVAL"), "ARRIVAL"),
+        "patient_state": patient_state,
+        "current_patient_state": patient_state,
+        "timeline_events": safe_events,
+        "visible_events": [e for e in safe_events if e.get("triggered")],
+        "due_events": due_events,
+        "next_reassessment_due": state.get("next_reassessment_due", 30),
+        "reassessment_due": state.get("reassessment_due", False),
+        "reassessment_overdue": state.get("reassessment_overdue", False),
+        "deteriorated": state.get("deteriorated", False),
         "events": [{"event_id": e.get("event_id",""), "event_type": e.get("event_type",""),
                      "patient_expression": e.get("patient_expression", ""),
                      "requires_reassessment": e.get("requires_reassessment", False),
                      "student_prompt": e.get("student_prompt", "") if mode == "practice" else "",
-                     "severe_error_if_ignored": e.get("severe_error_if_ignored", False)} for e in events],
+                     "severe_error_if_ignored": e.get("severe_error_if_ignored", False) if mode == "practice" else False} for e in events],
     }
 
 
