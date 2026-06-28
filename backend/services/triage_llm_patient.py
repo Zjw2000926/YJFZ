@@ -189,6 +189,42 @@ def _patientize_facts(facts, question="") -> str:
     return _normalize_reply_text(f"我现在主要就是{first}，有点不舒服，也有点担心。")
 
 
+GUARDED_FACT_TERMS = (
+    "阑尾手术", "开过刀", "做过手术", "切除", "冠心病", "心脏病", "心梗",
+    "高血压", "糖尿病", "哮喘", "脑卒中", "中风", "宫外孕", "异位妊娠",
+    "青霉素过敏", "头孢过敏", "药物过敏", "降压药", "降糖药", "阿司匹林",
+    "抗凝药", "吸烟", "抽烟", "饮酒", "喝酒", "头晕", "发晕", "冷汗", "冒冷汗",
+    "出冷汗", "大汗", "气短", "喘不上气", "呼吸困难", "血压下降", "血压掉",
+    "心跳很快", "心率快", "恶心", "呕吐", "放射痛",
+)
+
+
+def _guard_against_unsupported_medical_facts(reply: str, grounding_facts: list[str], question: str = "") -> tuple[str, list[str]]:
+    """Prevent natural LLM wording from adding new key triage facts."""
+    text = _normalize_reply_text(reply)
+    allowed = "\n".join(str(f) for f in grounding_facts or [])
+    violations: list[str] = []
+
+    for term in GUARDED_FACT_TERMS:
+        if term in text and term not in allowed:
+            violations.append(f"unsupported_medical_fact:{term}")
+
+    if re.search(r"(月经|例假).{0,12}(\d+\s*(天|周|个月)|规律|不规律|推迟)", text):
+        if not re.search(r"(月经|例假).{0,20}(\d+\s*(天|周|个月)|规律|不规律|推迟)", allowed):
+            violations.append("unsupported_medical_fact:menstrual_detail")
+
+    if re.search(r"(以前|之前|过去).{0,12}(手术|开刀|切除|阑尾)", text):
+        if not re.search(r"(以前|之前|过去|否认|没有).{0,12}(手术|开刀|切除|阑尾)", allowed):
+            violations.append("unsupported_medical_fact:surgery_history")
+
+    if not violations:
+        return text, []
+
+    if grounding_facts:
+        return _patientize_facts(grounding_facts, question), violations
+    return "这个我记不太清楚，我现在主要就是不舒服，有点担心。", violations
+
+
 def _fallback_from_slots(slots, question="") -> str:
     facts = _unique_facts(slots)
     if not facts:
@@ -353,6 +389,17 @@ async def generate_patient_reply(
 
     # 4. 安全检查
     sanitized, violations = sanitize_triage_reply(reply_content)
+    grounding_slots = _slots_by_ids(
+        case_data,
+        list(disclosed_slots or []) + [slot.get("slot_id") for slot in matched_slots if slot.get("slot_id")],
+    )
+    grounded, fact_violations = _guard_against_unsupported_medical_facts(
+        sanitized,
+        _unique_facts(grounding_slots),
+        student_message,
+    )
+    sanitized = grounded
+    violations.extend(fact_violations)
 
     # 5. 返回结果
     return {

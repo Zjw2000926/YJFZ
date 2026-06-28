@@ -8,6 +8,7 @@ import Badge from "../../components/ui/Badge";
 import LoadingState from "../../components/ui/LoadingState";
 import { useToast } from "../../components/useToast";
 import { ClipboardList, AlertTriangle, CheckCircle } from "lucide-react";
+import ScoreBreakdownDetails from "../../components/triage/ScoreBreakdownDetails";
 
 const PASS_LABELS = { excellent: "优秀", good: "良好", pass: "合格", fail: "不合格" };
 const PASS_COLORS = { excellent: "success", good: "info", pass: "warning", fail: "danger" };
@@ -21,6 +22,7 @@ export default function TriageRecordDetail({ user, onLogout }) {
   const [record, setRecord] = useState(null);
   const [score, setScore] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   const [teacherScore, setTeacherScore] = useState("");
   const [reviewComment, setReviewComment] = useState("");
   const [reviewing, setReviewing] = useState(false);
@@ -34,6 +36,7 @@ export default function TriageRecordDetail({ user, onLogout }) {
     if (navScore) setScore(navScore);
     if (navRecord) setRecord(navRecord);
 
+    setLoadError("");
     getTriageRecord(id).then(({ data }) => {
       const rec = data.record;
       setRecord(rec);
@@ -46,23 +49,39 @@ export default function TriageRecordDetail({ user, onLogout }) {
           severe_error_triggered: rec.severe_error_triggered,
           severe_errors: rec.severe_error_codes || [],
           detail_scores: rec.score_detail,
+          score_explanations: rec.score_explanations || [],
+          criterion_scores: rec.criterion_scores || [],
           rule_result: rec.rule_result || null,
           standard_answer: rec.standard_answer || null,
           timeline_report: rec.timeline_report || null,
           core_scores: rec.core_scores || null,
           complex_scores: rec.complex_scores || null,
           feedback: rec.feedback,
+          effective_score: rec.effective_score,
         });
       } else if (!navScore) {
         setScore(null);
       }
-    }).catch(() => toast.error("加载记录失败"))
+    }).catch((err) => {
+      const message = err.response?.data?.detail || "加载记录失败，请确认该报告未被删除且当前账号有权限查看。";
+      setLoadError(typeof message === "string" ? message : message?.message || "加载记录失败");
+      toast.error("加载记录失败");
+    })
       .finally(() => setLoading(false));
   }, [id, navScore, navRecord, toast]);
 
   const feedback = score?.feedback || {};
   const riskItems = toArray(feedback.risk_if_missed);
   const redFlagItems = toArray(feedback.key_red_flag);
+  const feedbackEvidence = feedback.feedback_evidence || {};
+  const feedbackEvidenceItems = toArray(feedbackEvidence.covered_items);
+  const feedbackEvidenceBasis = feedbackEvidence.basis || "";
+  const missedItems = [
+    ...toArray(feedback.missed_required_questions),
+    ...toArray(feedback.missed_measurements),
+    ...toArray(feedback.missed_red_flags),
+    ...toArray(feedback.missed_content),
+  ];
   const remediation = toArray(feedback.recommended_remediation).length > 0
     ? toArray(feedback.recommended_remediation)
     : toArray(feedback.next_practice_focus);
@@ -78,6 +97,12 @@ export default function TriageRecordDetail({ user, onLogout }) {
     !canSeeScore || !canSeeDetailedFeedback || (score?.standard_answer && !canSeeStandardAnswer)
   );
   const canReview = ["teacher", "admin"].includes(user?.role) && Boolean(score);
+  const timelineReport = score?.timeline_report || {};
+  const isDynamicReport = Boolean(timelineReport.is_dynamic_case);
+  const showReassessmentStatus = timelineReport.reassessment_applicable === true;
+  const showDeteriorationStatus = timelineReport.deterioration_applicable === true;
+  const showUpgradeStatus = timelineReport.upgrade_applicable === true;
+  const showDoctorStatus = timelineReport.doctor_notification_required === true;
 
   const handleTeacherReview = async () => {
     const value = Number(teacherScore);
@@ -105,7 +130,23 @@ export default function TriageRecordDetail({ user, onLogout }) {
   };
 
   if (loading) return <Layout user={user} onLogout={onLogout}><LoadingState /></Layout>;
-  if (!record) return <Layout user={user} onLogout={onLogout}><div style={{ padding: 40, textAlign: "center" }}>记录不存在</div></Layout>;
+  if (!record) return (
+    <Layout user={user} onLogout={onLogout}>
+      <PageHeader
+        title="预检分诊报告"
+        subtitle={`记录：${id}`}
+        icon={ClipboardList}
+        backTo={isEducator ? "/triage/admin" : "/triage/tasks"}
+      />
+      <Card>
+        <div style={{ padding: 24, textAlign: "center" }}>
+          <AlertTriangle size={32} color="#dc2626" />
+          <div style={{ fontWeight: 700, marginTop: 10 }}>报告无法打开</div>
+          <div style={{ color: "#6b7280", fontSize: "0.85rem", marginTop: 6 }}>{loadError || "记录不存在或已被删除。"}</div>
+        </div>
+      </Card>
+    </Layout>
+  );
 
   return (
     <Layout user={user} onLogout={onLogout}>
@@ -113,7 +154,7 @@ export default function TriageRecordDetail({ user, onLogout }) {
         title="预检分诊报告"
         subtitle={`病例：${record.case_external_id}`}
         icon={ClipboardList}
-        backTo="/triage"
+        backTo={isEducator ? "/triage/admin" : "/triage/tasks"}
       />
 
       <div style={{ marginBottom: 16, padding: 10, border: "1px solid #dbeafe", background: "#eff6ff", borderRadius: 8, fontSize: "0.78rem", color: "#1e40af" }}>
@@ -228,7 +269,7 @@ export default function TriageRecordDetail({ user, onLogout }) {
 
       {/* 动态时间线报告 */}
       {score?.timeline_report?.timeline_nodes?.length > 0 && canSeeDetailedFeedback && (
-        <Card title="患者状态时间线" style={{ marginBottom: 16 }}>
+        <Card title={isDynamicReport ? "患者状态时间线" : "训练流程概览"} style={{ marginBottom: 16 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 12, fontSize: "0.8rem" }}>
             <div style={{ padding: 8, background: "#f8fafc", borderRadius: 6 }}>
               <div style={{ fontWeight: 600, color: "#2563eb", marginBottom: 4 }}>初始分诊</div>
@@ -250,19 +291,32 @@ export default function TriageRecordDetail({ user, onLogout }) {
               </span>
             </div>
           ))}
+          {!isDynamicReport && (
+            <div style={{ marginTop: 10, padding: 8, background: "#f8fafc", borderRadius: 6, color: "#475569", fontSize: "0.72rem" }}>
+              本病例为静态立即分诊病例，不要求候诊复评、病情变化识别或升级分诊；请重点复盘初始等级、区域安排、通知医生和安全处置。
+            </div>
+          )}
           <div style={{ marginTop: 10, display: "flex", gap: 16, fontSize: "0.72rem", flexWrap: "wrap" }}>
-            <span style={{ color: score.timeline_report.reassessment_on_time ? "#16a34a" : "#dc2626" }}>
-              {score.timeline_report.reassessment_on_time ? "✓ 按时复评" : "✗ 未按时复评"}
-            </span>
-            <span style={{ color: score.timeline_report.deterioration_recognized ? "#16a34a" : "#dc2626" }}>
-              {score.timeline_report.deterioration_recognized ? "✓ 识别病情变化" : "✗ 未识别病情变化"}
-            </span>
-            <span style={{ color: score.timeline_report.triage_upgraded ? "#16a34a" : "#d97706" }}>
-              {score.timeline_report.triage_upgraded ? "✓ 已升级分诊" : "⚠ 未升级分诊"}
-            </span>
-            <span style={{ color: score.timeline_report.doctor_notified ? "#16a34a" : "#dc2626" }}>
-              {score.timeline_report.doctor_notified ? "✓ 已通知医生" : "✗ 未通知医生"}
-            </span>
+            {showReassessmentStatus && (
+              <span style={{ color: score.timeline_report.reassessment_on_time ? "#16a34a" : "#dc2626" }}>
+                {score.timeline_report.reassessment_on_time ? "✓ 按时复评" : "✗ 未按时复评"}
+              </span>
+            )}
+            {showDeteriorationStatus && (
+              <span style={{ color: score.timeline_report.deterioration_recognized ? "#16a34a" : "#dc2626" }}>
+                {score.timeline_report.deterioration_recognized ? "✓ 识别病情变化" : "✗ 未识别病情变化"}
+              </span>
+            )}
+            {showUpgradeStatus && (
+              <span style={{ color: score.timeline_report.triage_upgraded ? "#16a34a" : "#d97706" }}>
+                {score.timeline_report.triage_upgraded ? "✓ 已升级分诊" : "⚠ 未升级分诊"}
+              </span>
+            )}
+            {showDoctorStatus && (
+              <span style={{ color: score.timeline_report.doctor_notified ? "#16a34a" : "#dc2626" }}>
+                {score.timeline_report.doctor_notified ? "✓ 已通知医生" : "✗ 未通知医生"}
+              </span>
+            )}
           </div>
         </Card>
       )}
@@ -284,19 +338,10 @@ export default function TriageRecordDetail({ user, onLogout }) {
       {/* 评分详情 */}
       {score?.detail_scores && canSeeDetailedFeedback && (
         <Card title="分项评分" style={{ marginBottom: 16 }}>
-          {Object.entries(score.detail_scores).map(([name, dim]) => (
-            <div key={name} style={{ marginBottom: 12, padding: "8px 0", borderBottom: "1px solid #f3f4f6" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                <span style={{ fontSize: "0.8rem", fontWeight: 500 }}>{name}</span>
-                <span style={{ fontSize: "0.8rem", fontWeight: 700, color: dim.score >= dim.max * 0.7 ? "#16a34a" : dim.score >= dim.max * 0.4 ? "#d97706" : "#dc2626" }}>
-                  {dim.score} / {dim.max}
-                </span>
-              </div>
-              <div style={{ height: 6, borderRadius: 3, background: "#e5e7eb", overflow: "hidden" }}>
-                <div style={{ height: "100%", borderRadius: 3, background: dim.score >= dim.max * 0.7 ? "#22c55e" : dim.score >= dim.max * 0.4 ? "#f59e0b" : "#ef4444", width: `${(dim.score / dim.max) * 100}%` }} />
-              </div>
-            </div>
-          ))}
+          <ScoreBreakdownDetails
+            detailScores={score.detail_scores}
+            showStandardBasis={canSeeStandardAnswer || isEducator}
+          />
         </Card>
       )}
 
@@ -346,10 +391,19 @@ export default function TriageRecordDetail({ user, onLogout }) {
               {redFlagItems.map((r, i) => <div key={i} style={{ fontSize: "0.75rem" }}>· {r}</div>)}
             </div>
           )}
-          {(score.feedback.missed_required_questions || score.feedback.missed_measurements || score.feedback.missed_red_flags || score.feedback.missed_content || []).length > 0 && (
+          {(feedbackEvidenceBasis || feedbackEvidenceItems.length > 0) && (
+            <div style={{ marginBottom: 10, padding: 8, background: "#f8fafc", border: "1px solid #e5e7eb", borderRadius: 6, fontSize: "0.75rem", color: "#374151" }}>
+              <div style={{ fontWeight: 700, marginBottom: 4 }}>反馈依据</div>
+              {feedbackEvidenceBasis && <div style={{ marginBottom: 4 }}>{feedbackEvidenceBasis}</div>}
+              {feedbackEvidenceItems.length > 0 && (
+                <div>已从记录中识别：{feedbackEvidenceItems.slice(0, 12).join("、")}</div>
+              )}
+            </div>
+          )}
+          {missedItems.length > 0 && (
             <div style={{ marginBottom: 10 }}>
               <div style={{ fontWeight: 700, fontSize: "0.8rem", color: "#d97706" }}>✗ 遗漏项</div>
-              {[...(score.feedback.missed_required_questions || []), ...(score.feedback.missed_measurements || []), ...(score.feedback.missed_red_flags || []), ...(score.feedback.missed_content || [])].slice(0, 8).map((m, i) => <div key={i} style={{ fontSize: "0.75rem" }}>· {m}</div>)}
+              {missedItems.slice(0, 8).map((m, i) => <div key={i} style={{ fontSize: "0.75rem" }}>· {m}</div>)}
             </div>
           )}
           {remediation.length > 0 && (

@@ -7,12 +7,15 @@ from services.triage_scoring_real_rubric import score_triage_real_rubric
 from services.triage_scoring_v1 import score_triage_record
 from services.triage_scoring_v3 import score_triage_v3
 from services.triage_scoring_v4 import score_triage_v4
+from services.score_explanation import enrich_score_result
 
 
 def score_case(record: dict[str, Any], case_data: dict[str, Any]) -> dict[str, Any]:
     if is_dynamic_case(case_data):
-        return score_dynamic_case(record, case_data)
-    return score_static_case(record, case_data)
+        result = score_dynamic_case(record, case_data)
+    else:
+        result = score_static_case(record, case_data)
+    return enrich_score_result(record, case_data, result)
 
 
 def score_static_case(record: dict[str, Any], case_data: dict[str, Any]) -> dict[str, Any]:

@@ -197,6 +197,12 @@ export function getTriageAttempts() {
 export function exportTriageScoresCsv(params = {}) {
   return api.get("/triage/export/scores.csv", { params, responseType: "blob" });
 }
+export function exportTriageRecordPdf(recordId) {
+  return api.get(`/triage/export/full-report/${recordId}.html`, { responseType: "blob" });
+}
+export function exportTriageRecordsPdf(ids = []) {
+  return api.post("/triage/export/full-reports.html", { ids }, { responseType: "blob" });
+}
 
 // ── 动态训练 MVP 新增 ──
 export function recordInitialDecision(recordId, data) {

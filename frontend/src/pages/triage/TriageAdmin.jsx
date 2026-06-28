@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
 import PageHeader from "../../components/ui/PageHeader";
 import Card from "../../components/ui/Card";
@@ -18,6 +19,7 @@ import {
   releaseTriageTaskResults,
   bulkDeleteTriageRecords, getTriageCaseReviews, getTriageCaseReviewDetail, reviewTriageCase,
   getTriageScenarios, getTriageUsers, addTriageCohortMember, exportTriageScoresCsv,
+  exportTriageRecordPdf, exportTriageRecordsPdf,
 } from "../../api";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -96,7 +98,7 @@ function PaginatedTable({ columns, data, rowKey, emptyState, pageSize = 10 }) {
   );
 }
 
-function BulkActionBar({ selectedCount, pageTotal, allPageSelected, onTogglePage, onClear, onDelete, deleteLabel = "批量删除" }) {
+function BulkActionBar({ selectedCount, pageTotal, allPageSelected, onTogglePage, onClear, onDelete, deleteLabel = "批量删除", extraActions = null }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, padding: "8px 10px", marginBottom: 10, border: "1px solid #e5e7eb", borderRadius: 8, background: "#f9fafb", flexWrap: "wrap" }}>
       <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.78rem", color: "#374151" }}>
@@ -106,6 +108,7 @@ function BulkActionBar({ selectedCount, pageTotal, allPageSelected, onTogglePage
       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
         <span style={{ fontSize: "0.76rem", color: "#6b7280" }}>已选择 {selectedCount} 项</span>
         <Button size="sm" variant="outline" disabled={selectedCount === 0} onClick={onClear}>清空选择</Button>
+        {extraActions}
         <Button size="sm" variant="danger" disabled={selectedCount === 0} onClick={onDelete}>{deleteLabel}</Button>
       </div>
     </div>
@@ -445,7 +448,9 @@ function TasksTab({ tasks, cohorts, cases, refresh, toast }) {
 }
 
 function RecordsTab({ records, refresh, toast }) {
+  const navigate = useNavigate();
   const [selectedRecordIds, setSelectedRecordIds] = useState([]);
+  const [exportingPdf, setExportingPdf] = useState(false);
   const recordPager = usePagination(records || [], 20);
   const pageRecordIds = recordPager.pageItems.map((record) => record.id).filter(Boolean);
   const selectedRecordSet = useMemo(() => new Set(selectedRecordIds), [selectedRecordIds]);
@@ -493,6 +498,46 @@ function RecordsTab({ records, refresh, toast }) {
     }
   };
 
+  const openPrintableReport = async (fetcher, label) => {
+    const popup = window.open("", "_blank");
+    if (popup) {
+      popup.document.write("<!doctype html><meta charset='utf-8'><title>正在生成报告</title><p style='font-family:sans-serif'>正在生成PDF打印页...</p>");
+      popup.document.close();
+    }
+    setExportingPdf(true);
+    try {
+      const res = await fetcher();
+      const blob = new Blob([res.data], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      if (popup) {
+        popup.location.replace(url);
+      } else {
+        window.open(url, "_blank");
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      toast.success(`${label}已打开，请在打印窗口选择另存为PDF`);
+    } catch (err) {
+      if (popup) popup.close();
+      toast.error(err.response?.data?.detail || "导出PDF失败");
+    } finally {
+      setExportingPdf(false);
+    }
+  };
+
+  const handleExportPdf = (id) => {
+    if (!id) return;
+    openPrintableReport(() => exportTriageRecordPdf(id), "成绩报告PDF");
+  };
+
+  const handleBulkExportPdf = () => {
+    const ids = selectedRecordIds.filter(Boolean);
+    if (!ids.length) {
+      toast.warning("请先选择要导出的成绩报告");
+      return;
+    }
+    openPrintableReport(() => exportTriageRecordsPdf(ids), `${ids.length}份成绩报告PDF`);
+  };
+
   const cols = [
     { key: "select", label: "", width: 36, render: (_, row) => (
       <input type="checkbox" checked={selectedRecordSet.has(row.id)} onChange={() => toggleRecord(row.id)} onClick={(e) => e.stopPropagation()} />
@@ -503,9 +548,10 @@ function RecordsTab({ records, refresh, toast }) {
     { key: "total_score", label: "分数", width: 45, render: (v) => v != null ? `${v}分` : "-" },
     { key: "pass_status", label: "评级", width: 50, render: (v) => v ? <Badge variant={v === "fail" ? "danger" : v === "excellent" ? "success" : "info"}>{v}</Badge> : "-" },
     { key: "started_at", label: "时间", width: 90, render: (v) => v?.substring(0, 16) },
-    { key: "actions", label: "报告", width: 120, render: (_, r) => (
+    { key: "actions", label: "报告", width: 190, render: (_, r) => (
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-        <Button size="sm" variant="outline" onClick={() => { window.location.href = `/triage/record/${r.id}`; }}>查看</Button>
+        <Button size="sm" variant="outline" onClick={() => navigate(`/triage/record/${r.id}`)}>查看</Button>
+        <Button size="sm" variant="outline" disabled={exportingPdf} onClick={() => handleExportPdf(r.id)}>导出PDF</Button>
         <Button size="sm" variant="danger" onClick={() => handleSingleDelete(r.id)}>删除</Button>
       </div>
     )},
@@ -520,6 +566,11 @@ function RecordsTab({ records, refresh, toast }) {
         onClear={() => setSelectedRecordIds([])}
         onDelete={handleBulkDelete}
         deleteLabel="批量删除报告"
+        extraActions={
+          <Button size="sm" variant="outline" disabled={selectedRecordIds.length === 0 || exportingPdf} onClick={handleBulkExportPdf}>
+            {exportingPdf ? "生成中..." : "批量导出PDF"}
+          </Button>
+        }
       />
       <Table columns={cols} data={recordPager.pageItems} rowKey="id" emptyState={<EmptyState title="暂无记录" />} />
       <PaginationControls
@@ -1015,6 +1066,7 @@ function ScenariosTab() {
 }
 
 function ExportTab({ records, tasks }) {
+  const toast = useToast();
   const recordPager = usePagination(records || [], 10);
   const taskPager = usePagination(tasks || [], 10);
   const handleCSV = async (taskId = "") => {
@@ -1026,7 +1078,25 @@ function ExportTab({ records, tasks }) {
     a.click();
     URL.revokeObjectURL(u);
   };
-  const handlePrintHTML = (recordId) => { window.open(`/api/triage/export/record/${recordId}/html`, "_blank"); };
+  const handleFullPdf = async (recordId) => {
+    const popup = window.open("", "_blank");
+    if (popup) {
+      popup.document.write("<!doctype html><meta charset='utf-8'><title>正在生成完整报告</title><p style='font-family:sans-serif'>正在生成完整PDF打印页...</p>");
+      popup.document.close();
+    }
+    try {
+      const res = await exportTriageRecordPdf(recordId);
+      const blob = new Blob([res.data], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      if (popup) popup.location.replace(url);
+      else window.open(url, "_blank");
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      toast.success("完整报告已打开，请在打印窗口选择另存为PDF");
+    } catch (err) {
+      if (popup) popup.close();
+      toast.error(err.response?.data?.detail || "导出完整报告失败");
+    }
+  };
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       <Card title="导出训练记录">
@@ -1035,14 +1105,14 @@ function ExportTab({ records, tasks }) {
           <Button variant="outline" onClick={() => window.open("/api/triage/export/all", "_blank")}>API JSON 导出</Button>
         </div>
       </Card>
-      <Card title="可打印HTML报告">
+      <Card title="完整PDF报告">
         {recordPager.pageItems.map(r => (
           <div key={r.id} style={{ padding: "4px 0", display: "flex", justifyContent: "space-between", fontSize: "0.78rem" }}>
             <span>{r.user_display_name} — {r.case_external_id} ({r.total_score}分)</span>
-            <Button size="sm" variant="outline" onClick={() => handlePrintHTML(r.id)}>打印HTML</Button>
+            <Button size="sm" variant="outline" onClick={() => handleFullPdf(r.id)}>导出完整PDF</Button>
           </div>
         ))}
-        {records.length === 0 && <EmptyState title="暂无可打印记录" />}
+        {records.length === 0 && <EmptyState title="暂无可导出记录" />}
         <PaginationControls
           page={recordPager.page}
           pageSize={recordPager.pageSize}

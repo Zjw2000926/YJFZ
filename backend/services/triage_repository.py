@@ -19,6 +19,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 from config import TRIAGE_STATIC_DATA_DIR, TRIAGE_RUNTIME_DATA_DIR
+from services.case_types import is_dynamic_case
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 静态病例数据（Docker 中可只读挂载）
@@ -79,7 +80,7 @@ def list_cases(include_draft: bool = False) -> list:
             "external_id": eid,
             "display_name": case.get("display_name", case.get("title", "")),
             "difficulty": case.get("difficulty", 1),
-            "is_dynamic": case.get("is_dynamic", False),
+            "is_dynamic": is_dynamic_case(case),
             "dynamic_profile": (case.get("_validation") or {}).get("dynamic_profile", {}),
             "training_focus": case.get("training_focus", []),
             "review_status": {"approved_for_training": rs.get("approved_for_training", True)},
@@ -199,6 +200,8 @@ def start_record(user_id: int, external_id: str, user_display_name: str = "",
         "final_level_selected": None,
         "final_zone_selected": None,
         "final_disposition": None,
+        "triage_reason": "",
+        "notes": [],
         "score_detail": None,
         "feedback": None,
         "messages": [],
@@ -278,6 +281,14 @@ def submit_record(record_id: str, payload: dict) -> Optional[dict]:
     record["final_level_selected"] = record.get("final_level_selected") or payload.get("level")
     record["final_zone_selected"] = record.get("final_zone_selected") or payload.get("zone")
     record["final_disposition"] = record.get("final_disposition") or payload.get("disposition", [])
+    if payload.get("reason"):
+        record["triage_reason"] = payload.get("reason")
+    if payload.get("note"):
+        record.setdefault("notes", []).append({
+            "content": payload.get("note"),
+            "simulation_minute": (record.get("timeline_state") or {}).get("current_simulated_minute", 0),
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        })
     record["updated_at"] = datetime.now(timezone.utc).isoformat()
     _save_record(record)
     return record
@@ -365,6 +376,8 @@ def save_score(record_id: str, score_data: dict) -> Optional[dict]:
     record["severe_error_triggered"] = score_data.get("severe_error_triggered", False)
     record["severe_error_codes"] = score_data.get("severe_errors", [])
     record["score_detail"] = score_data.get("detail_scores")
+    record["score_explanations"] = score_data.get("score_explanations", [])
+    record["score_explanation_version"] = score_data.get("score_explanation_version", "")
     record["feedback"] = score_data.get("feedback")
     # P0-2: 完整持久化规则依据、标准答案、时间线报告
     record["rule_result"] = score_data.get("rule_result")

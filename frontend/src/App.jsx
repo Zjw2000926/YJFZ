@@ -15,6 +15,22 @@ const TriageLearningPath = lazy(() => import("./pages/triage/TriageLearningPath"
 
 const TRAINING_ROLES = ["student", "teacher", "reviewer", "admin"];
 
+function readStoredUser() {
+  const raw = localStorage.getItem("user");
+  if (!raw || raw === "undefined" || raw === "null") {
+    localStorage.removeItem("user");
+    return null;
+  }
+  try {
+    return JSON.parse(raw);
+  } catch {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    return null;
+  }
+}
+
 function ProtectedRoute({ children, role }) {
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("userRole");
@@ -27,10 +43,7 @@ function ProtectedRoute({ children, role }) {
 }
 
 export default function App() {
-  const [user, setUser] = useState(() => {
-    const u = localStorage.getItem("user");
-    return u ? JSON.parse(u) : null;
-  });
+  const [user, setUser] = useState(readStoredUser);
 
   const handleLogin = (userData) => {
     const normalizedUser = {

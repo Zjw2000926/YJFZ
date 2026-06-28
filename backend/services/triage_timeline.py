@@ -182,20 +182,76 @@ def apply_timeline_event(record: dict, event_id: str, case_data: dict = None) ->
     return record
 
 
-def sanitize_timeline_events_for_mode(events: list, mode: str) -> list:
-    """P0-2: 按训练模式脱敏时间轴事件。exam/osce 隐藏提示和标准答案。"""
-    if mode not in ("exam", "osce"):
-        return events
+ANSWER_LIKE_EVENT_KEYS = {
+    "expected_student_actions",
+    "consequence_if_missed",
+    "standard_level_after_event",
+    "severe_error_if_ignored",
+    "severe_error_code",
+    "vital_changes",
+    "trigger_condition",
+}
+
+
+def _natural_event_cue(ev: dict, mode: str = "practice") -> str:
+    """Build a student-facing timeline cue without leaking the expected action."""
+    expression = str(ev.get("patient_expression") or "").strip()
+    description = str(ev.get("event_description") or "").strip()
+    event_type = str(ev.get("event_type") or "")
+    minute = ev.get("scheduled_minute", 0)
+
+    if expression:
+        if event_type == "deterioration":
+            return f"候诊巡视时患者主动表示：{expression}"
+        return f"候诊区患者反馈：{expression}"
+
+    if description:
+        text = description
+        for token in ("Ⅱ级", "Ⅲ级", "Ⅰ级", "Ⅳ级", "红区", "黄区", "绿区", "升级", "必须", "立即"):
+            text = text.replace(token, "")
+        text = text.replace("HR", "心率").replace("BP", "血压").strip(" ，,。")
+        if text:
+            return f"第{minute}分钟患者状态出现变化：{text}"
+
+    return f"第{minute}分钟候诊观察节点。"
+
+
+def sanitize_timeline_events_for_mode(events: list, mode: str, current_minute: int | None = None) -> list:
+    """Return student-facing events while keeping internal scoring metadata private."""
     safe = []
-    for ev in events:
+    for ev in events or []:
+        scheduled = int(ev.get("scheduled_minute") or 0)
+        triggered = bool(ev.get("triggered")) or (
+            current_minute is not None and scheduled <= int(current_minute)
+        )
         item = {
             "event_id": ev.get("event_id", ""),
-            "scheduled_minute": ev.get("scheduled_minute", 0),
+            "scheduled_minute": scheduled,
             "event_type": ev.get("event_type", ""),
-            "triggered": ev.get("triggered", False),
-            "event_description": ev.get("event_description", ev.get("patient_expression", "")),
-            "patient_expression": ev.get("patient_expression", ""),
+            "triggered": triggered,
         }
+
+        if not triggered:
+            item.update({
+                "visible_to_student": False,
+                "event_description": "待观察",
+                "patient_expression": "",
+                "student_prompt": "",
+                "requires_reassessment": False,
+            })
+            safe.append(item)
+            continue
+
+        cue = _natural_event_cue(ev, mode)
+        item.update({
+            "visible_to_student": bool(ev.get("visible_to_student", True)),
+            "event_description": cue,
+            "patient_expression": ev.get("patient_expression", ""),
+            "requires_reassessment": bool(ev.get("requires_reassessment")),
+            "student_prompt": "" if mode in ("exam", "osce") else cue,
+        })
+        for key in ANSWER_LIKE_EVENT_KEYS:
+            item.pop(key, None)
         safe.append(item)
     return safe
 

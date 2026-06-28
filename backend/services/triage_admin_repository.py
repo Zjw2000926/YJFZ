@@ -4,7 +4,7 @@
 后续切换数据库时优先替换这里，而不是改训练引擎。
 """
 
-import json, os, uuid
+import json, os, time, uuid
 from datetime import datetime, timezone
 from html import escape
 
@@ -31,9 +31,16 @@ def _load(fpath):
 
 def _save(fpath, data):
     os.makedirs(os.path.dirname(fpath), exist_ok=True)
-    tmp = fpath + ".tmp"
+    tmp = f"{fpath}.{os.getpid()}.{uuid.uuid4().hex}.tmp"
     with open(tmp, "w", encoding="utf-8") as f: json.dump(data, f, ensure_ascii=False, indent=2)
-    os.replace(tmp, fpath)  # 原子替换，防止并发损坏
+    for attempt in range(5):
+        try:
+            os.replace(tmp, fpath)  # 原子替换，防止并发损坏
+            return
+        except PermissionError:
+            if attempt == 4:
+                raise
+            time.sleep(0.05 * (attempt + 1))
 
 
 def _student_member(user_id, user_name):
@@ -425,30 +432,339 @@ def save_case_version(case_id, version, case_data, changed_by, note=""):
 def list_case_versions(case_id):
     return [v for v in _load(VERSIONS_FILE) if v["case_id"]==case_id]
 
-# ── Export HTML Report ──
-def build_html_report(record):
+def _as_list(value):
+    if value is None or value == "":
+        return []
+    if isinstance(value, list):
+        return value
+    if isinstance(value, tuple):
+        return list(value)
+    return [value]
+
+
+def _safe(value, default="—"):
+    if value is None or value == "":
+        return default
+    if isinstance(value, (list, tuple)):
+        return "、".join(escape(str(item)) for item in value) or default
+    if isinstance(value, dict):
+        return escape(str(value))
+    return escape(str(value))
+
+
+def _html_list(items, empty="—"):
+    values = [item for item in _as_list(items) if item not in (None, "")]
+    if not values:
+        return f"<span class='muted'>{escape(empty)}</span>"
+    return "<ul>" + "".join(f"<li>{_safe(item)}</li>" for item in values) + "</ul>"
+
+
+def _yes_no(value, yes="是", no="否", unknown="—"):
+    if value is True:
+        return f"<span class='ok'>{escape(yes)}</span>"
+    if value is False:
+        return f"<span class='bad'>{escape(no)}</span>"
+    return f"<span class='muted'>{escape(unknown)}</span>"
+
+
+def _score_cell(score, max_score):
+    return f"<span class='score-chip'>{_safe(score, '0')} / {_safe(max_score, '?')}</span>"
+
+
+def _render_basic_info(rd, title):
+    timeline_report = rd.get("timeline_report") or {}
+    case_info = timeline_report.get("case_info") or {}
+    patient = case_info.get("patient_profile") or {}
+    effective_score = rd.get("effective_score", rd.get("total_score", ""))
+    rows = [
+        ("学员", rd.get("user_display_name", ""), "病例", case_info.get("case_name") or rd.get("case_external_id", "")),
+        ("病例编号", rd.get("case_external_id", ""), "记录ID", rd.get("id", "")),
+        ("训练模式", rd.get("mode", ""), "病例类型", timeline_report.get("case_type") or ("dynamic" if timeline_report.get("is_dynamic_case") else "static")),
+        ("开始时间", rd.get("started_at", ""), "提交时间", rd.get("submitted_at", "")),
+        ("系统总分", rd.get("total_score", ""), "有效成绩", effective_score),
+        ("评级", rd.get("pass_status", ""), "严重错误", "是" if rd.get("severe_error_triggered") else "否"),
+        ("患者", f"{patient.get('gender','')} {patient.get('age','')}".strip(), "来院方式", patient.get("arrival_mode", "")),
+    ]
+    body = "".join(
+        f"<tr><th>{escape(left)}</th><td>{_safe(left_v)}</td><th>{escape(right)}</th><td>{_safe(right_v)}</td></tr>"
+        for left, left_v, right, right_v in rows
+    )
+    severe_codes = _html_list(rd.get("severe_error_codes"), "无")
+    return f"""<h1>{escape(title)}</h1>
+<div class='score'>{_safe(rd.get('total_score', 0))}</div><div class='pass'>评级: {_safe(rd.get('pass_status', ''))}</div>
+<h2>基本信息</h2>
+<table>{body}</table>
+<div class='notice'>本系统仅用于护理教育训练，不用于真实临床分诊或诊疗决策。</div>
+<div class='subblock'><b>严重错误代码：</b>{severe_codes}</div>"""
+
+
+def _render_decision_comparison(rd):
+    standard = rd.get("standard_answer") or {}
+    timeline_report = rd.get("timeline_report") or {}
+    disposition = rd.get("final_disposition") or []
+    standard_disposition = standard.get("disposition") or []
+    html = f"""
+<h2>分诊决策对比</h2>
+<table>
+  <tr><th></th><th>学员决策</th><th>标准答案</th></tr>
+  <tr><th>最终分诊等级</th><td>{_safe(rd.get('final_level_selected'))}</td><td>{_safe(standard.get('triage_level') or timeline_report.get('standard_final_level'))}</td></tr>
+  <tr><th>最终就诊区域</th><td>{_safe(rd.get('final_zone_selected'))}</td><td>{_safe(standard.get('triage_zone') or timeline_report.get('standard_final_area'))}</td></tr>
+  <tr><th>处置安排</th><td>{_html_list(disposition)}</td><td>{_html_list(standard_disposition)}</td></tr>
+  <tr><th>初始分诊</th><td>{_safe(timeline_report.get('student_initial_level'))} / {_safe(timeline_report.get('student_initial_area'))}</td><td>{_safe(timeline_report.get('standard_initial_level'))} / {_safe(timeline_report.get('standard_initial_area'))}</td></tr>
+  <tr><th>复评/最终分诊</th><td>{_safe(timeline_report.get('student_final_level') or rd.get('final_level_selected'))} / {_safe(timeline_report.get('student_final_area') or rd.get('final_zone_selected'))}</td><td>{_safe(timeline_report.get('standard_final_level'))} / {_safe(timeline_report.get('standard_final_area'))}</td></tr>
+</table>"""
+    reason = rd.get("triage_reason") or rd.get("reason") or rd.get("final_reason")
+    note = rd.get("note") or rd.get("final_note")
+    if reason or note:
+        html += f"<div class='subblock'><b>学员分诊理由：</b>{_safe(reason)}<br><b>记录说明：</b>{_safe(note)}</div>"
+    return html
+
+
+def _action_detail(detail):
+    if isinstance(detail, dict):
+        return "；".join(f"{escape(str(k))}: {_safe(v)}" for k, v in detail.items()) or "—"
+    return _safe(detail)
+
+
+def _render_training_overview(rd):
+    timeline_report = rd.get("timeline_report") or {}
+    timeline_state = rd.get("timeline_state") or {}
+    nodes = timeline_report.get("timeline_nodes") or timeline_report.get("patient_state_timeline") or []
+    actions = timeline_report.get("action_timeline") or timeline_report.get("student_actions") or rd.get("student_actions") or []
+    vital_logs = timeline_report.get("vital_measurement_log") or timeline_report.get("vital_sign_timeline") or []
+
+    node_rows = "".join(
+        f"<tr><td>{_safe(node.get('label') or ('T' + str(node.get('minute', ''))))}</td><td>{_safe(node.get('minute'))}</td><td>{_safe(node.get('event'))}</td><td>{_safe(node.get('stage') or node.get('patient_state_id'))}</td><td>{_safe(node.get('student_action'))}</td></tr>"
+        for node in nodes
+    )
+    action_rows = "".join(
+        f"<tr><td>{_safe(action.get('minute') if action.get('minute') is not None else action.get('simulation_minute'))}</td><td>{_safe(action.get('action_type'))}</td><td>{_action_detail(action.get('detail') or action.get('payload'))}</td><td>{_yes_no(action.get('is_correct'), '正确', '不正确')}</td><td>{_safe(action.get('feedback'))}</td></tr>"
+        for action in actions
+    )
+    vital_rows = ""
+    for log in vital_logs:
+        result = log.get("result") or log.get("vital_signs") or log.get("values") or {}
+        vital_rows += f"<tr><td>{_safe(log.get('simulation_minute') if log.get('simulation_minute') is not None else log.get('minute'))}</td><td>{_action_detail(result)}</td></tr>"
+
+    state_events = timeline_state.get("timeline_events") or timeline_state.get("system_events") or []
+    state_rows = "".join(
+        f"<tr><td>{_safe(ev.get('scheduled_minute') if ev.get('scheduled_minute') is not None else ev.get('simulation_minute'))}</td><td>{_safe(ev.get('event_type'))}</td><td>{_safe(ev.get('patient_expression') or ev.get('event_description') or ev.get('detail'))}</td></tr>"
+        for ev in state_events
+    )
+    status = f"""
+<div class='status-grid'>
+  <div>按时复评：{_yes_no(timeline_report.get('reassessment_on_time'))}</div>
+  <div>复评时间合理：{_yes_no(timeline_report.get('reassessment_reasonable'))}</div>
+  <div>识别病情变化：{_yes_no(timeline_report.get('deterioration_recognized'))}</div>
+  <div>完成升级分诊：{_yes_no(timeline_report.get('triage_upgraded'))}</div>
+  <div>通知医生：{_yes_no(timeline_report.get('doctor_notified'))}</div>
+</div>"""
+
+    html = f"<h2>训练流程概览</h2>{status}"
+    if node_rows:
+        html += f"<h3>患者状态时间线</h3><table><tr><th>节点</th><th>分钟</th><th>事件/表现</th><th>阶段</th><th>学员操作</th></tr>{node_rows}</table>"
+    if state_rows:
+        html += f"<h3>系统事件时间线</h3><table><tr><th>时间</th><th>事件类型</th><th>内容</th></tr>{state_rows}</table>"
+    if action_rows:
+        html += f"<h3>学员操作时间线</h3><table><tr><th>时间</th><th>操作类型</th><th>操作内容</th><th>判断</th><th>反馈</th></tr>{action_rows}</table>"
+    if vital_rows:
+        html += f"<h3>生命体征测量记录</h3><table><tr><th>时间</th><th>测量结果</th></tr>{vital_rows}</table>"
+    return html
+
+
+def _render_score_detail(rd):
+    detail = rd.get("score_detail") or {}
+    if not detail:
+        return "<h2>分项评分</h2><p class='muted'>暂无分项评分。</p>"
+    sections = []
+    for name, data in detail.items():
+        if not isinstance(data, dict):
+            sections.append(f"<tr><td>{_safe(name)}</td><td>{_safe(data)}</td><td></td><td></td></tr>")
+            continue
+
+        def _criterion_table(criteria, empty_text):
+            rows = ""
+            for c in criteria:
+                status = "完成" if c.get("met") else "未完成"
+                rows += f"""
+<tr>
+  <td>{_safe(c.get('label') or c.get('id'))}</td>
+  <td>{_score_cell(c.get('score', 0), c.get('max_score') or c.get('max'))}</td>
+  <td>{escape(status)}</td>
+  <td>{_safe(c.get('evidence'))}</td>
+  <td>{_safe(c.get('deduction_reason') or c.get('missed_reason'))}</td>
+  <td>{_safe(c.get('standard_basis'))}</td>
+  <td>{_safe(c.get('international_reference'))}</td>
+  <td>{_safe(c.get('improvement') or c.get('teaching_point'))}</td>
+</tr>"""
+            if not rows:
+                return f"<p class='muted'>{escape(empty_text)}</p>"
+            return f"<table class='small'><tr><th>评分细则</th><th>得分</th><th>状态</th><th>操作证据</th><th>扣分原因</th><th>标准依据</th><th>参考框架</th><th>改进建议</th></tr>{rows}</table>"
+
+        criteria = data.get("criteria") or []
+        missed_criteria = [
+            c for c in criteria
+            if c.get("deduction_reason") or c.get("missed_reason") or c.get("status") == "missed" or c.get("met") is False
+        ]
+        met_criteria = [c for c in criteria if c not in missed_criteria]
+        criteria_table = f"""
+  <h4>扣分点</h4>
+  {_criterion_table(missed_criteria, '本维度没有扣分点。')}
+  <h4>已完成证据</h4>
+  {_criterion_table(met_criteria, '本维度暂无已完成证据。')}
+"""
+        sections.append(f"""
+<div class='score-dim'>
+  <h3>{_safe(data.get('name') or name)} <span>{_score_cell(data.get('score', 0), data.get('max', 0))}</span></h3>
+  <p>{_safe(data.get('summary'))}</p>
+  <div><b>扣分原因：</b>{_html_list(data.get('deduction_reasons'), '无')}</div>
+  <div><b>已完成证据：</b>{_html_list(data.get('evidence'), '无')}</div>
+  <div><b>本项标准依据：</b>{_safe(data.get('standard_basis'))}</div>
+  <div><b>国际分诊框架参考：</b>{_safe(data.get('international_reference'))}</div>
+  <div><b>改进建议：</b>{_safe(data.get('improvement'))}</div>
+  {criteria_table}
+</div>""")
+    return "<h2>分项评分</h2>" + "".join(sections)
+
+
+def _render_evidence_detail(rd):
+    criterion_scores = rd.get("criterion_scores") or []
+    score_explanations = rd.get("score_explanations") or []
+    rows = ""
+    for item in criterion_scores:
+        rows += f"""
+<tr>
+  <td>{_safe(item.get('criterion') or item.get('dimension'))}</td>
+  <td>{_score_cell(item.get('score', 0), item.get('max_score') or item.get('max'))}</td>
+  <td>{_yes_no(item.get('met'), '已完成', '未完成')}</td>
+  <td>{_html_list(item.get('evidence'), '无')}</td>
+  <td>{_safe(item.get('missed_reason'))}</td>
+  <td>{_safe(item.get('teaching_point'))}</td>
+</tr>"""
+    dim_rows = ""
+    for dim in score_explanations:
+        dim_rows += f"<tr><td>{_safe(dim.get('name'))}</td><td>{_score_cell(dim.get('score', 0), dim.get('max', 0))}</td><td>{_safe(dim.get('summary'))}</td><td>{_html_list(dim.get('deduction_reasons'), '无')}</td></tr>"
+    html = "<h2>评分证据明细</h2>"
+    if dim_rows:
+        html += f"<h3>维度汇总证据</h3><table><tr><th>维度</th><th>得分</th><th>摘要</th><th>主要扣分点</th></tr>{dim_rows}</table>"
+    if rows:
+        html += f"<h3>评分点证据</h3><table><tr><th>评分点</th><th>得分</th><th>完成情况</th><th>操作证据</th><th>遗漏/扣分原因</th><th>教学提示</th></tr>{rows}</table>"
+    if not dim_rows and not rows:
+        html += "<p class='muted'>暂无评分证据明细。</p>"
+    return html
+
+
+def _render_feedback(rd):
+    feedback = rd.get("feedback") or {}
+    evidence = feedback.get("feedback_evidence") or {}
+    missed_items = (
+        _as_list(feedback.get("missed_required_questions"))
+        + _as_list(feedback.get("missed_measurements"))
+        + _as_list(feedback.get("missed_red_flags"))
+        + _as_list(feedback.get("missed_content"))
+    )
+    remediation = feedback.get("recommended_remediation") or feedback.get("next_practice_focus")
+    return f"""
+<h2>专家反馈</h2>
+<div class='feedback-grid'>
+  <div><h3>正确点</h3>{_html_list(feedback.get('correct_points') or feedback.get('strengths'), '无')}</div>
+  <div><h3>正确分诊依据</h3><p>{_safe(feedback.get('reason_for_triage_level'))}</p></div>
+  <div><h3>漏掉后的风险</h3>{_html_list(feedback.get('risk_if_missed'), '无')}</div>
+  <div><h3>关键高危信号</h3>{_html_list(feedback.get('key_red_flag'), '无')}</div>
+  <div><h3>遗漏项</h3>{_html_list(missed_items, '无')}</div>
+  <div><h3>补训建议</h3>{_html_list(remediation, '无')}</div>
+</div>
+<div class='subblock'><b>反馈依据：</b>{_safe(evidence.get('basis'))}<br>
+<b>已识别问诊/风险/测量证据：</b>{_html_list(evidence.get('covered_items'), '无')}<br>
+<b>已测量项目：</b>{_html_list(evidence.get('measured_items'), '无')}</div>
+<div class='critical'><b>安全关键错误：</b>{_html_list(feedback.get('safety_critical_errors') or rd.get('critical_failures'), '无')}</div>"""
+
+
+def _render_dialogue(rd):
+    messages = rd.get("messages") or []
+    rows = ""
+    for i, msg in enumerate(messages, 1):
+        role = "护士/学员" if msg.get("role") in ("student", "user") else "患者"
+        rows += f"<tr><td>{i}</td><td>{escape(role)}</td><td>{_safe(msg.get('created_at'))}</td><td class='dialogue'>{_safe(msg.get('content'))}</td></tr>"
+    if not rows:
+        rows = "<tr><td colspan='4' class='muted'>暂无对话记录。</td></tr>"
+    return f"<h2>训练对话记录</h2><table><tr><th>序号</th><th>角色</th><th>时间</th><th>内容</th></tr>{rows}</table>"
+
+
+def _render_raw_actions(rd):
+    actions = rd.get("actions") or []
+    if not actions:
+        return ""
+    rows = "".join(
+        f"<tr><td>{_safe(action.get('created_at'))}</td><td>{_safe(action.get('action_type'))}</td><td>{_action_detail(action.get('payload'))}</td></tr>"
+        for action in actions
+    )
+    return f"<h2>原始操作记录</h2><table><tr><th>时间</th><th>操作类型</th><th>内容</th></tr>{rows}</table>"
+
+
+def _report_section(record, index: int | None = None):
     rd = record
-    score = rd.get("total_score", 0)
-    ps = rd.get("pass_status", "")
-    level = rd.get("final_level_selected", "")
-    zone = rd.get("final_zone_selected", "")
-    detail = rd.get("score_detail", {})
-    timeline = rd.get("timeline_state", {})
+    title = "预检分诊训练报告" if index is None else f"预检分诊训练报告 #{index}"
+    return f"""<section class='report-section'>
+{_render_basic_info(rd, title)}
+{_render_decision_comparison(rd)}
+{_render_training_overview(rd)}
+{_render_score_detail(rd)}
+{_render_evidence_detail(rd)}
+{_render_feedback(rd)}
+{_render_dialogue(rd)}
+{_render_raw_actions(rd)}
+<p style='text-align:center;color:#999'>预检分诊训练系统 — 教学管理模块</p></section>"""
 
-    dims_html = "".join(f"<tr><td>{escape(str(k))}</td><td>{escape(str(v.get('score',0)))}/{escape(str(v.get('max',0)))}</td></tr>" for k,v in (detail or {}).items())
 
-    events_html = ""
-    for ev in timeline.get("timeline_events", []):
-        triggered = "✅" if ev.get("triggered") else "⏳"
-        events_html += f"<tr><td>{escape(str(ev.get('scheduled_minute',0)))}min</td><td>{triggered}</td><td>{escape(str(ev.get('patient_expression',''))[:50])}</td></tr>"
+def _html_document(body: str, title: str = "预检分诊训练报告", auto_print: bool = False) -> str:
+    print_script = """
+<script>
+window.addEventListener('load', function () {
+  setTimeout(function () { window.print(); }, 300);
+});
+</script>""" if auto_print else ""
+    return f"""<!DOCTYPE html><html><head><meta charset='utf-8'><title>{escape(title)}</title>
+<style>
+body{{font-family:Arial,'Microsoft YaHei',sans-serif;max-width:900px;margin:20px auto;padding:20px;color:#111827}}
+h1{{text-align:center}}h2{{border-bottom:2px solid #2563eb;padding-bottom:4px;margin-top:24px}}
+table{{width:100%;border-collapse:collapse;margin:8px 0;table-layout:fixed}}td,th{{border:1px solid #ddd;padding:8px;vertical-align:top;word-break:break-word;white-space:pre-wrap}}th{{background:#f0f4ff}}
+ul{{margin:4px 0 4px 18px;padding:0}}li{{margin:2px 0}}h3{{margin:12px 0 6px;font-size:16px;color:#1f2937}}
+.score{{font-size:48px;font-weight:bold;text-align:center;color:#2563eb}}.pass{{text-align:center;font-size:20px}}
+.print-tip{{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px;margin-bottom:16px;color:#1e40af;font-size:13px}}
+.notice{{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:8px;margin:10px 0;color:#991b1b;font-size:13px}}
+.subblock{{background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:8px;margin:10px 0;font-size:13px}}
+.critical{{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:8px;margin:10px 0;font-size:13px;color:#9a3412}}
+.status-grid,.feedback-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}}
+.status-grid>div,.feedback-grid>div{{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:8px}}
+.score-dim{{border:1px solid #e5e7eb;border-radius:8px;padding:10px;margin:12px 0;break-inside:avoid}}
+.score-dim h3{{display:flex;justify-content:space-between;gap:12px}}
+.score-chip{{font-weight:700;color:#2563eb;white-space:nowrap}}
+.small{{font-size:12px}}.muted{{color:#6b7280}}.ok{{color:#16a34a;font-weight:700}}.bad{{color:#dc2626;font-weight:700}}
+.dialogue{{line-height:1.55}}
+.report-section{{page-break-after:always;margin-bottom:36px}}.report-section:last-child{{page-break-after:auto}}
+@media print{{body{{margin:0;max-width:none;padding:12mm;font-size:12px}}.print-tip{{display:none}}.report-section{{break-after:page}}.report-section:last-child{{break-after:auto}}h2{{break-after:avoid}}tr,.score-dim,.subblock,.critical{{break-inside:avoid}}}}
+</style>{print_script}</head><body>
+<div class='print-tip'>导出 PDF：请在打印窗口选择“另存为 PDF”或“Microsoft Print to PDF”。</div>
+{body}
+</body></html>"""
 
-    return f"""<!DOCTYPE html><html><head><meta charset='utf-8'><title>预检分诊训练报告</title>
-<style>body{{font-family:Arial;max-width:800px;margin:20px auto;padding:20px}}h1{{text-align:center}}h2{{border-bottom:2px solid #2563eb}}table{{width:100%;border-collapse:collapse}}td,th{{border:1px solid #ddd;padding:8px}}th{{background:#f0f4ff}}.score{{font-size:48px;font-weight:bold;text-align:center;color:#2563eb}}.pass{{text-align:center;font-size:20px}}</style></head><body>
-<h1>预检分诊训练报告</h1>
-<div class='score'>{escape(str(score))}</div><div class='pass'>评级: {escape(str(ps))}</div>
-<h2>分诊决策</h2><p>学员选择: {escape(str(level))} / {escape(str(zone))}</p>
-<h2>分项评分</h2><table><tr><th>项目</th><th>得分</th></tr>{dims_html}</table>
-<h2>时间线</h2><table><tr><th>时间</th><th>触发</th><th>表现</th></tr>{events_html}</table>
-<h2>对话记录</h2>{"".join(f"<p><b>{escape(str(m.get('role','')))}</b>: {escape(str(m.get('content','')))[:100]}</p>" for m in rd.get("messages",[]))}
-<p style='text-align:center;color:#991b1b;margin-top:32px'>本系统仅用于护理教育训练，不用于真实临床分诊或诊疗决策。</p>
-<p style='text-align:center;color:#999'>预检分诊训练系统 — 教学管理模块</p></body></html>"""
+
+# ── Export HTML Report ──
+def build_html_report(record, auto_print: bool = False):
+    return _html_document(_report_section(record), auto_print=auto_print)
+
+
+def build_html_reports(records, auto_print: bool = False):
+    sections = "".join(_report_section(record, index + 1) for index, record in enumerate(records or []))
+    return _html_document(sections or "<p>没有可导出的报告。</p>", title="预检分诊批量训练报告", auto_print=auto_print)
+
+
+def build_full_html_report(record, auto_print: bool = False):
+    """完整训练报告导出模板。使用独立函数名，避免旧简版导出缓存误用。"""
+    return build_html_report(record, auto_print=auto_print)
+
+
+def build_full_html_reports(records, auto_print: bool = False):
+    """批量完整训练报告导出模板。"""
+    return build_html_reports(records, auto_print=auto_print)

@@ -37,12 +37,15 @@ from services.triage_admin_repository import (
     list_tasks, list_tasks_for_user, get_task, create_task, assign_task, delete_task, delete_tasks, delete_cohorts,
     update_task_release,
     list_reviews, review_case, get_case_review, get_case_review_status, is_case_approved,
-    save_case_version, list_case_versions, build_html_report,
+    save_case_version, list_case_versions, build_html_report, build_html_reports,
+    build_full_html_report, build_full_html_reports,
     create_assignment_attempt, complete_assignment_attempt, list_attempts,
     save_teacher_review, get_teacher_review as get_stored_teacher_review,
 )
 from services.analytics_service import compute_class_analytics, compute_task_summary, compute_task_summaries
 from services.export_service import build_scores_csv
+from services.score_explanation import enrich_score_result
+from services.case_types import is_dynamic_case
 
 router = APIRouter(prefix="/api/triage", tags=["预检分诊"])
 
@@ -66,6 +69,8 @@ class TriageSubmitRequest(BaseModel):
     level: Optional[str] = None
     zone: Optional[str] = None
     disposition: Optional[List[str]] = []
+    reason: Optional[str] = ""
+    note: Optional[str] = ""
 
 
 class BulkDeleteRequest(BaseModel):
@@ -80,7 +85,7 @@ def get_cases(current_user: User = Depends(get_current_user)):
     cases = list_cases(include_draft=current_user.role in ("teacher", "reviewer", "admin"))
     for item in cases:
         review = get_case_review(item.get("external_id"))
-        item["case_type"] = "dynamic" if item.get("is_dynamic") else "static"
+        item["case_type"] = "dynamic" if is_dynamic_case(item) else "static"
         item["review_status"] = review.get("status", "draft")
         item["review_comments"] = review.get("review_comments") or review.get("comment", "")
         item["is_available_for_training"] = review.get("status") == "approved"
@@ -129,7 +134,7 @@ def get_case_review_detail(external_id: str, current_user: User = Depends(get_cu
             "external_id": case.get("external_id", external_id),
             "title": case.get("title") or case.get("display_name", ""),
             "display_name": case.get("display_name") or case.get("title", ""),
-            "case_type": "dynamic" if case.get("is_dynamic") else "static",
+            "case_type": "dynamic" if is_dynamic_case(case) else "static",
             "category": case.get("category", ""),
             "difficulty": case.get("difficulty", 1),
             "target_user": case.get("target_user", ""),
@@ -278,6 +283,7 @@ def get_record_detail(record_id: str, current_user: User = Depends(get_current_u
     record = get_record(record_id, user_id=None if current_user.role in ("teacher", "reviewer", "admin") else current_user.id)
     if not record:
         raise HTTPException(status_code=404, detail="训练记录不存在")
+    record = _ensure_record_score_explanations(record)
     task = get_task(record.get("task_id")) if record.get("task_id") else None
     if task:
         record = dict(record)
@@ -288,6 +294,85 @@ def get_record_detail(record_id: str, current_user: User = Depends(get_current_u
         record["results_released_at"] = task.get("results_released_at")
         record["results_release_note"] = task.get("results_release_note", "")
     return {"record": record}
+
+
+def _ensure_record_score_explanations(record: dict) -> dict:
+    """Backfill criterion-level score explanations for records scored before this feature."""
+    case = get_case(record.get("case_external_id", ""))
+    if not case:
+        return record
+    record = dict(record)
+    needs_save = False
+
+    try:
+        from services.feedback_evidence import FEEDBACK_EVIDENCE_VERSION
+        feedback = record.get("feedback") or {}
+        if record.get("score_detail") and feedback.get("feedback_version") != FEEDBACK_EVIDENCE_VERSION:
+            from services.scoring_engine import score_case
+            refreshed = score_case(record, case)
+            record["total_score"] = refreshed.get("total_score", record.get("total_score"))
+            record["pass_status"] = refreshed.get("pass_status", record.get("pass_status"))
+            record["severe_error_triggered"] = refreshed.get("severe_error_triggered", record.get("severe_error_triggered", False))
+            record["severe_error_codes"] = refreshed.get("severe_errors", record.get("severe_error_codes", []))
+            record["score_detail"] = refreshed.get("detail_scores", record.get("score_detail"))
+            record["score_explanations"] = refreshed.get("score_explanations", record.get("score_explanations", []))
+            record["score_explanation_version"] = refreshed.get("score_explanation_version", record.get("score_explanation_version", ""))
+            record["feedback"] = refreshed.get("feedback", record.get("feedback"))
+            record["rule_result"] = refreshed.get("rule_result", record.get("rule_result"))
+            record["standard_answer"] = refreshed.get("standard_answer", record.get("standard_answer"))
+            record["timeline_report"] = refreshed.get("timeline_report", record.get("timeline_report"))
+            record["core_scores"] = refreshed.get("core_scores", record.get("core_scores"))
+            record["complex_scores"] = refreshed.get("complex_scores", record.get("complex_scores"))
+            record["scoring_version"] = refreshed.get("scoring_version", record.get("scoring_version", ""))
+            record["rubric_version"] = refreshed.get("rubric_version", record.get("rubric_version", ""))
+            record["rule_set_version"] = refreshed.get("rule_set_version", record.get("rule_set_version", ""))
+            record["effective_score"] = refreshed.get("effective_score", refreshed.get("total_score", record.get("effective_score")))
+            record["criterion_scores"] = refreshed.get("criterion_scores", record.get("criterion_scores", []))
+            record["critical_failures"] = refreshed.get("critical_failures", record.get("critical_failures", []))
+            record["missed_required_questions"] = (record.get("feedback") or {}).get("missed_required_questions", [])
+            record["missed_measurements"] = (record.get("feedback") or {}).get("missed_measurements", [])
+            record["missed_red_flags"] = (record.get("feedback") or {}).get("missed_red_flags", [])
+            needs_save = True
+    except Exception:
+        pass
+
+    detail = record.get("score_detail") or {}
+    if not detail:
+        return record
+    try:
+        from services.score_explanation import SCORE_EXPLANATION_VERSION
+    except Exception:
+        SCORE_EXPLANATION_VERSION = "criteria_v3_history_coverage"
+    if record.get("score_explanation_version") == SCORE_EXPLANATION_VERSION and all(isinstance(dim, dict) and dim.get("criteria") for dim in detail.values()):
+        if needs_save:
+            try:
+                from services.triage_repository import _save_record
+                _save_record(record)
+            except Exception:
+                pass
+        return record
+    score_data = {
+        "detail_scores": detail,
+        "rule_result": record.get("rule_result") or {},
+        "timeline_report": record.get("timeline_report") or {},
+        "criterion_scores": record.get("criterion_scores") or [],
+    }
+    enriched = enrich_score_result(record, case, score_data)
+    record = dict(record)
+    record["score_detail"] = enriched.get("detail_scores", detail)
+    record["score_explanations"] = enriched.get("score_explanations", [])
+    record["criterion_scores"] = enriched.get("criterion_scores", record.get("criterion_scores", []))
+    record["score_explanation_version"] = enriched.get("score_explanation_version", SCORE_EXPLANATION_VERSION)
+    needs_save = True
+    if enriched.get("timeline_report"):
+        record["timeline_report"] = enriched["timeline_report"]
+    if needs_save:
+        try:
+            from services.triage_repository import _save_record
+            _save_record(record)
+        except Exception:
+            pass
+    return record
 
 
 # ── 对话 ──
@@ -395,7 +480,7 @@ def measure_vitals(record_id: str, req: TriageMeasureRequest,
         ids = req.measurement_ids
 
     # 动态病例: 从当前时间点 patient_state 获取体征
-    is_dynamic = case.get("is_dynamic") and case.get("dynamic_timeline", {}).get("enabled")
+    is_dynamic = is_dynamic_case(case)
     if is_dynamic:
         from services.triage_timeline import record_student_action
         from services.vital_sign_service import measure_multiple_vital_signs
@@ -452,14 +537,23 @@ def submit_triage(record_id: str, req: TriageSubmitRequest,
         record_action(record_id, "select_level", {"level": normalized_level})
     if req.zone:
         record_action(record_id, "select_zone", {"zone": req.zone})
-    if req.disposition:
-        record_action(record_id, "submit_disposition", {"disposition": req.disposition})
+    disposition = req.disposition or []
+    reason = (req.reason or "").strip()
+    note = (req.note or "").strip()
+    if disposition:
+        record_action(record_id, "submit_disposition", {"disposition": disposition})
+    if reason:
+        record_action(record_id, "record_triage_reason", {"reason": reason[:100]})
+    if note:
+        record_action(record_id, "record_note", {"content": note[:100]})
 
     # 提交
     submit_record(record_id, {
         "level": normalized_level or req.level,
         "zone": req.zone,
-        "disposition": req.disposition,
+        "disposition": disposition,
+        "reason": reason,
+        "note": note,
     })
 
     # 重新加载（已更新状态）
@@ -467,7 +561,13 @@ def submit_triage(record_id: str, req: TriageSubmitRequest,
 
     # P0-4/P0-2: submit 动作和 COMPLETED 阶段必须先进入记录，再生成报告
     from services.triage_timeline import record_student_action
-    record_student_action(record, "submit", {"level": normalized_level or req.level, "zone": req.zone})
+    record_student_action(record, "submit", {
+        "level": normalized_level or req.level,
+        "zone": req.zone,
+        "disposition": disposition,
+        "reason": reason,
+        "note": note[:100],
+    })
     try:
         from services.triage_state_machine import create_state_machine
         sm = create_state_machine(record)
@@ -524,7 +624,16 @@ def observe_patient(record_id: str, req: ObserveRequest,
     if not case: raise HTTPException(status_code=500)
 
     pp = case.get("patient_profile", {})
-    vs = case.get("vital_signs", {})
+    current_ps = {}
+    current_vitals = {}
+    if is_dynamic_case(case):
+        try:
+            from services.triage_timeline import get_current_patient_state
+            current_ps = get_current_patient_state(record, case) or {}
+            current_vitals = current_ps.get("state_vitals") or {}
+        except Exception:
+            current_ps = {}
+            current_vitals = {}
 
     # 辅助：从 required_measurements 按 id 取值
     def _m_by_id(case, mid):
@@ -542,6 +651,48 @@ def observe_patient(record_id: str, req: ObserveRequest,
             return ""
         return f"{v}{u}" if u and str(v).strip() else str(v)
 
+    def _vital_value(*keys):
+        for key in keys:
+            if current_vitals.get(key) not in (None, ""):
+                return current_vitals.get(key)
+        return None
+
+    def _to_float(value):
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return None
+
+    def _dynamic_appearance():
+        return (
+            current_ps.get("appearance")
+            or current_ps.get("expression")
+            or pp.get("appearance")
+            or "患者可交流，需继续观察外观、呼吸和皮肤灌注。"
+        )
+
+    def _skin_observation():
+        text = str(current_ps.get("appearance") or current_ps.get("expression") or "")
+        if any(word in text for word in ["苍白", "冷汗", "发绀", "湿冷", "花斑"]):
+            return text
+        return "未见明显苍白、发绀或冷汗，皮肤灌注暂未见明显异常。"
+
+    def _breathing_observation():
+        rr_value = _vital_value("respiratory_rate", "respiratory_rate_bpm")
+        if rr_value not in (None, ""):
+            return f"呼吸约{rr_value}次/分，需结合血氧和主诉继续判断。"
+        return "未见明显呼吸费力，仍需结合SpO₂和主诉评估。"
+
+    def _consciousness_observation():
+        value = (
+            current_ps.get("mental_status")
+            or _vital_value("consciousness", "mental_status")
+            or _vital_value("gcs", "gcs_score")
+        )
+        if value not in (None, ""):
+            return str(value)
+        return "意识清楚，能交流。"
+
     rr = _m_by_id(case, "respiratory_rate_bpm")
     skin = _m_by_id(case, "skin_perfusion")
     cons = _m_by_id(case, "consciousness") or _m_by_id(case, "gcs_score")
@@ -549,27 +700,27 @@ def observe_patient(record_id: str, req: ObserveRequest,
     OBS_MAP = {
         "appearance": {
             "label": "一般状态",
-            "value": pp.get("appearance", "未描述"),
+            "value": _dynamic_appearance(),
             "is_abnormal": False,
             "source": "patient_profile.appearance",
         },
         "breathing_effort": {
             "label": "呼吸状态",
-            "value": _display(rr) or pp.get("appearance", "未描述"),
-            "is_abnormal": bool(rr and rr.get("is_abnormal")),
-            "source": "required_measurements.respiratory_rate_bpm",
+            "value": _breathing_observation() if current_vitals else (_display(rr) or "未见明显呼吸费力，仍需结合SpO₂和主诉评估。"),
+            "is_abnormal": bool(rr and rr.get("is_abnormal")) or ((_to_float(_vital_value("respiratory_rate", "respiratory_rate_bpm")) or 0) >= 24),
+            "source": "current_patient_state.respiratory_rate",
         },
         "skin_perfusion": {
             "label": "皮肤灌注",
-            "value": _display(skin) or "未描述",
-            "is_abnormal": bool(skin and skin.get("is_abnormal")),
-            "source": "required_measurements.skin_perfusion",
+            "value": _display(skin) or _skin_observation(),
+            "is_abnormal": bool(skin and skin.get("is_abnormal")) or any(word in _skin_observation() for word in ["苍白", "冷汗", "发绀", "湿冷", "花斑"]),
+            "source": "current_patient_state.appearance",
         },
         "consciousness": {
             "label": "意识状态",
-            "value": _display(cons) or "未描述",
+            "value": _display(cons) or _consciousness_observation(),
             "is_abnormal": bool(cons and cons.get("is_abnormal")),
-            "source": "required_measurements.consciousness",
+            "source": "current_patient_state.mental_status",
         },
     }
     observations = []
@@ -715,9 +866,10 @@ def get_timeline(record_id: str, current_user: User = Depends(get_current_user))
     raw_patient_state = get_current_patient_state(record, case) if case else {}
     patient_state = sanitize_patient_state_for_mode(raw_patient_state, mode)
     # P0-2: exam/osce 模式脱敏时间轴事件
-    safe_events = sanitize_timeline_events_for_mode(state.get("timeline_events", []), mode)
+    current_minute = state.get("current_simulated_minute", 0)
+    safe_events = sanitize_timeline_events_for_mode(state.get("timeline_events", []), mode, current_minute)
     return {
-        "current_minute": state.get("current_simulated_minute", 0),
+        "current_minute": current_minute,
         "timeline_events": safe_events,
         "reassessments": state.get("reassessments", []),
         "next_reassessment_due": state.get("next_reassessment_due", 30),
@@ -780,10 +932,11 @@ def advance_timeline(record_id: str, req: dict, current_user: User = Depends(get
     state = record.get("timeline_state", {})
     raw_patient_state = get_current_patient_state(record, case) if case else {}
     patient_state = sanitize_patient_state_for_mode(raw_patient_state, mode)
-    safe_events = sanitize_timeline_events_for_mode(state.get("timeline_events", []), mode)
-    due_events = sanitize_timeline_events_for_mode(events, mode)
+    current_minute = state.get("current_simulated_minute", 0)
+    safe_events = sanitize_timeline_events_for_mode(state.get("timeline_events", []), mode, current_minute)
+    due_events = sanitize_timeline_events_for_mode(events, mode, current_minute)
     return {
-        "current_minute": state.get("current_simulated_minute", 0),
+        "current_minute": current_minute,
         "current_stage": normalize_stage_value(state.get("current_stage", "ARRIVAL"), "ARRIVAL"),
         "patient_state": patient_state,
         "current_patient_state": patient_state,
@@ -794,11 +947,7 @@ def advance_timeline(record_id: str, req: dict, current_user: User = Depends(get
         "reassessment_due": state.get("reassessment_due", False),
         "reassessment_overdue": state.get("reassessment_overdue", False),
         "deteriorated": state.get("deteriorated", False),
-        "events": [{"event_id": e.get("event_id",""), "event_type": e.get("event_type",""),
-                     "patient_expression": e.get("patient_expression", ""),
-                     "requires_reassessment": e.get("requires_reassessment", False),
-                     "student_prompt": e.get("student_prompt", "") if mode == "practice" else "",
-                     "severe_error_if_ignored": e.get("severe_error_if_ignored", False) if mode == "practice" else False} for e in events],
+        "events": due_events,
     }
 
 
@@ -1090,7 +1239,8 @@ from services.triage_admin_repository import (
     list_cohorts, get_cohort, create_cohort, add_member,
     list_tasks, get_task, create_task, assign_task, delete_task, delete_tasks, delete_cohorts,
     list_reviews, review_case, get_case_review_status,
-    save_case_version, list_case_versions, build_html_report,
+    save_case_version, list_case_versions, build_html_report, build_html_reports,
+    build_full_html_report, build_full_html_reports,
 )
 
 
@@ -1352,7 +1502,123 @@ def export_record_html(record_id: str, current_user: User = Depends(get_current_
     record = get_record(record_id, user_id=None if current_user.role in ("teacher", "reviewer", "admin") else current_user.id)
     if not record: raise HTTPException(status_code=404, detail="记录不存在")
     from fastapi.responses import HTMLResponse
-    return HTMLResponse(content=build_html_report(record))
+    report = _ensure_record_score_explanations(record)
+    return HTMLResponse(
+        content=build_html_report(report),
+        headers={
+            "Cache-Control": "no-store",
+            "X-Report-Template-Version": "full_detail_v2",
+        },
+    )
+
+@router.get("/export/record/{record_id}/pdf")
+def export_record_pdf(record_id: str, current_user: User = Depends(get_current_user)):
+    """打开单份成绩报告的打印页，浏览器可另存为 PDF。"""
+    record = get_record(record_id, user_id=None if current_user.role in ("teacher", "reviewer", "admin") else current_user.id)
+    if not record:
+        raise HTTPException(status_code=404, detail="记录不存在")
+    from fastapi.responses import HTMLResponse
+    report = _ensure_record_score_explanations(record)
+    return HTMLResponse(
+        content=build_full_html_report(report, auto_print=True),
+        headers={
+            "Content-Disposition": f"inline; filename=triage_report_{record_id}.html",
+            "Cache-Control": "no-store",
+            "X-Report-Template-Version": "full_detail_v2",
+        },
+    )
+
+
+def _export_records_pdf_response(record_ids: List[str], current_user: User):
+    if current_user.role not in ("teacher", "reviewer", "admin"):
+        raise HTTPException(status_code=403, detail="仅教师可批量导出成绩报告")
+    ids = [str(item).strip() for item in (record_ids or []) if str(item).strip()]
+    if not ids:
+        raise HTTPException(status_code=400, detail="请选择要导出的成绩报告")
+    if len(ids) > 200:
+        raise HTTPException(status_code=400, detail="一次最多导出 200 份成绩报告")
+
+    reports = []
+    missing = []
+    for rid in ids:
+        record = get_record(rid)
+        if not record:
+            missing.append(rid)
+            continue
+        reports.append(_ensure_record_score_explanations(record))
+    if not reports:
+        raise HTTPException(status_code=404, detail="未找到可导出的成绩报告")
+
+    from fastapi.responses import HTMLResponse
+    headers = {
+        "Content-Disposition": "inline; filename=triage_reports_batch.html",
+        "Cache-Control": "no-store",
+        "X-Report-Template-Version": "full_detail_v2",
+    }
+    if missing:
+        headers["X-Missing-Record-Ids"] = ",".join(missing)
+    return HTMLResponse(content=build_full_html_reports(reports, auto_print=True), headers=headers)
+
+
+@router.get("/export/full-report/{record_id}.html")
+def export_full_record_report(record_id: str, current_user: User = Depends(get_current_user)):
+    """导出单份完整训练报告打印页，包含报告详情页全部核心小节。"""
+    record = get_record(record_id, user_id=None if current_user.role in ("teacher", "reviewer", "admin") else current_user.id)
+    if not record:
+        raise HTTPException(status_code=404, detail="记录不存在")
+    from fastapi.responses import HTMLResponse
+    report = _ensure_record_score_explanations(record)
+    return HTMLResponse(
+        content=build_full_html_report(report, auto_print=True),
+        headers={
+            "Content-Disposition": f"inline; filename=triage_full_report_{record_id}.html",
+            "Cache-Control": "no-store",
+            "X-Report-Template-Version": "full_detail_v3",
+        },
+    )
+
+
+@router.post("/export/full-reports.html")
+def export_full_record_reports(req: BulkDeleteRequest, current_user: User = Depends(get_current_user)):
+    """批量导出完整训练报告打印页。"""
+    if current_user.role not in ("teacher", "reviewer", "admin"):
+        raise HTTPException(status_code=403, detail="仅教师可批量导出成绩报告")
+    ids = [str(item).strip() for item in (req.ids or []) if str(item).strip()]
+    if not ids:
+        raise HTTPException(status_code=400, detail="请选择要导出的成绩报告")
+    if len(ids) > 200:
+        raise HTTPException(status_code=400, detail="一次最多导出 200 份成绩报告")
+    reports = []
+    missing = []
+    for rid in ids:
+        record = get_record(rid)
+        if not record:
+            missing.append(rid)
+            continue
+        reports.append(_ensure_record_score_explanations(record))
+    if not reports:
+        raise HTTPException(status_code=404, detail="未找到可导出的成绩报告")
+    from fastapi.responses import HTMLResponse
+    headers = {
+        "Content-Disposition": "inline; filename=triage_full_reports_batch.html",
+        "Cache-Control": "no-store",
+        "X-Report-Template-Version": "full_detail_v3",
+    }
+    if missing:
+        headers["X-Missing-Record-Ids"] = ",".join(missing)
+    return HTMLResponse(content=build_full_html_reports(reports, auto_print=True), headers=headers)
+
+
+@router.get("/export/records/pdf")
+def export_records_pdf(ids: str = "", current_user: User = Depends(get_current_user)):
+    """兼容 GET 批量导出：ids 使用英文逗号分隔。"""
+    return _export_records_pdf_response(ids.split(","), current_user)
+
+
+@router.post("/export/records/pdf")
+def export_records_pdf_post(req: BulkDeleteRequest, current_user: User = Depends(get_current_user)):
+    """批量打开成绩报告打印页，浏览器可另存为 PDF。"""
+    return _export_records_pdf_response(req.ids, current_user)
 
 @router.get("/stats/rubric-items")
 def stats_rubric_items(current_user: User = Depends(get_current_user)):

@@ -593,7 +593,7 @@
           "ask_pregnancy"
         ],
         "answer_facts": [
-          "末次月经大概4周前，平时不太规律。"
+          "怀孕可能我也不确定，没有阴道流血。"
         ],
         "is_required": true,
         "layer": "L2"
@@ -605,7 +605,7 @@
           "ask_past_history"
         ],
         "answer_facts": [
-          "没有高血压糖尿病，以前做过一次阑尾手术。"
+          "没有高血压糖尿病，也没有明确相关手术史。"
         ],
         "is_required": true,
         "layer": "L2"

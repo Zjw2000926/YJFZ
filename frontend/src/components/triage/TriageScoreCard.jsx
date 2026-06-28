@@ -1,4 +1,5 @@
 import { AlertTriangle } from "lucide-react";
+import ScoreBreakdownDetails from "./ScoreBreakdownDetails";
 
 const PASS_LABELS = { excellent: "优秀", good: "良好", pass: "合格", fail: "不合格" };
 const PASS_COLORS = { excellent: "#16a34a", good: "#2563eb", pass: "#d97706", fail: "#dc2626" };
@@ -59,17 +60,11 @@ export default function TriageScoreCard({ score, onClose }) {
         )}
 
         {/* 分项评分 */}
-        {score.detail_scores && Object.entries(score.detail_scores).map(([name, dim]) => (
-          <div key={name} style={{ marginBottom: 10, fontSize: "0.8rem" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 2 }}>
-              <span>{name}</span>
-              <span style={{ fontWeight: 600 }}>{dim.score}/{dim.max}</span>
-            </div>
-            <div style={{ height: 5, borderRadius: 3, background: "#e5e7eb", overflow: "hidden" }}>
-              <div style={{ height: "100%", borderRadius: 3, background: dim.score >= dim.max * 0.7 ? "#22c55e" : "#f59e0b", width: `${(dim.score / dim.max) * 100}%` }} />
-            </div>
+        {score.detail_scores && (
+          <div style={{ marginBottom: 16 }}>
+            <ScoreBreakdownDetails detailScores={score.detail_scores} />
           </div>
-        ))}
+        )}
 
 {/* V3: 规则依据 */}
         {score.rule_result && (

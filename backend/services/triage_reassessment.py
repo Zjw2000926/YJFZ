@@ -48,6 +48,77 @@ def _calculate_completeness(required_items: list[str], measured_items: list[str]
     return matched / max(len(required_items), 1)
 
 
+def _zone_for_level(level: str) -> str:
+    from services.triage_rules.models import LEVEL_RANK
+
+    rank = LEVEL_RANK.get(level, 4)
+    if rank <= 2:
+        return "红区"
+    if rank == 3:
+        return "黄区"
+    return "绿区"
+
+
+def _current_state_standard(case_data: dict | None, record: dict) -> tuple[str, str]:
+    if not case_data:
+        return "", ""
+    state = record.get("timeline_state", {}) or {}
+    current_state_id = state.get("current_patient_state_id")
+    current_minute = int(state.get("current_simulated_minute") or 0)
+    candidates = case_data.get("patient_states", []) or []
+
+    selected = None
+    for patient_state in candidates:
+        if current_state_id and patient_state.get("state_id") == current_state_id:
+            selected = patient_state
+            break
+    if selected is None:
+        for patient_state in sorted(candidates, key=lambda item: item.get("time_minute", 0)):
+            if int(patient_state.get("time_minute") or 0) <= current_minute:
+                selected = patient_state
+
+    if not selected:
+        return "", ""
+    return selected.get("standard_triage_level", ""), selected.get("standard_area", "")
+
+
+def _apply_dynamic_state_standard(rule_result: dict, case_data: dict | None, record: dict, selected_level: str) -> dict:
+    """For dynamic cases, the current patient state is the authoritative standard.
+
+    Rule hits remain useful as teaching evidence, but they should not override a
+    deliberately staged timeline where T15 can remain level III and T30 becomes
+    level II.
+    """
+    if not rule_result or not case_data or not case_data.get("patient_states"):
+        return rule_result
+
+    state_level, state_area = _current_state_standard(case_data, record)
+    if not state_level:
+        return rule_result
+
+    from services.triage_rules.models import LEVEL_RANK
+
+    student_level = selected_level or record.get("final_level_selected") or "Ⅳ级"
+    student_rank = LEVEL_RANK.get(student_level, 4)
+    standard_rank = LEVEL_RANK.get(state_level, 4)
+    level_diff = abs(student_rank - standard_rank)
+    severe = (standard_rank <= 2 and student_rank >= 4) or level_diff >= 2
+
+    adjusted = dict(rule_result)
+    adjusted["state_standard_level"] = state_level
+    adjusted["state_standard_area"] = state_area or _zone_for_level(state_level)
+    adjusted["final_standard_level"] = state_level
+    adjusted["recommended_zone"] = state_area or _zone_for_level(state_level)
+    adjusted["under_triage"] = student_rank > standard_rank
+    adjusted["over_triage"] = student_rank < standard_rank
+    adjusted["severe_error_triggered"] = severe
+    adjusted["severe_error_codes"] = (
+        [f"SEVERE_UNDER_TRIAGE_{student_level}_TO_{state_level}"] if severe else []
+    )
+    adjusted["dynamic_state_standard_applied"] = True
+    return adjusted
+
+
 def create_reassessment(record: dict, payload: dict, case_data: dict = None) -> dict:
     """创建一次复评记录"""
     state = record.get("timeline_state", {})
@@ -117,6 +188,12 @@ def create_reassessment(record: dict, payload: dict, case_data: dict = None) -> 
             }
             result = rule_evaluate(case, eval_record)
             rule_result = result.to_dict()
+            rule_result = _apply_dynamic_state_standard(
+                rule_result,
+                case,
+                record,
+                ra.get("selected_level") or record.get("final_level_selected"),
+            )
             state["last_rule_result"] = rule_result
             ra["rule_result_after"] = rule_result
     except Exception:
@@ -125,10 +202,14 @@ def create_reassessment(record: dict, payload: dict, case_data: dict = None) -> 
     # 判断是否需要升级
     if rule_result and initial_level:
         from services.triage_rules.models import LEVEL_RANK
-        rule_min_rank = LEVEL_RANK.get(rule_result.get("minimum_level_by_rules", "Ⅳ级"), 4)
+        expected_level = rule_result.get("final_standard_level") or rule_result.get("minimum_level_by_rules", "Ⅳ级")
+        rule_min_rank = LEVEL_RANK.get(expected_level, 4)
         current_rank = LEVEL_RANK.get(ra.get("selected_level", initial_level), 4)
         ra["upgrade_needed"] = rule_min_rank < current_rank
         if ra["upgrade_needed"] and ra.get("upgraded_correctly") is None:
+            ra["upgraded_correctly"] = ra["selected_level"] is not None and \
+                LEVEL_RANK.get(ra["selected_level"], 4) <= rule_min_rank
+        elif not ra["upgrade_needed"] and LEVEL_RANK.get(initial_level, 4) > rule_min_rank:
             ra["upgraded_correctly"] = ra["selected_level"] is not None and \
                 LEVEL_RANK.get(ra["selected_level"], 4) <= rule_min_rank
 

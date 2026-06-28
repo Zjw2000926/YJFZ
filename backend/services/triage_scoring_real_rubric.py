@@ -6,6 +6,13 @@
 
 from services.triage_rules.engine import evaluate as rule_evaluate
 from services.triage_rules.models import LEVEL_RANK
+from services.feedback_evidence import (
+    FEEDBACK_EVIDENCE_VERSION,
+    build_feedback_evidence,
+    filter_missed_measurements,
+    filter_missed_red_flags,
+    filter_missed_slots,
+)
 
 RUBRIC_DIMENSIONS = [
     ("第一眼评估", 10), ("主诉与聚焦病史采集", 15),
@@ -151,11 +158,13 @@ def _build_expert_feedback(record, case_data, total, effective, severe, critical
     logic = fb.get("correct_triage_logic", "") or ""
     remediation = _as_list(fb.get("recommended_remediation"))
 
-    # Student-specific additions
-    missed_qs = [s.get("label", s) for s in case_data.get("dialogue_state_machine", {}).get("slots", [])
-                 if s.get("slot_id") not in disclosed][:5]
-    missed_ms = [m.get("label", m.get("id")) for m in req_ms if m.get("id") not in measured][:5]
-    missed_rf = [r for r in red_flags[:5] if not any(str(r) in str(d) for d in disclosed)][:3]
+    # Student-specific additions. Do not rely on slot IDs only: natural LLM
+    # patient replies can contain valid evidence even when the slot matcher did
+    # not append disclosed_slots.
+    missed_qs = filter_missed_slots(case_data, record, disclosed)[:5]
+    missed_ms = filter_missed_measurements(req_ms, record, measured)[:5]
+    missed_rf = filter_missed_red_flags(red_flags[:5], record, measured)[:3]
+    feedback_evidence = build_feedback_evidence(case_data, record, disclosed, measured)
 
     safety_errors = []
     if severe:
@@ -180,4 +189,6 @@ def _build_expert_feedback(record, case_data, total, effective, severe, critical
         "decision_errors": safety_errors,
         "safety_critical_errors": safety_errors,
         "next_practice_focus": next_focus if next_focus else ["继续训练提升综合分诊能力"],
+        "feedback_version": FEEDBACK_EVIDENCE_VERSION,
+        "feedback_evidence": feedback_evidence,
     }

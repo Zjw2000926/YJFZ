@@ -85,11 +85,6 @@ export default function TriageTimelinePanel({ timeline, onAdvance, onReassess, l
                   <AlertTriangle size={10} /> 需要复评
                 </div>
               )}
-              {ev.triggered && ev.severe_error_if_ignored && (
-                <div style={{ color: "#991b1b", fontSize: "0.6rem", marginTop: 1 }}>
-                  ⛔ 忽略将触发严重错误
-                </div>
-              )}
             </div>
           );
         })}

@@ -30,17 +30,17 @@ OPERATION_REPLIES = [
 # ── 角色化不知道（不破坏沉浸感）──
 ROLE_FALLBACKS = {
     "medication": [
-        "药名我记不太清了，平时吃的药家属可能知道。",
-        "好像叫什么地平还是普利的，我记不清全名。",
-        "降压药，具体叫什么我不太确定。",
+        "药名我记不太清了，您可以再问具体一点，我尽量想想。",
+        "这个我一下说不准，平时有没有固定吃药我得再确认一下。",
+        "具体药物我记不清，不能乱说。",
     ],
     "time_detail": [
         "我说不太清楚具体几点开始的，大概就是刚才那一阵。",
         "差不多就刚才吧，具体什么时间我记不太清。",
     ],
     "history": [
-        "以前好像查过，但结果我不太清楚，可能家属知道。",
-        "这个我不确定，以前医生说过但没记住。",
+        "这个我记不太清，不能乱说。",
+        "以前有没有明确诊断我不确定，得再核实一下。",
     ],
     "general": [
         "这个我确实不太清楚，就是现在这点不舒服让我有点担心。",
@@ -657,7 +657,8 @@ async def require_llm_patient_reply(case_data, record, student_message, dialog_r
 4. 允许自然表达：可以使用“嗯”“大概”“我记得”“好像”“有点担心”“就是挺难受的”等语气和情绪。
 5. 禁止说“病例信息中”“系统未提供”“根据资料”“无法回答”“你还是问医生吧”“请问具体一点”。
 6. 如果护士问诊断，患者不能下诊断，只能说自己不知道，需要医护帮忙看看。
-7. 输出 1-2 句，只输出患者/家属说的话。"""
+7. 默认称呼对方为“护士”或“您”，不要称呼“医生”。
+8. 输出 1-2 句，只输出患者/家属说的话。"""
 
     user_prompt = f"""护士问题：
 {student_message}
@@ -688,6 +689,16 @@ async def require_llm_patient_reply(case_data, record, student_message, dialog_r
         },
     )
     sanitized, violations = sanitize_triage_reply(content)
+    try:
+        from services.triage_llm_patient import _guard_against_unsupported_medical_facts
+        sanitized, fact_violations = _guard_against_unsupported_medical_facts(
+            sanitized,
+            facts,
+            student_message,
+        )
+        violations.extend(fact_violations)
+    except Exception:
+        pass
     finalized = _finalize_reply(sanitized, case_data, record, question_type)
     if not finalized:
         raise RuntimeError("LLM returned empty patient reply")
@@ -826,6 +837,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
                 content = llm_result.get("content", "")
                 if content and content not in ("这个我说不太清楚。",):
                     sanitized, violations = sanitize_triage_reply(content)
+                    violations = list(llm_result.get("violations", []) or []) + violations
                     sanitized = _finalize_reply(sanitized, case_data, record, question_type)
                     disclosed = _append_disclosed(disclosed, new_slots)
                     return {"content": sanitized, "reply_mode": "slot_llm",
@@ -876,6 +888,7 @@ async def generate_triage_patient_reply(case_data, record, student_message):
             content = llm_result.get("content", "")
             if content and len(content) > 3:
                 sanitized, violations = sanitize_triage_reply(content)
+                violations = list(llm_result.get("violations", []) or []) + violations
                 sanitized = _finalize_reply(sanitized, case_data, record, question_type)
                 return {"content": sanitized, "reply_mode": "llm_semantic", "matched_intents": [],
                         "matched_slots": [], "disclosed_slots": disclosed,

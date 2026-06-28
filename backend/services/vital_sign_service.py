@@ -73,25 +73,25 @@ def explain_vital_sign_abnormality(item_id: str, value: Any) -> dict[str, Any]:
 
     if item_id == "heart_rate" and numeric is not None and (numeric >= 120 or numeric < 50):
         is_abnormal = True
-        message = "Heart rate is outside the expected triage range."
+        message = "心率明显异常，提示循环代偿或病情加重风险，需要结合症状变化复评。"
     elif item_id == "respiratory_rate" and numeric is not None and (numeric >= 24 or numeric < 10):
         is_abnormal = True
-        message = "Respiratory rate suggests increased risk and needs reassessment."
+        message = "呼吸频率异常，提示病情风险升高，需要结合SpO₂和意识状态判断紧急程度。"
     elif item_id == "spo2" and numeric is not None and numeric < 94:
         is_abnormal = True
-        message = "SpO2 is low and should influence triage priority."
+        message = "SpO₂偏低，属于重要客观危险信号，应提高分诊警觉。"
     elif item_id == "temperature" and numeric is not None and numeric >= 38.0:
         is_abnormal = True
-        message = "Fever may support an acute inflammatory or infectious process."
+        message = "体温升高，提示炎症或感染相关风险，需要结合主诉和生命体征趋势复评。"
     elif item_id == "pain_score" and numeric is not None and numeric >= 7:
         is_abnormal = True
-        message = "Severe or worsening pain requires focused reassessment."
+        message = "疼痛评分较高或加重，应作为复评和分诊优先级判断的重要依据。"
     elif item_id == "blood_pressure" and isinstance(value, str) and "/" in value:
         try:
             sbp = float(value.split("/", 1)[0])
             if sbp < 100 or sbp >= 180:
                 is_abnormal = True
-                message = "Blood pressure is outside the expected triage range."
+                message = "血压超出安全观察范围或呈下降趋势，提示循环风险，需要及时复评。"
         except ValueError:
             pass
 
@@ -118,4 +118,3 @@ def _format_number(value: Any) -> str:
         return str(int(number)) if number.is_integer() else str(number)
     except (TypeError, ValueError):
         return str(value)
-

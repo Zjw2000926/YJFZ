@@ -15,6 +15,21 @@ INTENTS_PATH = os.path.join(BASE_DIR, "triage_data", "intents", "triage_intents_
 _intents_cache = None
 
 
+TRAUMA_CONTEXT_TERMS = (
+    "撞", "撞到", "撞击", "摔", "跌", "车祸", "事故", "外伤", "受伤",
+    "割", "刀", "玻璃", "扭伤", "扭到", "砸", "碰撞", "碰到", "搬重物", "搬东西",
+)
+
+HEAD_INJURY_CONTEXT_TERMS = (
+    "头部外伤", "头有没有撞", "头撞", "撞到头", "摔到头", "头部撞",
+    "头部受伤", "头部", "撞", "摔", "跌", "车祸", "外伤",
+)
+
+
+def _has_any(text: str, terms: tuple[str, ...]) -> bool:
+    return any(term in text for term in terms)
+
+
 def _load_intents() -> list:
     global _intents_cache
     if _intents_cache is None:
@@ -38,8 +53,13 @@ def match_intent_by_keyword(student_message: str) -> list:
         keywords = intent.get("keywords", [])
         for kw in keywords:
             if kw in student_message:
+                intent_id = intent["id"]
+                if intent_id == "ask_trauma_detail" and not _has_any(student_message, TRAUMA_CONTEXT_TERMS):
+                    continue
+                if intent_id == "ask_head_injury" and not _has_any(student_message, HEAD_INJURY_CONTEXT_TERMS):
+                    continue
                 matched.append({
-                    "intent_id": intent["id"],
+                    "intent_id": intent_id,
                     "label": intent["label"],
                     "confidence": 0.9,
                     "matched_by": "keyword",
@@ -73,10 +93,15 @@ def match_intent_by_semantic_rule(student_message: str) -> list:
         _append_match(matches, "ask_severity", "当前严重程度")
         _append_match(matches, "ask_aggravating_relieving", "症状变化")
 
-    if any(word in text for word in ["有没有变化", "有变化", "加重了吗", "减轻了吗", "有没有加重", "有没有缓解"]):
+    if any(word in text for word in [
+        "有没有变化", "有变化", "加重了吗", "减轻了吗", "有没有加重", "有没有缓解",
+        "比刚才", "比之前", "疼痛比", "疼得更", "更疼", "新的不舒服", "新症状",
+        "坐不住", "受不了了", "疼痛几分", "现在疼痛", "疼痛评分",
+    ]):
         _append_match(matches, "ask_aggravating_relieving", "症状变化")
+        _append_match(matches, "ask_severity", "当前严重程度")
 
-    if any(word in text for word in ["以前有过", "以前这样", "之前有过", "过去有过", "从来没有过", "第一次这样"]):
+    if any(word in text for word in ["以前有过", "以前这样", "之前有过", "过去有过", "从来没有过", "第一次这样", "手术", "开刀", "住院", "手术史"]):
         _append_match(matches, "ask_past_history", "既往类似情况")
 
     if any(word in text for word in ["什么原因", "为什么", "诱因", "什么引起", "怎么引起", "吃坏东西", "吃东西后"]):
@@ -92,6 +117,9 @@ def match_intent_by_semantic_rule(student_message: str) -> list:
 
     if any(word in text for word in ["有没有别的症状", "还有哪里", "还有什么", "伴随", "恶心", "呕吐", "头晕", "出汗"]):
         _append_match(matches, "ask_accompanying", "伴随症状")
+
+    if any(word in text for word in ["冷汗", "出汗", "冒汗", "大汗"]):
+        _append_match(matches, "ask_sweating", "出冷汗")
 
     return matches
 

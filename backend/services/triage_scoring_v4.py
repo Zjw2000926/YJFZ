@@ -28,6 +28,7 @@ from services.report_generator import (
     student_recognized_deterioration,
     _clean_training_suggestions,
 )
+from services.feedback_evidence import FEEDBACK_EVIDENCE_VERSION, build_feedback_evidence
 
 
 def score_triage_v4(record: dict, case_data: dict) -> dict:
@@ -166,6 +167,8 @@ def score_triage_v4(record: dict, case_data: dict) -> dict:
             "strengths": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] >= v['max'] * 0.7],
             "weaknesses": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] < v['max'] * 0.5],
             "suggestions": "严重错误触发，一票否决。" if has_critical else "请关注候诊复评和病情变化识别。",
+            "feedback_version": FEEDBACK_EVIDENCE_VERSION,
+            "feedback_evidence": build_feedback_evidence(case_data, record, record.get("disclosed_slots", []), record.get("measured_vitals", [])),
         }
     }
 

@@ -68,6 +68,7 @@ export default function TriageDynamicTraining() {
   const [selectedMeasureIds, setSelectedMeasureIds] = useState([]);
   const [observed, setObserved] = useState([]);
   const [selectedObs, setSelectedObs] = useState([]);
+  const [triageReason, setTriageReason] = useState("");
   const [noteInput, setNoteInput] = useState("");
   const [showNoteInput, setShowNoteInput] = useState(false);
   const [timeLeft, setTimeLeft] = useState(initialLimitSeconds);
@@ -216,7 +217,7 @@ export default function TriageDynamicTraining() {
                          selected_level: selectedLevel, selected_zone: selectedZone || "黄区" };
       const { data } = await reassessTriagePatient(recordId, payload);
       if (data.upgrade_needed) {
-        warning("根据规则引擎，需要升级分诊等级！");
+        warning("复评结果提示风险升高，请核对分诊等级、区域和处置记录。");
       } else {
         success("复评完成");
       }
@@ -229,7 +230,7 @@ export default function TriageDynamicTraining() {
     if (!selectedLevel) { warning("请先选择分诊等级"); return; }
     try {
       const zone = selectedZone || "黄区";
-      await recordInitialDecision(recordId, { level: selectedLevel, zone, reassessment_minutes: reassessmentInterval, reason: "" });
+      await recordInitialDecision(recordId, { level: selectedLevel, zone, reassessment_minutes: reassessmentInterval, reason: triageReason });
       setInitialLevel(selectedLevel);
       setInitialZone(zone);
       setSelectedZone(zone);
@@ -249,10 +250,11 @@ export default function TriageDynamicTraining() {
       const payload = { measured_items: nowIds, symptom_change_questioned: true,
                        selected_level: reassessmentLevel || selectedLevel,
                        selected_zone: reassessmentZone || selectedZone || "黄区",
-                       notify_doctor: doctorNotified };
+                       notify_doctor: doctorNotified,
+                       reason: triageReason };
       const { data } = await reassessTriagePatient(recordId, payload);
       if (data.upgrade_needed) {
-        warning("根据规则引擎，需要升级分诊等级！");
+        warning("复评结果提示风险升高，请核对分诊等级、区域和处置记录。");
       } else {
         success("复评完成");
       }
@@ -294,7 +296,13 @@ export default function TriageDynamicTraining() {
     if (!ok) return;
     setLoading(true);
     try {
-      const { data } = await submitTriage(recordId, { level: selectedLevel, zone: selectedOrInitialZone });
+      const { data } = await submitTriage(recordId, {
+        level: selectedLevel,
+        zone: selectedOrInitialZone,
+        disposition: doctorNotified ? ["通知医生"] : [],
+        reason: triageReason,
+        note: noteInput,
+      });
       setSubmitted(true);
       navigate(`/triage/record/${recordId}`, { state: { score: data.score, record: data.record } });
     } catch { error("提交失败"); }
@@ -444,6 +452,18 @@ export default function TriageDynamicTraining() {
               background: selectedLevel === l.value ? l.color + "15" : "#fff",
             }}><span style={{ fontWeight: 600, color: l.color }}>{l.label}</span></div>
           ))}
+
+          <div style={{ marginTop: 8 }}>
+            <div style={{ fontSize: "0.65rem", fontWeight: 600, marginBottom: 4, color: "#374151" }}>分诊理由 / 高危信号记录</div>
+            <textarea
+              value={triageReason}
+              onChange={e => setTriageReason(e.target.value)}
+              disabled={submitted}
+              rows={3}
+              placeholder="记录支持分诊和升级判断的关键依据，例如生命体征趋势、疼痛变化、冷汗、头晕或低估风险。"
+              style={{ width: "100%", padding: 5, fontSize: "0.62rem", borderRadius: 4, border: "1px solid #d1d5db", resize: "vertical", boxSizing: "border-box" }}
+            />
+          </div>
 
           {/* P2-3: 动态操作 — 初始分诊区 */}
           <div style={{ marginTop: 8, padding: "6px 8px", background: "#fffbeb", borderRadius: 4, border: "1px solid #fde68a" }}>

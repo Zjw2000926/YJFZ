@@ -49,9 +49,11 @@ export default function TriageTraining() {
   const [askedCount, setAskedCount] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [disclosedSlots, setDisclosedSlots] = useState([]);
-    const [selectedLevel, setSelectedLevel] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState(null);
   const [selectedZone, setSelectedZone] = useState(null);
   const [selectedDispositions, setSelectedDispositions] = useState([]);
+  const [triageReason, setTriageReason] = useState("");
+  const [handoffNote, setHandoffNote] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const taskIdParam = searchParams.get("task_id");
   const timeLimitParam = searchParams.get("time_limit");
@@ -208,7 +210,13 @@ export default function TriageTraining() {
     const ok = await confirm({ title: "提交分诊", message: "确定提交分诊决策吗？提交后将自动评分。", confirmLabel: "确定提交", danger: true });
     if (!ok) return;
     try {
-      const { data } = await submitTriage(recordId, { level: selectedLevel, zone: selectedZone, disposition: selectedDispositions });
+      const { data } = await submitTriage(recordId, {
+        level: selectedLevel,
+        zone: selectedZone,
+        disposition: selectedDispositions,
+        reason: triageReason,
+        note: handoffNote,
+      });
       if (data?.score?.total_score == null) {
         error("提交成功但评分结果为空，请联系教师或重试");
         return;
@@ -407,6 +415,30 @@ export default function TriageTraining() {
                 {d}
               </label>
             ))}
+          </div>
+
+          <div style={{ marginBottom: 12 }}>
+            <div style={{ fontSize: "0.72rem", fontWeight: 600, marginBottom: 6 }}>分诊理由 / 高危信号记录</div>
+            <textarea
+              value={triageReason}
+              onChange={(e) => setTriageReason(e.target.value)}
+              disabled={submitted}
+              rows={3}
+              placeholder="记录支持分诊判断的关键依据，例如症状、生命体征、红旗信号或低估风险。"
+              style={{ width: "100%", padding: "8px 10px", border: "1px solid #d1d5db", borderRadius: 6, fontSize: "0.74rem", resize: "vertical", boxSizing: "border-box" }}
+            />
+          </div>
+
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: "0.72rem", fontWeight: 600, marginBottom: 6 }}>处置 / 候诊 / 交接说明</div>
+            <textarea
+              value={handoffNote}
+              onChange={(e) => setHandoffNote(e.target.value)}
+              disabled={submitted}
+              rows={3}
+              placeholder="记录通知医生、区域调整、等待告知、复评时间或异常报告要求。"
+              style={{ width: "100%", padding: "8px 10px", border: "1px solid #d1d5db", borderRadius: 6, fontSize: "0.74rem", resize: "vertical", boxSizing: "border-box" }}
+            />
           </div>
         </div>
       </div>

@@ -8,6 +8,8 @@ from services.case_types import (
     get_standard_final_level,
     get_standard_initial_area,
     get_standard_initial_level,
+    get_timeline_events,
+    is_dynamic_case,
 )
 from services.triage_rule_engine import generate_rule_basis
 
@@ -75,6 +77,12 @@ def generate_training_report(
 
     timeline_nodes = generate_timeline_review(record, case_data)
     action_review = generate_action_review(record)
+    case_is_dynamic = is_dynamic_case(case_data)
+    deterioration_triggered = record_has_triggered_deterioration(record)
+    reassessment_applicable = _reassessment_applicable(record, case_data)
+    upgrade_applicable = _upgrade_applicable(record, case_data)
+    doctor_required = _doctor_notification_required(record, case_data)
+    doctor_notified = _doctor_notified(record)
 
     feedback = case_data.get("dynamic_feedback") or case_data.get("feedback") or {}
     correct_points = feedback.get("correct_points") or []
@@ -96,6 +104,12 @@ def generate_training_report(
             "student_name": record.get("user_display_name", ""),
         },
         "training_mode": record.get("mode", "practice"),
+        "case_type": "dynamic" if case_is_dynamic else "static",
+        "is_dynamic_case": case_is_dynamic,
+        "reassessment_applicable": reassessment_applicable,
+        "deterioration_applicable": case_is_dynamic and deterioration_triggered,
+        "upgrade_applicable": upgrade_applicable,
+        "doctor_notification_required": doctor_required,
         "standard_initial_level": get_standard_initial_level(case_data),
         "standard_initial_area": get_standard_initial_area(case_data),
         "standard_final_level": get_standard_final_level(case_data),
@@ -111,11 +125,14 @@ def generate_training_report(
         "vital_measurement_log": vital_log,
         "vital_sign_timeline": vital_log,
         "triage_decisions": triage_decisions,
-        "reassessment_on_time": state.get("reassessment_on_time", False) or (state.get("reassessment_completed", False) and not state.get("reassessment_overdue", False)),
+        "reassessment_on_time": (
+            state.get("reassessment_on_time", False)
+            or (state.get("reassessment_completed", False) and not state.get("reassessment_overdue", False))
+        ) if reassessment_applicable else None,
         "reassessment_reasonable": _reassessment_interval_reasonable(init_decision),
-        "deterioration_recognized": student_recognized_deterioration(record),
-        "triage_upgraded": _has_upgrade(student_initial_level, student_final_level),
-        "doctor_notified": bool(record.get("notification_events")),
+        "deterioration_recognized": student_recognized_deterioration(record) if (case_is_dynamic and deterioration_triggered) else None,
+        "triage_upgraded": _has_upgrade(student_initial_level, student_final_level) if upgrade_applicable else None,
+        "doctor_notified": doctor_notified,
         "notification_events": record.get("notification_events") or [],
         "notes": notes,
         "score_breakdown": generate_score_breakdown(section_scores or {}),
@@ -246,3 +263,57 @@ def _reassessment_interval_reasonable(init_decision: dict[str, Any] | None) -> b
 def _has_upgrade(from_level: str, to_level: str) -> bool:
     rank = {"Ⅰ级": 1, "Ⅱ级": 2, "Ⅲ级": 3, "Ⅳ级": 4}
     return bool(from_level and to_level and rank.get(to_level, 5) < rank.get(from_level, 5))
+
+
+def _reassessment_applicable(record: dict[str, Any], case_data: dict[str, Any]) -> bool:
+    """Only dynamic/waiting cases should be judged for on-time reassessment."""
+    if not is_dynamic_case(case_data):
+        return False
+    state = record.get("timeline_state") or {}
+    if state.get("reassessment_due") or state.get("reassessment_completed") or state.get("reassessment_overdue"):
+        return True
+    for event in state.get("timeline_events") or []:
+        if event.get("requires_reassessment") or event_indicates_deterioration(event):
+            return True
+    for event in get_timeline_events(case_data):
+        if event.get("requires_reassessment") or event_indicates_deterioration(event):
+            return True
+    return False
+
+
+def _upgrade_applicable(record: dict[str, Any], case_data: dict[str, Any]) -> bool:
+    """Retriage upgrade is a dynamic deterioration concept, not a static-case penalty."""
+    if not is_dynamic_case(case_data):
+        return False
+    if record_has_triggered_deterioration(record):
+        return True
+    return bool(
+        get_standard_initial_level(case_data)
+        and get_standard_final_level(case_data)
+        and get_standard_initial_level(case_data) != get_standard_final_level(case_data)
+    )
+
+
+def _doctor_notification_required(record: dict[str, Any], case_data: dict[str, Any]) -> bool:
+    standard_level = get_standard_final_level(case_data) or get_standard_initial_level(case_data)
+    if standard_level in {"Ⅰ级", "Ⅱ级"}:
+        return True
+    if record_has_triggered_deterioration(record):
+        return True
+    disposition = case_data.get("standard_answer", {}).get("disposition") or []
+    return any("通知医生" in str(item) or "抢救" in str(item) for item in disposition)
+
+
+def _doctor_notified(record: dict[str, Any]) -> bool:
+    if record.get("notification_events"):
+        return True
+    final_disposition = record.get("final_disposition") or []
+    if any("notify_doctor" == str(item) or "通知医生" in str(item) or "医生" in str(item) for item in final_disposition):
+        return True
+    for decision in record.get("triage_decisions") or []:
+        if decision.get("notify_doctor"):
+            return True
+    for action in record.get("student_actions") or []:
+        if action.get("action_type") == "notify_doctor":
+            return True
+    return False

@@ -5,6 +5,11 @@
 """
 
 import json, os
+from services.feedback_evidence import (
+    FEEDBACK_EVIDENCE_VERSION,
+    build_feedback_evidence,
+    filter_missed_slots,
+)
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -74,11 +79,7 @@ def score_triage_v3(record: dict, case_data: dict) -> dict:
     }
     total = sum(d["score"] for d in detail.values())
     total = max(0, min(100, total))
-    missed_required = [
-        s.get("label") or s.get("slot_id")
-        for s in required
-        if s.get("slot_id") not in disclosed
-    ]
+    missed_required = filter_missed_slots(case_data, record, disclosed)
 
     if rule_dict.get("severe_error_triggered"):
         ps = "fail"
@@ -107,6 +108,8 @@ def score_triage_v3(record: dict, case_data: dict) -> dict:
             "weaknesses": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] < v['max'] * 0.5],
             "explanations": rule_dict.get("explanations", []),
             "missed_required_questions": missed_required,
+            "feedback_version": FEEDBACK_EVIDENCE_VERSION,
+            "feedback_evidence": build_feedback_evidence(case_data, record, disclosed, measured),
             "process_evidence": {
                 "disclosed_slot_count": len(disclosed),
                 "intent_event_count": intent_count,

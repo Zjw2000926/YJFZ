@@ -391,3 +391,38 @@ def test_teacher_bulk_delete_training_reports(client, db_session):
 
     detail = client.get(f"/api/triage/training/records/{record_id}", headers=ctx["teacher_headers"])
     assert detail.status_code == 404
+
+
+def test_teacher_can_export_single_and_batch_report_pdf_pages(client, db_session):
+    ctx = _setup_users(client, db_session)
+    _approve(client, ctx["reviewer_headers"], STATIC_CASE)
+    cohort = _create_cohort(client, ctx["teacher_headers"], ctx["student"])
+    task = _create_task(client, ctx["teacher_headers"], cohort)
+    record_id, _submitted = _complete_static_attempt(client, ctx["student_headers"], task)
+
+    single = client.get(f"/api/triage/export/full-report/{record_id}.html", headers=ctx["teacher_headers"])
+    assert single.status_code == 200, single.text
+    assert "text/html" in single.headers["content-type"]
+    assert single.headers["X-Report-Template-Version"] == "full_detail_v3"
+    assert "window.print" in single.text
+    assert "预检分诊训练报告" in single.text
+    assert "本系统仅用于护理教育训练" in single.text
+    for section in ["分诊决策对比", "训练流程概览", "分项评分", "评分证据明细", "专家反馈", "训练对话记录"]:
+        assert section in single.text
+
+    batch = client.post(
+        "/api/triage/export/full-reports.html",
+        json={"ids": [record_id]},
+        headers=ctx["teacher_headers"],
+    )
+    assert batch.status_code == 200, batch.text
+    assert "text/html" in batch.headers["content-type"]
+    assert batch.headers["X-Report-Template-Version"] == "full_detail_v3"
+    assert "window.print" in batch.text
+    assert "预检分诊训练报告 #1" in batch.text
+
+
+def test_student_cannot_batch_export_report_pdf_pages(client, db_session):
+    ctx = _setup_users(client, db_session)
+    r = client.post("/api/triage/export/full-reports.html", json={"ids": ["any"]}, headers=ctx["student_headers"])
+    assert r.status_code == 403
