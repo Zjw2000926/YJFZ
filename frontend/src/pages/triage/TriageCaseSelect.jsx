@@ -63,10 +63,7 @@ export default function TriageCaseSelect({ user, onLogout }) {
           {filtered.map((c) => (
             <div key={c.external_id} style={{ cursor: "pointer" }}
               onClick={() => {
-                const url = c.is_dynamic
-                  ? `/triage/dynamic/start?case=${c.external_id}`
-                  : `/triage/training/start?case=${c.external_id}`;
-                navigate(url);
+                navigate(`/triage/training/start?case=${c.external_id}`);
               }}>
               <Card>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
@@ -74,7 +71,6 @@ export default function TriageCaseSelect({ user, onLogout }) {
                 <Badge variant={DIFFICULTY_COLORS[c.difficulty] || "neutral"}>
                   {DIFFICULTY_LABELS[c.difficulty] || "初级"}
                 </Badge>
-                {c.is_dynamic && <Badge variant="warning" style={{ marginLeft: 4 }}>动态</Badge>}
               </div>
               {c.initial_exposure?.chief_complaint && (
                 <p style={{ fontSize: "0.8rem", color: "#6b7280", marginBottom: 8 }}>

@@ -29,6 +29,7 @@ from services.report_generator import (
     _clean_training_suggestions,
 )
 from services.feedback_evidence import FEEDBACK_EVIDENCE_VERSION, build_feedback_evidence
+from services.triage_follow_up import score_follow_up_decisions
 
 
 def score_triage_v4(record: dict, case_data: dict) -> dict:
@@ -80,7 +81,8 @@ def score_triage_v4(record: dict, case_data: dict) -> dict:
     reassessments = state.get("reassessments", [])
     ra_decisions = [d for d in triage_decisions if d.get("decision_type") == "reassessment"]
     ra_count = max(len(reassessments), len(ra_decisions))
-    recheck_time = 8 if triage_decisions and any(d.get("reassessment_minutes") for d in triage_decisions if d.get("decision_type") == "initial") else 0
+    follow_up_score = score_follow_up_decisions(record, case_data, max_score=8)
+    recheck_time = follow_up_score.get("score", 0)
     if reassessments:
         best_completeness = max(float(r.get("completeness", 0) or 0) for r in reassessments)
         ra_content = min(10, int(round(10 * best_completeness)))
@@ -171,6 +173,7 @@ def score_triage_v4(record: dict, case_data: dict) -> dict:
             "strengths": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] >= v['max'] * 0.7],
             "weaknesses": [f"{k}:{v['score']}/{v['max']}" for k, v in detail.items() if v['score'] < v['max'] * 0.5],
             "suggestions": "严重错误触发，一票否决。" if has_critical else "请关注候诊复评和病情变化识别。",
+            "follow_up_decision_summary": follow_up_score.get("summary", ""),
             "feedback_version": FEEDBACK_EVIDENCE_VERSION,
             "feedback_evidence": build_feedback_evidence(case_data, record, record.get("disclosed_slots", []), record.get("measured_vitals", [])),
         }

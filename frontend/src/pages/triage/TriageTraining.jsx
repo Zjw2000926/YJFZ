@@ -10,10 +10,13 @@ import {
   observeTriagePatient,
   getTriageRecord,
   getTriageState,
+  recordInitialDecision,
+  submitFollowUpDecision,
 } from "../../api";
 import { useToast } from "../../components/useToast";
 import { useConfirm } from "../../components/ui/useConfirm";
 import { calculateTimeLeftSeconds, formatCountdownTime, getPositiveInt, getTrainingTimerEndMs } from "../../utils/trainingTimer";
+import TriageFollowUpDecisionPanel from "../../components/triage/TriageFollowUpDecisionPanel";
 
 const LEVELS = [
   { value: "Ⅰ级", label: "Ⅰ级(濒危)", color: "#dc2626", desc: "立即抢救" },
@@ -26,7 +29,7 @@ const ZONES = [
   { value: "黄区", label: "黄区", color: "#d97706", desc: "观察区" },
   { value: "绿区", label: "绿区", color: "#16a34a", desc: "普通候诊区" },
 ];
-const DISPOSITIONS = ["通知医生", "绿色通道", "立即处理", "心电监护", "吸氧", "建立静脉通路", "普通候诊", "建议门诊", "复评30分钟"];
+const DISPOSITIONS = ["通知医生", "绿色通道", "立即处理", "心电监护", "吸氧", "建立静脉通路", "普通候诊", "建议门诊"];
 
 export default function TriageTraining() {
   const [searchParams] = useSearchParams();
@@ -55,6 +58,11 @@ export default function TriageTraining() {
   const [triageReason, setTriageReason] = useState("");
   const [handoffNote, setHandoffNote] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [initialDecisionRecorded, setInitialDecisionRecorded] = useState(false);
+  const [followUpOption, setFollowUpOption] = useState("");
+  const [followUpDecisionRecorded, setFollowUpDecisionRecorded] = useState(false);
+  const [followUpDecisionResult, setFollowUpDecisionResult] = useState(null);
+  const [followUpStateUpdates, setFollowUpStateUpdates] = useState([]);
   const taskIdParam = searchParams.get("task_id");
   const timeLimitParam = searchParams.get("time_limit");
   const recordIdParam = searchParams.get("record_id");
@@ -126,6 +134,10 @@ export default function TriageTraining() {
         setDisclosedSlots(stateRes.data.disclosed_slots || []);
         setAskedCount((stateRes.data.disclosed_slots || []).length);
         setObserved(stateRes.data.observed_details || []);
+        setInitialDecisionRecorded(Boolean((record.triage_decisions || []).some((item) => item.decision_type === "initial")));
+        const restoredFollowUps = record.follow_up_decisions || [];
+        setFollowUpDecisionRecorded(restoredFollowUps.length > 0);
+        if (restoredFollowUps.length > 0) setFollowUpDecisionResult(restoredFollowUps[restoredFollowUps.length - 1]);
         syncTimerFromRecord(record, timeLimitVal);
         setTimerStarted(true);
         const recordCaseId = record.case_external_id;
@@ -203,10 +215,59 @@ export default function TriageTraining() {
     } catch { error("测量失败"); }
   };
 
+  const handleInitialDecision = async () => {
+    if (!selectedLevel) { warning("请选择分诊等级"); return; }
+    if (!selectedZone) { warning("请选择就诊区域"); return; }
+    try {
+      await recordInitialDecision(recordId, {
+        level: selectedLevel,
+        zone: selectedZone,
+        notify_doctor: selectedDispositions.includes("通知医生"),
+        reason: triageReason,
+      });
+      setInitialDecisionRecorded(true);
+      setFollowUpDecisionRecorded(false);
+      setFollowUpDecisionResult(null);
+      success("初始分诊已记录，请继续判断候诊与复评策略");
+    } catch (err) {
+      error(err?.response?.data?.detail || "记录初始分诊失败");
+    }
+  };
+
+  const handleFollowUpDecision = async () => {
+    if (!initialDecisionRecorded) { warning("请先记录初始分诊"); return; }
+    if (!followUpOption) { warning("请选择后续管理策略"); return; }
+    try {
+      const { data } = await submitFollowUpDecision(recordId, {
+        selected_option: followUpOption,
+        case_stage: "after_initial_triage",
+        reason: triageReason || handoffNote,
+      });
+      const decision = data.decision || {};
+      setFollowUpDecisionResult(decision);
+      if (followUpOption === "upgrade_notify_doctor" && !selectedDispositions.includes("通知医生")) {
+        setSelectedDispositions((prev) => [...prev, "通知医生"]);
+      }
+      if (data.state_update) {
+        setFollowUpStateUpdates((prev) => [...prev, data.state_update]);
+        setFollowUpOption("");
+        setFollowUpDecisionRecorded(false);
+        success("已进入候诊观察结果，请继续判断下一步处理");
+      } else {
+        setFollowUpDecisionRecorded(true);
+        success("后续管理决策已记录");
+      }
+    } catch (err) {
+      error(err?.response?.data?.detail || "记录后续管理决策失败");
+    }
+  };
+
   // 提交
   const handleSubmit = async () => {
     if (!selectedLevel) { warning("请选择分诊等级"); return; }
     if (!selectedZone) { warning("请选择就诊区域"); return; }
+    if (!initialDecisionRecorded) { warning("请先记录初始分诊决策"); return; }
+    if (!followUpDecisionRecorded) { warning("请先完成候诊与复评决策"); return; }
     const ok = await confirm({ title: "提交分诊", message: "确定提交分诊决策吗？提交后将自动评分。", confirmLabel: "确定提交", danger: true });
     if (!ok) return;
     try {
@@ -247,7 +308,7 @@ export default function TriageTraining() {
         {submitted ? (
           <span style={{ color: "#16a34a", fontWeight: 600, fontSize: "0.85rem" }}>已提交</span>
         ) : (
-          <button className="training-end-btn" onClick={handleSubmit} disabled={!selectedLevel}>
+          <button className="training-end-btn" onClick={handleSubmit} disabled={!selectedLevel || !selectedZone || !initialDecisionRecorded || !followUpDecisionRecorded}>
             <Phone size={16} /><span>提交分诊</span>
           </button>
         )}
@@ -275,6 +336,29 @@ export default function TriageTraining() {
           {messages.map((msg, i) => (
             <div key={i} className={`msg-row ${msg.role === "student" ? "student" : "patient"}`}>
               <div className="msg-bubble"><p>{msg.content}</p></div>
+            </div>
+          ))}
+          {followUpStateUpdates.map((state, i) => (
+            <div key={`follow-up-state-${i}`} style={{ margin: "10px 16px", display: "flex", justifyContent: "center" }}>
+              <div style={{
+                width: "100%",
+                maxWidth: 560,
+                padding: 12,
+                borderRadius: 8,
+                border: `1px solid ${state.deteriorated ? "#fecaca" : "#bfdbfe"}`,
+                background: state.deteriorated ? "#fef2f2" : "#eff6ff",
+                color: "#111827",
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
+                  <strong>{state.title || "候诊观察后患者状态"}</strong>
+                  <span style={{ fontSize: "0.72rem", color: state.deteriorated ? "#b91c1c" : "#1d4ed8", fontWeight: 700 }}>
+                    候诊观察记录
+                  </span>
+                </div>
+                {state.state_name && <div style={{ fontSize: "0.78rem", marginBottom: 4 }}>状态：{state.state_name}</div>}
+                {state.appearance && <div style={{ fontSize: "0.78rem", marginBottom: 4 }}>外观：{state.appearance}</div>}
+                {state.expression && <div style={{ fontSize: "0.78rem" }}>当前表现：{state.expression}</div>}
+              </div>
             </div>
           ))}
           {sending && <div className="msg-row patient"><div className="msg-bubble"><div className="typing-dots"><span /><span /><span /></div></div></div>}
@@ -428,6 +512,42 @@ export default function TriageTraining() {
               style={{ width: "100%", padding: "8px 10px", border: "1px solid #d1d5db", borderRadius: 6, fontSize: "0.74rem", resize: "vertical", boxSizing: "border-box" }}
             />
           </div>
+
+          <div style={{ marginBottom: 16, padding: 10, background: initialDecisionRecorded ? "#f0fdf4" : "#fff7ed", border: "1px solid #fed7aa", borderRadius: 8 }}>
+            <div style={{ fontSize: "0.72rem", fontWeight: 700, marginBottom: 6 }}>初始分诊决策</div>
+            <button
+              type="button"
+              data-testid="record-initial-triage"
+              disabled={!selectedLevel || !selectedZone || initialDecisionRecorded || submitted}
+              onClick={handleInitialDecision}
+              style={{
+                width: "100%",
+                padding: 8,
+                borderRadius: 6,
+                border: "1px solid #d97706",
+                background: initialDecisionRecorded ? "#dcfce7" : "#fffbeb",
+                color: initialDecisionRecorded ? "#15803d" : "#92400e",
+                cursor: !selectedLevel || !selectedZone || initialDecisionRecorded || submitted ? "not-allowed" : "pointer",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+              }}
+            >
+              {initialDecisionRecorded ? `已记录：${selectedLevel} / ${selectedZone}` : "记录初始分诊"}
+            </button>
+          </div>
+
+          <TriageFollowUpDecisionPanel
+            visible={initialDecisionRecorded && !submitted}
+            disabled={submitted}
+            selectedOption={followUpOption}
+            onSelect={(value) => {
+              setFollowUpOption(value);
+              setFollowUpDecisionRecorded(false);
+            }}
+            onSubmit={handleFollowUpDecision}
+            decisionResult={followUpDecisionResult}
+            examMode={isExam}
+          />
 
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: "0.72rem", fontWeight: 600, marginBottom: 6 }}>处置 / 候诊 / 交接说明</div>

@@ -12,6 +12,7 @@ from services.case_types import (
     is_dynamic_case,
 )
 from services.triage_rule_engine import generate_rule_basis
+from services.triage_follow_up import score_follow_up_decisions
 
 
 def event_indicates_deterioration(event: dict[str, Any] | None) -> bool:
@@ -85,6 +86,7 @@ def generate_training_report(
     doctor_notified = _doctor_notified(record, timely=deterioration_triggered)
 
     feedback = case_data.get("dynamic_feedback") or case_data.get("feedback") or {}
+    follow_up_review = generate_follow_up_decision_review(record, case_data)
     correct_points = feedback.get("correct_points") or []
     incorrect_points = _build_incorrect_points(record, serious_error_result)
     suggestions = _clean_training_suggestions(
@@ -106,6 +108,15 @@ def generate_training_report(
         "training_mode": record.get("mode", "practice"),
         "case_type": "dynamic" if case_is_dynamic else "static",
         "is_dynamic_case": case_is_dynamic,
+        "follow_up_decision_review": follow_up_review,
+        "follow_up_decisions": follow_up_review.get("decisions", []),
+        "follow_up_required": follow_up_review.get("requires_reassessment"),
+        "follow_up_reasonable": follow_up_review.get("reasonable"),
+        "follow_up_selected_time": follow_up_review.get("selected_time"),
+        "missed_follow_up": follow_up_review.get("missed_required_follow_up"),
+        "over_reassessment": follow_up_review.get("over_reassessment"),
+        "follow_up_too_late": follow_up_review.get("too_late"),
+        "follow_up_score_delta": follow_up_review.get("score_delta"),
         "reassessment_applicable": reassessment_applicable,
         "deterioration_applicable": case_is_dynamic and deterioration_triggered,
         "upgrade_applicable": upgrade_applicable,
@@ -183,6 +194,28 @@ def generate_action_review(record: dict[str, Any]) -> list[dict[str, Any]]:
     } for action in record.get("student_actions") or []]
 
 
+def generate_follow_up_decision_review(record: dict[str, Any], case_data: dict[str, Any]) -> dict[str, Any]:
+    scored = score_follow_up_decisions(record, case_data)
+    decisions = record.get("follow_up_decisions") or []
+    first = decisions[0] if decisions else {}
+    issue_codes = set(scored.get("issue_codes") or [])
+    return {
+        "requires_reassessment": bool((scored.get("policy") or {}).get("requires_reassessment")),
+        "recommended_reassessment_time": (scored.get("policy") or {}).get("recommended_reassessment_time"),
+        "selected_option": first.get("selected_option", ""),
+        "selected_time": first.get("selected_time"),
+        "reasonable": bool(first.get("whether_correct")) if decisions else False,
+        "missed_required_follow_up": "MISSED_REQUIRED_FOLLOW_UP" in issue_codes,
+        "over_reassessment": "OVER_REASSESSMENT" in issue_codes,
+        "too_late": "FOLLOW_UP_TOO_LATE" in issue_codes,
+        "score": scored.get("score"),
+        "max": scored.get("max"),
+        "score_delta": sum(int(item.get("score_change") or 0) for item in decisions),
+        "summary": scored.get("summary", ""),
+        "decisions": decisions,
+    }
+
+
 def generate_score_breakdown(section_scores: dict[str, Any]) -> dict[str, Any]:
     return section_scores
 
@@ -208,6 +241,13 @@ def _build_incorrect_points(record: dict[str, Any], serious_error_result: dict[s
         points.append("Doctor was not notified after deterioration")
     if record_has_triggered_deterioration(record) and not student_recognized_deterioration(record):
         points.append("Deterioration was not reassessed or recognized")
+    for decision in record.get("follow_up_decisions") or []:
+        if decision.get("issue_code") == "MISSED_REQUIRED_FOLLOW_UP":
+            points.append("需要候诊观察或复评的病例直接结束了分诊")
+        elif decision.get("issue_code") == "OVER_REASSESSMENT":
+            points.append("稳定病例选择了不必要的候诊复评")
+        elif decision.get("issue_code") == "FOLLOW_UP_TOO_LATE":
+            points.append("复评时间设置偏晚")
     return points
 
 

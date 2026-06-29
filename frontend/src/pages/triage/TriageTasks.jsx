@@ -37,16 +37,11 @@ export default function TriageTasks({ user, onLogout }) {
   const currentUserId = Number(user?.id ?? user?.user_id);
   const getStartUrl = (task, caseId) => {
     const cid = caseId || task.case_external_ids?.[0];
-    const c = caseMap.get(cid);
-    const base = c?.is_dynamic ? "/triage/dynamic/start" : "/triage/training/start";
-    return `${base}?case=${cid}&mode=${task.mode}&time_limit=${task.time_limit_minutes || 8}&task_id=${task.id}`;
+    return `/triage/training/start?case=${cid}&mode=${task.mode}&time_limit=${task.time_limit_minutes || 8}&task_id=${task.id}`;
   };
   const getResumeUrl = (task, caseId, recordId) => {
-    const c = caseMap.get(caseId);
     const query = `case=${caseId}&mode=${task.mode}&time_limit=${task.time_limit_minutes || 8}&task_id=${task.id}`;
-    return c?.is_dynamic
-      ? `/triage/dynamic/${recordId}?${query}`
-      : `/triage/training/start?${query}&record_id=${recordId}`;
+    return `/triage/training/start?${query}&record_id=${recordId}`;
   };
   const myTasks = Number.isFinite(currentUserId)
     ? tasks.filter(t => t.assignments?.some(a => Number(a.user_id) === currentUserId))
@@ -138,7 +133,7 @@ export default function TriageTasks({ user, onLogout }) {
                   <div style={{ minWidth: 220 }}>
                     <div style={{ fontWeight: 700, fontSize: "0.86rem" }}>{index + 1}. {c?.display_name || caseId}</div>
                     <div style={{ fontSize: "0.72rem", color: "#6b7280", marginTop: 4 }}>
-                      <Badge variant={c?.is_dynamic ? "warning" : "info"}>{c?.is_dynamic ? "动态病例" : "静态病例"}</Badge>
+                      <Badge variant="info">训练病例</Badge>
                       {" "}难度 {c?.difficulty || "-"} · {caseId}
                       {isDone && <Badge variant="success" style={{ marginLeft: 6 }}>已完成 {doneRecord.total_score ?? "-"}分</Badge>}
                       {!isDone && expiredRecord && !canContinue && <Badge variant="warning" style={{ marginLeft: 6 }}>上次已超时</Badge>}

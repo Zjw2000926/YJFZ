@@ -4,6 +4,7 @@ from typing import Any
 
 from services.triage_rules.engine import evaluate as evaluate_rules
 from services.triage_rules.models import LEVEL_RANK
+from services.triage_follow_up import score_follow_up_decisions
 
 
 def evaluate_minimum_triage_level(case_data: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
@@ -93,6 +94,9 @@ def detect_serious_errors(case_data: dict[str, Any], record: dict[str, Any]) -> 
 
     if triggered_det and LEVEL_RANK.get(standard_final or "", 4) <= 2 and not timely_notification:
         errors.append(_error("NO_DOCTOR_NOTIFICATION_AFTER_WORSENING", "候诊区危重化后未及时通知医生", True))
+
+    follow_up = score_follow_up_decisions(record, case_data)
+    errors.extend(follow_up.get("serious_errors") or [])
 
     rule_result = evaluate_minimum_triage_level(case_data, record)
     for code in rule_result.get("severe_error_codes", []):

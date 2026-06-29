@@ -103,6 +103,7 @@ export default function TriageRecordDetail({ user, onLogout }) {
   const showDeteriorationStatus = timelineReport.deterioration_applicable === true;
   const showUpgradeStatus = timelineReport.upgrade_applicable === true;
   const showDoctorStatus = timelineReport.doctor_notification_required === true;
+  const followUpReview = timelineReport.follow_up_decision_review || {};
 
   const handleTeacherReview = async () => {
     const value = Number(teacherScore);
@@ -318,6 +319,43 @@ export default function TriageRecordDetail({ user, onLogout }) {
               </span>
             )}
           </div>
+        </Card>
+      )}
+
+      {score?.timeline_report?.follow_up_decision_review && canSeeDetailedFeedback && (
+        <Card title="候诊与复评决策" style={{ marginBottom: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: 10, fontSize: "0.78rem", marginBottom: 10 }}>
+            <div style={{ padding: 8, background: "#f8fafc", borderRadius: 6 }}>
+              <div style={{ color: "#64748b" }}>是否需要复评</div>
+              <div style={{ fontWeight: 700 }}>{followUpReview.requires_reassessment ? "需要" : "不强制"}</div>
+            </div>
+            <div style={{ padding: 8, background: "#f8fafc", borderRadius: 6 }}>
+              <div style={{ color: "#64748b" }}>学员选择</div>
+              <div style={{ fontWeight: 700 }}>{followUpReview.selected_option || "未记录"}</div>
+            </div>
+            <div style={{ padding: 8, background: "#f8fafc", borderRadius: 6 }}>
+              <div style={{ color: "#64748b" }}>复评时间</div>
+              <div style={{ fontWeight: 700 }}>{followUpReview.selected_time ? `${followUpReview.selected_time}分钟` : "未设置"}</div>
+            </div>
+            <div style={{ padding: 8, background: followUpReview.reasonable ? "#f0fdf4" : "#fff7ed", borderRadius: 6 }}>
+              <div style={{ color: "#64748b" }}>判断结果</div>
+              <div style={{ fontWeight: 700, color: followUpReview.reasonable ? "#15803d" : "#c2410c" }}>
+                {followUpReview.reasonable ? "合理" : "需改进"}
+              </div>
+            </div>
+          </div>
+          {followUpReview.summary && (
+            <div style={{ padding: 8, background: "#eff6ff", borderRadius: 6, fontSize: "0.76rem", color: "#1e3a8a" }}>
+              {followUpReview.summary}
+            </div>
+          )}
+          {(followUpReview.missed_required_follow_up || followUpReview.over_reassessment || followUpReview.too_late) && (
+            <div style={{ marginTop: 8, fontSize: "0.75rem", color: "#991b1b" }}>
+              {followUpReview.missed_required_follow_up && <div>· 存在漏复评/漏观察风险</div>}
+              {followUpReview.over_reassessment && <div>· 存在过度复评或资源使用效率问题</div>}
+              {followUpReview.too_late && <div>· 复评时间偏晚</div>}
+            </div>
+          )}
         </Card>
       )}
 

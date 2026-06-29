@@ -46,6 +46,12 @@ from services.analytics_service import compute_class_analytics, compute_task_sum
 from services.export_service import build_scores_csv
 from services.score_explanation import enrich_score_result
 from services.case_types import is_dynamic_case
+from services.triage_follow_up import (
+    build_follow_up_policy,
+    get_follow_up_options,
+    record_follow_up_decision,
+    should_advance_after_decision,
+)
 
 router = APIRouter(prefix="/api/triage", tags=["预检分诊"])
 
@@ -85,7 +91,12 @@ def get_cases(current_user: User = Depends(get_current_user)):
     cases = list_cases(include_draft=current_user.role in ("teacher", "reviewer", "admin"))
     for item in cases:
         review = get_case_review(item.get("external_id"))
-        item["case_type"] = "dynamic" if is_dynamic_case(item) else "static"
+        item["is_dynamic"] = is_dynamic_case(item)
+        if current_user.role in ("teacher", "reviewer", "admin"):
+            item["case_type"] = "dynamic" if is_dynamic_case(item) else "static"
+        else:
+            item.pop("case_type", None)
+            item.pop("dynamic_profile", None)
         item["review_status"] = review.get("status", "draft")
         item["review_comments"] = review.get("review_comments") or review.get("comment", "")
         item["is_available_for_training"] = review.get("status") == "approved"
@@ -976,6 +987,103 @@ def advance_timeline(record_id: str, req: dict, current_user: User = Depends(get
     }
 
 
+@router.get("/training/{record_id}/follow-up-options")
+def get_follow_up_decision_options(record_id: str, current_user: User = Depends(get_current_user)):
+    """Return student-safe follow-up decision options after initial triage."""
+    record = get_record(record_id, user_id=current_user.id)
+    if not record:
+        raise HTTPException(status_code=404, detail="训练记录不存在")
+    return {
+        "options": get_follow_up_options(),
+        "existing_decisions": record.get("follow_up_decisions", []),
+        "awaiting_decision": bool((record.get("timeline_state") or {}).get("awaiting_follow_up_decision", False)),
+    }
+
+
+@router.post("/training/{record_id}/follow-up-decision")
+def submit_follow_up_decision(record_id: str, req: dict, current_user: User = Depends(get_current_user)):
+    """Record the student's active waiting/reassessment/upgrade decision."""
+    record = get_record(record_id, user_id=current_user.id)
+    if not record:
+        raise HTTPException(status_code=404, detail="训练记录不存在")
+    case = get_case(record.get("case_external_id", ""))
+    if not case:
+        raise HTTPException(status_code=500, detail="病例数据丢失")
+
+    try:
+        result = record_follow_up_decision(record, case, req)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+    state_update = None
+    visible_events = []
+    mode = record.get("mode", "practice")
+    if should_advance_after_decision(result):
+        from services.triage_timeline import (
+            get_due_events,
+            get_current_patient_state,
+            normalize_stage_value,
+            sanitize_timeline_events_for_mode,
+            sanitize_patient_state_for_mode,
+        )
+        state = record.get("timeline_state", {})
+        current_minute = int(state.get("current_simulated_minute") or 0)
+        selected_time = result["decision"].get("selected_time")
+        next_event_minutes = [
+            int(ev.get("scheduled_minute") or 0)
+            for ev in state.get("timeline_events", [])
+            if not ev.get("triggered") and int(ev.get("scheduled_minute") or 0) > current_minute
+        ]
+        target_minute = selected_time or min(next_event_minutes, default=result["policy"].get("recommended_reassessment_time", 30))
+        advance_by = max(0, int(target_minute) - current_minute)
+        if advance_by <= 0 and next_event_minutes:
+            advance_by = min(next_event_minutes) - current_minute
+        events = get_due_events(record, advance_by, case) if advance_by > 0 else []
+        raw_patient_state = get_current_patient_state(record, case)
+        patient_state = sanitize_patient_state_for_mode(raw_patient_state, mode)
+        current_minute = (record.get("timeline_state") or {}).get("current_simulated_minute", 0)
+        state_update = {
+            "type": "patient_state_snapshot",
+            "minute": current_minute,
+            "title": "候诊观察后患者状态",
+            "state_name": patient_state.get("state_name", ""),
+            "appearance": patient_state.get("appearance", ""),
+            "expression": patient_state.get("expression", ""),
+            "reassessment_due": patient_state.get("reassessment_due", False),
+            "deteriorated": patient_state.get("deteriorated", False),
+            "current_stage": normalize_stage_value((record.get("timeline_state") or {}).get("current_stage", "WAITING"), "WAITING"),
+        }
+        visible_events = sanitize_timeline_events_for_mode(events, mode, current_minute)
+        record.setdefault("student_actions", []).append({
+            "action_id": f"action-{len(record.get('student_actions') or []) + 1}",
+            "action_type": "follow_up_state_observed",
+            "simulation_minute": current_minute,
+            "detail": {"events": [e.get("event_id") for e in events], "decision_id": result["decision"].get("decision_id")},
+            "is_key_action": True,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+        record.setdefault("timeline_state", {})["awaiting_follow_up_decision"] = True
+
+    from services.triage_repository import _save_record
+    _save_record(record)
+
+    response = {
+        "decision": result["decision"],
+        "state_update": state_update,
+        "visible_events": visible_events,
+        "show_decision_panel": bool((record.get("timeline_state") or {}).get("awaiting_follow_up_decision", False)),
+    }
+    if mode in ("exam", "osce"):
+        response["decision"] = {
+            **result["decision"],
+            "whether_correct": None,
+            "score_change": None,
+            "feedback_message": "已记录后续管理决策。",
+            "policy_snapshot": {},
+        }
+    return response
+
+
 @router.post("/training/{record_id}/reassess")
 def reassess_patient(record_id: str, req: dict, current_user: User = Depends(get_current_user)):
     """执行复评（含重新分诊决策）"""
@@ -1095,9 +1203,15 @@ def record_initial_decision(record_id: str, req: dict, current_user: User = Depe
         sm.transition("wait")
     except Exception:
         pass
+    record.setdefault("timeline_state", {})["awaiting_follow_up_decision"] = True
     from services.triage_repository import _save_record
     _save_record(record)
-    return {"status": "ok", "triage_decisions": record.get("triage_decisions", [])}
+    return {
+        "status": "ok",
+        "triage_decisions": record.get("triage_decisions", []),
+        "follow_up_options": get_follow_up_options(),
+        "awaiting_follow_up_decision": True,
+    }
 
 
 @router.post("/training/{record_id}/notify-doctor")

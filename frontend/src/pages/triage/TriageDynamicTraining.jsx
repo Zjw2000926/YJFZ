@@ -7,7 +7,6 @@ import { startTriageTraining, sendTriageMessage, measureTriageVitals, submitTria
          getDynamicTimeline } from "../../api";
 import { useToast } from "../../components/useToast";
 import { useConfirm } from "../../components/ui/useConfirm";
-import TriageTimelinePanel from "../../components/triage/TriageTimelinePanel";
 import { calculateTimeLeftSeconds, formatCountdownTime, getPositiveInt, getTrainingTimerEndMs } from "../../utils/trainingTimer";
 
 const LEVELS = [
@@ -215,7 +214,7 @@ export default function TriageDynamicTraining() {
     try {
       const { data } = await advanceTriageTimeline(recordId, mins || 5);
       appendStateUpdateCard(data);
-      info(`时间推进到第${data.current_minute}分钟，已更新患者状态`);
+      info("已记录候诊观察，患者状态已更新");
       await refreshTimeline();
     } catch { error("时间推进失败"); }
   };
@@ -331,8 +330,8 @@ export default function TriageDynamicTraining() {
         <div className="training-patient-identity">
           <div className="training-patient-avatar"><User size={20} /></div>
           <div>
-            <div className="training-patient-name">{caseData?.display_name || "动态病例"}</div>
-            <div className="training-patient-desc">{timeline ? `模拟第${timeline.current_minute}分钟` : "初诊"}</div>
+            <div className="training-patient-name">{caseData?.display_name || "患者"}</div>
+            <div className="training-patient-desc">{timeline?.current_minute ? "候诊观察中" : "初诊"}</div>
           </div>
         </div>
         <div className="training-timer" style={timeLeft <= 120 ? { background: "#fef2f2", borderColor: "#fca5a5", color: "#dc2626" } : {}}>
@@ -349,7 +348,7 @@ export default function TriageDynamicTraining() {
         <div className="training-conversation" style={{ flex: 1 }}>
           {caseData && (
             <div style={{ margin: "12px 16px", padding: 12, background: "#f8fafc", borderRadius: 8, fontSize: "0.8rem" }}>
-              <span style={{ fontWeight: 700 }}>动态病例</span>: {displayText(caseData.initial_exposure?.chief_complaint, "待评估")}
+              <span style={{ fontWeight: 700 }}>患者初始信息</span>: {displayText(caseData.initial_exposure?.chief_complaint, "待评估")}
               <div style={{ marginTop: 6, color: "#6b7280" }}>
                 本系统仅用于教学训练，不用于真实临床分诊或诊疗决策。
               </div>
@@ -359,7 +358,7 @@ export default function TriageDynamicTraining() {
             <div style={{ margin: "0 16px 12px", padding: 12, background: currentPatientState.deteriorated ? "#fef2f2" : "#fff", border: `1px solid ${currentPatientState.deteriorated ? "#fecaca" : "#e5e7eb"}`, borderRadius: 8, fontSize: "0.78rem" }}>
               <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
                 <strong>当前患者状态</strong>
-                <span style={{ color: "#6b7280" }}>阶段 {currentStage} · 模拟第{timeline.current_minute || 0}分钟</span>
+                <span style={{ color: "#6b7280" }}>当前评估阶段：{currentStage}</span>
               </div>
               <div>外观：{displayText(currentPatientState.appearance, "待观察")}</div>
               {displayText(currentPatientState.expression) && <div>患者表达：{displayText(currentPatientState.expression)}</div>}
@@ -385,9 +384,9 @@ export default function TriageDynamicTraining() {
                     boxShadow: "0 1px 2px rgba(15, 23, 42, 0.06)",
                   }}>
                     <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
-                      <strong>{displayText(state.title, `模拟第${msg.minute || 0}分钟患者状态`)}</strong>
+                      <strong>{displayText(state.title, "候诊观察后患者状态")}</strong>
                       <span style={{ fontSize: "0.72rem", color: state.deteriorated ? "#b91c1c" : "#1d4ed8", fontWeight: 700 }}>
-                        模拟第{msg.minute || 0}分钟
+                        候诊观察记录
                       </span>
                     </div>
                     {displayText(state.state_name) && (
@@ -416,7 +415,7 @@ export default function TriageDynamicTraining() {
         </div>
 
         <div style={{ width: 280, borderLeft: "1px solid #e5e7eb", padding: 12, overflowY: "auto", background: "#fafafa" }}>
-          <h4 style={{ fontSize: "0.8rem", fontWeight: 700, marginBottom: 8 }}>分诊决策 + 时间线</h4>
+          <h4 style={{ fontSize: "0.8rem", fontWeight: 700, marginBottom: 8 }}>分诊决策与后续管理</h4>
 
           {selectedZone && <span style={{fontSize:'0.7rem',color:'#6b7280'}}>{selectedZone}</span>}
           <div style={{fontSize:'0.7rem',fontWeight:600,marginBottom:4,marginTop:8}}>就诊区域</div>
@@ -425,11 +424,11 @@ export default function TriageDynamicTraining() {
               <span style={{fontWeight:600,color:z.color}}>{z.label}</span>
             </div>
           ))}
-          {timeline && <TriageTimelinePanel timeline={timeline} onAdvance={handleAdvance}
-            onReassess={handleReassess} loading={loading}
-            canAdvance={canAdvanceTimeline}
-            canReassess={canReassess}
-            showReassessHint={!isExamMode && timeline.timeline_events?.some((e) => e.triggered && e.requires_reassessment)} />}
+          {timeline?.patient_state && (
+            <div style={{ marginBottom: 10, padding: 8, background: "#fff", borderRadius: 6, border: "1px solid #e5e7eb", fontSize: "0.68rem", color: "#475569" }}>
+              请根据当前评估结果主动决定是否候诊观察、复评、升级处理或完成分诊。
+            </div>
+          )}
 
           {/* 第一眼观察 */}
           <div style={{ marginBottom: 10 }}>

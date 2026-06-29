@@ -93,6 +93,14 @@ export function submitTriage(recordId, payload) {
   return api.post(`/triage/training/${recordId}/submit`, payload);
 }
 
+export function getFollowUpDecisionOptions(recordId) {
+  return api.get(`/triage/training/${recordId}/follow-up-options`);
+}
+
+export function submitFollowUpDecision(recordId, payload) {
+  return api.post(`/triage/training/${recordId}/follow-up-decision`, payload);
+}
+
 // V4 动态病例
 export function getTriageTimeline(recordId) {
   return api.get(`/triage/training/${recordId}/timeline`);

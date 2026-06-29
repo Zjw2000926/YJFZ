@@ -116,6 +116,11 @@ def get_case_safe(external_id: str) -> Optional[dict]:
                 "common_errors", "triage_standard", "standard_actions",
                 "clinical_information", "review_status", "assessment_checklist",
                 # P0-1: 动态病例敏感字段
+                "case_type", "is_dynamic", "case_dynamic_type", "dynamic_profile",
+                "requires_reassessment", "reassessment_reason",
+                "recommended_reassessment_time", "reassessment_triggers",
+                "next_state_if_observed", "consequence_if_no_reassessment",
+                "reassessment_required_after_node",
                 "standard_initial_triage_level", "standard_final_triage_level",
                 "standard_initial_area", "standard_final_area",
                 "dynamic_scoring_rubric", "dynamic_severe_errors",
@@ -147,16 +152,15 @@ def get_case_safe(external_id: str) -> Optional[dict]:
     ]
     result.pop("required_measurements", None)
 
-    # P0-B: 替换完整 dynamic_timeline 为安全版
-    dt = case.get("dynamic_timeline") or {}
-    if dt.get("enabled"):
+    # 学生前台不暴露动态/时间轴属性；是否复评由学员主动判断。
+    dt = case.get("dynamic_timeline")
+    if isinstance(dt, dict):
         result["dynamic_timeline"] = {
-            "enabled": True,
-            "time_scale": dt.get("time_scale", "simulated"),
-            "has_dynamic_events": True,
+            "enabled": bool(dt.get("enabled")),
+            "has_dynamic_events": bool(dt.get("events")),
         }
     else:
-        result["dynamic_timeline"] = None
+        result.pop("dynamic_timeline", None)
 
     # P0-B: observation_options
     result["observation_options"] = [
