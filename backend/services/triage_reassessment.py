@@ -156,7 +156,7 @@ def create_reassessment(record: dict, payload: dict, case_data: dict = None) -> 
         state["reassessment_overdue"] = True
 
     # 检查是否升级
-    initial_level = state.get("initial_level_selected")
+    initial_level = state.get("current_triage_level") or state.get("initial_level_selected")
     if initial_level and ra["selected_level"]:
         from services.triage_rules.models import LEVEL_RANK
         if LEVEL_RANK.get(ra["selected_level"], 4) < LEVEL_RANK.get(initial_level, 4):

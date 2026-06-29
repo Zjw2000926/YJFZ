@@ -7,15 +7,24 @@ from services.triage_timeline import get_current_vital_signs
 
 VITAL_ALIASES = {
     "heart_rate": ["heart_rate", "heart_rate_bpm"],
+    "heart_rate_bpm": ["heart_rate", "heart_rate_bpm"],
     "respiratory_rate": ["respiratory_rate", "respiratory_rate_bpm"],
+    "respiratory_rate_bpm": ["respiratory_rate", "respiratory_rate_bpm"],
     "spo2": ["spo2", "spo2_percent"],
+    "spo2_percent": ["spo2", "spo2_percent"],
     "temperature": ["temperature", "temperature_c"],
+    "temperature_c": ["temperature", "temperature_c"],
     "pain_score": ["pain_score", "nrs"],
     "consciousness": ["consciousness", "mental_status"],
-    "gcs": ["gcs"],
-    "blood_glucose": ["blood_glucose"],
+    "gcs": ["gcs", "gcs_score"],
+    "gcs_score": ["gcs_score", "gcs"],
+    "blood_glucose": ["blood_glucose", "blood_glucose_mmol_l"],
+    "blood_glucose_mmol_l": ["blood_glucose_mmol_l", "blood_glucose"],
+    "skin_perfusion": ["skin_perfusion"],
     "mews": ["mews"],
 }
+
+NON_VITAL_MEASUREMENT_IDS = {"other_assessments", "history_items", "focused_history"}
 
 
 def measure_multiple_vital_signs(record: dict[str, Any], case_data: dict[str, Any], item_ids: list[str]) -> list[dict[str, Any]]:
@@ -25,6 +34,8 @@ def measure_multiple_vital_signs(record: dict[str, Any], case_data: dict[str, An
 
     measurements = []
     for item_id in item_ids:
+        if item_id in NON_VITAL_MEASUREMENT_IDS:
+            continue
         value = measure_vital_sign(item_id, current_vitals)
         if value is None:
             value = _fallback_required_measurement(case_data, item_id)
@@ -71,16 +82,16 @@ def explain_vital_sign_abnormality(item_id: str, value: Any) -> dict[str, Any]:
     is_abnormal = False
     message = ""
 
-    if item_id == "heart_rate" and numeric is not None and (numeric >= 120 or numeric < 50):
+    if item_id in {"heart_rate", "heart_rate_bpm"} and numeric is not None and (numeric >= 120 or numeric < 50):
         is_abnormal = True
         message = "心率明显异常，提示循环代偿或病情加重风险，需要结合症状变化复评。"
-    elif item_id == "respiratory_rate" and numeric is not None and (numeric >= 24 or numeric < 10):
+    elif item_id in {"respiratory_rate", "respiratory_rate_bpm"} and numeric is not None and (numeric >= 24 or numeric < 10):
         is_abnormal = True
         message = "呼吸频率异常，提示病情风险升高，需要结合SpO₂和意识状态判断紧急程度。"
-    elif item_id == "spo2" and numeric is not None and numeric < 94:
+    elif item_id in {"spo2", "spo2_percent"} and numeric is not None and numeric < 94:
         is_abnormal = True
         message = "SpO₂偏低，属于重要客观危险信号，应提高分诊警觉。"
-    elif item_id == "temperature" and numeric is not None and numeric >= 38.0:
+    elif item_id in {"temperature", "temperature_c"} and numeric is not None and numeric >= 38.0:
         is_abnormal = True
         message = "体温升高，提示炎症或感染相关风险，需要结合主诉和生命体征趋势复评。"
     elif item_id == "pain_score" and numeric is not None and numeric >= 7:

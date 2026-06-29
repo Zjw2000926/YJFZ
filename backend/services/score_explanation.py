@@ -12,15 +12,16 @@ from typing import Any
 
 from services.case_types import is_dynamic_case
 from services.feedback_evidence import (
+    canonical_measurement,
     covered_slot_groups,
     detect_record_groups,
     filter_missed_slots,
 )
-from services.report_generator import record_has_triggered_deterioration, student_recognized_deterioration
+from services.report_generator import event_indicates_deterioration, record_has_triggered_deterioration, student_recognized_deterioration
 from services.triage_rules.models import LEVEL_RANK
 
 
-SCORE_EXPLANATION_VERSION = "criteria_v3_history_coverage"
+SCORE_EXPLANATION_VERSION = "criteria_v4_dynamic_consistency"
 
 VITAL_ALIASES = {
     "temperature": {"temperature", "temperature_c", "body_temperature", "temp"},
@@ -452,28 +453,28 @@ def _triage_level_criteria(max_score: float, ctx: dict[str, Any]) -> list[dict[s
     final = ctx["final_decision"]
     init_level = (init or {}).get("level") or ctx["record"].get("final_level_selected")
     final_level = (final or {}).get("level") or ctx["record"].get("final_level_selected")
-    init_ok = _level_not_lower(init_level, ctx["standard_initial_level"])
-    final_ok = _level_not_lower(final_level, ctx["standard_final_level"])
+    init_accuracy = _level_accuracy(init_level, ctx["standard_initial_level"], max_score * 0.4)
+    final_accuracy = _level_accuracy(final_level, ctx["standard_final_level"], max_score * 0.4)
     under = bool(ctx["rule_result"].get("under_triage"))
     over = bool(ctx["rule_result"].get("over_triage"))
     return [
-        _criterion("initial_level", "初始分诊等级不低于病例标准", max_score * 0.4, max_score * 0.4 if init_ok else 0, init_ok, f"学员初始: {init_level or '未记录'}；标准: {ctx['standard_initial_level'] or '未配置'}", "初始分诊等级低于病例标准或未记录", "分诊等级必须由病例标准答案和规则引擎判定，不能由LLM自由判断。", "对照高危信号和生命体征，避免把Ⅱ级/Ⅲ级风险低估。", "triage_level"),
-        _criterion("final_level", "最终/复评分诊等级符合恶化后的标准", max_score * 0.4, max_score * 0.4 if final_ok else 0, final_ok, f"学员最终: {final_level or '未记录'}；标准: {ctx['standard_final_level'] or '未配置'}", "最终或复评分诊等级未达到标准", "动态病例恶化后应重新判定分诊等级。", "患者恶化后若达到Ⅱ级标准，应升级并记录重新分诊。", "triage_level"),
-        _criterion("triage_bias", "无明显低估/过度分诊", max_score * 0.2, max_score * 0.2 if not under else 0, not under, "无低估提示" if not under else "存在低估分诊提示", "低估分诊属于患者安全风险", "ESI/ATS/CTAS均强调按紧急程度分层，低估会延误处置。", "先保证不低估危重程度，再考虑资源和区域安排。", "triage_level", warning=over),
+        _criterion("initial_level", "初始分诊等级与病例标准一致", max_score * 0.4, init_accuracy["score"], init_accuracy["met"], f"学员初始: {init_level or '未记录'}；标准: {ctx['standard_initial_level'] or '未配置'}", init_accuracy["deduction"], "分诊等级必须由病例标准答案和规则引擎判定，不能由LLM自由判断。", "对照高危信号和生命体征，避免低估；如提高等级，也要写清理由并匹配区域。", "triage_level", warning=init_accuracy["warning"]),
+        _criterion("final_level", "最终/复评分诊等级符合恶化后的标准", max_score * 0.4, final_accuracy["score"], final_accuracy["met"], f"学员最终: {final_level or '未记录'}；标准: {ctx['standard_final_level'] or '未配置'}", final_accuracy["deduction"], "动态病例恶化后应重新判定分诊等级。", "患者恶化后若达到更高等级标准，应升级并记录重新分诊。", "triage_level", warning=final_accuracy["warning"]),
+        _criterion("triage_bias", "无明显低估/过度分诊", max_score * 0.2, max_score * 0.2 if not under and not over else max_score * 0.08 if over else 0, not under and not over, "无明显低估或过度分诊" if not under and not over else "存在过度分诊提示" if over else "存在低估分诊提示", "存在低估或过度分诊，说明等级判断与标准不一致", "ESI/ATS/CTAS均强调按紧急程度分层，低估会延误处置，过度分诊也需有依据并匹配流程。", "先保证不低估危重程度，再按病例标准、资源需求和区域安排保持一致。", "triage_level", warning=over),
     ]
 
 
 def _disposition_criteria(max_score: float, ctx: dict[str, Any]) -> list[dict[str, Any]]:
     area = (ctx["final_decision"] or {}).get("area") or ctx["record"].get("final_zone_selected")
-    area_ok = not ctx["standard_final_area"] or area == ctx["standard_final_area"] or (
-        "红" in str(ctx["standard_final_area"]) and "红" in str(area)
-    )
+    final_level = (ctx["final_decision"] or {}).get("level") or ctx["record"].get("final_level_selected")
+    area_ok = _area_matches_standard(area, ctx["standard_final_area"], final_level)
+    area_consistent = _level_area_consistent(final_level, area)
     final_disposition = ctx["record"].get("final_disposition") or []
-    notified = _doctor_notified(ctx)
+    notified = _doctor_notified(ctx, timely=ctx["deterioration"])
     needs_notify = ctx["deterioration"] or _level_rank(ctx["standard_final_level"]) <= 2
     noted = bool(ctx.get("triage_reason")) or bool(ctx["notes"])
     return [
-        _criterion("area", "就诊区域与分诊等级匹配", max_score * 0.45, max_score * 0.45 if area_ok else 0, area_ok, f"学员区域: {area or '未记录'}；标准区域: {ctx['standard_final_area'] or '未配置'}", "区域安排与病例标准不一致", "区域安排应与分诊等级和病情风险匹配。", "Ⅱ级或恶化患者应安排红区/优先处置区。", "disposition"),
+        _criterion("area", "就诊区域与分诊等级匹配", max_score * 0.45, max_score * 0.45 if (area_ok and area_consistent) else max_score * 0.18 if area_ok else 0, area_ok and area_consistent, f"学员区域: {area or '未记录'}；标准区域: {ctx['standard_final_area'] or '未配置'}；等级: {final_level or '未记录'}", "区域安排与病例标准或所选等级不一致", "区域安排应与分诊等级和病情风险匹配；Ⅰ级不能安排黄区或绿区候诊。", "Ⅰ级进入红区/抢救区；Ⅱ级胸痛等高危病例进入红区或专病绿色通道/优先处置区，避免写成普通绿区。", "disposition"),
         _criterion("notify", "需要时通知医生或启动优先流程", max_score * 0.35, max_score * 0.35 if (not needs_notify or notified) else 0, (not needs_notify or notified), "已通知医生/勾选通知" if notified else "未见通知医生记录", "高危或恶化后未通知医生", "危重化、低氧、休克趋势、心源性胸痛风险等应及时通知医生。", "在分诊处置中明确记录通知医生和区域调整。", "disposition"),
         _criterion("waiting_safety", "等待安排与安全观察", max_score * 0.2, max_score * 0.2 if ctx["init_decision"] or final_disposition or noted else 0, bool(ctx["init_decision"] or final_disposition or noted), "已有分诊决策/处置/记录说明" if (ctx["init_decision"] or final_disposition or noted) else "未见处置或记录说明", "缺少等待或处置安排记录", "候诊患者应有安全观察和复评计划。", "在处置勾选或记录说明中写明候诊观察、复评时间和异常报告要求。", "disposition"),
     ]
@@ -536,27 +537,30 @@ def _reassessment_time_criteria(max_score: float, ctx: dict[str, Any]) -> list[d
     init = ctx["init_decision"] or {}
     minutes = init.get("reassessment_minutes")
     set_any = isinstance(minutes, int) and minutes > 0
-    reasonable = set_any and minutes <= 30
+    expected_max = _expected_reassessment_minutes(ctx)
+    reasonable = set_any and minutes <= expected_max
+    partially_reasonable = set_any and minutes <= max(30, expected_max)
     on_time = bool(ctx["state"].get("reassessment_on_time")) or (
         bool(ctx["state"].get("reassessment_completed")) and not bool(ctx["state"].get("reassessment_overdue"))
     )
     needs_reassessment = ctx["is_dynamic_case"] and (
-        ctx["deterioration"] or _level_rank(ctx["standard_initial_level"]) == 3
+        ctx["deterioration"] or _level_rank(ctx["standard_initial_level"]) <= 3
     )
     return [
         _criterion("set_interval", "初始分诊后设置复评时间", max_score * 0.45, max_score * 0.45 if set_any else 0, set_any, f"设置复评: {minutes}分钟" if set_any else "未设置复评时间", "未设置复评时间", "III级候诊患者应设置短时间复评，症状变化应提前复评。", "初始分诊为III级或动态病例时设置30分钟内复评。", "reassessment_time"),
-        _criterion("reasonable_interval", "复评间隔合理", max_score * 0.3, max_score * 0.3 if (not needs_reassessment or reasonable) else 0, (not needs_reassessment or reasonable), f"复评间隔{minutes}分钟" if set_any else "无复评间隔", "复评间隔过长或未设置", "ATS/CTAS类时间敏感分诊框架强调按紧急程度控制等待和复评。", "III级候诊建议30分钟内复评，症状加重提前复评。", "reassessment_time"),
+        _criterion("reasonable_interval", "复评间隔合理", max_score * 0.3, max_score * 0.3 if (not needs_reassessment or reasonable) else max_score * 0.15 if partially_reasonable else 0, (not needs_reassessment or reasonable), f"复评间隔{minutes}分钟；本病例建议不超过{expected_max}分钟" if set_any else f"无复评间隔；本病例建议不超过{expected_max}分钟", "复评间隔过长或未按病例标准等级设置", "ATS/CTAS类时间敏感分诊框架强调按紧急程度控制等待和复评。", "按病例标准等级设置复评，Ⅱ级或高危胸痛通常需更短时间内复评/优先处置，而不是按学员误选等级放宽。", "reassessment_time"),
         _criterion("on_time", "按时或提前复评", max_score * 0.25, max_score * 0.25 if (not needs_reassessment or on_time or ctx["reassessment_decisions"]) else 0, (not needs_reassessment or on_time or bool(ctx["reassessment_decisions"])), "已有复评记录" if ctx["reassessment_decisions"] else "未见复评记录", "未按复评要求完成候诊复评", "患者候诊期间状态变化后应重新评估。", "到达复评时间或症状加重时立即复评。", "reassessment_time"),
     ]
 
 
 def _reassessment_content_criteria(max_score: float, ctx: dict[str, Any]) -> list[dict[str, Any]]:
     reassessed = "reassess" in ctx["action_types"] or bool(ctx["reassessment_decisions"])
-    remeasured = len(ctx["vital_log"]) >= 2 or _has_rechecked_after_deterioration(ctx)
+    recheck_quality = _recheck_quality(ctx)
+    remeasured = recheck_quality >= 0.8
     symptom_review = reassessed or ctx["question_count"] >= 2
     return [
         _criterion("perform_reassessment", "执行候诊复评", max_score * 0.35, max_score * 0.35 if reassessed else 0, reassessed, "已记录复评动作" if reassessed else "未记录复评动作", "未执行候诊复评", "动态病例评分强调过程复评，而不只看最终等级。", "主动点击复评并记录症状变化。", "reassessment_content"),
-        _criterion("remeasure_vitals", "复评时重新测量关键生命体征", max_score * 0.4, max_score * 0.4 if remeasured else 0, remeasured, f"生命体征测量记录{len(ctx['vital_log'])}次", "复评后未重新测量生命体征", "病情变化后应复测客观指标，识别趋势恶化。", "复评时至少复测 HR、BP、RR、SpO2、NRS。", "reassessment_content"),
+        _criterion("remeasure_vitals", "复评时重新测量关键生命体征", max_score * 0.4, max_score * 0.4 * recheck_quality, remeasured, _recheck_evidence(ctx, recheck_quality), "复评后未完整重新测量关键生命体征", "病情变化后应复测客观指标，识别趋势恶化。", "复评时至少复测 HR、BP、RR、SpO2、NRS/疼痛评分，必要时加意识与皮肤灌注。", "reassessment_content"),
         _criterion("symptom_change", "复评时询问症状变化和高危表现", max_score * 0.25, max_score * 0.25 if symptom_review else 0, symptom_review, "已有问诊/复评记录" if symptom_review else "未见症状变化复核", "未复核症状变化", "动态分诊需要把主诉变化和生命体征趋势一起判断。", "询问疼痛是否加重、头晕、冷汗、气短、意识变化等。", "reassessment_content"),
     ]
 
@@ -565,10 +569,14 @@ def _deterioration_upgrade_criteria(max_score: float, ctx: dict[str, Any]) -> li
     needs = ctx["deterioration"]
     recognized = ctx["recognized_deterioration"]
     upgraded = _is_upgrade(ctx)
-    notified = _doctor_notified(ctx)
+    final = ctx["final_decision"] or {}
+    final_level = final.get("level") or ctx["record"].get("final_level_selected")
+    final_area = final.get("area") or ctx["record"].get("final_zone_selected")
+    safe_upgrade = upgraded and _level_area_consistent(final_level, final_area)
+    notified = _doctor_notified(ctx, timely=True)
     return [
         _criterion("recognize_deterioration", "识别候诊期间病情变化", max_score * 0.35, max_score * 0.35 if (not needs or recognized) else 0, (not needs or recognized), "已识别/处理恶化" if recognized else "未见恶化识别记录", "患者状态恶化后未被识别或复评", "病情恶化是动态病例重新分诊的核心触发条件。", "看到冷汗、头晕、血压下降、心率升高、疼痛加重时立即升级警觉。", "deterioration_upgrade"),
-        _criterion("upgrade_triage", "必要时升级分诊等级", max_score * 0.4, max_score * 0.4 if (not needs or upgraded) else 0, (not needs or upgraded), "已完成升级分诊" if upgraded else "未见升级分诊", "复评后仍未升级分诊", "恶化后最终等级应符合病例最终标准等级。", "重新分诊并记录新的等级和区域。", "deterioration_upgrade"),
+        _criterion("upgrade_triage", "必要时升级分诊等级并匹配区域", max_score * 0.4, max_score * 0.4 if (not needs or safe_upgrade) else max_score * 0.18 if upgraded else 0, (not needs or safe_upgrade), "已完成升级分诊且区域匹配" if safe_upgrade else "已调整等级但区域不匹配" if upgraded else "未见升级分诊", "复评后仍未升级分诊，或升级后区域与等级不匹配", "恶化后最终等级和区域都应符合病例最终标准。", "重新分诊并记录新的等级、区域和处置链路；Ⅰ级不能留在黄区或绿区。", "deterioration_upgrade"),
         _criterion("notify_after_worsening", "危重化后通知医生", max_score * 0.25, max_score * 0.25 if (not needs or notified) else 0, (not needs or notified), "已通知医生" if notified else "未见通知医生", "候诊区危重化后未通知医生", "高危或恶化患者需要及时升级处置链路。", "升级分诊时同步通知医生。", "deterioration_upgrade"),
     ]
 
@@ -713,7 +721,10 @@ def _required_measurements(case_data: dict[str, Any]) -> list[dict[str, str]]:
     items = []
     for item in case_data.get("required_measurements") or []:
         if isinstance(item, dict):
-            items.append({"id": str(item.get("id", "")), "label": str(item.get("label") or item.get("id") or "")})
+            item_id = str(item.get("id", ""))
+            if canonical_measurement(item_id) in {"other_assessments", "history_items", "focused_history", "otherassessments"}:
+                continue
+            items.append({"id": item_id, "label": str(item.get("label") or item.get("id") or "")})
         elif item:
             items.append({"id": str(item), "label": str(item)})
     if not items:
@@ -761,26 +772,38 @@ def _canonical_vital(item_id: str) -> str:
     for canonical, aliases in VITAL_ALIASES.items():
         if normalized in aliases:
             return canonical
-    return normalized
+    return canonical_measurement(normalized)
 
 
 def _canonical_vitals(items: set[str]) -> set[str]:
     return {_canonical_vital(item) for item in items if item}
 
 
-def _doctor_notified(ctx: dict[str, Any]) -> bool:
+def _doctor_notified(ctx: dict[str, Any], timely: bool = False) -> bool:
+    deterioration_minute = _deterioration_minute(ctx) if timely else None
+
+    def is_timely(minute: Any) -> bool:
+        if deterioration_minute is None:
+            return True
+        try:
+            return int(minute or 0) >= deterioration_minute
+        except (TypeError, ValueError):
+            return False
+
     final_disposition = ctx["record"].get("final_disposition") or []
     if bool(ctx["notification_events"]):
+        if not timely or any(is_timely(item.get("simulation_minute")) for item in ctx["notification_events"]):
+            return True
+    if not timely and any(_has_notify_marker(item) for item in final_disposition):
         return True
-    if any(_has_notify_marker(item) for item in final_disposition):
-        return True
-    if any(decision.get("notify_doctor") for decision in ctx["triage_decisions"]):
+    if any(decision.get("notify_doctor") and is_timely(decision.get("simulation_minute")) for decision in ctx["triage_decisions"]):
         return True
     for action in (ctx.get("actions") or []) + (ctx["record"].get("actions") or []):
         payload = action.get("payload") or {}
-        if action.get("action_type") == "notify_doctor":
+        minute = _action_minute(action)
+        if action.get("action_type") == "notify_doctor" and is_timely(minute):
             return True
-        if action.get("action_type") == "submit_disposition" and any(_has_notify_marker(item) for item in payload.get("disposition", [])):
+        if not timely and action.get("action_type") == "submit_disposition" and any(_has_notify_marker(item) for item in payload.get("disposition", [])):
             return True
     return False
 
@@ -795,9 +818,169 @@ def _has_bp_alias(measured: set[str]) -> bool:
 
 
 def _has_rechecked_after_deterioration(ctx: dict[str, Any]) -> bool:
-    if not ctx["deterioration"]:
-        return False
-    return any((item.get("simulation_minute") or 0) >= 15 for item in ctx["vital_log"])
+    return _recheck_quality(ctx) >= 0.8
+
+
+def _deterioration_minute(ctx: dict[str, Any]) -> int | None:
+    minutes = []
+    for event in (ctx.get("state") or {}).get("timeline_events") or []:
+        if event.get("triggered") and event_indicates_deterioration(event):
+            try:
+                minutes.append(int(event.get("scheduled_minute") or 0))
+            except (TypeError, ValueError):
+                pass
+    return min(minutes) if minutes else None
+
+
+def _action_minute(action: dict[str, Any]) -> int:
+    detail = action.get("detail") if isinstance(action.get("detail"), dict) else {}
+    payload = action.get("payload") if isinstance(action.get("payload"), dict) else {}
+    for value in (action.get("simulation_minute"), detail.get("minute"), payload.get("minute"), payload.get("simulation_minute")):
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            continue
+    return 0
+
+
+def _expected_reassessment_minutes(ctx: dict[str, Any]) -> int:
+    timeline = (ctx.get("case") or {}).get("dynamic_timeline") or {}
+    initial_stage = timeline.get("initial_stage") or {}
+    if isinstance(initial_stage, dict):
+        try:
+            value = int(initial_stage.get("reassessment_due_minutes") or 0)
+            if value > 0:
+                return value
+        except (TypeError, ValueError):
+            pass
+    rank = _level_rank(ctx.get("standard_initial_level"))
+    if rank <= 1:
+        return 0
+    if rank == 2:
+        return 10
+    if rank == 3:
+        return 30
+    return 60
+
+
+def _required_recheck_items(ctx: dict[str, Any]) -> set[str]:
+    configured = (ctx.get("state") or {}).get("reassessment_required_items") or []
+    items = {_canonical_vital(item) for item in configured if item}
+    if not items:
+        items = {"heart_rate", "blood_pressure", "respiratory_rate", "spo2", "pain_score"}
+    if ctx.get("is_dynamic_case"):
+        items.update({"heart_rate", "blood_pressure", "pain_score"})
+    return {item for item in items if item and item not in {"other_assessments", "history_items", "focused_history"}}
+
+
+def _log_canonical_items(log: dict[str, Any]) -> set[str]:
+    items = set()
+    for value in log.get("canonical_items") or []:
+        items.add(_canonical_vital(value))
+    for value in log.get("measurement_ids") or []:
+        items.add(_canonical_vital(value))
+    result = log.get("result") or {}
+    if isinstance(result, dict):
+        for key in result.keys():
+            items.add(_canonical_vital(key))
+    return {item for item in items if item and item not in {"other_assessments", "history_items", "focused_history"}}
+
+
+def _effective_recheck_logs(ctx: dict[str, Any]) -> list[dict[str, Any]]:
+    deterioration_minute = _deterioration_minute(ctx)
+    if deterioration_minute is None:
+        return []
+    return [
+        log for log in ctx.get("vital_log") or []
+        if int(log.get("simulation_minute") or 0) >= deterioration_minute
+    ]
+
+
+def _recheck_quality(ctx: dict[str, Any]) -> float:
+    if not ctx.get("deterioration"):
+        return 1.0
+    required = _required_recheck_items(ctx)
+    if not required:
+        return 1.0
+    best = 0.0
+    for log in _effective_recheck_logs(ctx):
+        coverage = len(_log_canonical_items(log).intersection(required)) / max(len(required), 1)
+        best = max(best, coverage)
+    return round(min(best, 1.0), 4)
+
+
+def _recheck_evidence(ctx: dict[str, Any], quality: float) -> str:
+    if not ctx.get("deterioration"):
+        return "本病例未触发恶化复测要求"
+    required = _required_recheck_items(ctx)
+    logs = _effective_recheck_logs(ctx)
+    if not logs:
+        return "恶化后未见有效复测记录"
+    best_items = max((_log_canonical_items(log) for log in logs), key=lambda items: len(items.intersection(required)), default=set())
+    missing = sorted(required - best_items)
+    if not missing:
+        return f"恶化后已复测关键项目，覆盖率{quality:.0%}"
+    return f"恶化后复测覆盖率{quality:.0%}；缺少: {', '.join(missing)}"
+
+
+def _level_accuracy(selected: str | None, standard: str | None, max_score: float) -> dict[str, Any]:
+    if not standard:
+        return {"score": max_score if selected else 0, "met": bool(selected), "warning": False, "deduction": "未记录分诊等级" if not selected else ""}
+    if not selected:
+        return {"score": 0, "met": False, "warning": False, "deduction": "未记录分诊等级"}
+    selected_rank = _level_rank(selected)
+    standard_rank = _level_rank(standard)
+    if selected_rank == standard_rank:
+        return {"score": max_score, "met": True, "warning": False, "deduction": ""}
+    if selected_rank < standard_rank:
+        return {"score": round(max_score * 0.6, 2), "met": False, "warning": True, "deduction": "分诊等级高于病例标准，应说明依据并保证区域/流程匹配"}
+    return {"score": 0, "met": False, "warning": False, "deduction": "分诊等级低于病例标准或规则最低安全等级"}
+
+
+def _is_red_area(area: str | None) -> bool:
+    text = str(area or "")
+    return any(token in text for token in ("红区", "抢救", "复苏", "急诊优先处置区"))
+
+
+def _is_special_channel(area: str | None) -> bool:
+    text = str(area or "")
+    return "绿色通道" in text or "专病" in text or "优先" in text
+
+
+def _is_green_waiting_area(area: str | None) -> bool:
+    text = str(area or "")
+    return "绿区" in text and "绿色通道" not in text
+
+
+def _area_matches_standard(area: str | None, standard_area: str | None, selected_level: str | None = None) -> bool:
+    if not standard_area:
+        return bool(area)
+    if str(area or "") == str(standard_area):
+        return True
+    if _level_rank(selected_level) == 1:
+        return _is_red_area(area)
+    if _is_red_area(standard_area):
+        return _is_red_area(area)
+    if _is_special_channel(standard_area):
+        return (_is_special_channel(area) or _is_red_area(area)) and not _is_green_waiting_area(area)
+    if "黄区" in str(standard_area):
+        return "黄区" in str(area or "") or _is_red_area(area) or _is_special_channel(area)
+    if "绿区" in str(standard_area):
+        return _is_green_waiting_area(area)
+    return str(standard_area) in str(area or "")
+
+
+def _level_area_consistent(level: str | None, area: str | None) -> bool:
+    rank = _level_rank(level)
+    if rank == 1:
+        return _is_red_area(area)
+    if rank == 2:
+        return (_is_red_area(area) or _is_special_channel(area) or "黄区" in str(area or "")) and not _is_green_waiting_area(area)
+    if rank == 3:
+        return "黄区" in str(area or "") or _is_special_channel(area) or _is_red_area(area)
+    if rank == 4:
+        return _is_green_waiting_area(area) or bool(area)
+    return bool(area)
 
 
 def _level_not_lower(selected: str | None, standard: str | None) -> bool:
@@ -815,7 +998,11 @@ def _level_rank(level: str | None) -> int:
 def _is_upgrade(ctx: dict[str, Any]) -> bool:
     init_level = (ctx["init_decision"] or {}).get("level") or ctx["state"].get("initial_level_selected")
     final_level = (ctx["final_decision"] or {}).get("level") or ctx["record"].get("final_level_selected")
-    if init_level and final_level and _level_rank(final_level) < _level_rank(init_level):
+    if not final_level:
+        return False
+    if ctx.get("standard_final_level") and _level_rank(final_level) > _level_rank(ctx["standard_final_level"]):
+        return False
+    if init_level and _level_rank(final_level) < _level_rank(init_level):
         return True
     return _level_not_lower(final_level, ctx["standard_final_level"]) and ctx["standard_final_level"] != ctx["standard_initial_level"]
 

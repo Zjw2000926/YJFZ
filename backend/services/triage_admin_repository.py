@@ -5,7 +5,7 @@
 """
 
 import json, os, time, uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from html import escape
 
 from config import TRIAGE_RUNTIME_DATA_DIR
@@ -446,10 +446,26 @@ def _safe(value, default="—"):
     if value is None or value == "":
         return default
     if isinstance(value, (list, tuple)):
-        return "、".join(escape(str(item)) for item in value) or default
+        return "、".join(_safe(item) for item in value) or default
     if isinstance(value, dict):
-        return escape(str(value))
-    return escape(str(value))
+        return escape(json.dumps(value, ensure_ascii=False))
+    text = str(value)
+    if text.startswith(("blob:", "data:")):
+        return "<span class='muted'>已上传附件/图片</span>"
+    return escape(text)
+
+
+def _format_time(value):
+    if not value:
+        return "—"
+    text = str(value)
+    try:
+        dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        return text
 
 
 def _html_list(items, empty="—"):
@@ -480,7 +496,7 @@ def _render_basic_info(rd, title):
         ("学员", rd.get("user_display_name", ""), "病例", case_info.get("case_name") or rd.get("case_external_id", "")),
         ("病例编号", rd.get("case_external_id", ""), "记录ID", rd.get("id", "")),
         ("训练模式", rd.get("mode", ""), "病例类型", timeline_report.get("case_type") or ("dynamic" if timeline_report.get("is_dynamic_case") else "static")),
-        ("开始时间", rd.get("started_at", ""), "提交时间", rd.get("submitted_at", "")),
+        ("开始时间", _format_time(rd.get("started_at", "")), "提交时间", _format_time(rd.get("submitted_at", ""))),
         ("系统总分", rd.get("total_score", ""), "有效成绩", effective_score),
         ("评级", rd.get("pass_status", ""), "严重错误", "是" if rd.get("severe_error_triggered") else "否"),
         ("患者", f"{patient.get('gender','')} {patient.get('age','')}".strip(), "来院方式", patient.get("arrival_mode", "")),
@@ -502,13 +518,28 @@ def _render_decision_comparison(rd):
     standard = rd.get("standard_answer") or {}
     timeline_report = rd.get("timeline_report") or {}
     disposition = rd.get("final_disposition") or []
-    standard_disposition = standard.get("disposition") or []
+    standard_final_level = (
+        timeline_report.get("standard_final_level")
+        or standard.get("standard_final_triage_level")
+        or standard.get("triage_level")
+    )
+    standard_final_area = (
+        timeline_report.get("standard_final_area")
+        or standard.get("standard_final_area")
+        or standard.get("triage_zone")
+    )
+    standard_disposition = (
+        standard.get("disposition")
+        or timeline_report.get("standard_disposition")
+        or rd.get("standard_disposition")
+        or []
+    )
     html = f"""
 <h2>分诊决策对比</h2>
 <table>
   <tr><th></th><th>学员决策</th><th>标准答案</th></tr>
-  <tr><th>最终分诊等级</th><td>{_safe(rd.get('final_level_selected'))}</td><td>{_safe(standard.get('triage_level') or timeline_report.get('standard_final_level'))}</td></tr>
-  <tr><th>最终就诊区域</th><td>{_safe(rd.get('final_zone_selected'))}</td><td>{_safe(standard.get('triage_zone') or timeline_report.get('standard_final_area'))}</td></tr>
+  <tr><th>最终分诊等级</th><td>{_safe(rd.get('final_level_selected'))}</td><td>{_safe(standard_final_level)}</td></tr>
+  <tr><th>最终就诊区域</th><td>{_safe(rd.get('final_zone_selected'))}</td><td>{_safe(standard_final_area)}</td></tr>
   <tr><th>处置安排</th><td>{_html_list(disposition)}</td><td>{_html_list(standard_disposition)}</td></tr>
   <tr><th>初始分诊</th><td>{_safe(timeline_report.get('student_initial_level'))} / {_safe(timeline_report.get('student_initial_area'))}</td><td>{_safe(timeline_report.get('standard_initial_level'))} / {_safe(timeline_report.get('standard_initial_area'))}</td></tr>
   <tr><th>复评/最终分诊</th><td>{_safe(timeline_report.get('student_final_level') or rd.get('final_level_selected'))} / {_safe(timeline_report.get('student_final_area') or rd.get('final_zone_selected'))}</td><td>{_safe(timeline_report.get('standard_final_level'))} / {_safe(timeline_report.get('standard_final_area'))}</td></tr>
@@ -522,8 +553,63 @@ def _render_decision_comparison(rd):
 
 def _action_detail(detail):
     if isinstance(detail, dict):
-        return "；".join(f"{escape(str(k))}: {_safe(v)}" for k, v in detail.items()) or "—"
+        return "；".join(f"{escape(_label_detail_key(str(k)))}: {_safe(v)}" for k, v in detail.items()) or "—"
     return _safe(detail)
+
+
+def _label_action_type(action_type):
+    labels = {
+        "measure_vitals": "测量生命体征",
+        "observe_patient": "第一眼观察",
+        "initial_triage": "初始分诊",
+        "reassess": "候诊复评",
+        "upgrade_triage": "重新/升级分诊",
+        "notify_doctor": "通知医生",
+        "record_note": "记录说明",
+        "submit": "提交病例",
+        "submit_disposition": "提交处置安排",
+        "record_triage_reason": "记录分诊理由",
+        "select_level": "选择分诊等级",
+        "select_zone": "选择就诊区域",
+        "advance_time": "推进时间",
+    }
+    return labels.get(str(action_type or ""), str(action_type or "—"))
+
+
+def _label_detail_key(key):
+    labels = {
+        "ids": "测量项目",
+        "measurement_ids": "测量项目",
+        "canonical_items": "标准化项目",
+        "result": "结果",
+        "minute": "模拟分钟",
+        "level": "分诊等级",
+        "zone": "就诊区域",
+        "area": "就诊区域",
+        "from_level": "原等级",
+        "to_level": "新等级",
+        "notify_doctor": "通知医生",
+        "reason": "理由",
+        "note": "记录说明",
+        "disposition": "处置安排",
+        "content": "内容",
+        "blood_pressure": "血压",
+        "heart_rate": "心率",
+        "heart_rate_bpm": "心率",
+        "respiratory_rate": "呼吸频率",
+        "respiratory_rate_bpm": "呼吸频率",
+        "spo2": "SpO2",
+        "spo2_percent": "SpO2",
+        "pain_score": "疼痛评分",
+        "temperature": "体温",
+        "temperature_c": "体温",
+        "consciousness": "意识",
+        "gcs_score": "GCS",
+        "blood_glucose": "血糖",
+        "blood_glucose_mmol_l": "血糖",
+        "skin_perfusion": "皮肤灌注",
+    }
+    return labels.get(key, key)
 
 
 def _render_training_overview(rd):
@@ -538,7 +624,7 @@ def _render_training_overview(rd):
         for node in nodes
     )
     action_rows = "".join(
-        f"<tr><td>{_safe(action.get('minute') if action.get('minute') is not None else action.get('simulation_minute'))}</td><td>{_safe(action.get('action_type'))}</td><td>{_action_detail(action.get('detail') or action.get('payload'))}</td><td>{_yes_no(action.get('is_correct'), '正确', '不正确')}</td><td>{_safe(action.get('feedback'))}</td></tr>"
+        f"<tr><td>{_safe(action.get('minute') if action.get('minute') is not None else action.get('simulation_minute'))}</td><td>{_safe(_label_action_type(action.get('action_type')))}</td><td>{_action_detail(action.get('detail') or action.get('payload'))}</td><td>{_yes_no(action.get('is_correct'), '正确', '不正确')}</td><td>{_safe(action.get('feedback'))}</td></tr>"
         for action in actions
     )
     vital_rows = ""
@@ -662,8 +748,9 @@ def _render_feedback(rd):
         + _as_list(feedback.get("missed_measurements"))
         + _as_list(feedback.get("missed_red_flags"))
         + _as_list(feedback.get("missed_content"))
+        + _derive_missed_from_scores(rd)
     )
-    remediation = feedback.get("recommended_remediation") or feedback.get("next_practice_focus")
+    remediation = feedback.get("recommended_remediation") or feedback.get("next_practice_focus") or _derive_improvements_from_scores(rd)
     return f"""
 <h2>专家反馈</h2>
 <div class='feedback-grid'>
@@ -685,7 +772,7 @@ def _render_dialogue(rd):
     rows = ""
     for i, msg in enumerate(messages, 1):
         role = "护士/学员" if msg.get("role") in ("student", "user") else "患者"
-        rows += f"<tr><td>{i}</td><td>{escape(role)}</td><td>{_safe(msg.get('created_at'))}</td><td class='dialogue'>{_safe(msg.get('content'))}</td></tr>"
+        rows += f"<tr><td>{i}</td><td>{escape(role)}</td><td>{_safe(_format_time(msg.get('created_at')))}</td><td class='dialogue'>{_safe(msg.get('content'))}</td></tr>"
     if not rows:
         rows = "<tr><td colspan='4' class='muted'>暂无对话记录。</td></tr>"
     return f"<h2>训练对话记录</h2><table><tr><th>序号</th><th>角色</th><th>时间</th><th>内容</th></tr>{rows}</table>"
@@ -696,10 +783,33 @@ def _render_raw_actions(rd):
     if not actions:
         return ""
     rows = "".join(
-        f"<tr><td>{_safe(action.get('created_at'))}</td><td>{_safe(action.get('action_type'))}</td><td>{_action_detail(action.get('payload'))}</td></tr>"
+        f"<tr><td>{_safe(_format_time(action.get('created_at')))}</td><td>{_safe(_label_action_type(action.get('action_type')))}</td><td>{_action_detail(action.get('payload'))}</td></tr>"
         for action in actions
     )
     return f"<h2>原始操作记录</h2><table><tr><th>时间</th><th>操作类型</th><th>内容</th></tr>{rows}</table>"
+
+
+def _derive_missed_from_scores(rd):
+    items = []
+    for dim in (rd.get("score_explanations") or []):
+        items.extend(dim.get("deduction_reasons") or [])
+    for item in (rd.get("criterion_scores") or []):
+        reason = item.get("deduction_reason") or item.get("missed_reason")
+        if reason:
+            items.append(reason)
+    return list(dict.fromkeys(str(item) for item in items if item))[:12]
+
+
+def _derive_improvements_from_scores(rd):
+    items = []
+    for dim in (rd.get("score_explanations") or []):
+        if dim.get("improvement"):
+            items.append(dim.get("improvement"))
+    for item in (rd.get("criterion_scores") or []):
+        improvement = item.get("improvement") or item.get("teaching_point")
+        if improvement and (item.get("deduction_reason") or item.get("missed_reason") or item.get("met") is False):
+            items.append(improvement)
+    return list(dict.fromkeys(str(item) for item in items if item))[:10]
 
 
 def _report_section(record, index: int | None = None):
@@ -742,8 +852,8 @@ ul{{margin:4px 0 4px 18px;padding:0}}li{{margin:2px 0}}h3{{margin:12px 0 6px;fon
 .score-chip{{font-weight:700;color:#2563eb;white-space:nowrap}}
 .small{{font-size:12px}}.muted{{color:#6b7280}}.ok{{color:#16a34a;font-weight:700}}.bad{{color:#dc2626;font-weight:700}}
 .dialogue{{line-height:1.55}}
-.report-section{{page-break-after:always;margin-bottom:36px}}.report-section:last-child{{page-break-after:auto}}
-@media print{{body{{margin:0;max-width:none;padding:12mm;font-size:12px}}.print-tip{{display:none}}.report-section{{break-after:page}}.report-section:last-child{{break-after:auto}}h2{{break-after:avoid}}tr,.score-dim,.subblock,.critical{{break-inside:avoid}}}}
+.report-section{{margin-bottom:36px}}.report-section + .report-section{{page-break-before:always}}
+@media print{{body{{margin:0;max-width:none;padding:12mm;font-size:12px}}.print-tip{{display:none}}.report-section{{break-after:auto;page-break-after:auto}}.report-section + .report-section{{break-before:page;page-break-before:always}}h2,h3{{break-after:avoid}}tr,.score-dim,.subblock,.critical{{break-inside:avoid}}}}
 </style>{print_script}</head><body>
 <div class='print-tip'>导出 PDF：请在打印窗口选择“另存为 PDF”或“Microsoft Print to PDF”。</div>
 {body}

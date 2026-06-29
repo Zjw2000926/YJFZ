@@ -68,7 +68,7 @@ export default function TriageTimelinePanel({ timeline, onAdvance, onReassess, l
       <div style={{ marginBottom: 10 }}>
         {events.map((ev, i) => {
           const isCurrentEvent = ev.triggered && Math.abs(ev.scheduled_minute - currentMinute) <= 5;
-          const eventText = displayText(ev.event_description || ev.patient_expression, "...");
+          const eventText = ev.triggered ? "患者状态已更新" : "待观察";
           return (
             <div key={i} style={{
               padding: "5px 0", borderLeft: `2px solid ${ev.triggered ? "#22c55e" : "#d1d5db"}`,
@@ -78,7 +78,7 @@ export default function TriageTimelinePanel({ timeline, onAdvance, onReassess, l
             }}>
               <div style={{ fontWeight: 600 }}>
                 {ev.triggered ? <CheckCircle size={10} style={{ color: "#22c55e", marginRight: 4 }} /> : <Clock size={10} style={{ marginRight: 4 }} />}
-                {ev.scheduled_minute}分钟: {eventText.substring(0, 40)}
+                {ev.scheduled_minute}分钟: {eventText}
               </div>
               {ev.triggered && ev.requires_reassessment && (
                 <div style={{ color: "#dc2626", fontSize: "0.65rem", marginTop: 2 }}>
@@ -93,7 +93,7 @@ export default function TriageTimelinePanel({ timeline, onAdvance, onReassess, l
       {/* 患者状态变化提示（practice 模式） */}
       {timeline?.patient_state?.state_name && (
         <div style={{ padding: "4px 8px", background: "#fef3c7", borderRadius: 4, fontSize: "0.65rem", marginBottom: 6, color: "#92400e" }}>
-          当前: {displayText(timeline.patient_state.state_name)} — {displayText(timeline.patient_state.appearance).substring(0, 50)}
+          模拟第{currentMinute}分钟当前状态: {displayText(timeline.patient_state.state_name)} — {displayText(timeline.patient_state.appearance).substring(0, 50)}
         </div>
       )}
 

@@ -984,7 +984,8 @@
         "event_id": "event_001",
         "patient_expression": "胸痛加重至8/10，出汗增加，HR 112次/分。",
         "vital_changes": {
-          "heart_rate": 112
+          "heart_rate": 112,
+          "pain_score": 8
         },
         "requires_reassessment": true,
         "reassessment_instruction": "胸痛加重至8/10，出汗增加，HR 112次/分。",
@@ -1001,7 +1002,8 @@
         "patient_expression": "头晕，BP降至92/60 mmHg，面色苍白。",
         "vital_changes": {
           "blood_pressure_systolic": 92,
-          "blood_pressure_diastolic": 60
+          "blood_pressure_diastolic": 60,
+          "pain_score": 8
         },
         "requires_reassessment": true,
         "reassessment_instruction": "头晕，BP降至92/60 mmHg，面色苍白。",
@@ -1113,7 +1115,7 @@
       "chief_complaint": "胸痛加重至8/10，出汗增加，HR 112次/分。",
       "symptom_description": "胸痛加重至8/10，出汗增加，HR 112次/分。",
       "mental_status": "清醒但烦躁",
-      "pain_score": 5,
+      "pain_score": 8,
       "risk_signals": [
         "病情变化"
       ],
@@ -1123,7 +1125,8 @@
         "new_symptoms"
       ],
       "vital_signs": {
-        "heart_rate": 112
+        "heart_rate": 112,
+        "pain_score": 8
       },
       "recommended_actions": [
         "升级分诊等级",
@@ -1141,7 +1144,7 @@
       "chief_complaint": "头晕，BP降至92/60 mmHg，面色苍白。",
       "symptom_description": "头晕，BP降至92/60 mmHg，面色苍白。",
       "mental_status": "清醒但烦躁",
-      "pain_score": 5,
+      "pain_score": 8,
       "risk_signals": [
         "病情变化"
       ],
@@ -1152,21 +1155,23 @@
       ],
       "vital_signs": {
         "blood_pressure_systolic": 92,
-        "blood_pressure_diastolic": 60
+        "blood_pressure_diastolic": 60,
+        "pain_score": 8
       },
       "recommended_actions": [
         "升级分诊等级",
-        "通知医生",
-        "调整区域"
+        "立即通知医生",
+        "转入红区或胸痛绿色通道优先处置",
+        "重新记录复评与重新分诊结果"
       ],
-      "standard_triage_level": "Ⅱ级",
-      "standard_area": "专病绿色通道"
+      "standard_triage_level": "Ⅰ级",
+      "standard_area": "红区/胸痛绿色通道优先处置"
     }
   ],
   "standard_initial_triage_level": "Ⅱ级",
   "standard_initial_area": "专病绿色通道",
-  "standard_final_triage_level": "Ⅱ级",
-  "standard_final_area": "专病绿色通道",
+  "standard_final_triage_level": "Ⅰ级",
+  "standard_final_area": "红区/胸痛绿色通道优先处置",
   "dynamic_scoring_rubric": {
     "total_score": 100,
     "dimensions": [
@@ -1236,6 +1241,20 @@
       "message": "复评后病情恶化仍未升级分诊等级",
       "critical_fail": true,
       "score_cap": 59
+    },
+    {
+      "code": "NO_DOCTOR_NOTIFICATION",
+      "condition": "deteriorated_or_critical_without_notify_doctor",
+      "message": "危重化或明显恶化后未通知医生",
+      "critical_fail": true,
+      "score_cap": 59
+    },
+    {
+      "code": "T30_VITALS_NOT_REMEASURED",
+      "condition": "deteriorated_without_remeasured_key_vitals",
+      "message": "病情恶化后未重新测量关键生命体征",
+      "critical_fail": false,
+      "deduction": 15
     }
   ],
   "required_dynamic_actions": [

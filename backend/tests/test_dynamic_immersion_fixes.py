@@ -11,10 +11,10 @@ def _headers(client: TestClient):
     return {"Authorization": f"Bearer {response.json()['access_token']}"}
 
 
-def _start_dynamic(client: TestClient, headers: dict, mode: str = "practice") -> str:
+def _start_dynamic(client: TestClient, headers: dict, mode: str = "practice", case_id: str = "TRIAGE-DYN-RLQ-001") -> str:
     response = client.post(
         "/api/triage/training/start",
-        json={"case_external_id": "TRIAGE-DYN-RLQ-001", "mode": mode},
+        json={"case_external_id": case_id, "mode": mode},
         headers=headers,
     )
     assert response.status_code == 200, response.text
@@ -73,6 +73,58 @@ def test_due_event_cue_is_natural_not_answer_like():
         for leak in ["升级为Ⅱ级", "调整至红区", "必须立即", "严重错误", "expected_student_actions"]:
             assert leak not in text
         assert "候诊巡视" in text or "患者主动表示" in text
+
+
+def test_timeline_advance_returns_state_snapshot_without_patient_chat_message():
+    from services.triage_repository import get_record
+
+    with TestClient(app) as client:
+        headers = _headers(client)
+        record_id = _start_dynamic(client, headers)
+        _initial_triage(client, headers, record_id)
+
+        response = client.post(
+            f"/api/triage/training/{record_id}/timeline/advance",
+            json={"minutes": 30},
+            headers=headers,
+        )
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert data["state_update"]["type"] == "patient_state_snapshot"
+        assert data["state_update"]["minute"] == data["current_minute"]
+        assert "模拟第" in data["state_update"]["title"]
+
+        record = get_record(record_id)
+        stored_messages = record.get("messages") or []
+        assert not any("HR 122" in str(message.get("content")) for message in stored_messages)
+        assert not any("疼痛明显加重" in str(message.get("content")) for message in stored_messages)
+
+
+def test_timeline_advance_state_snapshot_changes_at_each_dynamic_patient_state():
+    with TestClient(app) as client:
+        headers = _headers(client)
+        record_id = _start_dynamic(client, headers, case_id="TRIAGE-002")
+
+        t8 = client.post(
+            f"/api/triage/training/{record_id}/timeline/advance",
+            json={"minutes": 8},
+            headers=headers,
+        )
+        assert t8.status_code == 200, t8.text
+        t8_update = t8.json()["state_update"]
+        assert t8_update["minute"] == 8
+        assert t8_update["expression"] == "胸痛加重至8/10，出汗增加，HR 112次/分。"
+
+        t15 = client.post(
+            f"/api/triage/training/{record_id}/timeline/advance",
+            json={"minutes": 7},
+            headers=headers,
+        )
+        assert t15.status_code == 200, t15.text
+        t15_update = t15.json()["state_update"]
+        assert t15_update["minute"] == 15
+        assert t15_update["expression"] == "头晕，BP降至92/60 mmHg，面色苍白。"
+        assert t15_update["expression"] != t8_update["expression"]
 
 
 def test_t15_reassessment_uses_current_state_standard_not_global_rule():

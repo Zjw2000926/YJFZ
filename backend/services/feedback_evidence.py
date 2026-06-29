@@ -77,22 +77,32 @@ INTENT_GROUPS = {
     "ask_duration": "onset_time",
     "ask_chief_complaint": "chief_complaint_location",
     "ask_pain_location": "chief_complaint_location",
+    "ask_pain_nature": "pain_quality",
     "ask_pain_quality": "pain_quality",
     "ask_pain_character": "pain_quality",
     "ask_severity": "severity",
     "ask_pain_score": "severity",
     "ask_pain_radiation": "radiation",
+    "ask_aggravating_relieving": "symptom_change",
     "ask_breathing": "accompanying",
+    "ask_dyspnea": "accompanying",
+    "ask_accompanying": "accompanying",
     "ask_accompanying_symptoms": "accompanying",
+    "ask_nausea_vomiting": "accompanying",
+    "ask_sweating": "accompanying",
     "ask_syncope": "accompanying",
+    "ask_consciousness": "accompanying",
     "ask_past_history": "history_risk",
     "ask_medical_history": "history_risk",
+    "ask_cardiovascular_history": "history_risk",
+    "ask_hypertension_diabetes": "history_risk",
     "ask_smoking_alcohol": "history_risk",
     "ask_medication": "medication",
     "ask_allergy": "allergy",
     "ask_similar_episode": "similar_episode",
     "ask_symptom_change": "symptom_change",
     "ask_trigger": "symptom_change",
+    "ask_reason_for_visit": "symptom_change",
 }
 
 
@@ -106,6 +116,8 @@ VITAL_ALIASES = {
     "consciousness": {"consciousness", "mental_status", "gcs", "gcs_score", "意识"},
     "blood_glucose": {"blood_glucose", "blood_glucose_mmol_l", "glucose", "血糖"},
 }
+
+NON_VITAL_MEASUREMENT_IDS = {"other_assessments", "history_items", "focused_history", "otherassessments"}
 
 
 PUNCT_RE = re.compile(r"[\s,，。；;、:：/\\|（）()【】\[\]{}\"'“”‘’]+")
@@ -146,7 +158,8 @@ def _append_text(parts: list[str], value: Any) -> None:
 def collect_record_text(record: dict[str, Any]) -> str:
     parts: list[str] = []
     for message in record.get("messages") or []:
-        _append_text(parts, message.get("content"))
+        if message.get("role") in {"student", "user", "nurse"}:
+            _append_text(parts, message.get("content"))
     for action in record.get("student_actions") or []:
         _append_text(parts, action.get("detail"))
         _append_text(parts, action.get("feedback"))
@@ -232,6 +245,10 @@ def canonical_measurement(value: Any) -> str:
     return compact
 
 
+def _is_non_vital_measurement(value: Any) -> bool:
+    return canonical_measurement(value) in NON_VITAL_MEASUREMENT_IDS
+
+
 def collect_measured_items(record: dict[str, Any], measured: list[Any] | None = None) -> set[str]:
     items = {canonical_measurement(item) for item in (measured or record.get("measured_vitals") or []) if item}
     for action in record.get("student_actions") or []:
@@ -245,7 +262,7 @@ def collect_measured_items(record: dict[str, Any], measured: list[Any] | None = 
     for log in record.get("vital_measurement_log") or []:
         _collect_measurement_value(items, log.get("result"))
         _collect_measurement_value(items, log.get("items"))
-    return {item for item in items if item}
+    return {item for item in items if item and item not in NON_VITAL_MEASUREMENT_IDS}
 
 
 def _collect_measurement_value(items: set[str], value: Any) -> None:
@@ -253,13 +270,15 @@ def _collect_measurement_value(items: set[str], value: Any) -> None:
         return
     if isinstance(value, dict):
         for key in value.keys():
-            items.add(canonical_measurement(key))
+            if not _is_non_vital_measurement(key):
+                items.add(canonical_measurement(key))
         return
     if isinstance(value, list):
         for item in value:
             _collect_measurement_value(items, item)
         return
-    items.add(canonical_measurement(value))
+    if not _is_non_vital_measurement(value):
+        items.add(canonical_measurement(value))
 
 
 def filter_missed_slots(case_data: dict[str, Any], record: dict[str, Any], disclosed: list[str] | None = None) -> list[str]:
@@ -306,6 +325,8 @@ def filter_missed_measurements(required_measurements: list[dict[str, Any]], reco
     for item in required_measurements or []:
         raw_id = item.get("id") or item.get("measurement_id") or item.get("key") or item.get("label")
         canonical = canonical_measurement(raw_id)
+        if canonical in NON_VITAL_MEASUREMENT_IDS:
+            continue
         if canonical not in measured_items:
             missed.append(item.get("label") or raw_id)
     return _unique(missed)

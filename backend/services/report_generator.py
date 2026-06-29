@@ -82,7 +82,7 @@ def generate_training_report(
     reassessment_applicable = _reassessment_applicable(record, case_data)
     upgrade_applicable = _upgrade_applicable(record, case_data)
     doctor_required = _doctor_notification_required(record, case_data)
-    doctor_notified = _doctor_notified(record)
+    doctor_notified = _doctor_notified(record, timely=deterioration_triggered)
 
     feedback = case_data.get("dynamic_feedback") or case_data.get("feedback") or {}
     correct_points = feedback.get("correct_points") or []
@@ -129,7 +129,7 @@ def generate_training_report(
             state.get("reassessment_on_time", False)
             or (state.get("reassessment_completed", False) and not state.get("reassessment_overdue", False))
         ) if reassessment_applicable else None,
-        "reassessment_reasonable": _reassessment_interval_reasonable(init_decision),
+        "reassessment_reasonable": _reassessment_interval_reasonable(init_decision, case_data),
         "deterioration_recognized": student_recognized_deterioration(record) if (case_is_dynamic and deterioration_triggered) else None,
         "triage_upgraded": _has_upgrade(student_initial_level, student_final_level) if upgrade_applicable else None,
         "doctor_notified": doctor_notified,
@@ -253,11 +253,11 @@ def _clean_training_suggestions(suggestions: Any) -> list[str]:
     return cleaned
 
 
-def _reassessment_interval_reasonable(init_decision: dict[str, Any] | None) -> bool:
+def _reassessment_interval_reasonable(init_decision: dict[str, Any] | None, case_data: dict[str, Any] | None = None) -> bool:
     if not init_decision:
         return False
     minutes = init_decision.get("reassessment_minutes")
-    return isinstance(minutes, int) and 0 < minutes <= 30
+    return isinstance(minutes, int) and 0 < minutes <= _expected_reassessment_minutes(case_data or {})
 
 
 def _has_upgrade(from_level: str, to_level: str) -> bool:
@@ -304,16 +304,59 @@ def _doctor_notification_required(record: dict[str, Any], case_data: dict[str, A
     return any("通知医生" in str(item) or "抢救" in str(item) for item in disposition)
 
 
-def _doctor_notified(record: dict[str, Any]) -> bool:
+def _expected_reassessment_minutes(case_data: dict[str, Any]) -> int:
+    timeline = (case_data or {}).get("dynamic_timeline") or {}
+    initial_stage = timeline.get("initial_stage") or {}
+    if isinstance(initial_stage, dict):
+        try:
+            value = int(initial_stage.get("reassessment_due_minutes") or 0)
+            if value > 0:
+                return value
+        except (TypeError, ValueError):
+            pass
+    level = get_standard_initial_level(case_data or {})
+    rank = {"Ⅰ级": 1, "Ⅱ级": 2, "Ⅲ级": 3, "Ⅳ级": 4}.get(level, 4)
+    if rank <= 1:
+        return 0
+    if rank == 2:
+        return 10
+    if rank == 3:
+        return 30
+    return 60
+
+
+def _record_deterioration_minute(record: dict[str, Any]) -> int | None:
+    minutes = []
+    for event in (record.get("timeline_state") or {}).get("timeline_events") or []:
+        if event.get("triggered") and event_indicates_deterioration(event):
+            try:
+                minutes.append(int(event.get("scheduled_minute") or 0))
+            except (TypeError, ValueError):
+                pass
+    return min(minutes) if minutes else None
+
+
+def _doctor_notified(record: dict[str, Any], timely: bool = False) -> bool:
+    deterioration_minute = _record_deterioration_minute(record) if timely else None
+
+    def is_timely(minute: Any) -> bool:
+        if deterioration_minute is None:
+            return True
+        try:
+            return int(minute or 0) >= deterioration_minute
+        except (TypeError, ValueError):
+            return False
+
     if record.get("notification_events"):
-        return True
+        if not timely or any(is_timely(item.get("simulation_minute")) for item in record.get("notification_events") or []):
+            return True
     final_disposition = record.get("final_disposition") or []
-    if any("notify_doctor" == str(item) or "通知医生" in str(item) or "医生" in str(item) for item in final_disposition):
+    if not timely and any("notify_doctor" == str(item) or "通知医生" in str(item) or "医生" in str(item) for item in final_disposition):
         return True
     for decision in record.get("triage_decisions") or []:
-        if decision.get("notify_doctor"):
+        if decision.get("notify_doctor") and is_timely(decision.get("simulation_minute")):
             return True
     for action in record.get("student_actions") or []:
-        if action.get("action_type") == "notify_doctor":
+        if action.get("action_type") == "notify_doctor" and is_timely(action.get("simulation_minute")):
             return True
     return False

@@ -99,6 +99,27 @@ export default function TriageDynamicTraining() {
     return tl.data;
   };
 
+  const appendStateUpdateCard = (data) => {
+    const snapshot = data?.state_update || {};
+    const patientState = data?.patient_state || {};
+    const minute = data?.current_minute ?? snapshot.minute ?? patientState.minute ?? 0;
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "state_update",
+        minute,
+        content: {
+          title: snapshot.title || `模拟第${minute}分钟患者状态`,
+          state_name: snapshot.state_name || patientState.state_name,
+          appearance: snapshot.appearance || patientState.appearance,
+          expression: snapshot.expression || patientState.expression,
+          reassessment_due: snapshot.reassessment_due ?? patientState.reassessment_due,
+          deteriorated: snapshot.deteriorated ?? patientState.deteriorated,
+        },
+      },
+    ]);
+  };
+
   const toggleObs = (id) => { setSelectedObs(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]); };
   const toggleMeasure = (id) => { setSelectedMeasureIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]); };
 
@@ -193,14 +214,8 @@ export default function TriageDynamicTraining() {
     if (submitted || loading) return;
     try {
       const { data } = await advanceTriageTimeline(recordId, mins || 5);
-      if (data.events?.length > 0) {
-        for (const ev of data.events) {
-          if (ev.patient_expression) {
-            setMessages((p) => [...p, { role: "patient", content: ev.patient_expression }]);
-          }
-        }
-        info(`时间推进到第${data.current_minute}分钟`);
-      }
+      appendStateUpdateCard(data);
+      info(`时间推进到第${data.current_minute}分钟，已更新患者状态`);
       await refreshTimeline();
     } catch { error("时间推进失败"); }
   };
@@ -354,11 +369,49 @@ export default function TriageDynamicTraining() {
             </div>
           )}
           {timeLeft === 0 && <div className="time-up-banner">时间到，请提交分诊决策。</div>}
-          {messages.map((msg, i) => (
-            <div key={i} className={`msg-row ${msg.role === "student" ? "student" : "patient"}`}>
-              <div className="msg-bubble"><p>{displayText(msg.content, "已记录")}</p></div>
-            </div>
-          ))}
+          {messages.map((msg, i) => {
+            if (msg.role === "state_update") {
+              const state = msg.content || {};
+              return (
+                <div key={i} style={{ margin: "10px 16px", display: "flex", justifyContent: "center" }}>
+                  <div style={{
+                    width: "100%",
+                    maxWidth: 520,
+                    padding: 12,
+                    borderRadius: 8,
+                    border: `1px solid ${state.deteriorated ? "#fecaca" : "#bfdbfe"}`,
+                    background: state.deteriorated ? "#fef2f2" : "#eff6ff",
+                    color: "#111827",
+                    boxShadow: "0 1px 2px rgba(15, 23, 42, 0.06)",
+                  }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", gap: 8, marginBottom: 6 }}>
+                      <strong>{displayText(state.title, `模拟第${msg.minute || 0}分钟患者状态`)}</strong>
+                      <span style={{ fontSize: "0.72rem", color: state.deteriorated ? "#b91c1c" : "#1d4ed8", fontWeight: 700 }}>
+                        模拟第{msg.minute || 0}分钟
+                      </span>
+                    </div>
+                    {displayText(state.state_name) && (
+                      <div style={{ fontSize: "0.78rem", marginBottom: 4 }}>状态：{displayText(state.state_name)}</div>
+                    )}
+                    <div style={{ fontSize: "0.78rem", marginBottom: 4 }}>外观：{displayText(state.appearance, "待观察")}</div>
+                    {displayText(state.expression) && (
+                      <div style={{ fontSize: "0.78rem" }}>当前表现：{displayText(state.expression)}</div>
+                    )}
+                    {state.reassessment_due && !isExamMode && (
+                      <div style={{ marginTop: 6, fontSize: "0.72rem", color: "#b45309", fontWeight: 600 }}>
+                        当前状态需要考虑候诊复评。
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <div key={i} className={`msg-row ${msg.role === "student" ? "student" : "patient"}`}>
+                <div className="msg-bubble"><p>{displayText(msg.content, "已记录")}</p></div>
+              </div>
+            );
+          })}
           <div ref={messagesEndRef} />
         </div>
 

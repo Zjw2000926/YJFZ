@@ -177,7 +177,7 @@ def test_reassessment_completeness_uses_actual_measurement_log(client, headers):
         headers=headers,
     )
     client.post(f"/api/triage/training/{record_id}/timeline/advance", json={"minutes": 30}, headers=headers)
-    _measure_values(client, headers, record_id, ["heart_rate", "blood_pressure", "pain_score", "respiratory_rate"])
+    _measure_values(client, headers, record_id, ["heart_rate", "blood_pressure", "pain_score", "respiratory_rate", "spo2"])
 
     response = client.post(
         f"/api/triage/training/{record_id}/reassess",

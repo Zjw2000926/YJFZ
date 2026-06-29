@@ -153,9 +153,13 @@ def score_triage_v4(record: dict, case_data: dict) -> dict:
         "effective_score": effective,
         "rule_result": rd,
         "standard_answer": {
-            "triage_level": case_data.get("standard_answer", {}).get("triage_level"),
+            "triage_level": case_data.get("standard_final_triage_level") or case_data.get("standard_answer", {}).get("triage_level"),
+            "triage_zone": case_data.get("standard_final_area") or case_data.get("standard_answer", {}).get("triage_zone"),
             "standard_initial_triage_level": case_data.get("standard_initial_triage_level"),
             "standard_final_triage_level": case_data.get("standard_final_triage_level"),
+            "standard_initial_area": case_data.get("standard_initial_area"),
+            "standard_final_area": case_data.get("standard_final_area"),
+            "disposition": case_data.get("standard_answer", {}).get("disposition") or case_data.get("standard_actions", {}).get("immediate_actions") or [],
         },
         "timeline_report": timeline_report,
         "feedback": {

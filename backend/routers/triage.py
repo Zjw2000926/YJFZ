@@ -484,14 +484,36 @@ def measure_vitals(record_id: str, req: TriageMeasureRequest,
     if is_dynamic:
         from services.triage_timeline import record_student_action
         from services.vital_sign_service import measure_multiple_vital_signs
+        from services.feedback_evidence import canonical_measurement
         measurements = measure_multiple_vital_signs(record, case, ids)
         minute = (record.get("timeline_state") or {}).get("current_simulated_minute", 0)
+        measured_ids = [m["id"] for m in measurements]
         # P1-3: 先写 student_actions 和更新 measured_vitals，再保存
-        record_student_action(record, "measure_vitals", {"ids": ids, "minute": minute})
-        record["measured_vitals"] = list(set(record.get("measured_vitals", []) + ids))
-        # 记录到 vital_measurement_log
+        record_student_action(record, "measure_vitals", {"ids": measured_ids, "minute": minute})
+        record["measured_vitals"] = list(set(record.get("measured_vitals", []) + measured_ids))
+        # 记录到 vital_measurement_log：同一分钟同一组测量只保留一条，防止刷点击次数影响评分
         log = record.get("vital_measurement_log") or []
-        log.append({"simulation_minute": minute, "measurement_ids": ids, "result": {m["id"]: m["value"] for m in measurements}})
+        canonical_set = sorted({canonical_measurement(item) for item in measured_ids if item})
+        result_payload = {m["id"]: m["value"] for m in measurements}
+        existing = next(
+            (
+                item for item in log
+                if item.get("simulation_minute") == minute
+                and sorted({canonical_measurement(mid) for mid in (item.get("measurement_ids") or []) if mid}) == canonical_set
+            ),
+            None,
+        )
+        if existing:
+            existing["measurement_ids"] = measured_ids
+            existing["result"] = result_payload
+            existing["repeat_count"] = int(existing.get("repeat_count") or 1) + 1
+        else:
+            log.append({
+                "simulation_minute": minute,
+                "measurement_ids": measured_ids,
+                "canonical_items": canonical_set,
+                "result": result_payload,
+            })
         record["vital_measurement_log"] = log
         # P0-3: 状态机 — measure_vitals
         try:
@@ -902,14 +924,6 @@ def advance_timeline(record_id: str, req: dict, current_user: User = Depends(get
     events = get_due_events(record, minutes, case)
 
     mode = record.get("mode", "practice")
-    # P1-2: 直接在当前 record 上追加消息，避免 _save_record 覆盖
-    for ev in events:
-        if ev.get("patient_expression"):
-            record.setdefault("messages", []).append({
-                "role": "patient",
-                "content": ev["patient_expression"],
-                "created_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
-            })
     # 记录推进动作
     record_student_action(record, "advance_time", {"minutes": minutes, "new_minute": (record.get("timeline_state") or {}).get("current_simulated_minute", 0)})
     # P0-3: 状态机 — 根据是否恶化推进状态
@@ -935,11 +949,22 @@ def advance_timeline(record_id: str, req: dict, current_user: User = Depends(get
     current_minute = state.get("current_simulated_minute", 0)
     safe_events = sanitize_timeline_events_for_mode(state.get("timeline_events", []), mode, current_minute)
     due_events = sanitize_timeline_events_for_mode(events, mode, current_minute)
+    state_update = {
+        "type": "patient_state_snapshot",
+        "minute": current_minute,
+        "title": f"模拟第{current_minute}分钟患者状态",
+        "state_name": patient_state.get("state_name", ""),
+        "appearance": patient_state.get("appearance", ""),
+        "expression": patient_state.get("expression", ""),
+        "reassessment_due": patient_state.get("reassessment_due", False),
+        "deteriorated": patient_state.get("deteriorated", False),
+    }
     return {
         "current_minute": current_minute,
         "current_stage": normalize_stage_value(state.get("current_stage", "ARRIVAL"), "ARRIVAL"),
         "patient_state": patient_state,
         "current_patient_state": patient_state,
+        "state_update": state_update,
         "timeline_events": safe_events,
         "visible_events": [e for e in safe_events if e.get("triggered")],
         "due_events": due_events,
@@ -968,21 +993,20 @@ def reassess_patient(record_id: str, req: dict, current_user: User = Depends(get
     upgrade_level = req.get("selected_level")
     upgrade_zone = req.get("selected_zone")
     notify_doctor = req.get("notify_doctor", False)
+    previous_level = (record.get("timeline_state") or {}).get("current_triage_level") or (record.get("timeline_state") or {}).get("initial_level_selected")
     if upgrade_level:
         record_triage_decision(record, "reassessment", upgrade_level,
                                area=upgrade_zone or "", notify_doctor=notify_doctor,
                                reason=req.get("reason", ""))
         # P0-4: 如果等级变化，额外记录 upgrade_triage
-        init_lv = record.get("timeline_state", {}).get("initial_level_selected")
-        if init_lv and upgrade_level != init_lv:
-            record_student_action(record, "upgrade_triage", {"from_level": init_lv, "to_level": upgrade_level, "notify_doctor": notify_doctor})
+        if previous_level and upgrade_level != previous_level:
+            record_student_action(record, "upgrade_triage", {"from_level": previous_level, "to_level": upgrade_level, "notify_doctor": notify_doctor})
     record_student_action(record, "reassess", {"level": upgrade_level, "notify_doctor": notify_doctor})
     try:
         from services.triage_state_machine import create_state_machine
         sm = create_state_machine(record)
         sm.transition("reassess")
-        init_lv = record.get("timeline_state", {}).get("initial_level_selected")
-        if upgrade_level and init_lv and upgrade_level != init_lv:
+        if upgrade_level and previous_level and upgrade_level != previous_level:
             sm.transition("re_triage")
         if notify_doctor:
             sm.transition("notify_doctor")
@@ -1032,6 +1056,7 @@ def upgrade_triage(record_id: str, req: dict, current_user: User = Depends(get_c
 
     # 记录升级为复评决策
     from services.triage_timeline import record_triage_decision, record_student_action
+    previous_level = (record.get("timeline_state") or {}).get("current_triage_level") or (record.get("timeline_state") or {}).get("initial_level_selected")
     record_triage_decision(record, "reassessment", new_level, area=new_zone or "",
                            notify_doctor=req.get("notify_doctor", False),
                            reason=req.get("reason", ""))
@@ -1042,7 +1067,7 @@ def upgrade_triage(record_id: str, req: dict, current_user: User = Depends(get_c
         "to_level": new_level, "to_zone": new_zone,
     })
     record["timeline_state"] = state
-    record_student_action(record, "upgrade_triage", {"level": new_level, "zone": new_zone})
+    record_student_action(record, "upgrade_triage", {"from_level": previous_level, "to_level": new_level, "zone": new_zone, "notify_doctor": req.get("notify_doctor", False)})
 
     from services.triage_repository import _save_record
     _save_record(record)
@@ -1059,6 +1084,7 @@ def record_initial_decision(record_id: str, req: dict, current_user: User = Depe
     record = record_triage_decision(record, "initial", req.get("level", ""),
                                      area=req.get("zone", ""),
                                      reassessment_minutes=req.get("reassessment_minutes", 30),
+                                     notify_doctor=req.get("notify_doctor", False),
                                      reason=req.get("reason", ""))
     record_student_action(record, "initial_triage", req)
     # P0-2: 状态机 — initial_triage → WAITING
